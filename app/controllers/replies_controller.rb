@@ -10,13 +10,13 @@ class RepliesController < ApplicationController
     respond_to do |format|
       if @reply.save
         format.html { redirect_to discussion_path(@discussion) }
-        format.js # renders create.js.erb
+        # format.js # renders create.js.erb
       else
         format.html { redirect_to discussion_path(@discussion), notice: "Reply did not save. Please try again."}
         format.js
       end
     end
-  end   
+  end
 
   def new
   end
@@ -48,7 +48,6 @@ class RepliesController < ApplicationController
   def show
   end
 
-
   private
 
   def set_discussion
@@ -62,5 +61,4 @@ class RepliesController < ApplicationController
   def reply_params
     params.require(:reply).permit(:reply)
   end
-
 end
