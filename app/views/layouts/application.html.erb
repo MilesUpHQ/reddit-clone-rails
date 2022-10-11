@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%# <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %> 
+    <%# <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
   </head>
 
@@ -39,7 +39,7 @@
           <% if user_signed_in? %>
           <div class="navbar-item">
             <div class="field is-grouped">
-              <%= link_to 'New Discussion', '#', class:"button is-info" %>
+              <%= link_to 'New Discussion', new_discussion_path, class:"button is-info" %>
             </div>
           </div>
           <div class="navbar-item has-dropdown is-hoverable">
@@ -54,7 +54,7 @@
           <div class="field is-grouped">
 
             <p class="control">
-              <%= link_to 'New Discussion', '#', class:"button is-info" %>
+              <%= link_to 'New Discussion', new_discussion_path, class:"button is-info" %>
             </p>
 
             <p class="control">

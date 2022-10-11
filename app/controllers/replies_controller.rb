@@ -16,7 +16,7 @@ class RepliesController < ApplicationController
         format.js
       end
     end
-  end
+  end   
 
   def new
   end
@@ -45,7 +45,7 @@ class RepliesController < ApplicationController
     end
   end
 
-  def show  
+  def show
   end
 
 
