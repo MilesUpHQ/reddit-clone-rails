@@ -22,12 +22,12 @@ class RepliesController < ApplicationController
   end
 
 
-  # def destroy
-  #   @reply = @discussion.replies.find(params[:id])
-  #   @reply.destroy
-  #   redirect_to discussion_path(@discussion)
-  # end
-
+  def destroy
+    @reply = @discussion.replies.find(params[:id])
+    @reply.destroy
+    redirect_to discussion_path(@discussion)
+  end
+    
   def edit
     @discussion = Discussion.find(params[:discussion_id])
     @reply = @discussion.replies.find(params[:id])
@@ -45,11 +45,11 @@ class RepliesController < ApplicationController
     end
   end
 
-  def show
-    @reply = @discussion.replies.find(params[:id])
-    @reply.destroy
-    redirect_to discussion_path(@discussion)
-  end
+  # def show
+  #   @reply = @discussion.replies.find(params[:id])
+  #   @reply.destroy
+  #   redirect_to discussion_path(@discussion)
+  # end
 
   private
 
