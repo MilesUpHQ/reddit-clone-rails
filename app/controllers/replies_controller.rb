@@ -10,7 +10,7 @@ class RepliesController < ApplicationController
     respond_to do |format|
       if @reply.save
         format.html { redirect_to discussion_path(@discussion) }
-        # format.js # renders create.js.erb
+        format.js # renders create.js.erb
       else
         format.html { redirect_to discussion_path(@discussion), notice: "Reply did not save. Please try again."}
         format.js
@@ -22,11 +22,11 @@ class RepliesController < ApplicationController
   end
 
 
-  def destroy
-    @reply = @discussion.replies.find(params[:id])
-    @reply.destroy
-    redirect_to discussion_path(@discussion)
-  end
+  # def destroy
+  #   @reply = @discussion.replies.find(params[:id])
+  #   @reply.destroy
+  #   redirect_to discussion_path(@discussion)
+  # end
 
   def edit
     @discussion = Discussion.find(params[:discussion_id])
@@ -46,6 +46,9 @@ class RepliesController < ApplicationController
   end
 
   def show
+    @reply = @discussion.replies.find(params[:id])
+    @reply.destroy
+    redirect_to discussion_path(@discussion)
   end
 
   private
