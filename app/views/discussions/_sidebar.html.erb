@@ -9,8 +9,8 @@
 
   <br/>
 
-  <%# <% if has_role?(:admin) %>
-  <%= link_to 'New Channel', new_channel_path, class:'button is-info' %>
-  <%# <% end %>
+  <% if has_role?(:admin) %>
+    <%= link_to 'New Channel', new_channel_path, class:'button is-info' %>
+  <% end %>
 
 </div>
