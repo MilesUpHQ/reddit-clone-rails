@@ -7,17 +7,16 @@
       <div class="level-right">
 
         <%# role check %>
-        <%# <% if discussion_author(@discussion) %>
+       <% if discussion_author(@discussion) %>
         <div class="buttons">
             <%= link_to 'Edit Discussion', edit_discussion_path(@discussion), class:'button'%>
             <%= link_to 'Delete', discussion_path(@discussion), method: :delete, data: { confirm: "Delete discussion?" }, class:'button' %>
         </div>
-        <%# <% end %>
+       <% end %>
 
       </div>
     </div>
-    <div class="content">
-      <%= @discussion.content %></div>
+    <div class="content"><%= markdown(@discussion.content) %></div>
 
     <h2 class="subtitle is-5 has-text-grey"><%= @discussion.replies.count %> Replies</h2>
 

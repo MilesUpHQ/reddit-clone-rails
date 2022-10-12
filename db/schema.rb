@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2022_10_10_150511) do
     t.integer "discussion_id"
   end
 
-  create_table "discussions", force: :cascade do |t|
+  create_table "discussions", force: :cascade do |t|  
     t.string "title"
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
