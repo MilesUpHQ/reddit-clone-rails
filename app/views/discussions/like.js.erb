@@ -1,0 +1,6 @@
+<% if @success == true %>
+$(".like-<%= @discussion_id %>").addClass("active");
+<% else %>
+$(".like-<%= @discussion_id %>").removeClass("active");
+<% end %>
+$("#discussion-<%= @discussion_id %>-likes").text("<%= @discussion_likes %> likes");

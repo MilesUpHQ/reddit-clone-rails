@@ -1,6 +1,23 @@
-
+<head>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script>
+  $(function(){
+    console.log("like");
+    $(".discussion-like").on("click", function(){
+        var discussion_id = $(this).data("id");
+        $.ajax({
+            url: "/discussion/like/"+discussion_id,
+            method: "GET"
+        }).done(function(response){
+            console.log(response);
+        })
+   })
+ });
+ </script>
+</head>
 <%# used bulma framework %>
 <div class="column is-8">
+  <script src="https://kit.fontawesome.com/769209a579.js" crossorigin="anonymous"></script>
   <h3 class="title is-5 has-text-grey-light">Latest Discussions</h3>
   <div class="discussions">
     <% @discussions.each do |discussion| %>
@@ -25,6 +42,11 @@
             </p>
           </div>
         </div>
+
+        <div class="post-actions">
+          <i class = "fa fa-heart like-<%= discussion.id %> <%= 'active' if discussion_liked_by_user?(discussion.id) %>fa-2x discussion-like" data-id= "<%= discussion.id %>"></i>
+          </div>
+          <p><strong id = "discussion-<%= discussion.id %>-likes"><%= discussion.total_likes_count %> likes</strong></p>
 
           <%# TODO :Author level check %>
 

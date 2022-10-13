@@ -3,6 +3,7 @@ class Discussion < ApplicationRecord
   belongs_to :channel
   belongs_to :user
   has_many :replies, dependent: :destroy
+  has_many :likes 
 
   validates :title, :content, presence: true
   resourcify
@@ -13,5 +14,6 @@ class Discussion < ApplicationRecord
   def should_generate_new_friendly_id?
     title_changed?
   end
+
+
 end
-  

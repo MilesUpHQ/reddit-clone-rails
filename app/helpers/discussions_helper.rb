@@ -7,4 +7,8 @@ module DiscussionsHelper
   def reply_author(reply)
     user_signed_in? && current_user.id == reply.user_id
   end
-end  
+
+  def discussion_liked_by_user?discussion_id
+    Like.where(discussion_id: discussion_id).any?
+  end
+end

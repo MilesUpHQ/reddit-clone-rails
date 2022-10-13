@@ -7,11 +7,14 @@ Rails.application.routes.draw do
 
   root 'discussions#index'
 
+
+
   devise_for :users, controllers: { registrations: 'registrations'}
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
+    get 'discussion/like/:discussion_id' => 'likes#save_like', as: :like_discussion
   end
-  
+
 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
