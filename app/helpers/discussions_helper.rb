@@ -12,3 +12,4 @@ module DiscussionsHelper
     Like.where(discussion_id: discussion_id).any?
   end
 end
+ 

@@ -26,6 +26,7 @@
           <%= gravatar_image_tag(discussion.user.email, class:'border-radius-50', size: 48, alt: discussion.user.username) %>
         </div>
 
+
         <div class="column is-8">
           <%= link_to discussion do %>
             <h3 class="title is-5"><%= discussion.title %></h3>
@@ -36,7 +37,7 @@
               <% if discussion.channel %>
                 <%= link_to discussion.channel.channel, discussion.channel %>
               <% end %>
-              by <%= discussion.user.username %>
+              by <%= discussion.user.username %><br />
               </small>
               </em>
             </p>
@@ -49,13 +50,15 @@
           <p><strong id = "discussion-<%= discussion.id %>-likes"><%= discussion.total_likes_count %> likes</strong></p>
 
           <%# TODO :Author level check %>
-
-        <<% if discussion_author(discussion) || has_role?(:admin) %>
-          <div class="column has-text-right">
+      
+        <div class="column has-text-right">
+          <% if discussion_author(discussion) || has_role?(:admin) %>
            <%= link_to 'Edit', edit_discussion_path(discussion), class:'button' %>
+          <% end %>
+          <% if(has_role?(:admin) || (discussion_author(discussion) && discussion.total_likes_count == 0)) %>
            <%= link_to 'Delete', discussion, method: :delete, data: { confirm: 'Are you sure?' }, class: "button" %>
-         </div>
-        <% end %>
+          <% end %>
+        </div>
 
       </div>
     <% end %>
