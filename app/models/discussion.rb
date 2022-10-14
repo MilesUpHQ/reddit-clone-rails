@@ -3,7 +3,7 @@ class Discussion < ApplicationRecord
   belongs_to :channel
   belongs_to :user
   has_many :replies, dependent: :destroy
-  has_many :likes 
+  has_many :likes
 
   validates :title, :content, presence: true
   resourcify
@@ -15,5 +15,5 @@ class Discussion < ApplicationRecord
     title_changed?
   end
 
-
+  has_rich_text :contents
 end

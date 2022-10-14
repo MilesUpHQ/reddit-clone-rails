@@ -26,7 +26,7 @@
           <%= gravatar_image_tag(discussion.user.email, class:'border-radius-50', size: 48, alt: discussion.user.username) %>
         </div>
 
-      <div class = "like-placement">
+
         <div class="column is-8">
           <%= link_to discussion do %>
             <h3 class="title is-5"><%= discussion.title %></h3>
@@ -50,7 +50,6 @@
           <p><strong id = "discussion-<%= discussion.id %>-likes"><%= discussion.total_likes_count %> likes</strong></p>
 
           <%# TODO :Author level check %>
-      </div>
 
         <div class="column has-text-right">
           <% if discussion_author(discussion) || has_role?(:admin) %>
