@@ -15,6 +15,7 @@ class ChannelsController < ApplicationController
 
   # GET /channels/new
   def new
+    # @channels = Channel.all
     @channel = Channel.new
   end
 

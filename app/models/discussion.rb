@@ -5,7 +5,7 @@ class Discussion < ApplicationRecord
   has_many :replies, dependent: :destroy
   has_many :likes
 
-  validates :title, :content, presence: true
+  validates :title, :contents, presence: true
   resourcify
 
   extend FriendlyId
@@ -15,5 +15,6 @@ class Discussion < ApplicationRecord
     title_changed?
   end
 
-  has_rich_text :contents
+  has_rich_text :contents   
+
 end

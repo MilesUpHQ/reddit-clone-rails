@@ -54,7 +54,6 @@ class DiscussionsController < ApplicationController
   # DELETE /discussions/1 or /discussions/1.json
   def destroy
     @discussion.destroy
-
     respond_to do |format|
       format.html { redirect_to discussions_url, notice: "Discussion was successfully destroyed." }
       format.json { head :no_content }
@@ -73,6 +72,6 @@ class DiscussionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def discussion_params
-      params.require(:discussion).permit(:title, :content, :channel_id)
+      params.require(:discussion).permit(:title, :content, :channel_id, :contents)
     end
 end

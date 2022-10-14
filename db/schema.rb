@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_14_011742) do
+ActiveRecord::Schema.define(version: 2022_10_14_043822) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 2022_10_14_011742) do
     t.integer "channel_id"
     t.string "slug"
     t.integer "total_likes_count"
+    t.text "contents"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -133,3 +134,4 @@ ActiveRecord::Schema.define(version: 2022_10_14_011742) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
 end
+    
