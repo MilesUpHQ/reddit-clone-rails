@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_14_043822) do
+ActiveRecord::Schema.define(version: 2022_10_16_040803) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 2022_10_14_043822) do
     t.integer "discussion_id"
     t.integer "user_id"
     t.string "slug"
+    t.text "contents"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -134,4 +135,3 @@ ActiveRecord::Schema.define(version: 2022_10_14_043822) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
 end
-    
