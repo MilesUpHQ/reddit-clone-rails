@@ -23,7 +23,7 @@
   }
 }
 
-.like-placement{   
+.like-placement{
   display: inline;
 }
 
@@ -43,16 +43,20 @@
 }
 
 .post-actions{
-  margin-bottom: 20px;
-  i{
+  .upvote, .downvote{
+      margin-bottom: 20px;
+      display: inline;
+      width:100;
       margin-right: 10px;
-      color: #ddd;
+      color: black;
       cursor: pointer;
+      text-align: center;
   }
-  i:hover{
-      color: #999;
+  &.active{
+      color: blue;
   }
-  i.active{
-      color: #555;
+  &:hover{
+    color: blue;
+    cursor: pointer;
   }
 }

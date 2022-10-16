@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_16_040803) do
+ActiveRecord::Schema.define(version: 2022_10_16_133640) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -68,6 +68,8 @@ ActiveRecord::Schema.define(version: 2022_10_16_040803) do
     t.string "slug"
     t.integer "total_likes_count"
     t.text "contents"
+    t.integer "downvotes", default: 0
+    t.integer "upvotes", default: 0
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -130,6 +132,16 @@ ActiveRecord::Schema.define(version: 2022_10_16_040803) do
     t.index ["role_id"], name: "index_users_roles_on_role_id"
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
     t.index ["user_id"], name: "index_users_roles_on_user_id"
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "discussions_id"
+    t.boolean "upvote"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["discussions_id"], name: "index_votes_on_discussions_id"
+    t.index ["user_id"], name: "index_votes_on_user_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
