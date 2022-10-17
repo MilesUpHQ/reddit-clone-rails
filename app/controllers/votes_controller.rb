@@ -1,12 +1,16 @@
 class VotesController < ApplicationController
+  before_action :authenticate_user!
   def create
-    discussion_id = params[:vote][:discussion_id]
-    vote = Vote.new( vote_params)
+    # discussion_id = params[:vote][:discussion_id]
+    discussion_id = params[:discussion_id]
+    vote = Vote.new     #( vote_params)
+    vote.discussion_id = params[:discussion_id]
+    vote.upvote = params[:upvote]
     vote.user_id = current_user.id
 
-    existing_vote = Vote.where(user_id: current_user.id, discussion_id: discussion_id)
+    existing_vote = Vote.where(user_id: current_user.id, discussions_id: discussion_id)
 
-    respond_to do |format|
+    respond_to do |format|  
       format.js {
       if existing_vote.size > 0
         existing_vote.first.destroy
@@ -16,13 +20,12 @@ class VotesController < ApplicationController
         else
           @success = false
         end
-
-        @discussion = Discussion.find(discussion_id)
-        @total_upvotes = @discussion.upvotes
-        @total_downvotes = @discussion.downvotes
+        # @total_upvotes = @discussion.upvotes
+        # @total_downvotes = @discussion.downvotes
       end
-
-      render "votes/create"
+      @discussion = Discussion.find(discussion_id)
+      @is_upvote = params[:upvote]
+      render "create"
       }
     end
   end

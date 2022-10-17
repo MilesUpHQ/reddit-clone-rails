@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_16_133640) do
+ActiveRecord::Schema.define(version: 2022_10_17_064619) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -136,10 +136,12 @@ ActiveRecord::Schema.define(version: 2022_10_16_133640) do
 
   create_table "votes", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "discussions_id"
     t.boolean "upvote"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "discussions_id"
+    t.integer "discussion_id"
+    t.index ["discussion_id"], name: "index_votes_on_discussion_id"
     t.index ["discussions_id"], name: "index_votes_on_discussions_id"
     t.index ["user_id"], name: "index_votes_on_user_id"
   end

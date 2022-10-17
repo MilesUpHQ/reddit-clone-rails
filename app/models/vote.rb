@@ -11,8 +11,10 @@ class Vote < ApplicationRecord
     field = self.upvote ? :upvotes : :downvotes
     Discussion.find(self.discussion_id).increment(field).save
   end
+
   def decrement_vote
     field = self.upvote ? :upvotes : :downvotes
     Discussion.find(self.discussion_id).decrement(field).save
   end
 end
+  

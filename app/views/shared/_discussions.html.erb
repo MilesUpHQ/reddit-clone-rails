@@ -1,20 +1,3 @@
-<head>
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script>
-  $(function(){
-    console.log("like");
-    $(".discussion-like").on("click", function(){
-        var discussion_id = $(this).data("id");
-        $.ajax({
-            url: "/discussion/like/"+discussion_id,
-            method: "GET"
-        }).done(function(response){
-            console.log(response);
-        })
-   })
- });
- </script>
-</head>
 <%# used bulma framework %>
 <div class="column is-8">
   <script src="https://kit.fontawesome.com/769209a579.js" crossorigin="anonymous"></script>
@@ -43,13 +26,15 @@
               </small>
               </em>
             </p>
-          </div>
+          </div>  
         </div>
 
-        <div class="post-actions">
-            <div class = "fa fa-arrow-up upvote text-dark"></div>
-             <div class="font-weight-bold"> 0 </div>
-            <div class = "fa fa-arrow-down downvote"></div>
+        <div class="postactions">
+          <div id="vote-actions-<%= discussion.id %>" class="vote" data-id="<%= discussion.id %>">
+            <div class = "fa fa-arrow-up upvote <%= is_upvoted discussion %>"> </div>
+            <div class="font-weight-bold score"><%= discussion.score %></div>
+            <div class = "fa fa-arrow-down downvote  <%= is_downvoted discussion %>"></div>
+          </div>
         </div>
 
           <%# TODO :Author level check %>

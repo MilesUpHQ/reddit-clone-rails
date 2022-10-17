@@ -1,2 +1,15 @@
-console.log("voyte has been saved");
+<%# console.log("vote has been saved"); %>
+
 //update total votes on the view
+$("#vote-actions-<%= @discussion.id %> .score").text("<%= @discussion.score %>");
+
+$("#vote-actions-<%= @discussion.id %> .downvote, #vote-actions-<%= @discussion.id %> .upvote").removeClass("active");
+
+<% if @is_upvote === true %>
+$("#vote-actions-<%= @discussion.id %>")" .upvote".addClass("active");
+<% else %>
+$("#vote-actions-<%= @discussion.id %> .downvote").addClass("active");
+<% end %>  
+
+
+

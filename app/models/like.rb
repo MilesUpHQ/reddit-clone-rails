@@ -10,5 +10,5 @@ class Like < ApplicationRecord
   end
   def decrease_discussion_like_counter
       Discussion.find(self.discussion_id).decrement(:total_likes_count).save
-  end
+  end  
 end
