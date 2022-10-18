@@ -13,14 +13,14 @@
             <h3 class="title is-5"><%= discussion.title %></h3>
           <% end %>
           <div class="content">
-            <%= discussion.contents %>
+            <%= discussion.contents.to_plain_text %>
             <p><em><small>Posted <%= time_ago_in_words(discussion.created_at) %> ago in
               <% if discussion.channel %>
                 <%= link_to discussion.channel.channel, discussion.channel %>
               <% end %>
               by <%= discussion.user.username %><br />
               </small>
-              </em>
+              </em> 
             </p>
           </div>
         </div>
