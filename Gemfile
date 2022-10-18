@@ -15,7 +15,7 @@ gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 5.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 
-#change made  
+#change made
 #gem 'turbolinks', '~> 5'
 
 
@@ -48,7 +48,9 @@ gem 'friendly_id', '~> 5.4', '>= 5.4.2' #creates slugs for the url
 gem 'redcarpet', '~> 3.5', '>= 3.5.1' #Markdown to HTML/XHTML parser
 gem 'coderay', '~> 1.1', '>= 1.1.3' #Formats the code in the discussions (for eg:'''ruby)
 
-gem 'net-smtp', require: false
+gem 'paranoia', '~> 2.6'  #a gem which is used to not delete a record permanently from a database
+
+gem 'net-smtp', require: false    
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

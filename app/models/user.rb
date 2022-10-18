@@ -15,5 +15,5 @@ class User < ApplicationRecord
 
   def downvoted_discussion_ids
     self.votes.where(upvote: false).pluck(:discussion_id)
-  end
-end  
+  end  
+end

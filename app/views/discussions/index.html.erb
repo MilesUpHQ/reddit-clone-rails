@@ -1,4 +1,10 @@
 <div class="columns">
-  <%= render 'shared/discussions' %>
-  <%= render 'sidebar' %>
+    <%= render 'shared/discussions' %>
+    <%= render 'sidebar' %>
 </div>
+
+<% if has_role?(:admin) %>
+<div class="panel panel-primary">
+  <%= render 'shared/archive' %>
+</div>
+<% end %>

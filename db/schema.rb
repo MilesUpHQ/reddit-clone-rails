@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_18_005823) do
+ActiveRecord::Schema.define(version: 2022_10_18_093459) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -70,7 +70,9 @@ ActiveRecord::Schema.define(version: 2022_10_18_005823) do
     t.text "contents"
     t.integer "downvotes", default: 0
     t.integer "upvotes", default: 0
-  end
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_discussions_on_deleted_at"
+  end   
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
