@@ -16,13 +16,13 @@ class Discussion < ApplicationRecord
   end
 
   has_rich_text :contents
-  
+
   def score
     #difference between upvotes and downvotes
     if self.upvotes > 0  || self.downvotes > 0
       self.upvotes > 0 ? (self.upvotes - self.downvotes) : (self.downvotes * -1)
     else
-      0
+       0 
     end
   end
 

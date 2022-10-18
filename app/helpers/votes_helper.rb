@@ -7,4 +7,4 @@ module VotesHelper
     user_signed_in? && current_user.downvoted_discussion_ids.include?(discussion.id)? " active" : ""
   end
 
-end   
+end     
