@@ -9,6 +9,6 @@ module DiscussionsHelper
   end
 
   def discussion_liked_by_user?discussion_id
-    Like.where(discussion_id: discussion_id).any?
+    Like.where(discussion_id: discussion_id).any?  
   end
 end

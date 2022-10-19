@@ -3,7 +3,6 @@ class DiscussionsController < ApplicationController
   before_action :find_channels, only: [:index, :show, :new, :edit]
   before_action :authenticate_user!, except: [:index, :show]
 
-
   # GET /discussions or /discussions.json
   def index
     @discussions = Discussion.all.order('created_at desc')
@@ -14,6 +13,12 @@ class DiscussionsController < ApplicationController
     @discussions = Discussion.all.order('created_at desc')
   end
 
+   def archive
+    # @discussion = Discussion.find(params[:id])
+    # @discussions = Discussion.only_deleted.find(params[:id])
+    # @discussions = Discussion.readonly.with_deleted.find(params[:id])  
+    # @discussions = Discussion.with_deleted
+   end
   # GET /discussions/new
   def new
     @discussion = current_user.discussions.build

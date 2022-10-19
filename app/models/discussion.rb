@@ -5,6 +5,7 @@ class Discussion < ApplicationRecord
   has_many :replies, dependent: :destroy
   has_many :votes
 
+  acts_as_paranoid  #Deleted posts will be saved for future use
   validates :title, :contents, presence: true
   resourcify
 
@@ -15,14 +16,14 @@ class Discussion < ApplicationRecord
     title_changed?
   end
 
-  has_rich_text :contents
-  
+  has_rich_text :contents   
+
   def score
     #difference between upvotes and downvotes
     if self.upvotes > 0  || self.downvotes > 0
       self.upvotes > 0 ? (self.upvotes - self.downvotes) : (self.downvotes * -1)
     else
-      0
+       0
     end
   end
 

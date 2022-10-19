@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_17_064619) do
+ActiveRecord::Schema.define(version: 2022_10_18_093459) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -70,7 +70,9 @@ ActiveRecord::Schema.define(version: 2022_10_17_064619) do
     t.text "contents"
     t.integer "downvotes", default: 0
     t.integer "upvotes", default: 0
-  end
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_discussions_on_deleted_at"
+  end   
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
@@ -122,6 +124,7 @@ ActiveRecord::Schema.define(version: 2022_10_17_064619) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "username"
+    t.integer "voting", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -139,10 +142,8 @@ ActiveRecord::Schema.define(version: 2022_10_17_064619) do
     t.boolean "upvote"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "discussions_id"
     t.integer "discussion_id"
     t.index ["discussion_id"], name: "index_votes_on_discussion_id"
-    t.index ["discussions_id"], name: "index_votes_on_discussions_id"
     t.index ["user_id"], name: "index_votes_on_user_id"
   end
 

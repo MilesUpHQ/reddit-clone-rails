@@ -12,7 +12,7 @@
     <%# <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application' %>
 
-  </head>   
+  </head>
 
   <body>
     <% if flash[:notice] %>
@@ -39,6 +39,13 @@
 
       <div id="navbar" class="navbar-menu">
         <div class="navbar-end">
+          <% if has_role?(:admin) %>
+          <div class="navbar-item">
+            <div class="field is-grouped">
+              <%= link_to 'Archived','archive', class:"button is-info" %>
+            </div>
+          <% end %>
+          </div>
           <% if user_signed_in? %>
           <div class="navbar-item">
             <div class="field is-grouped">

@@ -18,7 +18,7 @@ class LikesController < ApplicationController
               render "discussions/like"
           }
       end
-  end
+  end  
 end
 
 
