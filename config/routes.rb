@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   # post "discussion/vote" => "votes#create"
 
   root 'discussions#index'
+  # get "discussion/archive", to: "archive#index"
 
 
 
@@ -20,6 +21,6 @@ Rails.application.routes.draw do
   end
 
 
-
+  get "archive", to: "discussions#archive" 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

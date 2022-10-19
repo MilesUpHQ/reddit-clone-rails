@@ -19,7 +19,7 @@ class VotesController < ApplicationController
         if vote.save
           @success = true
         else
-          @success = false
+          @success = false  
         end
         # @total_upvotes = @discussion.upvotes
         # @total_downvotes = @discussion.downvotes
