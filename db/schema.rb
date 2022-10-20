@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 2022_10_18_093459) do
     t.integer "upvotes", default: 0
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_discussions_on_deleted_at"
-  end   
+  end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
@@ -149,4 +149,4 @@ ActiveRecord::Schema.define(version: 2022_10_18_093459) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-end
+end  

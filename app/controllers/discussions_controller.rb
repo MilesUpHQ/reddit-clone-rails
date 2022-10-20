@@ -63,11 +63,12 @@ class DiscussionsController < ApplicationController
       format.html { redirect_to discussions_url, notice: "Discussion was successfully destroyed." }
       format.json { head :no_content }
     end
-  end
+  end   
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_discussion
+      # @discussion = Discussion.find(params[:id])
       @discussion = Discussion.find(params[:id])
     end
 
