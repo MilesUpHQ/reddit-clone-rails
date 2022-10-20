@@ -15,8 +15,8 @@ class DiscussionsController < ApplicationController
 
    def archive
     # @discussion = Discussion.find(params[:id])
-    # @discussions = Discussion.only_deleted.find(params[:id])
-    # @discussions = Discussion.readonly.with_deleted.find(params[:id])  
+    @discussions = Discussion.only_deleted
+    # @discussions = Discussion.readonly.with_deleted.find(params[:id])
     # @discussions = Discussion.with_deleted
    end
   # GET /discussions/new

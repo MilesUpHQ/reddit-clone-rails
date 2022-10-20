@@ -10,7 +10,7 @@
       <%# <% if has_role?(:admin) %>
         <div class="column is-8">
           <%= link_to discussion do %>
-            <h3 class="title is-5"><%= discussion.title %></h3>
+            <h3 class="title is-5"><%= discussion.title.truncate(25) %></h3>
           <% end %>
           <div class="content">
             <%= discussion.contents.to_plain_text %>
@@ -18,7 +18,7 @@
               <% if discussion.channel %>
                 <%= link_to discussion.channel.channel, discussion.channel %>
               <% end %>
-              by <%= discussion.user.username %><br />  
+              by <%= discussion.user.username %><br />
               </small>
               </em>
             </p>
