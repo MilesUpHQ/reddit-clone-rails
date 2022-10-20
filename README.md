@@ -11,7 +11,7 @@
 
 <h2>Migrate-Database</h2>
 
-<b>rails db:{drop,migrate,seed}</b>
+<b>rails db:{drop,migrate}</b>
 
 
 <h2>Run Server</h2>
