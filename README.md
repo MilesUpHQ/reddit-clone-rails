@@ -1,5 +1,5 @@
 <h2>Clone Repository</h2>
-1. git clone https://github.com/tusharravindran/fooddeliveryapp.git
+1. git clone https://github.com/mithun30052001/Discussion-Forum.git
 <h2>Go to App Directory</h2>
 <b>2. cd fooddeliveryapp</b>
 <h2>Installing Dependencies</h2>
