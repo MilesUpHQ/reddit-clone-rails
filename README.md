@@ -5,7 +5,7 @@
 <h2>Installing Dependencies</h2>
  
 <b>3. bundle install<br>
-4. yarn add bootstrap@5.0.0 <br>
+4. yarn add bulma@5.0.0 <br>
 5. yarn add jquery  <br>
 6. yarn add @popperjs/core</b>
 
