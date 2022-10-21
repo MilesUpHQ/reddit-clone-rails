@@ -7,7 +7,7 @@
 <b>3. bundle install<br>
 4. yarn add bulma@5.0.0 <br>
 5. yarn add jquery  <br>
-6. yarn add @popperjs/core</b>
+
 
 <h2> Drop the duplicate column discussion_id from votes </h2>
 
