@@ -13,9 +13,16 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+<<<<<<< HEAD
 
 
 require("../includes/vote.js")   
 
 require("trix")
 require("@rails/actiontext")
+=======
+require("trix")  
+require("@rails/actiontext")
+
+require("../includes/vote.js")
+>>>>>>> 13e780b226e8451188002c239483bceb21b9d6d9
