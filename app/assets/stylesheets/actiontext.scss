@@ -22,7 +22,7 @@
       > action-text-attachment,
       > .attachment {
         flex-basis: 50%;
-        max-width: 50%;
+        max-width: 50%;  
       }
     }
   }
@@ -30,7 +30,7 @@
   action-text-attachment {
     .attachment {
       padding: 0 !important;
-      max-width: 100% !important;
+      max-width: 25% !important;
     }
   }
 }

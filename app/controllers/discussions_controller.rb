@@ -63,7 +63,7 @@ class DiscussionsController < ApplicationController
       format.html { redirect_to discussions_url, notice: "Discussion was successfully destroyed." }
       format.json { head :no_content }
     end
-  end   
+  end     
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -79,5 +79,6 @@ class DiscussionsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def discussion_params
       params.require(:discussion).permit(:title, :content, :channel_id, :contents)
+      params.fetch(:discussion, {}).permit(:contents) 
     end
 end
