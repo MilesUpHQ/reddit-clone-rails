@@ -40,8 +40,8 @@ class DiscussionsController < ApplicationController
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @discussion.errors, status: :unprocessable_entity }
       end
-    end
-  end
+    end  
+  end  
 
   # PATCH/PUT /discussions/1 or /discussions/1.json
   def update
@@ -79,6 +79,6 @@ class DiscussionsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def discussion_params
       params.require(:discussion).permit(:title, :content, :channel_id, :contents)
-      params.fetch(:discussion, {}).permit(:contents) 
+      # params.fetch(:discussion, {}).permit(:contents) 
     end
 end

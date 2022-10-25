@@ -5,7 +5,7 @@
 //   })
 
 window.addEventListener("trix-file-accept", function(event) {
-    const acceptedTypes = ['image/jpeg', 'image/png']
+    const acceptedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/bmp', 'application/pdf', 'application/zip', 'application/vnd.rar', 'application/msword', 'application/vnd.ms-excel' ,'audio/wav', 'video/webm']
     const maxFileSize = 1024 * 1024 
     if (!acceptedTypes.includes(event.file.type) || event.file.size > maxFileSize) {
       event.preventDefault()
