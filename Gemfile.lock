@@ -295,7 +295,7 @@ DEPENDENCIES
   paranoia (~> 2.6)
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
-  rails (~> 6.1.7)
+  rails (~> 6.1.2)
   redcarpet (~> 3.5, >= 3.5.1)
   rolify (~> 6.0)
   sass-rails (>= 6)
@@ -309,7 +309,7 @@ DEPENDENCIES
   webpacker (~> 5.0)
 
 RUBY VERSION
-   ruby 3.1.2p20
+   ruby 3.0.4p208
 
 BUNDLED WITH
    2.2.33

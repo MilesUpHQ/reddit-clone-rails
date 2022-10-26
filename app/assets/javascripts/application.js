@@ -14,3 +14,5 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .  
+import "trix"
+import "@rails/actiontext"
