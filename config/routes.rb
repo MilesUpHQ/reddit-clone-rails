@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  
   resources :channels
   resources :discussions do
     resources :replies
@@ -11,7 +12,7 @@ Rails.application.routes.draw do
   # get "discussion/archive", to: "archive#index"
 
 
-
+  match "/404", to: "errors#not_found", via: :all
   devise_for :users, controllers: { registrations: 'registrations'}
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
