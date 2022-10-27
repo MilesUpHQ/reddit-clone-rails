@@ -6,7 +6,9 @@
  
 <b>bundle install<br>
 yarn add bulma@5.0.0 <br>
-yarn add jquery  </b>
+yarn add jquery 
+sudo apt-get install libmagickwand-dev
+sudo apt-get install imagemagick --fix-missing</b>
 
 <h2>4. Migrate-Database</h2>
 
