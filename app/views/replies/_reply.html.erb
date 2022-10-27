@@ -6,14 +6,14 @@
       </figure>
     </div>
     <div class="media-content">
-      <div class="content">  
+      <div class="content">    
         <p> 
           <strong><%= reply.user.username %></strong> <small><%= time_ago_in_words(reply.created_at) %></small>
           <br/>
           
-            <%= markdown(reply.reply) %>  
+            <%= reply.reply %>  
         </p>
-      </div>
+      </div>  
     <% if reply_author(reply) || has_role?(:admin) %>
       <nav class="level is-mobile">  
         <div class="level-left">

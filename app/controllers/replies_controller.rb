@@ -51,7 +51,7 @@ class RepliesController < ApplicationController
   #   redirect_to discussion_path(@discussion)
   # end
 
-  private
+  private 
 
   def set_discussion
     @discussion = Discussion.find(params[:discussion_id])
@@ -59,9 +59,9 @@ class RepliesController < ApplicationController
 
   def set_reply
     @reply = Reply.find(params[:id])
-  end
+  end  
 
   def reply_params
-    params.require(:reply).permit(:reply,:contents)
+    params.require(:reply).permit(:reply, :contents)  
   end
-end
+end      
