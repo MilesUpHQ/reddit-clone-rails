@@ -10,5 +10,5 @@ class Reply < ApplicationRecord
     reply_changed?
   end
 
-  has_rich_text :reply 
+  has_rich_text :reply     
 end     
