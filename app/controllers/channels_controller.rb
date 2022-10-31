@@ -3,7 +3,7 @@ class ChannelsController < ApplicationController
 
   # GET /channels or /channels.json
   def index
-    @channels = Channel.all
+    @channels = Channel.all.page(params[:page]).per(2)
     @discussions = Discussion.all.order('created_at desc')
   end
 

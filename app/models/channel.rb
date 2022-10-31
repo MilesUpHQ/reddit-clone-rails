@@ -1,6 +1,8 @@
 class Channel < ApplicationRecord
-   has_many :discussions
+   validates :channel, presence: true, uniqueness: true
+   has_many :discussions ,dependent: :destroy
    has_many :users, through: :discussions
+   
    resourcify
 
   extend FriendlyId
