@@ -12,6 +12,7 @@ class DiscussionsController < ApplicationController
   # GET /discussions/1 or /discussions/1.json
   def show
     @discussions = Discussion.all.order('created_at desc')
+    @channels = Channel.all.page(params[:page]).per(2)
   end
 
    def archive

@@ -13,6 +13,11 @@
   <% if has_role?(:admin) %>
     <%= link_to 'New Channel', new_channel_path, class:'button is-info' %>
   <% end %>
-<%= paginate @channels%>
+<div class="apple_pagination">
+  <div class="page_info">
+    <%= page_entries_info @channels %>
+  </div>
+  <%= paginate @channels %>
+</div>
 </div>
 </div>

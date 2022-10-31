@@ -15,7 +15,7 @@ ActiveStorage.start()
 
 
 
-require("../includes/vote.js")   
+require("../includes/vote.js")
 
 require("trix")
 require("@rails/actiontext")

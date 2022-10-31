@@ -4,13 +4,15 @@ class ChannelsController < ApplicationController
   # GET /channels or /channels.json
   def index
     @channels = Channel.all.page(params[:page]).per(2)
-    @discussions = Discussion.all.order('created_at desc')
+    @discussions = Discussion.all.order('created_at desc')	   
+     
   end
 
   # GET /channels/1 or /channels/1.json
   def show
     @discussions = Discussion.where('channel_id = ?', @channel.id) #Discussions matching channel id
-    @channels = Channel.all
+    @channels = Channel.all.page(params[:page]).per(2)
+
   end
 
   # GET /channels/new
