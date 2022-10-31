@@ -27,6 +27,7 @@
     <% end %>
      <nav class="navbar is-light" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
+      
         <%= link_to root_path, class:"navbar-item" do %>
           <h1 class="title is-5">Discussions</h1>
         <% end  %>
@@ -42,14 +43,21 @@
           
           <% if user_signed_in? %>
           <div class="navbar-item">
-            <div class="field is-grouped">
+            
+            <div class="field ">
+            <% if has_role?(:admin) %>
+            <%= link_to 'New Channel',channels_path, class:"button is-primary" %>
+          
+            <%end%>
               <%= link_to 'New Discussion', new_discussion_path, class:"button is-info" %>
             </div>
+
           </div>
           <div class="navbar-item has-dropdown is-hoverable">
             <%= link_to 'Account', edit_user_registration_path, class: "navbar-link" %>
             <div class="navbar-dropdown is-right">
-              <%= link_to current_user.username, edit_user_registration_path, class:"navbar-item" %>
+                <%= link_to "Home", root_path, class:"navbar-item" %>
+              <%= link_to "Edit User", edit_user_registration_path, class:"navbar-item" %>
                <%= link_to "Log Out", destroy_user_session_path, method: :delete, class:"navbar-item" %>
             </div>
           </div>

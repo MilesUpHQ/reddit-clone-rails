@@ -6,6 +6,7 @@ class DiscussionsController < ApplicationController
   # GET /discussions or /discussions.json
   def index
     @discussions = Discussion.all.order('created_at desc')
+    @channels = Channel.all.page(params[:page]).per(2)
   end
 
   # GET /discussions/1 or /discussions/1.json
@@ -21,7 +22,7 @@ class DiscussionsController < ApplicationController
    end
   # GET /discussions/new
   def new
-    @discussion = current_user.discussions.build
+    @discussion = current_user.discussions.create
   end
 
   # GET /discussions/1/edit

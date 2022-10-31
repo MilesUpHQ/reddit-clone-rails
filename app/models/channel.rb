@@ -1,6 +1,6 @@
 class Channel < ApplicationRecord
    validates :channel, presence: true, uniqueness: true
-   has_many :discussions
+   has_many :discussions ,dependent: :destroy
    has_many :users, through: :discussions
    
    resourcify
