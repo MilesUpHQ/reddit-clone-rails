@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-1000.times {
-  Channel.create(channel: "hah1a")  
-}
+Channel.destroy_all
+
+1000.times do |i|
+  Channel.create(channel: "haha1")
+end

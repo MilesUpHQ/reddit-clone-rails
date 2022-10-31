@@ -36,4 +36,11 @@
  <p class="has-text-center">Sorry! You don't have access this page.</p>
 <% end %>
 
-<%= paginate @channels %>
+
+
+<div class="apple_pagination">
+  <div class="page_info">
+    <%= page_entries_info @channels %>
+  </div>
+  <%= paginate @channels %>
+</div>
