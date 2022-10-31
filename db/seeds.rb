@@ -8,6 +8,29 @@
 
 Channel.destroy_all
 
-1000.times do |i|
-  Channel.create(channel: "haha1")
-end
+
+  Channel.create(channel: "a")
+  Channel.create(channel: "ab")
+  Channel.create(channel: "ac")
+  Channel.create(channel: "ad")
+  Channel.create(channel: "ae")
+  Channel.create(channel: "af")
+  Channel.create(channel: "ag")
+  Channel.create(channel: "ah")
+  Channel.create(channel: "ai")
+  Channel.create(channel: "aj")
+  Channel.create(channel: "ak")
+  Channel.create(channel: "al")
+  Channel.create(channel: "am")
+  Channel.create(channel: "an")
+  Channel.create(channel: "ao")
+  Channel.create(channel: "ap")
+  Channel.create(channel: "aq")
+  Channel.create(channel: "ar")
+  Channel.create(channel: "as")
+  Channel.create(channel: "at")
+  Channel.create(channel: "au")
+  Channel.create(channel: "av")
+  Channel.create(channel: "aw")
+  Channel.create(channel: "ax")
+  Channel.create(channel: "az")

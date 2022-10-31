@@ -20,8 +20,9 @@
       </div>
     </div>
     <%# <div class="content"><%= markdown(@discussion.content) </div> %>
-    <div class="contents"> <%= @discussion.contents %>  
-
+    
+    <div class="contents"><div class="content-division"><%= @discussion.contents %> </div>
+ 
     <h2 class="subtitle is-5 has-text-grey"><%= @discussion.replies.count %> Replies</h2>
 
     <div id="discussion-replies">
