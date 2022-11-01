@@ -7,6 +7,7 @@ class Discussion < ApplicationRecord
 
   acts_as_paranoid  #Deleted posts will be saved for future use
   validates :title, :contents, presence: true
+  # validates :title, length: {maximum: 20}
   resourcify
   
 
@@ -15,7 +16,7 @@ class Discussion < ApplicationRecord
 
   def should_generate_new_friendly_id?
     title_changed?
-  end
+  end  
 
   has_rich_text :contents   
   validates :contents, :length => { :maximum => 1000,
