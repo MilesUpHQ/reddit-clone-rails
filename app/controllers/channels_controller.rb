@@ -5,14 +5,12 @@ class ChannelsController < ApplicationController
   def index
     @channels = Channel.all.page(params[:page]).per(5).order('created_at desc')
     @discussions = Discussion.all.order('created_at desc')	   
-     
   end
 
   # GET /channels/1 or /channels/1.json
   def show
     @discussions = Discussion.where('channel_id = ?', @channel.id) #Discussions matching channel id
     @channels = Channel.all.page(params[:page]).per(5)  
-
   end
 
   # GET /channels/new
@@ -72,5 +70,5 @@ class ChannelsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def channel_params
       params.require(:channel).permit(:channel)
-    end
+    end  
 end
