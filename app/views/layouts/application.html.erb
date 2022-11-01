@@ -39,7 +39,7 @@
                 <div class="navbar-item">
                   <div class="field ">
                     <% if has_role?(:admin) %>
-                      <%= link_to 'New Channel',channels_path, class:"button is-primary" %>
+                      <%= link_to 'New Channel',new_channel_path, class:"button is-primary" %>  
                     <%end%>
                     <%= link_to 'New Discussion', new_discussion_path, class:"button is-info" %>
                   </div>
