@@ -6,7 +6,7 @@ class Discussion < ApplicationRecord
   has_many :votes
 
   acts_as_paranoid  #Deleted posts will be saved for future use
-  validates :title, :contents,:channel presence: true
+  validates :title, :contents,:channel, presence: true
   # validates :title, length: {maximum: 20}
   resourcify
   
