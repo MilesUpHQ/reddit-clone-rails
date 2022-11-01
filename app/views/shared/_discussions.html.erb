@@ -8,7 +8,7 @@
         <div class="column is-1">
           <%= gravatar_image_tag(discussion.user.email, class:'border-radius-50', size: 48, alt: discussion.user.username) %>
         </div>
-      <%# <% if has_role?(:admin) %>
+        <%# <% if has_role?(:admin) %>
         <div class="column is-8">
           <%= link_to discussion do %>
             <h3 class="title is-5"><%= discussion.title.truncate(25) %></h3>
@@ -16,16 +16,15 @@
           <div class="contents">
             <%= discussion.contents.to_plain_text.truncate(25) %>
             <p><em><small>Posted <%= time_ago_in_words(discussion.created_at) %> ago in
-              <% if discussion.channel %>
-                <%= link_to discussion.channel.channel, discussion.channel %>
-              <% end %>
-              by <%= discussion.user.username %><br />
-              </small>
+                  <% if discussion.channel %>
+                    <%= link_to discussion.channel.channel, discussion.channel %>
+                  <% end %>
+                  by <%= discussion.user.username %><br />
+                </small>
               </em>
             </p>
           </div>
         </div>
-
         <div class="postactions">
           <div id="vote-actions-<%= discussion.id %>" class="vote" data-id="<%= discussion.id %>">
             <div class = "fa fa-arrow-up upvote <%= is_upvoted discussion %>"> </div>
@@ -33,23 +32,18 @@
             <div class = "fa fa-arrow-down downvote  <%= is_downvoted discussion %>"></div>
           </div>
         </div>
-
-
-
         <div class="column has-text-right">
           <% if discussion_author(discussion) || has_role?(:admin) %>
-           <%= link_to 'Edit', edit_discussion_path(discussion), class:'button' %>
+            <%= link_to 'Edit', edit_discussion_path(discussion), class:'button' %>
           <% end %>
           <% if(has_role?(:admin) || (discussion_author(discussion) && discussion.score == 0)) %>
-           <%= link_to 'Delete', discussion, method: :delete, data: { confirm: 'Are you sure?' }, class: "button" %>
+            <%= link_to 'Delete', discussion, method: :delete, data: { confirm: 'Are you sure?' }, class: "button" %>
           <% end %>
           <%# <% if has_role?(:admin) %>
-           <%# <%= link_to 'Archive', edit_discussion_path(discussion), class:'button' %>
+          <%# <%= link_to 'Archive', edit_discussion_path(discussion), class:'button' %>
           <%# <% end %>
-
         </div>
-
       </div>
     <% end %>
-      </div>
+  </div>
 </div>

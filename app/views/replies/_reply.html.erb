@@ -6,31 +6,30 @@
       </figure>
     </div>
     <div class="media-content">
-      <div class="content">    
-        <p> 
+      <div class="content">
+        <p>
           <strong><%= reply.user.username %></strong> <small><%= time_ago_in_words(reply.created_at) %></small>
           <br/>
-          
-            <%= reply.reply %>  
+          <%= reply.reply %>
         </p>
-      </div>  
-    <% if reply_author(reply) || has_role?(:admin) %>
-      <nav class="level is-mobile">  
-        <div class="level-left">
-          <a class="level-item">
-            <%= link_to edit_discussion_reply_path(reply.discussion, reply) do %>
-            <span class="icon is-small"><i class="fa fa-pencil"></i></span>
-            <% end %>
-          </a>
-          <a class="level-item">
-            <%= link_to [reply.discussion, reply],
+      </div>
+      <% if reply_author(reply) || has_role?(:admin) %>
+        <nav class="level is-mobile">
+          <div class="level-left">
+            <a class="level-item">
+              <%= link_to edit_discussion_reply_path(reply.discussion, reply) do %>
+                <span class="icon is-small"><i class="fa fa-pencil"></i></span>
+              <% end %>
+            </a>
+            <a class="level-item">
+              <%= link_to [reply.discussion, reply],
                 method: :delete, data: {confirm: "Are you sure ?" } do %>
-            <span class="icon is-small"><i class="fa fa-trash-o"></i></span>
-            <% end %>
-          </a>
-        </div>
-      </nav>
-    <% end %>
+                <span class="icon is-small"><i class="fa fa-trash-o"></i></span>
+              <% end %>
+            </a>
+          </div>
+        </nav>
+      <% end %>
     </div>
   </article>
 </div>

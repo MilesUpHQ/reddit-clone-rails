@@ -1,16 +1,9 @@
 <% if has_role?(:admin) %>
-
-   <div class="buttons has-addons is-right">
+  <div class="buttons has-addons is-right">
     <%= link_to 'Archived Discussions','archive', class:"button is-info" %>
-   </div>
- <% end %> 
-  
-
+  </div>
+<% end %>
 <div class="columns">
-       <%= render 'shared/discussions' %>  
-    <%= render 'sidebar' %>  
-</div>  
-
-
-
-
+  <%= render 'shared/discussions' %>
+  <%= render 'sidebar' %>
+</div>
