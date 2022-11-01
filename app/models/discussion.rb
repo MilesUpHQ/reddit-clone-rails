@@ -6,7 +6,7 @@ class Discussion < ApplicationRecord
   has_many :votes
 
   acts_as_paranoid  #Deleted posts will be saved for future use
-  validates :title, :contents, presence: true
+  validates :title, :contents,:channel, presence: true
   # validates :title, length: {maximum: 20}
   resourcify
   
@@ -19,8 +19,7 @@ class Discussion < ApplicationRecord
   end  
 
   has_rich_text :contents   
-  validates :contents, :length => { :maximum => 1000,
-    :too_long => "%{count} characters is the maximum allowed" }
+  
   def score
     #difference between upvotes and downvotes
     if self.upvotes > 0  || self.downvotes > 0

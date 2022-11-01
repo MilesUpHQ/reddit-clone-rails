@@ -6,13 +6,13 @@ class DiscussionsController < ApplicationController
   # GET /discussions or /discussions.json
   def index
     @discussions = Discussion.all.order('created_at desc')
-    @channels = Channel.all.page(params[:page]).per(5)
+    @channels = Channel.all.page(params[:page]).per(2)
   end
 
   # GET /discussions/1 or /discussions/1.json
   def show
     @discussions = Discussion.all.order('created_at desc')
-    @channels = Channel.all.page(params[:page]).per(5)
+    @channels = Channel.all.page(params[:page]).per(2)
   end
 
    def archive
@@ -23,7 +23,7 @@ class DiscussionsController < ApplicationController
    end
   # GET /discussions/new
   def new
-    @discussion = current_user.discussions.new 
+    @discussion = current_user.discussions.new
   end
 
   # GET /discussions/1/edit
@@ -33,7 +33,8 @@ class DiscussionsController < ApplicationController
   # POST /discussions or /discussions.json
   def create
     @discussion = current_user.discussions.new(discussion_params)
-    @discussion.save 
+    @discussion.save
+    @channels = Channel.all.page(params[:page]).per(2)
     respond_to do |format|
       if @discussion.save
         format.html { redirect_to discussion_url(@discussion), notice: "Discussion was successfully created." }
