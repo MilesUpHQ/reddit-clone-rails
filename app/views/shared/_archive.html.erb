@@ -7,7 +7,7 @@
         <div class="column is-1">
           <%= gravatar_image_tag(discussion.user.email, class:'border-radius-50', size: 48, alt: discussion.user.username) %>
         </div>
-      <%# <% if has_role?(:admin) %>
+        <%# <% if has_role?(:admin) %>
         <div class="column is-8">
           <%= link_to discussion do %>
             <h3 class="title is-5"><%= discussion.title.truncate(25) %></h3>
@@ -15,16 +15,16 @@
           <div class="content">
             <%= discussion.contents.to_plain_text %>
             <p><em><small>Posted <%= time_ago_in_words(discussion.created_at) %> ago in
-              <% if discussion.channel %>
-                <%= link_to discussion.channel.channel, discussion.channel %>
-              <% end %>
-              by <%= discussion.user.username %><br />
-              </small>
+                  <% if discussion.channel %>
+                    <%= link_to discussion.channel.channel, discussion.channel %>
+                  <% end %>
+                  by <%= discussion.user.username %><br />
+                </small>
               </em>
             </p>
           </div>
         </div>
       </div>
     <% end %>
-      </div>
+  </div>
 </div>
