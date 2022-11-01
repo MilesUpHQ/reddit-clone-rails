@@ -15,11 +15,10 @@ class Discussion < ApplicationRecord
 
   def should_generate_new_friendly_id?
     title_changed?
-  end
+end
 
   has_rich_text :contents   
-  validates :contents, :length => { :maximum => 1000,
-    :too_long => "%{count} characters is the maximum allowed" }
+  
   def score
     #difference between upvotes and downvotes
     if self.upvotes > 0  || self.downvotes > 0

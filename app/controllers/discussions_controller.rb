@@ -23,7 +23,7 @@ class DiscussionsController < ApplicationController
    end
   # GET /discussions/new
   def new
-    @discussion = current_user.discussions.create
+    @discussion = current_user.discussions.new
   end
 
   # GET /discussions/1/edit
@@ -32,8 +32,9 @@ class DiscussionsController < ApplicationController
 
   # POST /discussions or /discussions.json
   def create
-    @discussion = current_user.discussions.build(discussion_params)
-
+    @discussion = current_user.discussions.new(discussion_params)
+    @discussion.save
+    @channels = Channel.all.page(params[:page]).per(2)
     respond_to do |format|
       if @discussion.save
         format.html { redirect_to discussion_url(@discussion), notice: "Discussion was successfully created." }
