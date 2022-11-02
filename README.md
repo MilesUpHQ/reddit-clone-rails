@@ -1,33 +1,38 @@
-<h2>1.Clone Repository</h2>
- git clone https://github.com/mithun30052001/Discussion-Forum.git
-<h2>2.Go to App Directory</h2>
-<b> cd Discussion-forum-app</b>
-<h2>3.Installing Dependencies</h2>
- 
-<b>bundle install<br>
-yarn add bulma@5.0.0 <br>
-yarn add jquery <br>
-sudo apt-get install libmagickwand-dev<br>
-sudo apt-get install imagemagick --fix-missing</b>
+# Reddit Clone
+![Reddit](https://play-lh.googleusercontent.com/MDRjKWEIHO9cGiWt-tlvOGpAP3x14_89jwAT-nQTS6Fra-gxfakizwJ3NHBTClNGYK4)
+<br />
+<h1> Welcome to Reddit Clone App using Rails </h1>
 
-<h2>4. Migrate-Database</h2>
+## _Requirments_
+```
+* Github
+* Ruby 3.0.4
+* Rails 6.1.7
+```
 
-<b>rails db:{drop,migrate}</b>
-
-<h2>5.Delete all the files related to actiontext and install actiontext </h2>
-<b>rails action_text:install </b>
-<h2>6.Add the cotents given in application.js file </h2>
- <b>import "trix"<br>
-import "@rails/actiontext"</b>
- 
- 
-<h2>7. Run Server</h2>
-<b>rails s</b>
- 
- <h2>8. Signup admin account and make the account as admin using rolify </h2>
- <h3> Open rails console and make the account as admin account </h3>
- <b> rails c <br>
-  User.connection <br>
-  @user=User.find(id) <br>
-  @user.add_role "admin" <br>
-  @user.save </b>
+## _Installation_
+1. Checkout to your Repository(Directory)
+```
+  $ git clone "github.com/vasanthakumar/....."
+```
+2. Go to the Directory in Terminal
+```
+  $ cd reddit_clone
+```
+3. Install the Pre requisite
+  - Install all the Gem given in Gem.rb file
+  - Install Bootstrap as node modules using npm
+```
+  $ bundle install
+  $ npm install 
+```
+4. Create and Setup Database
+```
+  $ rails db:create
+  $ rails db:migrate
+```
+5. Start the Rails Server
+```
+  $ rails server
+```
+And now you can vist the site with the URL http://localhost:3000
