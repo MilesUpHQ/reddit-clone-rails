@@ -4,6 +4,8 @@ class Post < ApplicationRecord
   validates_presence_of :title, :body, :account_id, :community_id
   has_many :comments
 
+  has_rich_text :body 
+
   def score
     # difference between upvotes and downvotes
     if self.upvotes > 0 || self.downvotes > 0
@@ -13,4 +15,4 @@ class Post < ApplicationRecord
     end
   end
 
-end
+end    
