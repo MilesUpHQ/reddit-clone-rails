@@ -1,4 +1,4 @@
-.upvote, .downvote {
+.upvote{
   display: block;
   width: 100%;
   padding-top: 10px;
@@ -11,6 +11,23 @@
 
   &:hover {
     color: #ff0000;
+    cursor: pointer;
+  }
+}
+
+.downvote{
+  display: block;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: #000;
+
+  &.active {
+    color: blue;
+  }
+
+  &:hover {
+    color: blue;
     cursor: pointer;
   }
 }

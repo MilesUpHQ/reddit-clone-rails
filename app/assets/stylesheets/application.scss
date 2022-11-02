@@ -16,7 +16,11 @@
 
  @import "bootstrap/scss/bootstrap";
 .textarea{
-    
     overflow: scroll;
-    height: 400px  
+    height: 400px; 
+}
+
+.commentarea{
+    overflow: scroll;
+    height: 200px;  
 }
