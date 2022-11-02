@@ -13,7 +13,7 @@
 ## _Installation_
 1. Checkout to your Repository(Directory)
 ```
-  $ git clone "github.com/vasanthakumar/....."
+  $ git clone "www.github.com/iMagesh/reddit-clone.git"
 ```
 2. Go to the Directory in Terminal
 ```
