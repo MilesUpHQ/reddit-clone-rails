@@ -1,27 +1,19 @@
 Rails.application.routes.draw do
+  devise_for :accounts
+  get "u/:username" => "public#profile", as: :profile
 
-  
-  resources :channels
-  resources :discussions do
-    resources :replies
-  end
-  resources :votes
-  # post "discussion/vote" => "votes#create"
-
-  root 'discussions#index'
-  # get "discussion/archive", to: "archive#index"
-
-
-  match "/404", to: "errors#not_found", via: :all
-  devise_for :users, controllers: { registrations: 'registrations'}
-  devise_scope :user do
-    get '/users/sign_out' => 'devise/sessions#destroy'
-    # get 'discussion/like/:discussion_id' => 'likes#save_like', as: :like_discussion
-    # post 'discussion/vote' => 'votes#create'
-
+  resources :communities do
+    resources :posts
   end
 
+  resources :subscriptions
+  resources :comments, only: [:create]
 
-  get "archive", to: "discussions#archive" 
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  post "post/vote" => "votes#create"
+
+  # devise_scope :account do
+  #   get '/sign_in' => 'devise/sessions#new' # custom path to login/sign_in
+  #   get '/sign_up' => 'devise/registrations#new', as: 'new_account_registration' # custom path to sign_up/registration
+  # end
+  root to: 'public#index'
 end

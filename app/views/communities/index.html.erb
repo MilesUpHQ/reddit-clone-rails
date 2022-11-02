@@ -1,0 +1,19 @@
+<% if account_signed_in? %>
+  <div class="float-right">
+    <%= link_to "Create New Community", new_community_path, class: "btn btn-outline-primary" %>
+  </div>
+<% end %>
+
+
+<% if @communities.size > 0 %>
+  <% @communities.each do |community| %>
+    <div class="card border-light mb-3" style="max-width: 57rem;">
+      <div class="card-body">
+        <h5 class="card-title"><%= link_to community.name, community %></h5>
+        <p class="card-text"><%= simple_format community.rules %></p>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <p>No communities to display.</p>
+<% end %>
