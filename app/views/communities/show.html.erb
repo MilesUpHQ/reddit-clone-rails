@@ -1,6 +1,24 @@
+<% if @community.cover_image.attached? %>
+  <%= image_tag(@community.cover_image, height: "200px", width: "1200px") %>
+<% else %>
+  <%= link_to "#" do %>
+    <img height= "200px", width= "1200px" src="https://cdn.cbeditz.com/cbeditz/preview/solid-dark-blue-gradient-background-wallpapers-70-116145018144hkixikfuh.jpg">
+  <% end %>
+<% end %>
+
+
 <div class="row mb-4">
   <div class="col-sm-8">
-    <h3><%= @community.name %></h3>
+    <div class = "details">
+    <% if @community.profile_image.attached? %>  
+      <%= image_tag(@community.profile_image, class: "profile-pic") %>
+    <% else %>
+      <%= link_to "#" do %>
+        <img class="profile-pic" src="https://www.iconpacks.net/icons/2/free-reddit-logo-icon-2436-thumb.png">
+      <% end %>
+    <% end %>
+    <span class = "name"><h3><%= @community.name %></h3></span>
+    </div>
   </div>
   <div class="col-sm-4">
     <% if @is_subscribed %>
@@ -10,6 +28,7 @@
     <% end %>
   </div>
 </div>
+
 <div class="row">
   <div class="col-sm-8">
     <%= render partial: "posts/list", locals: { posts: @posts } %>
@@ -20,7 +39,7 @@
       <p class="mt-2"><%= @community.summary %></p>
 
       <p><%= pluralize @subscriber_count, "member" %></p>
-    </div>
+    </div>, 
 
     <small>
       <%= simple_format @community.rules %>

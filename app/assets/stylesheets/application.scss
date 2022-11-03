@@ -24,3 +24,33 @@
     overflow: scroll;
     height: 200px;  
 }
+
+.profile-pic {
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    margin-top: -20px;
+    margin-left: 30px;
+    overflow: hidden;
+    border: 1px solid black;
+}
+
+.cover-pic {
+    margin-left: 0px;
+    height: "200px";
+    width: "1200px";
+}
+
+.details {
+    display: flex;
+}
+
+.name{
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.join-button{
+    margin-top: 10px;
+    margin-right: 300px;
+}
