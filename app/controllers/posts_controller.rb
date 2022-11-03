@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_account!, except:  [ :index, :show ]
-  before_action :set_post, only: [:show]
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :auth_subscriber, only: [:new]
 
   def index
@@ -28,6 +28,21 @@ class PostsController < ApplicationController
       render :new
     end
   end
+
+  def edit
+    @community = Community.find(params[:community_id])
+  end
+
+  
+  def update
+    @community = Community.find(params[:community_id])
+    if @community.post.update(post_values)
+      redirect_to @post
+    else
+      render :edit
+  
+  end
+end
 
   private
 

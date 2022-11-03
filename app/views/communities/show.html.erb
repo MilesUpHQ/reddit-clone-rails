@@ -9,6 +9,12 @@
       <%= render partial: "communities/subscribe", locals: { community_id: @community.id } %>
     <% end %>
   </div>
+  <ul>
+    <li><%= link_to "Edit", edit_community_path(@community) %></li>
+    <li><%= link_to "Destroy", community_path(@community),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %></li>
+  </ul>
 </div>
 <div class="row">
   <div class="col-sm-8">
