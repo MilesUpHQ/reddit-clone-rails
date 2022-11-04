@@ -20,8 +20,13 @@
       <p class="mt-2"><%= @community.summary %></p>
 
       <p><%= pluralize @subscriber_count, "member" %></p>
+      <ul>
+        <li><%= link_to "Edit", edit_community_path(@community) %></li>
+        <li><%= link_to "Destroy", community_path(@community),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %></li>
+      </ul>
     </div>
-
     <small>
       <%= simple_format @community.rules %>
     </small>
