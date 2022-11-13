@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   get "u/:username" => "public#profile", as: :profile
 
   resources :communities do
-    resources :posts
+    resources :posts do
+      get '/page/:page', action: :index, on: :collection
+    end
   end
 
   resources :subscriptions
@@ -15,5 +17,9 @@ Rails.application.routes.draw do
   #   get '/sign_in' => 'devise/sessions#new' # custom path to login/sign_in
   #   get '/sign_up' => 'devise/registrations#new', as: 'new_account_registration' # custom path to sign_up/registration
   # end
-  root to: 'public#index'
+  root 'public#index'
+
+  resources :public do
+    get '/page/:page', action: :index, on: :collection
+  end 
 end
