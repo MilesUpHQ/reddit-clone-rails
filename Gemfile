@@ -24,7 +24,6 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 gem "kaminari"
 gem "bootstrap-sass"
-gem "bootstrap-kaminari-views"
 gem 'devise'
 
 # Use Active Storage variant
