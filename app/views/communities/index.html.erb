@@ -45,9 +45,15 @@
     <div class="col-3">
       <div class="text-dark mb-3">
         <div class="list-group">
-          <li class="list-group-item text-white bg-secondary">Top Relationships Communities</li>
-          <li class="list-group-item">cato</li>
-          <li class="list-group-item">cato</li>
+          <li class="list-group-item text-white bg-secondary">Top <%= @random_category %> Communities</li>
+
+          <% if @random_category_communities.size > 0 %>
+            <% @random_category_communities.each do |community| %>
+              <%= link_to community.name, community, class:"list-group-item" %>
+            <% end %>
+          <% else %>
+            <p class="m-3">No communities to display.</p>
+          <% end %>
         </div>
       </div>
     </div>

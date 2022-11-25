@@ -5,14 +5,14 @@ class CommunitiesController < ApplicationController
   after_action :count_post_for_this_week, only: [:index]
 
   def index
-    puts params
-    if(params.has_key?(:category))
-      @communities = Community.where(category: params[:category])
-    else
-      @communities = Community.all
-    end
-
     count_post_for_this_week
+    if(params.has_key?(:category))
+      @communities = Community.where(category: params[:category]).order("post_count_this_week desc").limit(5)
+    else
+      @communities = Community.all.order("post_count_this_week desc").limit(5)
+    end
+    @random_category = @categories.sample
+    @random_category_communities = Community.where(category: @random_category).order("post_count_this_week desc").limit(5)
   end
 
   def show
