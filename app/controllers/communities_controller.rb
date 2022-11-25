@@ -3,7 +3,12 @@ class CommunitiesController < ApplicationController
   before_action :set_community, only: [:show, :edit,:update,:destroy]
 
   def index
-    @communities = Community.all
+    @categories = Community.select(:category).map(&:category).uniq
+    if(params.has_key?(:category))
+      @communities = Community.where(category: params[:category]).order("created_at desc")
+    else
+      @communities = Community.all.order("created_at desc")
+    end
   end
 
   def show
@@ -53,7 +58,7 @@ end
   end
 
   def community_values
-    params.require(:community).permit(:name, :url, :summary, :rules, :profile_image, :cover_image)
+    params.require(:community).permit(:name, :url, :summary, :rules, :profile_image, :cover_image, :category)
   end
 
 end

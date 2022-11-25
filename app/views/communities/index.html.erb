@@ -1,19 +1,61 @@
-<% if account_signed_in? %>
-  <div class="float-right">
-    <%= link_to "Create New Community", new_community_path, class: "btn btn-outline-primary" %>
-  </div>
-<% end %>
+<div class="row">
+  <div class="col-2">
+    <p class="h5 mb-4">Categories</p>
+    <div class="card">
+      <ul class="list-group list-group-flush">
+       <% if !(params.has_key?(:category)) %>
+        <li class="list-group-item border-left border-danger"><%= link_to "All", communities_path %></li>
+       <% else %>
+        <li class="list-group-item"><%= link_to "All", communities_path %></li>
+       <% end %> 
 
-
-<% if @communities.size > 0 %>
-  <% @communities.each do |community| %>
-    <div class="card border-light mb-3" style="max-width: 57rem;">
-      <div class="card-body">
-        <h5 class="card-title"><%= link_to community.name, community %></h5>
-        <p class="card-text"><%= simple_format community.rules %></p>
-      </div>
+        <% @categories.reverse.each do |category| %>
+          <% if params[:category] == category %>
+           <li class="list-group-item border-left border-danger"><%= link_to category, communities_path(category: category) %></li>
+          <% else %> 
+           <li class="list-group-item"><%= link_to category, communities_path(category: category) %></li>
+          <% end %> 
+        <% end %>
+      </ul>
     </div>
-  <% end %>
-<% else %>
-  <p>No communities to display.</p>
-<% end %>
+  </div>
+  <div class="col-6">
+    <% if @communities.size > 0 %>
+      <% @communities.each do |community| %>
+        <div class="card border-light mb-3" style="width: 35rem;">
+         <div class="card-body">
+          <h5 class="card-title"><%= link_to community.name, community %></h5>
+          <p class="card-text"><%= simple_format community.rules %></p>
+         </div>
+        </div>
+     <% end %>
+    <% else %>
+       <p>No communities to display.</p>
+   <% end %>
+  </div>
+  <div class="col-4">
+    <% if account_signed_in? %>
+        <%= link_to "Create New Community", new_community_path, class: "btn btn-outline-primary" %>
+    <% end %>
+    <p class="h5 mb-4 mt-3">Top Communities</p>
+    <div class="card">
+      <ul class="list-group list-group-flush">
+        <% Community.where(category: "Other").each do |community| %>
+          <li class="list-group-item"><%= link_to community.name, community_path(community) %></li>
+        <% end %>
+      </ul>
+      <%= link_to "View all", communities_path, class: "btn btn-primary" %>
+    </div>
+    <p class="h5 mb-4 mt-3">Top Sports Communities</p>
+    <div class="card">
+      <ul class="list-group list-group-flush">
+        <%  Community.where(category: "Games").each do |community| %>
+          <li class="list-group-item"><%= link_to community.name, community_path(community) %></li>
+        <% end %>
+      </ul>
+      <%= link_to "View all Sports", communities_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+  </div>
+  </div>
+</div>
