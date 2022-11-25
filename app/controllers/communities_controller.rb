@@ -5,6 +5,13 @@ class CommunitiesController < ApplicationController
   after_action :count_post_for_this_week, only: [:index]
 
   def index
+    puts params
+    if(params.has_key?(:category))
+      @communities = Community.where(category: params[:category])
+    else
+      @communities = Community.all
+    end
+
     count_post_for_this_week
   end
 
@@ -55,11 +62,12 @@ end
   end
 
   def find_all_communities
+    @categories = Community::CATEGORIES
     @communities = Community.all
   end
 
   def community_values
-    params.require(:community).permit(:name, :url, :summary, :rules, :profile_image, :cover_image)
+    params.require(:community).permit(:name, :url, :summary, :rules, :category, :profile_image, :cover_image)
   end
 
   def count_post_for_this_week
