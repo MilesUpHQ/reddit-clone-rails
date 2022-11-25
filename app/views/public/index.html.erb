@@ -1,21 +1,15 @@
 <head>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script>
-console.log("hi");
-                                $(document).on('turbolinks:load', function() {
-                                    $(window).scroll(function() {
-                                        var next_url = $("#my-posts a[rel='next']").attr('href');      
-                                        if ( (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {         
-                                            $('#my-posts').show();
-                                            $.getScript(next_url);
-                                            console.log("scrolling");
-                                            console.log(next_url);
-                                            return;
-                                        }
-                                    });
-                                    return $(window).scroll();
-                                });
-</script>
+<script>  
+ $(window).scroll(function() {
+   var next_url = $("#infinite-scrolling a[rel='next']").attr('href');      
+   if (( next_url ) && ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight))
+   {          
+     $('#my-posts').show();
+     $.getScript(next_url);
+     return;
+   }
+ });
+</script>   
 </head>
 <% unless account_signed_in? %>
   <div class="row">
