@@ -1,0 +1,7 @@
+$("<%=j render partial: "posts/list", locals: { posts:@posts } %>").appendTo($("#my-posts"));
+
+<% if @posts.last_page? %>
+  $('#infinite-scrolling').remove();
+<% else %>
+  $('#infinite-scrolling').html("<%=j link_to_next_page(@posts, 'See more', :remote => true) %>");
+<% end %>
