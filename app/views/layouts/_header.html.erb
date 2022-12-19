@@ -28,15 +28,12 @@
         <p class="h3"><%= link_to "Reddit Clone", root_path %></p>
         <div class="input-group-btn search-panel">
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-            <span id="search_concept"><span class="glyphicon glyphicon-align-justify"></span> All</span>  <span class="caret"></span>
+            <span class="glyphicon glyphicon-align-justify"> </span><%= link_to "Home", root_path %><span class="caret"></span>
           </button>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#contains"> <span class="glyphicon glyphicon-envelope text-danger"></span> Email</a></li>
-            <li><a href="#its_equal"> <span class="glyphicon glyphicon-music text-warning"></span> Music</a></li>
-            <li><a href="#greather_than"> <span class="glyphicon glyphicon-user text-success"></span> Users</a></li>
-            <li><a href="#less_than"><span class="glyphicon glyphicon-book text-primary"></span> Books </a></li>
-            <li class="divider"></li>
-            <li><a href="#all"> <span class="glyphicon glyphicon-picture text-info"></span> Pictures</a></li>
+            <li><span class="glyphicon glyphicon-envelope text-danger"></span><%= link_to "All Communities", communities_path %></li>
+            <li><span class="glyphicon glyphicon-user text-success"></span><%= link_to "Top Trending", communities_path  %></li>
+            <li><span class="glyphicon glyphicon-book text-primary"></span><%= link_to "Create a Community", communities_path  %></li>
           </ul>
         </div>
       </div>
