@@ -276,6 +276,7 @@ DEPENDENCIES
   image_processing (~> 1.2)
   inherited_resources
   jbuilder (~> 2.7)
+  kaminari
   listen (~> 3.3)
   puma (~> 5.0)
   rails (~> 6.1.7)

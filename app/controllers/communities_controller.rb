@@ -1,18 +1,17 @@
 class CommunitiesController < ApplicationController
   before_action :authenticate_account!, except:  [ :index, :show ]
   before_action :set_community, only: [:show, :edit,:update,:destroy]
-  before_action :find_all_communities, only: [:index, :count_post_for_this_week]
   after_action :count_post_for_this_week, only: [:index]
 
   def index
     count_post_for_this_week
+    @categories = Community::CATEGORIES
     if(params.has_key?(:category))
-      @communities = Community.where(category: params[:category]).order("post_count_this_week desc").limit(5)
+      @communities = Community.where(category: params[:category]).order(created_at: :desc).page(params[:page]).per 7
     else
-      @communities = Community.all.order("post_count_this_week desc").limit(5)
+      @communities = Community.order(created_at: :desc).page(params[:page]).per 7
     end
-    @random_category = @categories.sample
-    @random_category_communities = Community.where(category: @random_category).order("post_count_this_week desc").limit(5)
+    @random_category_communities = Community.where(category: @categories.sample).order("post_count_this_week desc").limit(5)
   end
 
   def show
@@ -39,6 +38,7 @@ class CommunitiesController < ApplicationController
       render :new
     end
   end
+  
   def update
 
     if @community.update(community_values)
@@ -61,16 +61,12 @@ end
     @community = Community.find(params[:id])
   end
 
-  def find_all_communities
-    @categories = Community::CATEGORIES
-    @communities = Community.all
-  end
-
   def community_values
     params.require(:community).permit(:name, :url, :summary, :rules, :category, :profile_image, :cover_image)
   end
 
   def count_post_for_this_week
+    @communities = Community.all
     @communities.each do |community|
       community.post_count_this_week = 0
       @posts = community.posts
