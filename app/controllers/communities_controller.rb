@@ -7,9 +7,9 @@ class CommunitiesController < ApplicationController
   def index
     count_post_for_this_week
     if(params.has_key?(:category))
-      @communities = Community.where(category: params[:category]).order("post_count_this_week desc").limit(5)
+      @communities = Community.where(category: params[:category]).order(created_at: :desc).page(params[:page]).per 7
     else
-      @communities = Community.all.order("post_count_this_week desc").limit(5)
+      @communities = Community.order(created_at: :desc).page(params[:page]).per 7
     end
     @random_category = @categories.sample
     @random_category_communities = Community.where(category: @random_category).order("post_count_this_week desc").limit(5)

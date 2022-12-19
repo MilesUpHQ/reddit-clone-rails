@@ -1,0 +1,8 @@
+<% @communities.each do |community| %>
+    <div class="card border-light" style="max-width: 57rem;">
+      <div class="card-body">
+        <h5 class="card-title"><%= link_to community.name, community %></h5>
+        <p class="card-text"><%= simple_format community.rules %></p>
+      </div>
+    </div>
+<% end %>
