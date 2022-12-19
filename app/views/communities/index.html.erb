@@ -1,19 +1,69 @@
+<div class="container mb-4">
+<h3 class="text-dark">Today's Top Growing Communities</h3>
 <% if account_signed_in? %>
   <div class="float-right">
     <%= link_to "Create New Community", new_community_path, class: "btn btn-outline-primary" %>
   </div>
 <% end %>
+<p class="text-muted">Browse Reddit's top growing communities. Find the top communities in your favorite category.</p>
+</div>
 
-
-<% if @communities.size > 0 %>
-  <% @communities.each do |community| %>
-    <div class="card border-light mb-3" style="max-width: 57rem;">
-      <div class="card-body">
-        <h5 class="card-title"><%= link_to community.name, community %></h5>
-        <p class="card-text"><%= simple_format community.rules %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-2">
+      <div class="text-dark mb-3">
+        <div class="list-group" id="list-tab" role="tablist">
+          <li class="list-group-item text-white bg-secondary">Category</li>
+          <% if !(params.has_key?(:category)) %>
+        <li class="list-group-item border-left border-danger"><%= link_to "All", communities_path %></li>
+       <% else %>
+        <li class="list-group-item"><%= link_to "All", communities_path %></li>
+       <% end %> 
+          <% @categories.each do |category| %>
+            <% if params[:category] == category %>
+              <li class="list-group-item border-left border-danger"><%= link_to category, communities_path(category: category) %></li>
+            <% else %> 
+              <li class="list-group-item"><%= link_to category, communities_path(category: category) %></li>
+            <% end %> 
+          <% end %>
+        </div>
       </div>
     </div>
-  <% end %>
-<% else %>
-  <p>No communities to display.</p>
-<% end %>
+    <div class="col-7">
+    <div class="text-dark mb-3">
+        <div class="list-group" id="nav-tabContent">
+          <li class="list-group-item text-white bg-secondary">Today's Top Growing in Communities</li>
+          <div class="tab-pane active" id="all_communities" role="tabpanel">
+            <% if @communities.size > 0 %>
+            <% @communities.each do |community| %>
+              <div class="card border-light" style="max-width: 57rem;">
+                <div class="card-body">
+                  <h5 class="card-title"><%= link_to community.name, community %></h5>
+                  <p class="card-text"><%= simple_format community.rules %></p>
+                </div>
+              </div>
+            <% end %>
+          <% else %>
+            <h3 class="m-4">No communities to display.</h3>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="text-dark mb-3">
+        <div class="list-group">
+          <li class="list-group-item text-white bg-secondary">Top <%= @random_category %> Communities</li>
+
+          <% if @random_category_communities.size > 0 %>
+            <% @random_category_communities.each do |community| %>
+              <%= link_to community.name, community, class:"list-group-item" %>
+            <% end %>
+          <% else %>
+            <p class="m-3">No communities to display.</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
