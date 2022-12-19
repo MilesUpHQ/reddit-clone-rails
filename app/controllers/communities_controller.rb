@@ -38,6 +38,7 @@ class CommunitiesController < ApplicationController
       render :new
     end
   end
+  
   def update
 
     if @community.update(community_values)
