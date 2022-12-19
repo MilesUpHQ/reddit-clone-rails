@@ -14,9 +14,17 @@
       <div class="text-dark mb-3">
         <div class="list-group" id="list-tab" role="tablist">
           <li class="list-group-item text-white bg-secondary">Category</li>
-          <%= link_to "All Communities", communities_path, class: "list-group-item list-group-item-action active", role: "tab" %>
+          <% if !(params.has_key?(:category)) %>
+        <li class="list-group-item border-left border-danger"><%= link_to "All", communities_path %></li>
+       <% else %>
+        <li class="list-group-item"><%= link_to "All", communities_path %></li>
+       <% end %> 
           <% @categories.each do |category| %>
-            <%= link_to category, communities_path(category: category), class: "list-group-item list-group-item-action", role: "tab" %>
+            <% if params[:category] == category %>
+              <li class="list-group-item border-left border-danger"><%= link_to category, communities_path(category: category) %></li>
+            <% else %> 
+              <li class="list-group-item"><%= link_to category, communities_path(category: category) %></li>
+            <% end %> 
           <% end %>
         </div>
       </div>
