@@ -1,6 +1,7 @@
 class CommunitiesController < ApplicationController
   before_action :authenticate_account!, except:  [ :index, :show ]
   before_action :set_community, only: [:show, :edit,:update,:destroy]
+  before_action :community_list
   after_action :count_post_for_this_week, only: [:index]
 
   def index
@@ -15,6 +16,7 @@ class CommunitiesController < ApplicationController
   end
 
   def show
+   
     @posts = @community.posts.limit(20).sort_by{ |p| p.score }.reverse
     @subscriber_count = @community.subscribers.count
     @is_subscribed = account_signed_in? ? Subscription.where(community_id: @community.id, account_id: current_account.id).any? : false
@@ -22,6 +24,7 @@ class CommunitiesController < ApplicationController
   end
 
   def new
+ 
     @community = Community.new
   end
   def edit
@@ -64,8 +67,12 @@ end
   def community_values
     params.require(:community).permit(:name, :url, :summary, :rules, :category, :profile_image, :cover_image)
   end
-
-  def count_post_for_this_week
+  
+    def community_list 
+      @communities = Community.order(created_at: :asc)  
+    end
+  
+    def count_post_for_this_week
     @communities = Community.all
     @communities.each do |community|
       community.post_count_this_week = 0

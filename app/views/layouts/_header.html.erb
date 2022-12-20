@@ -96,6 +96,8 @@
               <li><%= link_to "All Communities", communities_path %></li>
               <li><%= link_to "Top Trending", communities_path  %></li>
               <li><%= link_to "Create a Community", new_community_path  %></li>
+
+              <li><%= link_to "My Communities", subscriptions_path  %></li>
             </ul>
           </div>
           <script>
@@ -126,7 +128,7 @@
             <div id="myDropdown" class="dropdown-content">
               <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
               <%for community in @communities %>
-                <span class="button d-flex  "><%= link_to community.name, communities_path %></span>
+                <span class="button d-flex  "><%= link_to community.name, community_path(community) %></span>
               <% end %>
 
             </div>

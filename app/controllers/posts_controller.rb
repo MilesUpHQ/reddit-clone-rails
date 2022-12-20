@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_account!, except:  [ :index, :show ]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :auth_subscriber, only: [:new]
-
+  before_action :community_list
   def index
     @posts = Post.all
   end
@@ -62,7 +62,10 @@ end
       redirect_to root_path, flash: { danger: "You are not authorized to view this page" }
     end
   end
-
+ 
+  def community_list 
+    @communities = Community.order(created_at: :asc)  
+  end
   def post_values
     params.require(:post).permit(:title, :body)
   end

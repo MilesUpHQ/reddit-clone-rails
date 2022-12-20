@@ -1,0 +1,7 @@
+<% for subscriber in @subscriptions %>
+  <span class="card">
+    <%= link_to subscriber.community.name, subscriber.community%>
+    <p ><%= subscriber.community.summary %></p>
+    <%= link_to "Create New Post", new_community_post_path(subscriber.community), class: "btn-primary m-2 l-2" %>
+  </span>
+<% end %>
