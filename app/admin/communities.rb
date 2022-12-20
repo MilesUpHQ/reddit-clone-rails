@@ -1,5 +1,5 @@
 ActiveAdmin.register Community do
-  permit_params :account_id, :name, :url, :summary, :rules, :total_members
+  permit_params :account_id, :name, :url, :summary, :rules, :total_members, :category
 
   index do
     column :account_id
@@ -13,9 +13,8 @@ ActiveAdmin.register Community do
     column :created_at
     column :updated_at
     actions
-  end
+  end 
   form do |f|
-    
     f.inputs "Create Community" do
     f.input :account
     f.input :name
@@ -23,7 +22,7 @@ ActiveAdmin.register Community do
     f.input :summary
     f.input :rules
     f.input :post_count_this_week
-    f.select :category, Category.pluck(:name), { :selected => params[:category] }
+    f.input :category,  :label => 'category', :as => :select, :collection => Category.where.not(name: params[:category]), :prompt =>  params[:category]
     f.input :created_at
     f.input :updated_at
     f.submit "Submit", disable_with: 'Submiting...'

@@ -7,5 +7,5 @@ class Community < ApplicationRecord
   has_one_attached :profile_image
   has_one_attached :cover_image
 
-  CATEGORIES = ["Sports","Gaming","Technology","News","TV","Music","Crypto","Fasion","Food","Health","Science","Finance"]
+  CATEGORIES = Category.pluck(:name)
 end

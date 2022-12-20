@@ -3,7 +3,7 @@ ActiveAdmin.register Category do
  
   index do
     column :id
-    column :category_name
+    column :name
     column :created_at
     column :updated_at
     actions
