@@ -127,10 +127,11 @@
             <button onclick="myFunction()" class="dropbtn">Search Community</button><span class="caret"></span>
             <div id="myDropdown" class="dropdown-content">
               <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-              <%for community in @communities %>
-                <span class="button d-flex  "><%= link_to community.name, community_path(community) %></span>
-              <% end %>
-
+              <% if @communities.present? %>
+               <%for community in @communities %>
+                 <span class="button d-flex  "><%= link_to community.name, community_path(community) %></span>
+               <% end %>
+             <% end %>
             </div>
           </div>
 
