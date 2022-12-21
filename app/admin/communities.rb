@@ -16,16 +16,16 @@ ActiveAdmin.register Community do
   end 
   form do |f|
     f.inputs "Create Community" do
-    f.input :account
-    f.input :name
-    f.input :url
-    f.input :summary
-    f.input :rules
-    f.input :post_count_this_week
-    f.input :category,  :label => 'category', :as => :select, :collection => Category.where.not(name: params[:category]), :prompt =>  params[:category]
-    f.input :created_at
-    f.input :updated_at
-    f.submit "Submit", disable_with: 'Submiting...'
+      f.input :account
+      f.input :name
+      f.input :url
+      f.input :summary
+      f.input :rules
+      f.input :post_count_this_week
+      f.input :category,  :label => 'category', :as => :select, :collection => Category.pluck(:name), :selected => params[:category] 
+      f.input :created_at
+      f.input :updated_at
+      f.submit "Submit", disable_with: 'Submiting...'
+    end
   end
-end
 end
