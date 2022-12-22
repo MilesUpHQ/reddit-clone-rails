@@ -1,0 +1,18 @@
+<div class="card p-1 pl-3 pr-3 mb-3">
+    <div class="row">
+      <div class="col-1">
+        <div class="profile-img">
+            <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80" alt="">
+        </div>
+      </div>
+      <div class="col-9">
+        <div class="create-post m-1">
+            <%= link_to "Create Post", new_community_post_path(@community), :class=>"form-control"  %>
+        </div>
+      </div>
+      <div class="col-2 create-post-img">
+        <i class='fa fa-image'></i>
+        <i class='fa fa-link'></i>
+      </div>
+    </div>
+  </div>
