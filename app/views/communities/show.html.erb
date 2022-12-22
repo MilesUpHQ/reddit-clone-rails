@@ -2,22 +2,31 @@
   <%= image_tag(@community.cover_image, height: "200px", width: "1200px") %>
 <% else %>
   <%= link_to "#" do %>
-    <img height= "200px", width= "1200px" src="https://cdn.cbeditz.com/cbeditz/preview/solid-dark-blue-gradient-background-wallpapers-70-116145018144hkixikfuh.jpg">
+    <img height= "170px", width= "100%" src="https://cdn.cbeditz.com/cbeditz/preview/solid-dark-blue-gradient-background-wallpapers-70-116145018144hkixikfuh.jpg">
   <% end %>
 <% end %>
 
-
+<div class="container">
 <div class="row mb-4">
   <div class="col-sm-8">
-    <div class = "details">
-    <% if @community.profile_image.attached? %>  
+    <div class = "d-flex">
+    <% if @community.profile_image.attached? %>
       <%= image_tag(@community.profile_image, class: "profile-pic") %>
     <% else %>
       <%= link_to "#" do %>
-        <img class="profile-pic" src="https://www.iconpacks.net/icons/2/free-reddit-logo-icon-2436-thumb.png">
+        <img class="profile-pic" src="https://www.iconpacks.net/icons/2/free-reddit-logo-icon-2436-thumb.png" class="profile-pic">
       <% end %>
     <% end %>
-    <span class = "name"><h3><%= @community.name %></h3></span>
+    <span class = "ml-4"><h3>/r/<%= @community.name.downcase %> : <%= @community.category.downcase %></h3></span>
+    <div class="ml-3 pl-2">
+    <% if @is_subscribed %>
+      <div class="join-btn">
+        <%= render partial: "communities/unsubscribe" %>
+      </div>
+    <% else %>
+      <%= render partial: "communities/subscribe", locals: { community_id: @community.id } %>
+    <% end %>
+    </div>
     </div>
   </div>
   <div class="col-sm-4">
@@ -46,10 +55,11 @@
                   data: { confirm: "Are you sure?" } %></li>
       </ul>
     </div>
-    </div>, 
+    </div>
 
     <small>
       <%= simple_format @community.rules %>
     </small>
   </div>
+</div>
 </div>
