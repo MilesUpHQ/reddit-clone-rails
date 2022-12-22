@@ -4,7 +4,7 @@ class PublicController < ApplicationController
     @posts = Post.order(created_at: :desc).page(params[:page]).per 5
   end
   def profile
-    @communities = Community.order(created_at: :asc)  
+    community_list
     @profile = Account.find_by_username params[:username]
     @posts = @profile.posts
   end

@@ -33,21 +33,21 @@ class PostsController < ApplicationController
     @community = Community.find(params[:community_id])
   end
 
-  
+
   def update
     @community = Community.find(params[:community_id])
     if @community.posts.update(post_values)
       redirect_to community_post_path(@post)
     else
       render :edit
-  
+
   end
 end
 
 
 def destroy
   if @post
-    @post.destroy 
+    @post.destroy
     redirect_to root_path
   end
 end
@@ -62,10 +62,7 @@ end
       redirect_to root_path, flash: { danger: "You are not authorized to view this page" }
     end
   end
- 
-  def community_list 
-    @communities = Community.order(created_at: :asc)  
-  end
+
   def post_values
     params.require(:post).permit(:title, :body)
   end

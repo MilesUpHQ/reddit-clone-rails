@@ -27,10 +27,6 @@ class SubscriptionsController < ApplicationController
   end
 
   private
-  def community_list
-    @communities = Community.order(created_at: :asc)
-  end
-
   def find_subscription
     @subscription = Subscription.find(params[:id])
   end
