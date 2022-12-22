@@ -5,3 +5,13 @@ $("<%=j render partial: "posts/list", locals: { posts:@posts } %>").appendTo($("
 <% else %>
   $('#infinite-scrolling').html("<%=j link_to_next_page(@posts, 'See more', :remote => true) %>");
 <% end %>
+
+$(window).scroll(function() {
+  var next_url = $("#infinite-scrolling a[rel='next']").attr('href');
+  if (( next_url ) && ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight))
+  {
+    $('#my-posts').show();
+    $.getScript(next_url);
+    return;
+  }
+});

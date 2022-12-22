@@ -1,16 +1,3 @@
-<head>
-  <script>
-    $(window).scroll(function() {
-      var next_url = $("#infinite-scrolling a[rel='next']").attr('href');
-      if (( next_url ) && ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight))
-      {
-        $('#my-communities').show();
-        $.getScript(next_url);
-        return;
-      }
-    });
-  </script>
-</head>
 <div class="container mb-4">
   <h3 class="text-dark">Today's Top Growing Communities</h3>
   <% if account_signed_in? %>
