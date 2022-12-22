@@ -1,0 +1,11 @@
+<% @posts.each do |post| %>
+   <% if post.is_drafted && post.account_id == current_account.id %>
+   <div class="col-11">
+    <h2><%= post.title %></h2>
+    <div style="word-wrap: break-word;">
+      <%= post.body  %>
+    </div>
+   </div>
+  <% end %>
+
+<% end %>  
