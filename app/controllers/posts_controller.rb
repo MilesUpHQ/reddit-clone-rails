@@ -13,16 +13,24 @@ class PostsController < ApplicationController
 
   def new
     @community = Community.find(params[:community_id])
-    @post = Post.new
+    @post = Post.new 
+    @drafts = Post.all
   end
 
   def create
     @post = Post.new post_values
     @post.account_id = current_account.id
     @post.community_id = params[:community_id]
-
     if @post.save
-      redirect_to community_path(@post.community_id)
+      if params[:commit] == "Publish"
+        @post.is_drafted = false
+        @post.save
+        redirect_to community_path(@post.community_id)
+      else 
+        @post.is_drafted = true
+        @post.save
+        redirect_to draft_path
+      end 
     else
       @community = Community.find(params[:community_id])
       render :new
@@ -33,7 +41,15 @@ class PostsController < ApplicationController
     @community = Community.find(params[:community_id])
   end
 
-  
+  def draft 
+    @posts=  Post.all
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end 
+
+
   def update
     @community = Community.find(params[:community_id])
     if @community.posts.update(post_values)
@@ -51,6 +67,8 @@ def destroy
     redirect_to root_path
   end
 end
+
+
   private
 
   def set_post
@@ -64,7 +82,7 @@ end
   end
 
   def post_values
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body, :is_drafted)
   end
 
 end
