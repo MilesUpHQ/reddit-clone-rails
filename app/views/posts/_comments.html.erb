@@ -1,6 +1,14 @@
 <% comments.each do |comment| %>
-<div class="comment">
-  <%= link_to comment.account.full_name, profile_path(comment.account.username) %>
-  <%= comment.message %>  
-</div>
+  <div class="comment">
+    <div class="card">
+      <b> Username: <%= link_to comment.account.full_name, profile_path(comment.account.username) %> </b>
+      <p> <b>Comment:</b><%= comment.message %></p>
+    </b>
+
+    <li><%= link_to "Destroy", comments_path(@comment),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %></li>
+
+  </div>
 <% end %>
+</div>

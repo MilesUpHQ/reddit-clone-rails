@@ -1,80 +1,131 @@
 <head>
-  <script>
-    $(window).scroll(function() {
-      var next_url = $("#infinite-scrolling a[rel='next']").attr('href');
-      if (( next_url ) && ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight))
-      {
-        $('#my-communities').show();
-        $.getScript(next_url);
-        return;
-      }
-    });
-  </script>
-</head>
-<div class="container mb-4">
-  <h3 class="text-dark">Today's Top Growing Communities</h3>
-  <% if account_signed_in? %>
-    <div class="float-right">
-      <%= link_to "Create New Community", new_community_path, class: "btn btn-outline-primary" %>
-    </div>
-  <% end %>
-  <p class="text-muted">Browse Reddit's top growing communities. Find the top communities in your favorite category.</p>
-</div>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 20px;
+    }
 
-<div class="container">
-  <div class="row">
-    <div class="col-2">
-      <div class="text-dark mb-3">
-        <div class="list-group" id="list-tab" role="tablist">
-          <li class="list-group-item text-white bg-secondary">Category</li>
-          <% if !(params.has_key?(:category)) %>
-            <li class="list-group-item border-left border-danger"><%= link_to "All", communities_path %></li>
-          <% else %>
-            <li class="list-group-item"><%= link_to "All", communities_path %></li>
-          <% end %>
-          <% @categories.each do |category| %>
-            <% if params[:category] == category %>
-              <li class="list-group-item border-left border-danger"><%= link_to category, communities_path(category: category) %></li>
+    #myBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 30px;
+      z-index: 99;
+      font-size: 18px;
+      border: none;
+      outline: none;
+      background-color: red;
+      color: white;
+      cursor: pointer;
+      padding: 15px;
+      border-radius: 4px;
+    }
+
+    #myBtn:hover {
+      background-color: #555;
+    }
+  </style>
+  <body>
+
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    <script>
+      // Get the button
+      let mybutton = document.getElementById("myBtn");
+
+      // When the user scrolls down 20px from the top of the document, show the button
+      window.onscroll = function() {scrollFunction()};
+
+      function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+          mybutton.style.display = "block";
+        } else {
+          mybutton.style.display = "none";
+        }
+      }
+
+      // When the user clicks on the button, scroll to the top of the document
+      function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      }
+    </script>
+
+    <script>
+      $(window).scroll(function() {
+        var next_url = $("#infinite-scrolling a[rel='next']").attr('href');
+        if (( next_url ) && ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight))
+        {
+          $('#my-communities').show();
+          $.getScript(next_url);
+          return;
+        }
+      });
+    </script>
+  </head>
+  <div class="container mb-4">
+    <h3 class="text-dark">Today's Top Growing Communities</h3>
+    <% if account_signed_in? %>
+      <div class="float-right">
+        <%= link_to "Create New Community", new_community_path, class: "btn btn-outline-primary" %>
+      </div>
+    <% end %>
+    <p class="text-muted">Browse Reddit's top growing communities. Find the top communities in your favorite category.</p>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-2">
+        <div class="text-dark mb-3">
+          <div class="list-group" id="list-tab" role="tablist">
+            <li class="list-group-item text-white bg-secondary">Category</li>
+            <% if !(params.has_key?(:category)) %>
+              <li class="list-group-item border-left border-danger"><%= link_to "All", communities_path %></li>
             <% else %>
-              <li class="list-group-item"><%= link_to category, communities_path(category: category) %></li>
+              <li class="list-group-item"><%= link_to "All", communities_path %></li>
             <% end %>
-          <% end %>
+            <% @categories.each do |category| %>
+              <% if params[:category] == category %>
+                <li class="list-group-item border-left border-danger"><%= link_to category, communities_path(category: category) %></li>
+              <% else %>
+                <li class="list-group-item"><%= link_to category, communities_path(category: category) %></li>
+              <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-7">
-      <div class="text-dark mb-3">
-        <div class="list-group" id="nav-tabContent">
-          <li class="list-group-item text-white bg-secondary">Today's Top Growing in Communities</li>
-          <div class="tab-pane active" id="all_communities" role="tabpanel">
-            <% if @communities.size > 0 %>
-              <div id = "my-communities">
-                <%= render partial: "list" %>
-              </div>
-              <div id = "infinite-scrolling">
-                <%= link_to_next_page(@communities, "posts" , :remote => true) %>
-              </div>
+      <div class="col-7">
+        <div class="text-dark mb-3">
+          <div class="list-group" id="nav-tabContent">
+            <li class="list-group-item text-white bg-secondary">Today's Top Growing in Communities</li>
+            <div class="tab-pane active" id="all_communities" role="tabpanel">
+              <% if @communities.size > 0 %>
+                <div id = "my-communities">
+                  <%= render partial: "list" %>
+                </div>
+                <div id = "infinite-scrolling">
+                  <%= link_to_next_page(@communities, "posts" , :remote => true) %>
+                </div>
+              <% else %>
+                <h3 class="m-4">No communities to display.</h3>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="text-dark mb-3">
+          <div class="list-group">
+            <li class="list-group-item text-white bg-secondary">Top <%= @random_category %> Communities</li>
+
+            <% if @random_category_communities.size > 0 %>
+              <% @random_category_communities.each do |community| %>
+                <%= link_to community.name, community, class:"list-group-item" %>
+              <% end %>
             <% else %>
-              <h3 class="m-4">No communities to display.</h3>
+              <p class="m-3">No communities to display.</p>
             <% end %>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-3">
-      <div class="text-dark mb-3">
-        <div class="list-group">
-          <li class="list-group-item text-white bg-secondary">Top <%= @random_category %> Communities</li>
-
-          <% if @random_category_communities.size > 0 %>
-            <% @random_category_communities.each do |community| %>
-              <%= link_to community.name, community, class:"list-group-item" %>
-            <% end %>
-          <% else %>
-            <p class="m-3">No communities to display.</p>
-          <% end %>
-        </div>
-      </div>
-    </div>
   </div>
-</div>
