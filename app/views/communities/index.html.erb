@@ -44,15 +44,15 @@
           <li class="list-group-item text-white bg-secondary">Today's Top Growing in Communities</li>
           <div class="tab-pane active" id="all_communities" role="tabpanel">
             <% if @communities.size > 0 %>
-              <div id = "infinity">
-                <%= render partial: "list" %>
-              </div>
-              <div id = "infinite-scrolling">
-                <%= link_to_next_page(@communities, "posts" , :remote => true) %>
-              </div>
-            <% else %>
-              <h3 class="m-4">No communities to display.</h3>
-            <% end %>
+             <div id = "infinity">
+               <%= render partial: "list" %>
+             </div>
+             <div id = "infinite-scrolling">
+               <%= link_to_next_page(@communities, "posts" , :remote => true) %>
+             </div>
+          <% else %>
+            <h3 class="m-4">No communities to display.</h3>
+          <% end %>
           </div>
         </div>
       </div>
