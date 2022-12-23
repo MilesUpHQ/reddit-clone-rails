@@ -11,6 +11,7 @@
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <%= link_to "Profile", profile_path(current_account.username), class: "dropdown-item" %>
               <%= link_to "Settings", edit_account_registration_path, class: "dropdown-item" %>
+               <%= link_to "Saved Posts",saved_posts_path, class: "dropdown-item" %>    
               <%= link_to "Sign Out", destroy_account_session_path, method: :delete, class: "dropdown-item" %>
             </div>
           </div>

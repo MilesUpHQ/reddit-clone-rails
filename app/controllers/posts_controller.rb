@@ -40,17 +40,25 @@ class PostsController < ApplicationController
       redirect_to community_post_path(@post)
     else
       render :edit
-  
+    end
   end
-end
 
+  def save
+    @post = Post.find(params[:id])
+    @post.update(saved: "true")
+  end
 
-def destroy
-  if @post
+  def saved_posts
+    @saved_posts=Post.where(saved: true)
+  end
+  
+  def destroy
+    if @post
     @post.destroy 
     redirect_to root_path
+    end
   end
-end
+
   private
 
   def set_post
@@ -64,7 +72,7 @@ end
   end
 
   def post_values
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body, :saved)
   end
 
 end
