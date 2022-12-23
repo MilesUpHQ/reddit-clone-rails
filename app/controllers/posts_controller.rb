@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :auth_subscriber, only: [:new]
   before_action :community_list
+  before_action :community_list
   def index
     @posts = Post.all
   end
