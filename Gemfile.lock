@@ -277,8 +277,6 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   devise
-  faker
-  font-awesome-sass (~> 6.2.1)
   image_processing (~> 1.2)
   inherited_resources
   jbuilder (~> 2.7)
