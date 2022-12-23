@@ -1,9 +1,7 @@
 <% if @community.cover_image.attached? %>
-  <%= image_tag(@community.cover_image, height: "200px", width: "1200px") %>
+  <%= image_tag(@community.cover_image, class: "cover-image") %>
 <% else %>
-  <%= link_to "#" do %>
-    <img height= "170px", width= "100%" src="https://cdn.cbeditz.com/cbeditz/preview/solid-dark-blue-gradient-background-wallpapers-70-116145018144hkixikfuh.jpg">
-  <% end %>
+    <%= image_tag("Cover-Image.jpg" ,class: "cover-image") %>
 <% end %>
 <div class="container">
   <div class="row">
@@ -12,7 +10,7 @@
         <%= image_tag(@community.profile_image, class: "profile-pic") %>
       <% else %>
         <%= link_to "#" do %>
-          <img class="profile-pic" src="https://www.iconpacks.net/icons/2/free-reddit-logo-icon-2436-thumb.png" class="profile-pic">
+          <%= image_tag("profile-pic.png" ,class: "profile-pic") %>
         <% end %>
       <% end %>
     </div>
