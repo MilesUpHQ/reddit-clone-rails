@@ -14,7 +14,8 @@
  *= stub "active_admin"
  *= require_self
  */
-
+ @import "font-awesome";
+ 
  @import "bootstrap/scss/bootstrap";
 .textarea{
     overflow: scroll;
