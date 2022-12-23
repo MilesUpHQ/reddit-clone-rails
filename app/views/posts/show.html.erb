@@ -29,6 +29,8 @@
                   data: { confirm: "Are you sure?" } %></li>
     </b>
 
+    <h5>Leave a comment</h5>
+    <%= render partial: "comments/form", locals:{ post: @post, parent: nil} %>
 
   </div>
 </div>

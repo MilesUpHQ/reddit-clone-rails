@@ -9,7 +9,7 @@
   <%= comment.message %>
   <div class = "fl">
   <p class = "text-muted m-l-30"><%= time_ago_in_words comment.created_at %> ago </p>
-  <a href = "#" class="comment-form-display">Reply</a>
+   <a href = "#" class="comment-form-display">Reply</a>
   <div class = "comment-form">
      <%= render partial: "comments/form", locals: {post: comment.post, parent: comment, comment_id: comment.id}%>
   </div>  
