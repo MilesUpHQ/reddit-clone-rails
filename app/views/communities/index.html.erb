@@ -21,11 +21,17 @@
           <% else %>
             <li class="list-group-item"><%= link_to "All", communities_path %></li>
           <% end %>
+            <li class="list-group-item border-left border-danger"><%= link_to "All", communities_path %></li>
+          <% else %>
+            <li class="list-group-item"><%= link_to "All", communities_path %></li>
+          <% end %>
           <% @categories.each do |category| %>
             <% if params[:category] == category %>
               <li class="list-group-item border-left border-danger"><%= link_to category, communities_path(category: category) %></li>
             <% else %>
+            <% else %>
               <li class="list-group-item"><%= link_to category, communities_path(category: category) %></li>
+            <% end %>
             <% end %>
           <% end %>
         </div>
@@ -33,19 +39,20 @@
     </div>
     <div class="col-7">
       <div class="text-dark mb-3">
+      <div class="text-dark mb-3">
         <div class="list-group" id="nav-tabContent">
           <li class="list-group-item text-white bg-secondary">Today's Top Growing in Communities</li>
           <div class="tab-pane active" id="all_communities" role="tabpanel">
             <% if @communities.size > 0 %>
-             <div id = "infinity">
-               <%= render partial: "list" %>
-             </div>
-             <div id = "infinite-scrolling">
-               <%= link_to_next_page(@communities, "posts" , :remote => true) %>
-             </div>
-          <% else %>
-            <h3 class="m-4">No communities to display.</h3>
-          <% end %>
+              <div id = "infinity">
+                <%= render partial: "list" %>
+              </div>
+              <div id = "infinite-scrolling">
+                <%= link_to_next_page(@communities, "posts" , :remote => true) %>
+              </div>
+            <% else %>
+              <h3 class="m-4">No communities to display.</h3>
+            <% end %>
           </div>
         </div>
       </div>
