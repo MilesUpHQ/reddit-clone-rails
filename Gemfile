@@ -26,6 +26,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise'
 gem 'activeadmin', '~>2.13.1'
 gem 'inherited_resources'
+gem 'dotenv-rails'
 gem 'faker'
 gem "font-awesome-sass", "~> 6.2.1"
 # Use Active Storage variant
