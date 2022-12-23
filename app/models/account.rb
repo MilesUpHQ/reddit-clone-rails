@@ -9,7 +9,6 @@ class Account < ApplicationRecord
   has_many :posts
   has_many :comments
   has_many :votes
-
   validates_presence_of :first_name, :last_name, :username
 
   def full_name
