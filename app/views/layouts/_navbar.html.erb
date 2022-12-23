@@ -9,7 +9,7 @@
         <li class="ml-5 nav-item dropdown">
           <%= link_to "Home", root_path, :class => "nav-link dropdown-toggle", :id=>"navbarDropdown", "data-toggle"=>"dropdown" %>
           <div class="dropdown-menu" id="myDropdown" aria-labelledby="navbarDropdown">
-						<input type="text" placeholder="Filter.." id="myInput" onkeyup="filterFunction()">
+						<input type="text" placeholder="Filter.." id="myInput_mycommunities">
             <%= link_to "All Communities", communities_path, :class=>"dropdown-item" %>
             <%= link_to "Top Trending", communities_path, :class=>"dropdown-item"  %>
             <%= link_to "Create a Community", new_community_path, :class=>"dropdown-item"  %>
@@ -26,7 +26,7 @@
         <li class="nav-item dropdown">
           <%= link_to "Search Community", root_path, :class => "nav-link dropdown-toggle", :id=>"navbarDropdown", "data-toggle"=>"dropdown" %>
           <div class="dropdown-menu" id="myDropdown" aria-labelledby="navbarDropdown">
-            <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+            <input type="text" placeholder="Search.." id="myInput_mycommunities">
             <% if @communities.present? %>
               <% @communities.each do |community| %>
                 <%= link_to community.name, community_path(community), :class=>"dropdown-item" %>
@@ -66,24 +66,3 @@
     </div>
   </nav>
 </div>
-<script>
-  function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-  }
-
-  function filterFunction() {
-    var input, filter, ul, li, a, i;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    div = document.getElementById("myDropdown");
-    a = div.getElementsByTagName("a");
-    for (i = 0; i < a.length; i++) {
-      txtValue = a[i].textContent || a[i].innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        a[i].style.display = "";
-      } else {
-        a[i].style.display = "none";
-      }
-    }
-  }
-</script>
