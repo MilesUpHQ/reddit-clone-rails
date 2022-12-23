@@ -8,6 +8,13 @@
     </div>
   <% end %>
   <p class="text-muted">Browse Reddit's top growing communities. Find the top communities in your favorite category.</p>
+  <h3 class="text-dark">Today's Top Growing Communities</h3>
+  <% if account_signed_in? %>
+    <div class="float-right">
+      <%= link_to "Create New Community", new_community_path, class: "btn btn-outline-primary" %>
+    </div>
+  <% end %>
+  <p class="text-muted">Browse Reddit's top growing communities. Find the top communities in your favorite category.</p>
 </div>
 
 <div class="container">
