@@ -1,14 +1,9 @@
-<!-- Button trigger modal -->
 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
   Drafts
 </button>
-
 <h2>New Post</h2>
+  <%= render partial: "form" %>
 
-<%= render partial: "form" %>
-
-
-<!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -17,15 +12,23 @@
         <h4 class="modal-title" id="myModalLabel">Drafts</h4>
       </div>
       <div class="modal-body">
-         <% @drafts.each do |post| %>
-           <% if post.is_drafted && post.account_id == current_account.id %>
-             <div class="col-11">
-             <h2><%= post.title %></h2>
-             <div style="word-wrap: break-word;">
-              <%= post.body  %>
+        <% @drafts.each do |post| %>
+          <% if post.is_drafted && post.account_id == current_account.id %>
+            <div class="card p-1 mb-3">
+             <div class="row">
+              <div class="col-11">  
+                 <h4 class= "mb-1"><%= link_to post.title, edit_community_post_path(post.community_id, post) %></h4>
+                 <p><%= post.body.to_plain_text.truncate(30) %></p>
+                 <p><small> Draft saved  <%= time_ago_in_words post.created_at %> ago</small></p>
+              </div>
+              <div class="col-1">
+                  <%= link_to community_post_path(post.community_id, post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'post' do %>
+                    <i class="fa-solid fa-trash-can"  ml-2" aria-hidden="true"></i>
+                  <% end %>
+              </div>
              </div>
-             </div>
-             <% end %>
+            </div> 
+          <% end %>
         <% end %>  
       </div>
       <div class="modal-footer">
