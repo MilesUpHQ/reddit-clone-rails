@@ -1,0 +1,22 @@
+<div class = "comment" >
+    <% if reply.account.profile_image.attached? %>
+        <%= link_to image_tag(reply.account.profile_image, width: "30px" , height:"30px", :class => "small-pic float-left m-r-15"),profile_path(reply.account.username) %>
+    <% else %>
+        <img class="small-pic float-left m-r-15" width="30px" height="30px" src="https://www.iconpacks.net/icons/2/free-reddit-logo-icon-2436-thumb.png">
+    <% end %> 
+    <strong> <%= link_to reply.account.full_name, profile_path(reply.account.username) , class: "text-dark" %></strong>
+    <%= reply.message %>
+     <div class = "fl">
+    <p class = "text-muted m-l-30"><%= time_ago_in_words reply.created_at %> ago </p>
+    <a href = "#" class="comment-form-display">Reply</a>
+    <div class = "comment-form">
+      <%= render partial: "comments/form", locals: {post: reply.post, parent: reply, comment_id: reply.id}%>
+    </div>
+    </div>
+    <hr>
+    <% if reply.replies.any? %>
+      <% reply.replies.each do |reply| %> 
+       <div class = "sub-comment"><%= render partial: 'comments/reply', locals: { reply: reply, comment_id: reply.id } %></div>
+      <% end %>
+   <% end %>
+ </div> 
