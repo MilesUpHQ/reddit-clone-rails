@@ -1,6 +1,7 @@
 class CommunitiesController < ApplicationController
   before_action :authenticate_account!, except:  [ :index, :show ]
   before_action :set_community, only: [:show, :edit,:update,:destroy]
+  before_action :community_list
   after_action :count_post_for_this_week, only: [:index]
 
   def index
@@ -24,6 +25,7 @@ class CommunitiesController < ApplicationController
   def new
     @community = Community.new
   end
+
   def edit
 
   end
@@ -38,25 +40,21 @@ class CommunitiesController < ApplicationController
       render :new
     end
   end
-  
-  def update
 
+  def update
     if @community.update(community_values)
       redirect_to @community
     else
       render :new
-
+    end
   end
-end
 
-
-def destroy
-  @community.destroy if @community
-  redirect_to communities_path
-end
+  def destroy
+    @community.destroy if @community
+    redirect_to communities_path
+  end
 
   private
-
   def set_community
     @community = Community.find(params[:id])
   end

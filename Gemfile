@@ -26,7 +26,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise'
 gem 'activeadmin', '~>2.13.1'
 gem 'inherited_resources'
-gem "font-awesome-sass", "~> 6.2.1"
+gem "font-awesome-sass", "~> 6.2.1"gem 'faker'
+
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
 
