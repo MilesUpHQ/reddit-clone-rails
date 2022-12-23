@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 
   def create
-    @comment = Comment.new comment_params
+    @comment = Comment.new comment_params  
     @comment.account_id = current_account.id
     if @comment.save
       redirect_to community_post_path(@comment.post_id, @comment.post), flash: {success: "comment was created successfully!" }

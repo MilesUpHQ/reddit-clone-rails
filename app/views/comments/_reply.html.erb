@@ -5,12 +5,12 @@
     <p class = "text-muted m-l-30"><%= time_ago_in_words reply.created_at %> ago </p>
     <a href = "#" class="comment-form-display">Reply</a>
     <div class = "comment-form">
-      <%= render partial: "comments/form", locals: {post: reply.post, parent: reply}%>
+      <%= render partial: "comments/form", locals: {post: reply.post, parent: reply, comment_id: reply.id}%>
     </div>
     </div>
     <% if reply.replies.any? %>
       <% reply.replies.each do |reply| %> 
-       <div class = "sub-comment"><%= render partial: 'comments/reply', locals: { reply: reply } %></div>
+       <div class = "sub-comment"><%= render partial: 'comments/reply', locals: { reply: reply, comment_id: reply.id } %></div>
       <% end %>
    <% end %>
  </div> 
