@@ -1,0 +1,10 @@
+ <div class="row">
+  <div class="col-sm-6">
+   <%= form_with  model: @poll do |form| %>
+    <div class="form-group">
+        <%= label_tag :option %>
+        <%= form.text_field :poll_option, class: "form-control" %>
+    </div>
+  <% end%>
+</div>
+</div>  

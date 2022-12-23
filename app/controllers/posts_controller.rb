@@ -21,7 +21,7 @@ class PostsController < ApplicationController
     @post.account_id = current_account.id
     @post.community_id = params[:community_id]
 
-    if @post.save
+    if @post.save!
       redirect_to community_path(@post.community_id)
     else
       @community = Community.find(params[:community_id])
@@ -64,7 +64,7 @@ end
   end
 
   def post_values
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body, :poll, :option1, :option2, :option3)
   end
 
 end

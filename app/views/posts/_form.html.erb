@@ -9,9 +9,31 @@
         <%= label_tag :body %>
         <%= form.rich_text_area :body, class: "textarea" %>
       </div>
+        
+    
+      <div class="form-group">
+        <%= label_tag :Poll %>
+       
+        <%= form.rich_text_area :poll, class: "textarea" %>
+
+        <div class="form-group">
+        <%= label_tag :options%>
+        
+        <%= form.text_field :option1, class: "form-control" %>
+        <
+         <%= form.text_field :option2, class: "form-control" %>
+         
+         <%= form.text_field :option3, class: "form-control" %>
+         
+    </div>
+      </div> 
+
+     
+
 
       <%= form.submit "Submit", class: "btn btn-primary" %>
     <% end%>
   </div>
-</div>   
+</div>  
+
   
