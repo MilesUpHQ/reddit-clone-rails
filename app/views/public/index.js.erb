@@ -1,4 +1,4 @@
-$("<%=j render partial: "posts/list", locals: { posts:@posts } %>").appendTo($("#my-posts"));
+$("<%=j render partial: "posts/list", locals: { posts:@posts } %>").appendTo($("#infinity"));
 
 <% if @posts.last_page? %>
   $('#infinite-scrolling').remove();

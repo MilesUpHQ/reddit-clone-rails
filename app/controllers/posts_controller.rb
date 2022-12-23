@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_account!, except:  [ :index, :show ]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :auth_subscriber, only: [:new]
-
+  before_action :community_list
   def index
     @posts = Post.all
   end
@@ -33,7 +33,7 @@ class PostsController < ApplicationController
     @community = Community.find(params[:community_id])
   end
 
-  
+
   def update
     @community = Community.find(params[:community_id])
     if @community.posts.update(post_values)
