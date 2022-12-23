@@ -26,7 +26,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise'
 gem 'activeadmin', '~>2.13.1'
 gem 'inherited_resources'
-
+gem 'dotenv-rails'
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
 
