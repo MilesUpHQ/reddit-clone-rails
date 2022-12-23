@@ -9,6 +9,8 @@ class Account < ApplicationRecord
   has_many :posts
   has_many :comments
   has_many :votes
+  has_one_attached :profile_image
+
   validates_presence_of :first_name, :last_name, :username
 
   def full_name
@@ -22,4 +24,5 @@ class Account < ApplicationRecord
   def downvoted_post_ids
     self.votes.where(upvote: false).pluck(:post_id)
   end
+  
 end
