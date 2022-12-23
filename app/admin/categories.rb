@@ -8,7 +8,7 @@ ActiveAdmin.register Category do
     column :updated_at
     actions
     column do |category|
-      link_to 'Community-Page', new_admin_community_path(category: category.name), method: :get 
+      link_to 'Community-Page', new_admin_community_path(category: category), method: :get 
     end
   end
 end
