@@ -1,17 +1,7 @@
-$("<%=j render partial: "list"%>").appendTo($("#my-communities"));
+$("<%=j render partial: "list"%>").appendTo($("#infinity"));
 
 <% if @communities.last_page? %>
   $('#infinite-scrolling').remove();
 <% else %>
   $('#infinite-scrolling').html("<%=j link_to_next_page(@communities, 'See more', :remote => true) %>");
 <% end %>
-
-$(window).scroll(function() {
-  var next_url = $("#infinite-scrolling a[rel='next']").attr('href');
-  if (( next_url ) && ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight))
-  {
-    $('#my-communities').show();
-    $.getScript(next_url);
-    return;
-  }
-});
