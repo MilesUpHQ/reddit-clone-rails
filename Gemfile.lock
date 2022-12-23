@@ -99,6 +99,8 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.11.0)
+    faker (2.23.0)
+      i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
     formtastic (4.0.0)
       actionpack (>= 5.2.0)
@@ -273,6 +275,7 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   devise
+  faker
   image_processing (~> 1.2)
   inherited_resources
   jbuilder (~> 2.7)

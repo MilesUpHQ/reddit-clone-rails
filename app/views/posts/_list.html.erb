@@ -13,12 +13,18 @@
         <p><small><%= link_to post.community.name, community_path(post.community) %> Posted by <%= link_to post.account.username, profile_path(post.account.username) %> <%= time_ago_in_words post.created_at %> ago</small></p>
         <p><%= post.body.to_plain_text.truncate(30) %></p>
         <%= link_to community_post_path(post.community_id, post)  do %>
-         <i class="fa fa-comment"></i> <%= post.comments.size %> Comments
+          <i class="fa fa-comment"></i> <%= post.comments.size %> Comments
         <% end %>
-         <%= link_to save_community_post_path(post.community,post.id), method: :patch do %>
-         <i class="fa-solid fa-bookmark"></i>Save
+        <% if post.saved? %>
+          <%= link_to unsave_community_post_path(post.community,post.id), method: :patch do %>
+            <i class="fa-solid fa-bookmark"></i>Unsave
+          <% end %>
+        <% else %>
+          <%= link_to save_community_post_path(post.community,post.id), method: :patch do %>
+            <i class="fa-solid fa-bookmark"></i>Save
+          <% end %>
         <% end %>
       </div>
     </div>
   </div>
-<% end %>     
+<% end %>
