@@ -1,0 +1,16 @@
+<div class = "comment" >
+    <strong> <%= link_to reply.account.full_name, profile_path(reply.account.username) , class: "text-dark" %></strong>
+    <%= reply.message %>
+     <div class = "fl">
+    <p class = "text-muted m-l-30"><%= time_ago_in_words reply.created_at %> ago </p>
+    <a href = "#" class="comment-form-display">Reply</a>
+    <div class = "comment-form">
+      <%= render partial: "comments/form", locals: {post: reply.post, parent: reply}%>
+    </div>
+    </div>
+    <% if reply.replies.any? %>
+      <% reply.replies.each do |reply| %> 
+       <div class = "sub-comment"><%= render partial: 'comments/reply', locals: { reply: reply } %></div>
+      <% end %>
+   <% end %>
+ </div> 
