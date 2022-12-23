@@ -2,11 +2,19 @@
   <div class="col-sm-8">
     <%= render partial: "posts/list", locals: { posts: @posts } %>
   </div>
+  
   <div class="col-sm-4">
+   <% if @profile.profile_image.attached? %>  
+      <%= image_tag(@profile.profile_image, class: "profile-pic") %>
+    <% else %>
+      <%= link_to "#" do %>
+        <img class="profile-pic" src="https://www.iconpacks.net/icons/2/free-reddit-logo-icon-2436-thumb.png">
+      <% end %>
+    <% end %>
     <p class="h4"><%= @profile.full_name %></p>
     <p><%= @profile.username %></p>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-
+    
   <p>Karma: <%= @profile.karma %> <span class="fa fa-star text-warning"></span> </p>
   <p>Cake day: <%= @profile.created_at.strftime("%d/%m/%Y") %></p>
   </div>
