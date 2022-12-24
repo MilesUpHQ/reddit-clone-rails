@@ -60,6 +60,11 @@ class PostsController < ApplicationController
   end
 end
 
+def close
+  @post = Post.find(params[:id])
+  @post.closed
+  @post.update(closed: "true")
+end
 
 def destroy
   if @post
@@ -82,7 +87,7 @@ end
   end
 
   def post_values
-    params.require(:post).permit(:title, :body, :is_drafted)
+    params.require(:post).permit(:title, :body, :is_drafted, :closed)
   end
 
 end
