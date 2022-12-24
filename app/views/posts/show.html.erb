@@ -46,11 +46,7 @@
         </div>  
       <% end %>
       </div>
-	</div>
-      
-      
-                 
-    </b>
+	</div>         
       <div id = "comment-hide">
        <% if !(@post.closed?) %>
        <h5>Leave a comment</h5>
@@ -59,12 +55,12 @@
       </div>
      
      <div id = "disclaimer">
-       <p>The discussion is closed.So no one cannot add comments to it </p>
+       <p>The Discussion is closed.So no one cannot add comments or reples to this Discussion </p>
      </div>
 
        <% if (@post.closed?) %>
-       <div class="alert alert-primary">
-       <p>The discussion is closed.So no one cannot add comments to it </p>
+       <div class="card commentandreplysection"">
+        <p> The discussion is closed by owner.So no one cannot add comments or replies in the discussion.Thank You! </p>
        </div>
       <% end %>
      </div> 
