@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_account!, except:  [ :index, :show ]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :auth_subscriber, only: [:new]
+  before_action :find_my_communities, only: [:new, :create, :edit, :update]
   before_action :community_list
   def index
     @posts = Post.all
@@ -12,25 +12,22 @@ class PostsController < ApplicationController
   end
 
   def new
-    @community = Community.find(params[:community_id])
     @post = Post.new
   end
 
   def create
     @post = Post.new post_values
     @post.account_id = current_account.id
-    @post.community_id = params[:community_id]
 
     if @post.save
       redirect_to community_path(@post.community_id)
     else
-      @community = Community.find(params[:community_id])
       render :new
     end
   end
 
   def edit
-    @community = Community.find(params[:community_id])
+
   end
 
 
@@ -40,7 +37,6 @@ class PostsController < ApplicationController
       redirect_to community_post_path(@post)
     else
       render :edit
-
   end
 end
 
@@ -64,7 +60,15 @@ end
   end
 
   def post_values
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body, :community_id)
+  end
+
+  def find_my_communities
+    @subscriptions = Subscription.where(account_id: current_account.id)
+    @my_communities = []
+    @subscriptions.each do |subscription|
+      @my_communities << Community.find(subscription.community_id)
+    end
   end
 
 end
