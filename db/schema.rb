@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_22_073918) do
+ActiveRecord::Schema.define(version: 2022_12_24_035337) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "first_name"
@@ -125,8 +125,9 @@ ActiveRecord::Schema.define(version: 2022_12_22_073918) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "summary"
-    t.bigint "post_count_this_week", default: 0
+    t.integer "post_count_this_week", default: 0
     t.string "category"
+    t.integer "owner_id"
     t.index ["account_id"], name: "index_communities_on_account_id"
   end
 
