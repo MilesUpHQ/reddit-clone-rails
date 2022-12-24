@@ -38,11 +38,12 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @post = Post.find(params[:id])
     @community = Community.find(params[:community_id])
   end
 
   def draft 
-    @posts=  Post.all
+    @posts=  Post.order(created_at: :desc).page(params[:page]).per 5
     respond_to do |format|
       format.html
       format.js
@@ -51,14 +52,22 @@ class PostsController < ApplicationController
 
 
   def update
-    @community = Community.find(params[:community_id])
-    if @community.posts.update(post_values)
-      redirect_to community_post_path(@post)
+    @post = Post.find(params[:id])
+    @post.community_id = params[:community_id]
+    if @post.update(post_values)
+      if params[:commit] == "Publish"
+        @post.is_drafted = false
+        @post.save
+        redirect_to community_path(@post.community_id)
+      else 
+        @post.is_drafted = true
+        redirect_to draft_path
+      end  
     else
       render :edit
+    end
 
   end
-end
 
 
 def destroy
@@ -84,5 +93,4 @@ end
   def post_values
     params.require(:post).permit(:title, :body, :is_drafted)
   end
-
 end
