@@ -14,7 +14,7 @@ class PostsController < ApplicationController
   def new
     @community = Community.find(params[:community_id])
     @post = Post.new 
-    @drafts = Post.all
+    @drafts = Post.order(created_at: :desc).page(params[:page]).per 5
   end
 
   def create
@@ -43,11 +43,7 @@ class PostsController < ApplicationController
   end
 
   def draft 
-    @posts=  Post.order(created_at: :desc).page(params[:page]).per 5
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    @drafts =  Post.order(created_at: :desc).page(params[:page]).per 7
   end 
 
 
