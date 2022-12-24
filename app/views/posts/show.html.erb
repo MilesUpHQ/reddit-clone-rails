@@ -17,8 +17,8 @@
       <%= render partial: "posts/comments", locals: { comments: @post.comments } %>
     </div>
     <b>
-      <li><%= link_to "Edit", edit_community_post_path %></li>
-      <li><%= link_to "Destroy", community_post_path(@post),
+      <li><%= link_to "Edit", edit_post_path %></li>
+      <li><%= link_to "Destroy", post_path(@post),
                   method: :delete,
                   data: { confirm: "Are you sure?" } %></li>
     </b>
