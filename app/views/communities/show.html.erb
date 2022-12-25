@@ -12,7 +12,7 @@
         <%= link_to "#" do %>
           <%= image_tag("profile-pic.png" ,class: "profile-pic") %>
         <% end %>
-      <% end %>
+      <% end %>  
     </div>
     <div class="col-sm-10">
       <div class = "d-flex">
@@ -59,10 +59,10 @@
       </div>
     </div>
     <div class="col-sm-4">
-      <div class="card p-2 bg-secondary">
+      <div class="card p-2 bg-secondary"> 
         <p class="h6 pt-2 text-light">About this community</p>
         <% if @community.owner_id == current_account.id %>
-          <%= link_to "Mod Tools", new_community_path, class: "btn btn-outline-primary"%>
+          <%= link_to "Mod Tools", mod_path, class: "btn btn-primary"%>
         <% end %>
       </div>
       <div class="card p-3">

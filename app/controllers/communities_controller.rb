@@ -54,6 +54,10 @@ class CommunitiesController < ApplicationController
     redirect_to communities_path
   end
 
+  def mod
+    @community = Community.all 
+  end 
+
   private
   def set_community
     @community = Community.find(params[:id])
