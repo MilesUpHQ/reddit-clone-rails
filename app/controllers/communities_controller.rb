@@ -56,6 +56,7 @@ class CommunitiesController < ApplicationController
 
   def mod
     @community = Community.all 
+    @banneduser = Banneduser.new
   end 
 
   private

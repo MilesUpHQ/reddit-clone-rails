@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :posts
   end
 
+  resources :bannedusers
   resources :subscriptions
   resources :comments, only: [:create]
 

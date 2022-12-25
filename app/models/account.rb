@@ -12,7 +12,7 @@ class Account < ApplicationRecord
   has_one_attached :profile_image
 
   validates_presence_of :first_name, :last_name, :username
-
+  validates :username, uniqueness: true
   def full_name
     "#{first_name} #{last_name}"
   end

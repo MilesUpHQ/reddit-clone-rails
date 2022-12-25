@@ -1,0 +1,2 @@
+class Banneduser < ApplicationRecord
+end 
