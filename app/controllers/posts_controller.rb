@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_account!, except:  [ :index, :show ]
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :increment_view_count]
   before_action :find_my_communities, only: [:new, :create, :edit, :update]
   before_action :community_list
   def index
@@ -8,6 +8,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    increment_view_count
     @comment = Comment.new
   end
 
@@ -42,12 +43,17 @@ end
 
 
 def destroy
+end
+  private
   if @post
     @post.destroy
     redirect_to root_path
   end
-end
-  private
+
+  def increment_view_count
+    @post.view_count += 1
+    @post.save
+  end
 
   def set_post
     @post = Post.includes(:comments).find(params[:id])
