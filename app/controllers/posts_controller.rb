@@ -56,22 +56,38 @@ class PostsController < ApplicationController
       redirect_to community_post_path(@post)
     else
       render :edit
-
+    end
   end
-end
 
-def close
+  def save
+    @post = Post.find(params[:id])
+    @post.update(saved: true)
+    redirect_back(fallback_location: root_path)
+  end
+
+  def unsave
+    @post = Post.find(params[:id])
+    @post.update(saved: false)
+    redirect_back(fallback_location: root_path)
+  end
+  
+
+  def saved_posts
+    @saved_posts=Post.where(saved: true)
+  end
+  def close
   @post = Post.find(params[:id])
   @post.closed
   @post.update(closed: "true")
 end
 
-def destroy
-  if @post
-    @post.destroy
+  def destroy
+    if @post
+    @post.destroy 
     redirect_to root_path
+    end
   end
-end
+
 
 
   private
@@ -87,7 +103,7 @@ end
   end
 
   def post_values
-    params.require(:post).permit(:title, :body, :is_drafted, :closed)
+    params.require(:post).permit(:title, :body, :saved, :is_drafted, :closed)
   end
 
 end
