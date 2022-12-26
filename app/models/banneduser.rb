@@ -1,2 +1,0 @@
-class Banneduser < ApplicationRecord
-end 

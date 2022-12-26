@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :posts
   end
 
-  resources :bannedusers
+  resources :banned_users
   resources :subscriptions
   resources :comments, only: [:create]
 
@@ -16,5 +16,5 @@ Rails.application.routes.draw do
   get '/draft', to: 'posts#draft'
   get '/communities/:id/mod' , to: 'communities#mod' , as: 'mod'  
   
-  root to: 'public#index'
+  root to: 'public#index'  
 end
