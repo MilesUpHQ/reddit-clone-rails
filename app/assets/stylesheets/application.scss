@@ -14,7 +14,8 @@
  *= stub "active_admin"
  *= require_self
  */
-
+ @import "font-awesome";
+ 
  @import "bootstrap/scss/bootstrap";
 .textarea{
     overflow: scroll;
@@ -26,6 +27,17 @@
     height: 200px;
 }
 
+.sub-comment{
+    padding-left: 20px;
+  }
+  
+  .comment-form{
+    display: none;
+  }
+  
+.commentandreplysection{
+    margin-left: 130px;
+}  
 .profile-pic {
     border-radius: 50%;
     height: 90px;
