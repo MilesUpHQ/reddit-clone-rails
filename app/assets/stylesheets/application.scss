@@ -11,9 +11,11 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
+ *= stub "active_admin"
  *= require_self
  */
-
+ @import "font-awesome";
+ 
  @import "bootstrap/scss/bootstrap";
 .textarea{
     overflow: scroll;
@@ -40,29 +42,32 @@
     height: 200px;
 }
 
+.sub-comment{
+    padding-left: 20px;
+  }
+  
+  .comment-form{
+    display: none;
+  }
+  
+.commentandreplysection{
+    margin-left: 130px;
+}  
 .profile-pic {
     border-radius: 50%;
-    height: 100px;
-    width: 100px;
-    margin-top: -20px;
+    height: 90px;
+    width: 90px;
+    margin-top: -30px;
     margin-left: 30px;
     overflow: hidden;
-    border: 1px solid black;
+    background: #fff;
+    border: 1px solid none;
 }
 
 .cover-pic {
     margin-left: 0px;
     height: "200px";
     width: "1200px";
-}
-
-.details {
-    display: flex;
-}
-
-.name{
-    margin-left: 10px;
-    margin-top: 10px;
 }
 
 .join-button{
