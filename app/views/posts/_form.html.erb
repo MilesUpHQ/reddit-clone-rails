@@ -15,8 +15,8 @@
         <%= label_tag :body %>
         <%= form.rich_text_area :body, class: "textarea" %>
       </div>
-
-      <%= form.submit "Submit", class: "btn btn-primary" %>
+        <%= form.submit "Publish", class: "btn btn-primary" %>
+        <%= button_to "Save as draft", draft_path(post: @post), :method => "get" %>
     <% end%>
   </div>
 </div>

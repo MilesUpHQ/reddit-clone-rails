@@ -12,23 +12,37 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
+    @post = Post.new 
+    @drafts = Post.order(created_at: :desc).page(params[:page]).per 5
   end
 
   def create
     @post = Post.new post_values
     @post.account_id = current_account.id
-
     if @post.save
-      redirect_to community_path(@post.community_id)
+      if params[:commit] == "Publish"
+        @post.is_drafted = false
+        @post.save
+        redirect_to community_path(@post.community_id)
+      else 
+        @post.is_drafted = true
+        @post.save
+        redirect_to draft_path
+      end 
     else
       render :new
     end
   end
 
   def edit
+    @post = Post.find(params[:id])
 
   end
+
+
+  def draft 
+    @drafts =  Post.order(created_at: :desc).page(params[:page]).per 7
+  end 
 
 
   def update
@@ -37,16 +51,33 @@ class PostsController < ApplicationController
       redirect_to post_path(@post)
     else
       render :edit
+    end
   end
-end
 
-
-def destroy
-  if @post
-    @post.destroy
-    redirect_to root_path
+  def save
+    @post = Post.find(params[:id])
+    @post.update(saved: true)
+    redirect_back(fallback_location: root_path)
   end
-end
+  
+  def unsave
+    @post = Post.find(params[:id])
+    @post.update(saved: false)
+    redirect_back(fallback_location: root_path)
+  end 
+
+  def close
+    @post = Post.find(params[:id])
+    @post.update(closed: "true")
+  end
+
+  def destroy
+    if @post
+      @post.destroy 
+      redirect_to root_path
+    end
+  end
+
 
   private
 
@@ -61,7 +92,7 @@ end
   end
 
   def post_values
-    params.require(:post).permit(:title, :body, :community_id)
+    params.require(:post).permit(:title, :body, :saved, :is_drafted, :closed, :community_id)
   end
 
   def find_my_communities
@@ -71,5 +102,4 @@ end
       @my_communities << Community.find(subscription.community_id)
     end
   end
-
 end

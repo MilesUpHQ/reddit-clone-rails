@@ -12,23 +12,53 @@
     <div style="word-wrap: break-word;">
       <%= @post.body  %>
     </div>
-
-    <div id="post-comments">
-      <%= render partial: "posts/comments", locals: { comments: @post.comments } %>
-    </div>
     <b>
-      <li><%= link_to "Edit", edit_post_path %></li>
-      <li><%= link_to "Destroy", post_path(@post),
+     <div class="row">
+      <div class="btn btn-secondary a-btn-slide-text">
+        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+        <%= link_to "Edit", edit_post_path %>          
+      </div>
+      <div class="btn btn-secondary a-btn-slide-text">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        <%= link_to "Destroy", post_path(@post),
                   method: :delete,
-                  data: { confirm: "Are you sure?" } %></li>
-    </b>
+                  data: { confirm: "Are you sure?" } %>          
+      </div>
+      <% if ((@post.account_id == current_account.id) and !(@post.closed?)) or !(@post.closed?) %>
+      <div class="btn btn-secondary a-btn-slide-text">
+        <span class="glyphicon glyphicon-stop" aria-hidden="true"></span>        
+        <div id = "close-link">
+          <li><%= link_to "Close Discussion", close_community_post_path(@post.community), method: :patch %>   
+        </div>  
+      <% end %>
+      </div>
+	</div>         
+      <div id = "comment-hide">
+       <% if !(@post.closed?) %>
+       <h5>Leave a comment</h5>
+       <%= render partial: "comments/form", locals:{ post: @post, parent: nil} %>
+       <% end %>
+      </div>
+     
+     <div id = "disclaimer">
+       <p>The Discussion is closed.So no one cannot add comments or replies to this Discussion </p>
+     </div>
 
-    <h5>Leave a comment</h5>
-    <%= form_for @comment, remote: true do |f| %>
-      <%= f.hidden_field :post_id, value: @post.id %>
-      <%= f.rich_text_area :message, placeholder: "Your comment goes here", class: "commentarea" %>
-      <%= f.submit "Submit comment", class: "btn btn-success mt-3" %>
-    <% end %>
-
+       <% if (@post.closed?) %>
+       <div class="card commentandreplysection"">
+        <p> The discussion is closed by owner.So no one cannot add comments or replies in the discussion.Thank You! </p>
+       </div>
+      <% end %>
+     </div> 
+    <hr>
+    <div class = "commentandreplysection">
+     <div id="post-comments">
+       <h3>Comments</h3><br>
+       <%= render partial: "posts/comments", locals: { comments: @post.comments.where(parent_id: nil).order(id: :desc) } %>
+     </div>
+       <div class = "sub-comment">
+        <%= render partial: "posts/comments",  locals: { comments: @post.comments.where(parent_id: :comment_id).where(post_id: @post.id).order(id: :desc)} %>
+       </div>
+     </div>
   </div>
 </div>

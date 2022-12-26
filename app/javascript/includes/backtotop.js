@@ -1,4 +1,5 @@
-$(document).ready(function() {
+$( document ).on('turbolinks:load', function() {
+ $(document).ready(function() {
   var mybutton = $('#myBtn');
 
   $(window).scroll(function() {
@@ -17,4 +18,5 @@ $(document).ready(function() {
   function topFunction() {
     $('html, body').animate({scrollTop: 0}, 'slow');
   }
+ });
 });
