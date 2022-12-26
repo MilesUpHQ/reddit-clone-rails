@@ -64,7 +64,8 @@ end
   end
 
   def post_values
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body )
+    params.require(:post).permit(:title, :body , :images)
   end
 
 end

@@ -8,6 +8,7 @@
       <div class="form-group">
         <%= label_tag :body %>
         <%= form.rich_text_area :body, class: "textarea" %>
+        <%= form.file_field :images, multiple: true, :class=>"form-control", :placeholder=>"" %>
       </div>
 
       <%= form.submit "Submit", class: "btn btn-primary" %>

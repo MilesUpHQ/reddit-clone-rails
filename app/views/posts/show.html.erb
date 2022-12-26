@@ -13,6 +13,9 @@
         <div class="cards-wrapper">
           <div style="word-wrap: break-word;">
             <%= @post.body  %>
+            <% if @post.images.attached? %>
+              <%= image_tag @post.images[0]%>
+            <% end %>
           </div>
         </div>
       </div>
