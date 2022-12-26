@@ -1,17 +1,3 @@
-<script>
- $(document).ready(function() {
-    console.log("hello");
-     $("#disclaimer").hide();
-   $('#close-link').click(function(event){
-     console.log("hi");
-     $("#disclaimer").show();
-     $("#comment-hide").hide();
-     $("#close-link").hide();
-     alert('The discussion is closed.No one able to comment on your discussion');
-    event.preventDefault(); 
- });
-});
-</script>
 <div class="row">
   <div class="col-1 text-center">
     <div id="vote-actions-<%= @post.id %>" class="vote" data-id="<%= @post.id %>">
