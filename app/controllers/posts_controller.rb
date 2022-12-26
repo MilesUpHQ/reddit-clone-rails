@@ -14,14 +14,24 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @drafts = Post.all
   end
 
   def create
+    @drafts = Post.all
     @post = Post.new post_values
     @post.account_id = current_account.id
 
     if @post.save
-      redirect_to community_path(@post.community_id)
+      if params[:commit] == "Publish"
+        @post.is_drafted = false
+        @post.save
+        redirect_to community_path(@post.community_id)
+      else
+        @post.is_drafted = true
+        @post.save
+        redirect_to draft_path
+      end
     else
       render :new
     end
@@ -31,23 +41,49 @@ class PostsController < ApplicationController
 
   end
 
+  def draft
+    @posts=  Post.all
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
 
   def update
-    @community = Community.find(params[:community_id])
-    if @community.posts.update(post_values)
-      redirect_to community_post_path(@post)
+    if @post.update(post_values)
+      redirect_to post_path(@post)
     else
       render :edit
+    end
   end
-end
+
+  def save
+    @post = Post.find(params[:id])
+    @post.update(saved: true)
+    redirect_back(fallback_location: root_path)
+  end
+
+  def unsave
+    @post = Post.find(params[:id])
+    @post.update(saved: false)
+    redirect_back(fallback_location: root_path)
+  end
 
 
-def destroy
+  def saved_posts
+    @saved_posts=Post.where(saved: true)
+  end
+  def close
+  @post = Post.find(params[:id])
+  @post.closed
+  @post.update(closed: "true")
 end
-  private
-  if @post
-    @post.destroy
-    redirect_to root_path
+
+  def destroy
+    if @post
+      @post.destroy
+      redirect_to root_path
+    end
   end
 
   def increment_view_count
@@ -66,7 +102,7 @@ end
   end
 
   def post_values
-    params.require(:post).permit(:title, :body, :community_id)
+    params.require(:post).permit(:title, :body, :saved, :is_drafted, :closed, :community_id)
   end
 
   def find_my_communities

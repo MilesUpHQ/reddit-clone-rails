@@ -1,4 +1,5 @@
 <% posts.each do |post| %>
+  <% if post.is_drafted == false %>
   <div class="card p-3 mb-3">
     <div class="row">
       <div class="col-1 text-center">
@@ -15,9 +16,20 @@
         <%= link_to post_path(post)  do %>
          <i class="fa fa-comment"></i> <%= post.comments.size %> Comments
         <% end %>
+        <% if post.saved? %>
+          <%= link_to unsave_post_path(post.id), method: :patch do %>
+            <i class="fa-solid fa-bookmark"></i>Unsave
+          <% end %>
+        <% else %>
+          <%= link_to save_post_path(post.id), method: :patch do %>
+            <i class="fa fa-bookmark-o"></i>Save
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>
 <% end %>
-<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 
+<% end %>
+
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>

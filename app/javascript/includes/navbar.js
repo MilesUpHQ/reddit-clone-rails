@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$( document ).on('turbolinks:load', function() {
     $("#myInput_mycommunities").keydown(function () {
         input = $('#myInput_mycommunities');
         var input, filter, ul, li, a, i;

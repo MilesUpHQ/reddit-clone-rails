@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_20_094452) do
+ActiveRecord::Schema.define(version: 2022_12_25_105154) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "first_name"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 2022_12_20_094452) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.integer "failed_attempts", default: 0, null: false
+    t.string "unlock_token"
+    t.datetime "locked_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "karma", default: 0
@@ -105,6 +112,7 @@ ActiveRecord::Schema.define(version: 2022_12_20_094452) do
     t.text "message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "parent_id"
     t.index ["account_id"], name: "index_comments_on_account_id"
     t.index ["post_id"], name: "index_comments_on_post_id"
   end
@@ -133,6 +141,10 @@ ActiveRecord::Schema.define(version: 2022_12_20_094452) do
     t.integer "total_comments", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_drafted"
+    t.boolean "closed", default: false
+    t.integer "view_count", default: 0
+    t.boolean "saved", default: false
     t.index ["account_id"], name: "index_posts_on_account_id"
     t.index ["community_id"], name: "index_posts_on_community_id"
   end
