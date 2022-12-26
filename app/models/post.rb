@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  extend FriendlyId
   belongs_to :account
   belongs_to :community
   validates_presence_of :title, :body, :account_id, :community_id
@@ -14,5 +15,9 @@ class Post < ApplicationRecord
       0
     end
   end
-
+  friendly_id :title ,use: %i[slugged history] 
+  
+  def should_generate_new_friendly_id?
+    title_changed? || slug.blank?
+  end
 end    

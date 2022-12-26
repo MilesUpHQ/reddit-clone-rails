@@ -10,7 +10,7 @@ class Community < ApplicationRecord
 
     CATEGORIES = Category.pluck(:name)
 
-    friendly_id :name ,use: %i[slugged] 
+    friendly_id :name ,use: %i[slugged history] 
   
     def should_generate_new_friendly_id?
       name_changed? || slug.blank?

@@ -50,7 +50,7 @@ end
   private
 
   def set_post
-    @post = Post.includes(:comments).find(params[:id])
+    @post = Post.friendly.includes(:comments).find(params[:id])
   end
 
   def auth_subscriber

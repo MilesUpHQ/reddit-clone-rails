@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_26_065827) do
+ActiveRecord::Schema.define(version: 2022_12_26_085512) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "first_name"
@@ -146,8 +146,10 @@ ActiveRecord::Schema.define(version: 2022_12_26_065827) do
     t.integer "total_comments", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
     t.index ["account_id"], name: "index_posts_on_account_id"
     t.index ["community_id"], name: "index_posts_on_community_id"
+    t.index ["slug"], name: "index_posts_on_slug", unique: true
   end
 
   create_table "subscriptions", force: :cascade do |t|
