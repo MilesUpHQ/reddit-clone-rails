@@ -32,9 +32,9 @@ class PostsController < ApplicationController
 
 
   def update
-    @community = Community.find(params[:community_id])
-    if @community.posts.update(post_values)
-      redirect_to community_post_path(@post)
+  
+  if @post.update(post_values)
+      redirect_to post_path(@post)
     else
       render :edit
   end
@@ -47,6 +47,7 @@ def destroy
     redirect_to root_path
   end
 end
+
   private
 
   def set_post
