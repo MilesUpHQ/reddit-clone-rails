@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_account!, except:  [ :index, :show ]
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :increment_view_count]
   before_action :find_my_communities, only: [:new, :create, :edit, :update]
   before_action :community_list
   def index
@@ -8,6 +8,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    increment_view_count
     @comment = Comment.new
   end
 
@@ -17,18 +18,19 @@ class PostsController < ApplicationController
   end
 
   def create
+    @drafts = Post.all
     @post = Post.new post_values
     @post.account_id = current_account.id
     if @post.save
       if params[:commit] == "Publish"
         @post.is_drafted = false
         @post.save
-        redirect_to root_path
-      else 
+        redirect_to community_path(@post.community_id)
+      else
         @post.is_drafted = true
         @post.save
         redirect_to draft_path
-      end 
+      end
     else
       render :new
     end
@@ -38,14 +40,18 @@ class PostsController < ApplicationController
   end
 
 
-  def draft 
+  def draft
     @drafts =  Post.order(created_at: :desc).page(params[:page]).per 7
-  end 
-
+  end
 
   def update
     if @post.update(post_values)
-      redirect_to post_path(@post)
+      if params[:commit] == "Publish"
+        redirect_to root_path
+      else
+        @post.is_drafted = true
+        redirect_to draft_path
+      end
     else
       render :edit
     end
@@ -56,12 +62,17 @@ class PostsController < ApplicationController
     @post.update(saved: true)
     redirect_back(fallback_location: root_path)
   end
-  
+
   def unsave
     @post = Post.find(params[:id])
     @post.update(saved: false)
     redirect_back(fallback_location: root_path)
-  end 
+  end
+
+
+  def saved_posts
+    @saved_posts=Post.where(saved: true)
+  end
 
   def close
     @post = Post.find(params[:id])
@@ -70,13 +81,16 @@ class PostsController < ApplicationController
 
   def destroy
     if @post
-      @post.destroy 
-      redirect_to root_path
+    @post.destroy
+    redirect_to root_path
     end
   end
 
-
   private
+  def increment_view_count
+    @post.view_count += 1
+    @post.save
+  end
 
   def set_post
     @post = Post.friendly.includes(:comments).find(params[:id])

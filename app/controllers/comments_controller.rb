@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 
   def create
-    @comment = Comment.new comment_params  
+    @comment = Comment.new comment_params
     @comment.account_id = current_account.id
     @comment.save
     redirect_to post_path(@comment.post_id, @comment.post)

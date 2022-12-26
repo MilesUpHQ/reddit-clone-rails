@@ -1,25 +1,32 @@
-<% unless account_signed_in? %>
-<% end %>
-
-  <div class="community_post bg-primary">
+<div class="community_post bg-primary">
     <div class="row">
     <div class="col-sm-8">
       <%= render partial: "posts/create_post", locals: { posts: @posts } %>
       <%= render partial: "public/tab"%>
       <div class="tab-content">
-        <div id="post" class="tab-pane fade-in active">
+        <div id="best_posts" class="tab-pane fade-in active">
           <%= render partial: "posts/list", locals: { posts: @posts } %>
           <div id = "infinite-scrolling">
             <%= link_to_next_page(@posts, "posts" , :remote => true, class: "text-dark") %>
           </div>
         </div>
-        <div id="menu1" class="tab-pane fade">
-          <h3>Menu 1</h3>
-          <p>Some content in menu 1.</p>
+        <div id="hot_posts" class="tab-pane fade">
+          <%= render partial: "posts/list", locals: { posts: @hot_posts } %>
+          <div id = "infinite-scrolling">
+            <%= link_to_next_page(@hot_posts, "posts" , :remote => true, class: "text-dark") %>
+          </div>
         </div>
-        <div id="menu2" class="tab-pane fade">
-          <h3>Menu 2</h3>
-          <p>Some content in menu 2.</p>
+        <div id="new_posts" class="tab-pane fade">
+          <%= render partial: "posts/list", locals: { posts: @new_posts } %>
+          <div id = "infinite-scrolling">
+            <%= link_to_next_page(@new_posts, "posts" , :remote => true, class: "text-dark") %>
+          </div>
+        </div>
+        <div id="top_posts" class="tab-pane fade">
+          <%= render partial: "posts/list", locals: { posts: @top_posts } %>
+          <div id = "infinite-scrolling">
+            <%= link_to_next_page(@top_posts, "posts" , :remote => true, class: "text-dark") %>
+          </div>
         </div>
       </div>
     </div>
