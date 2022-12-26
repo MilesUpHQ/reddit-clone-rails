@@ -1,6 +1,6 @@
 class Community < ApplicationRecord
   extend FriendlyId
-  friendly_id :name ,use: %i[slugged history] 
+  friendly_id :slug_candidates ,use: %i[slugged history] 
   
   belongs_to :account
   validates_presence_of :url, :name, :rules, :category
@@ -14,5 +14,13 @@ class Community < ApplicationRecord
   
     def should_generate_new_friendly_id?
       name_changed? || slug.blank?
+    end
+
+    def slug_candidates
+      [
+        :name,
+        [:name, :category],
+        [:name, :category,:url]
+      ] 
     end
 end

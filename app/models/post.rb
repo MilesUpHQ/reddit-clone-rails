@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   extend FriendlyId
   friendly_id :title ,use: %i[slugged history] 
-
+  
   belongs_to :account
   belongs_to :community
   validates_presence_of :title, :body, :account_id, :community_id

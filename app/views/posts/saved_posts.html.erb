@@ -1,18 +1,18 @@
 <% @saved_posts.each do |saved_post| %>
-    <div class="card p-3 mb-3">
-      <div class="row">
-        <div class="col-1 text-center">
-          <div id="vote-actions-<%= saved_post.id %>" class="vote" data-id="<%= saved_post.id %>">
-            <div class="fa fa-arrow-up upvote <%= is_upvoted saved_post %>"></div>
-            <span class="font-weight-bold score"><%= saved_post.score %></span>
-            <div class="fa fa-arrow-down downvote <%= is_downvoted saved_post %>"></div>
-          </div>
-        </div>
-        <div class="col-11">
-          <h4 class= "mb-1"><%= link_to saved_post.title, community_post_path(saved_post.community_id, saved_post) %></h4>
-          <p><small><%= link_to saved_post.community.name, community_path(saved_post.community) %> Posted by <%= link_to saved_post.account.username, profile_path(saved_post.account.username) %> <%= time_ago_in_words saved_post.created_at %> ago</small></p>
-          <p><%= saved_post.body.to_plain_text.truncate(30) %></p>
+  <div class="card p-3 mb-3">
+    <div class="row">
+      <div class="col-1 text-center">
+        <div id="vote-actions-<%= saved_post.id %>" class="vote" data-id="<%= saved_post.id %>">
+          <div class="fa fa-arrow-up upvote <%= is_upvoted saved_post %>"></div>
+          <span class="font-weight-bold score"><%= saved_post.score %></span>
+          <div class="fa fa-arrow-down downvote <%= is_downvoted saved_post %>"></div>
         </div>
       </div>
+      <div class="col-11">
+        <h4 class= "mb-1"><%= link_to saved_post.title, post_path(saved_post.community_id, saved_post) %></h4>
+        <p><small><%= link_to saved_post.community.name, community_path(saved_post.community) %> Posted by <%= link_to saved_post.account.username, profile_path(saved_post.account.username) %> <%= time_ago_in_words saved_post.created_at %> ago</small></p>
+        <p><%= saved_post.body.to_plain_text.truncate(30) %></p>
+      </div>
     </div>
-  <% end %>
+  </div>
+<% end %>
