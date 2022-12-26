@@ -73,16 +73,16 @@ class PostsController < ApplicationController
   def saved_posts
     @saved_posts=Post.where(saved: true)
   end
+
   def close
-  @post = Post.find(params[:id])
-  @post.closed
-  @post.update(closed: "true")
-end
+    @post = Post.find(params[:id])
+    @post.update(closed: "true")
+  end
 
   def destroy
     if @post
-      @post.destroy
-      redirect_to root_path
+    @post.destroy
+    redirect_to root_path
     end
   end
 

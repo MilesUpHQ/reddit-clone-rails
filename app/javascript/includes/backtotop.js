@@ -17,4 +17,5 @@ $( document ).on('turbolinks:load', function() {
   function topFunction() {
     $('html, body').animate({scrollTop: 0}, 'slow');
   }
+ });
 });
