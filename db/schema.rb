@@ -103,27 +103,15 @@ ActiveRecord::Schema.define(version: 2022_12_25_153111) do
   create_table "banned_users", force: :cascade do |t|
     t.string "username"
     t.string "reason"
-    t.text "explanation"
+    t.string "explanation"
     t.integer "account_id"
+    t.integer "subscription_id"
     t.integer "community_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["account_id"], name: "index_banned_users_on_account_id"
     t.index ["community_id"], name: "index_banned_users_on_community_id"
-  end
-
-  create_table "bannedusers", force: :cascade do |t|
-    t.string "username"
-    t.string "reason"
-    t.string "explanation"
-    t.integer "Account_id"
-    t.integer "Subscription_id"
-    t.integer "Community_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["Account_id"], name: "index_bannedusers_on_Account_id"
-    t.index ["Community_id"], name: "index_bannedusers_on_Community_id"
-    t.index ["Subscription_id"], name: "index_bannedusers_on_Subscription_id"
+    t.index ["subscription_id"], name: "index_banned_users_on_subscription_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -177,7 +165,6 @@ ActiveRecord::Schema.define(version: 2022_12_25_153111) do
     t.integer "community_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "account_status"
     t.index ["account_id"], name: "index_subscriptions_on_account_id"
     t.index ["community_id"], name: "index_subscriptions_on_community_id"
   end

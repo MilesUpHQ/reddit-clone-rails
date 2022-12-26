@@ -55,7 +55,8 @@ class CommunitiesController < ApplicationController
   end
 
   def mod
-    @community = Community.all 
+    # @community = Community.find(params[:id])
+    # @community.id
     @banneduser = Banneduser.new
   end 
 

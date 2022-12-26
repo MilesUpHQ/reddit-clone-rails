@@ -1,12 +1,12 @@
 class CreateBannedusers < ActiveRecord::Migration[6.1]
   def change
-    create_table :bannedusers do |t|
+    create_table :banned_users do |t|
       t.string :username
       t.string :reason
       t.string :explanation
-      t.references :Account 
-      t.references :Subscription 
-      t.references :Community
+      t.references :account 
+      t.references :subscription 
+      t.references :community  
       t.timestamps
     end
   end

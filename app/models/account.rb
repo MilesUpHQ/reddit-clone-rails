@@ -10,6 +10,7 @@ class Account < ApplicationRecord
   has_many :comments
   has_many :votes
   has_one_attached :profile_image
+  # belongs_to :banneduser
 
   validates_presence_of :first_name, :last_name, :username
   validates :username, uniqueness: true
