@@ -88,7 +88,7 @@ end
 
   def post_values
     params.require(:post).permit(:title, :body )
-    params.require(:post).permit(:title, :body , :images, :is_drafted, :closed)
+    params.require(:post).permit(:title, :body ,:is_drafted, :closed, images: [])
   end
 
 end
