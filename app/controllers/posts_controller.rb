@@ -73,7 +73,6 @@ class PostsController < ApplicationController
 
   def close
     @post = Post.find(params[:id])
-    @post.closed
     @post.update(closed: "true")
   end
 
