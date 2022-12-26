@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   get "u/:username" => "public#profile", as: :profile
 
   resources :communities do
-    resources :posts
+    resources :posts do
+      member do
+        patch :close
+      end
+    end
   end
 
   resources :subscriptions
