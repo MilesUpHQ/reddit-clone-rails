@@ -42,6 +42,7 @@ class PostsController < ApplicationController
     @community = Community.find(params[:community_id])
   end
 
+
   def draft 
     @drafts =  Post.order(created_at: :desc).page(params[:page]).per 7
   end 
@@ -62,16 +63,37 @@ class PostsController < ApplicationController
     else
       render :edit
     end
-
   end
 
-
-def destroy
-  if @post
-    @post.destroy
-    redirect_to root_path
+  def save
+    @post = Post.find(params[:id])
+    @post.update(saved: true)
+    redirect_back(fallback_location: root_path)
   end
+
+  def unsave
+    @post = Post.find(params[:id])
+    @post.update(saved: false)
+    redirect_back(fallback_location: root_path)
+  end
+  
+
+  def saved_posts
+    @saved_posts=Post.where(saved: true)
+  end
+  def close
+  @post = Post.find(params[:id])
+  @post.closed
+  @post.update(closed: "true")
 end
+
+  def destroy
+    if @post
+    @post.destroy 
+    redirect_to root_path
+    end
+  end
+
 
 
   private
@@ -87,6 +109,6 @@ end
   end
 
   def post_values
-    params.require(:post).permit(:title, :body, :is_drafted)
+    params.require(:post).permit(:title, :body, :saved, :is_drafted, :closed)
   end
 end
