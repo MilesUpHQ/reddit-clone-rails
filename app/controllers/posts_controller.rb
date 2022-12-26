@@ -64,31 +64,24 @@ class PostsController < ApplicationController
     @post.update(saved: true)
     redirect_back(fallback_location: root_path)
   end
-
+  
   def unsave
     @post = Post.find(params[:id])
     @post.update(saved: false)
     redirect_back(fallback_location: root_path)
-  end
-  
+  end 
 
-  def saved_posts
-    @saved_posts=Post.where(saved: true)
-  end
   def close
-  @post = Post.find(params[:id])
-  @post.closed
-  @post.update(closed: "true")
-end
+    @post = Post.find(params[:id])
+    @post.update(closed: "true")
+  end
 
   def destroy
     if @post
-    @post.destroy 
-    redirect_to root_path
+      @post.destroy 
+      redirect_to root_path
     end
   end
-
-
 
   private
 
