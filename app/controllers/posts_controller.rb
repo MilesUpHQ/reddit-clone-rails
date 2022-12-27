@@ -18,23 +18,23 @@ class PostsController < ApplicationController
   end
 
   def create
-    @drafts = Post.all
     @post = Post.new post_values
     @post.account_id = current_account.id
 
-    if @post.save
-      if params[:commit] == "Publish"
-        @post.is_drafted = false
-        @post.save
-        redirect_to community_path(@post.community_id)
-      else
-        @post.is_drafted = true
-        @post.save
-        redirect_to draft_path
-      end
+    if params[:commit] == "Publish"
+      @post.is_drafted = false
     else
-      render :new
+      @post.is_drafted = true
     end
+      if @post.save
+        if (params[:commit] == "Publish")
+          redirect_to community_path(@post.community_id)
+        else
+          redirect_to draft_path
+        end
+      else
+        render :new
+      end
   end
 
   def edit
@@ -49,7 +49,6 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.community_id = params[:community_id]
     @post.is_drafted = false
     if @post.update(post_values)
       if params[:commit] == "Publish"
@@ -86,9 +85,8 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    if @post
-    @post.destroy
-    redirect_to root_path
+    if @post.destroy
+      redirect_to root_path
     end
   end
 
