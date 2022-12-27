@@ -128,7 +128,20 @@ ActiveRecord::Schema.define(version: 2022_12_27_064824) do
     t.string "summary"
     t.bigint "post_count_this_week", default: 0
     t.string "category"
+    t.string "slug"
     t.index ["account_id"], name: "index_communities_on_account_id"
+    t.index ["slug"], name: "index_communities_on_slug", unique: true
+  end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -148,9 +161,10 @@ ActiveRecord::Schema.define(version: 2022_12_27_064824) do
     t.boolean "spoiler", default: false
     t.boolean "nsfw", default: false
     t.integer "view_count", default: 0
-    t.boolean "saved", default: false
+    t.string "slug"
     t.index ["account_id"], name: "index_posts_on_account_id"
     t.index ["community_id"], name: "index_posts_on_community_id"
+    t.index ["slug"], name: "index_posts_on_slug", unique: true
   end
 
   create_table "subscriptions", force: :cascade do |t|

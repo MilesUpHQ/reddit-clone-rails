@@ -1,17 +1,17 @@
 <div class="row">
   <div class="col-sm-6">
     <%= form_for @community do |form| %>
-       <div class="form-group">
+      <div class="form-group">
         <%= label_tag :profile_picture %>
         <%= form.file_field :profile_image, class: "form-control" %>
       </div>
-       <div class="form-group">
+      <div class="form-group">
         <%= label_tag :cover_picture %>
         <%= form.file_field :cover_image, class: "form-control" %>
       </div>
       <div class="form-group">
         <%= label_tag :name %>
-        <%= form.text_field :name, class: "form-control" %>
+        <%= form.text_field :name, class: "form-control" , maxlength: 16%>
       </div>
       <div class="form-group">
         <%= label_tag :url %>

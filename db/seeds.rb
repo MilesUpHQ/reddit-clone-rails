@@ -2,22 +2,14 @@
 AdminUser.create!(email: 'admin123@reddit.com', password: 'p@ssword', password_confirmation: 'p@ssword') if Rails.env.development?
 
 
-10.times do
+
+10.times do 
    Community.create!(
-    account_id: rand(1..3),
+    account_id: 3,
     name: Faker::Name.name,
     url: Faker::Internet.url,
     rules: Faker::Lorem.paragraphs,
     summary: Faker::Lorem.paragraphs,
     category: %w[Sports Gaming Technology News TV Music Crypto Fasion Food Health Science Finance].sample
-  )
-end
-
-10.times do
-  Post.create!(
-    account_id: rand(1..3),
-    community_id: rand(1..10),
-    title: Faker::Name.name,
-    body: Faker::Lorem.paragraphs
   )
 end

@@ -1,19 +1,16 @@
 .tab-nav-link {
-  background-color: #fff;
+	background-color: #fff;
   padding: 5px 20px;
   display: inline-block;
-  border-radius: 25px;
+	border-radius: 25px;
 }
-
 .tab-nav-link.active {
-  background: #f6f7f8;
-  color: #007BFF;
+	background: #f6f7f8;
+	color: #007BFF;
 }
-
 .tab-nav-link.active a {
-  color: #007BFF;
+	color: #007BFF;
 }
-
 .tab-nav-link a {
   color: #636c72;
   font-size: 1em;
@@ -21,10 +18,9 @@
   text-align: center;
   text-decoration: none;
 }
-
 .tab-nav-link a:hover {
-  text-decoration: none;
-  color: #007BFF;
+	text-decoration: none;
+	color: #007BFF;
 }
 
 .premium-join {
@@ -32,55 +28,47 @@
   padding: 3px 30px;
   display: inline-block;
   font-size: 16px;
-  border-radius: 25px;
+	border-radius: 25px;
   text-align: center;
 }
-
-.premium-join a {
+.premium-join a{
   font-size: 1em;
   font-weight: 700;
   color: #fff;
 }
-
 .premium-join a:hover {
   text-decoration: none;
 }
-
 .premium-des {
   font-size: 0.7em;
 }
-
 .premium-head {
   font-size: 0.8em;
   font-weight: 600;
 }
-
 .premium-logo {
   color: #ff4500;
   padding-left: 10px;
   font-size: 2em;
 }
-
 .home-small-profile {
   position: relative;
   top: -20px;
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  overflow: hidden;
-  background: #fff;
-  border: 1px solid #fff;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #fff;
 }
-
 .home-small-profile img {
   position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
-
 .home-small-cover {
   height: 50px;
 }
