@@ -22,6 +22,19 @@
     height: 400px;
 }
 
+.sensitive{
+    color: red;
+}
+.sensitive-text{
+     font-size: 40px;
+    color: transparent;
+    text-shadow: 0 0 8px #000;
+}
+
+.sensitive-image{
+    filter: blur(5px);
+}
+
 .card-textarea{
     overflow: scroll;
     height: 400px;
