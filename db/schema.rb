@@ -10,6 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+ActiveRecord::Schema.define(version: 2022_12_24_010215) do
+ActiveRecord::Schema.define(version: 2022_12_24_010215) do
 ActiveRecord::Schema.define(version: 2022_12_23_090621) do
 
   create_table "accounts", force: :cascade do |t|
@@ -144,6 +146,7 @@ ActiveRecord::Schema.define(version: 2022_12_23_090621) do
     t.string "status"
     t.boolean "saved", default: false
     t.boolean "is_drafted"
+    t.boolean "saved", default: false
     t.boolean "closed", default: false
     t.index ["account_id"], name: "index_posts_on_account_id"
     t.index ["community_id"], name: "index_posts_on_community_id"

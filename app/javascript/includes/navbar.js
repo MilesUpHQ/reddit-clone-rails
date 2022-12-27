@@ -1,4 +1,5 @@
-$(document).ready(function(){
+$( document ).on('turbolinks:load', function() {
+ $(document).ready(function(){
     $("#myInput_mycommunities").keydown(function(){
         input = $('#myInput_mycommunities');
         var input, filter, ul, li, a, i;
@@ -15,3 +16,4 @@ $(document).ready(function(){
         });
     });
   });
+});

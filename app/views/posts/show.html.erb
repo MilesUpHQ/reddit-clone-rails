@@ -49,7 +49,7 @@
                   method: :delete,
                   data: { confirm: "Are you sure?" } %>
             </div>
-            <% if ((@post.account_id == current_account.id) and !(@post.closed?)) or !(@post.closed?) %>
+            <% if (((@post.account_id == current_account.id) and !(@post.closed?)) or !(@post.closed?)) or !(@post.closed?) %>
               <div class="btn btn-secondary a-btn-slide-text">
                 <span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
                 <div id = "close-link">
@@ -65,7 +65,7 @@
             <% end %>
           </div>
           <div id = "disclaimer">
-            <p>The Discussion is closed.So no one cannot add comments or replies to this Discussion </p>
+            <p>The Discussion is closed.So no one cannot add comments or repliies to this Discussion </p>
           </div>
           <% if (@post.closed?) %>
             <div class="card commentandreplysection">
