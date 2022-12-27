@@ -13,47 +13,48 @@
       <%= @post.body  %>
     </div>
     <b>
-     <div class="row">
-     <div class="join-btn">
-        <%= link_to "Edit", edit_post_path %>
-     </div>
+      <div class="row">
+        <div class="join-btn">
+          <%= link_to "Edit", edit_post_path %>
+        </div>
         <div class="join-btn">
           <%= link_to "Destroy", post_path(@post),
                   method: :delete,
                   data: { confirm: "Are you sure?" } %>
         </div>
-      <% if ((@post.account_id == current_account.id) and !(@post.closed?)) or !(@post.closed?) %>
-        <div class="join-btn" id="close-link">
-          <%= link_to "Close Discussion", close_post_path(@post), method: :patch %>
-        </div>
-      <% end %>
-	</div>
+        <% if ((@post.account_id == current_account.id) and !(@post.closed?)) or !(@post.closed?) %>
+          <div class="join-btn" id="close-link">
+            <%= link_to "Close Discussion", close_post_path(@post), method: :patch %>
+          </div>
+        <% end %>
+      </div>
       <div id = "comment-hide">
-       <% if !(@post.closed?) %>
-       <h5>Leave a comment</h5>
-       <%= render partial: "comments/form", locals:{ post: @post, parent: nil} %>
-       <% end %>
+        <% if !(@post.closed?) %>
+          <h5>Leave a comment</h5>
+          <%= render partial: "comments/form", locals:{ post: @post, parent: nil} %>
+        <% end %>
       </div>
 
-     <div id = "disclaimer">
-       <p>The Discussion is closed.So no one cannot add comments or replies to this Discussion </p>
-     </div>
+      <div id = "disclaimer">
+        <p>The Discussion is closed.So no one cannot add comments or replies to this Discussion </p>
+      </div>
 
-       <% if (@post.closed?) %>
-       <div class="card commentandreplysection"">
-        <p> The discussion is closed by owner.So no one cannot add comments or replies in the discussion.Thank You! </p>
-       </div>
+      <% if (@post.closed?) %>
+        <div class="card commentandreplysection"">
+          <p> The discussion is closed by owner.So no one cannot add comments or replies in the discussion.Thank You! </p>
+        </div>
       <% end %>
-     </div>
+    </div>
     <hr>
     <div class = "commentandreplysection">
-     <div id="post-comments">
-       <h3>Comments</h3><br>
-       <%= render partial: "posts/comments", locals: { comments: @post.comments.where(parent_id: nil).order(id: :desc) } %>
-     </div>
-       <div class = "sub-comment">
+      <div id="post-comments">
+        <h3>Comments</h3>
+        <br>
+        <%= render partial: "posts/comments", locals: { comments: @post.comments.where(parent_id: nil).order(id: :desc) } %>
+      </div>
+      <div class = "sub-comment">
         <%= render partial: "posts/comments",  locals: { comments: @post.comments.where(parent_id: :comment_id).where(post_id: @post.id).order(id: :desc)} %>
-       </div>
-     </div>
+      </div>
+    </div>
   </div>
 </div>
