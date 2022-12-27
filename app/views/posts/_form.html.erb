@@ -9,14 +9,14 @@
       <% end %>
       <div class="form-group">
         <%= label_tag :title %>
-        <%= form.text_field :title, class: "form-control",:maxlength => 20 %>
+        <%= form.text_field :title, class: "form-control", maxlength: 20%>
       </div>
       <div class="form-group">
         <%= label_tag :body %>
         <%= form.rich_text_area :body, class: "textarea" %>
       </div>
       <%= form.submit "Publish", class: "btn btn-primary" %>
-      <%= button_to "Save as draft", draft_path(post: @post), :method => "get" %>
+      <%= button_to "Save as draft", draft_path(post: @post),method: "get"%>
     <% end%>
   </div>
 </div>

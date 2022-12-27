@@ -1,6 +1,6 @@
 class Community < ApplicationRecord
   extend FriendlyId
-  friendly_id :slug_candidates ,use: %i[slugged history] 
+  friendly_id :slug_candidates ,use: %i[slugged history finders] 
   
   belongs_to :account
   validates_presence_of :url, :name, :rules, :category
