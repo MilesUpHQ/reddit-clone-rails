@@ -2,10 +2,10 @@
   <div class="col-sm-6">
     <%= form_for [@community, @post] do |form| %>
       <% unless params[:action] == 'edit' %>
-      <div class="form-group">
-        <%= label_tag :Community %>
-        <%= form.select :community_id, @my_communities.collect {|option| [option.name, option.id]}, selected: params[:community], class: "form-control" %>
-      </div>
+        <div class="form-group">
+          <%= label_tag :Community %>
+          <%= form.select :community_id, @my_communities.collect {|option| [option.name, option.id]}, selected: params[:community], class: "form-control" %>
+        </div>
       <% end %>
       <div class="form-group">
         <%= label_tag :title %>
@@ -18,20 +18,20 @@
       </div>
       <div class="d-inline m-4 pr-1">
         <div class="d-inline ml-2">
-          <%= form.label 'OC' %>
           <%= form.check_box :oc %>
+          <%= form.label 'OC' %>
         </div>
       </div>
       <div class="d-inline m-4 pr-1">
         <div class="d-inline ml-2">
-          <%= form.label 'Spoiler' %>
           <%= form.check_box :spoiler  %>
+          <%= form.label 'Spoiler' %>
         </div>
       </div>
       <div class="d-inline m-4 pr-1">
         <div class="d-inline ml-2">
-          <%= form.label 'NSFW' %>
           <%= form.check_box :nsfw %>
+          <%= form.label 'NSFW' %>
         </div>
       </div>
       <%= form.submit "Publish", class: "btn btn-primary" %>
