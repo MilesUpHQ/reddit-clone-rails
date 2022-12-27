@@ -35,13 +35,19 @@
   $ rails db:create
   $ rails db:migrate
 ```
-5. Add .env file at root directory path
+5. Add .env file at root directory path  
 ```
-  https://github.com/MilesUpHQ/reddit-clone-rails/blob/master/.env.sample
+MAILGUN_USERNAME=xxxx
+MAILGUN_PASSWORD=xxxx
+MAILGUN_DOMAIN=xxxx
 ```
-### Note : To make you authorized SMTP connection account contact
-### [Tushar R](https://github.com/tusharravindran)
-### [Vasanthakumar A](https://github.com/vasanthakumar-a)
+*Note : To make you authorized SMTP connection account contact*  
+  [Tushar R](https://github.com/tusharravindran)  
+  [Vasanthakumar A](https://github.com/vasanthakumar-a)  
+  [Mithun L](https://github.com/mithun30052001)  
+  [Sowndar K](https://github.com/ksowndar)  
+  [Srinandhini M](https://github.com/srinandhiniM)  
+    
 6. Seed Accounts, Communities and Posts
 ```
   $ rails db:seed
