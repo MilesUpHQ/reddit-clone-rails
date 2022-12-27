@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2022_12_24_010215) do
 ActiveRecord::Schema.define(version: 2022_12_24_010215) do
+ActiveRecord::Schema.define(version: 2022_12_24_010215) do
 ActiveRecord::Schema.define(version: 2022_12_23_090621) do
 
   create_table "accounts", force: :cascade do |t|

@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_account!, except:  [ :index, :show ]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :auth_subscriber, only: [:new]
+ # before_action :auth_subscriber, only: [:new]
   before_action :community_list
   def index
     @posts = Post.all
@@ -59,6 +59,16 @@ class PostsController < ApplicationController
         @post.is_drafted = true
         redirect_to draft_path
       end  
+    @post = Post.find(params[:id])
+    @post.community_id = params[:community_id]
+    @post.is_drafted = false
+    if @post.update(post_values)
+      if params[:commit] == "Publish"
+        redirect_to community_path(@post.community_id)
+      else 
+        @post.is_drafted = true
+        redirect_to draft_path
+      end  
     else
       render :edit
     end
@@ -101,7 +111,7 @@ class PostsController < ApplicationController
   end
 
   def post_values
-    params.require(:post).permit(:title, :body )
-    params.require(:post).permit(:title, :saved, :body ,:is_drafted, :closed, images: [])
+    params.require(:post).permit(:title, :body, :saved, :is_drafted, :closed, images: [])
+  end
   end
 end
