@@ -1,6 +1,12 @@
 <div class="row">
   <div class="col-sm-6">
     <%= form_for [@community, @post] do |form| %>
+      <% unless params[:action] == 'edit' %>
+      <div class="form-group">
+        <%= label_tag :Community %>
+        <%= form.select :community_id, @my_communities.collect {|option| [option.name, option.id]}, selected: params[:community], class: "form-control" %>
+      </div>
+      <% end %>
       <div class="form-group">
         <%= label_tag :title %>
         <%= form.text_field :title, class: "form-control" %>
@@ -13,5 +19,4 @@
         <%= button_to "Save as draft", draft_path(post: @post), :method => "get" %>
     <% end%>
   </div>
-</div>   
-  
+</div>

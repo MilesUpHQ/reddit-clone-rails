@@ -4,19 +4,15 @@ Rails.application.routes.draw do
   devise_for :accounts
   get "u/:username" => "public#profile", as: :profile
   get "/saved_posts" => "posts#saved_posts"
-  resources :communities do
-    resources :posts do
+  resources :posts do
       member do
+        patch :save
+        patch :unsave
         patch :close
       end
     end
-    resources :posts do
-      member do
-        patch :save 
-        patch :unsave
-      end
-    end
-  end
+  resources :communities
+
 
   resources :subscriptions
   resources :comments, only: [:create]
