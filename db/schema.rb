@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_27_062210) do
+ActiveRecord::Schema.define(version: 2022_12_27_064824) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "first_name"
@@ -144,9 +144,9 @@ ActiveRecord::Schema.define(version: 2022_12_27_062210) do
     t.boolean "is_drafted"
     t.boolean "saved", default: false
     t.boolean "closed", default: false
-    t.boolean "oc"
-    t.boolean "spoiler"
-    t.boolean "nsfw"
+    t.boolean "oc", default: false
+    t.boolean "spoiler", default: false
+    t.boolean "nsfw", default: false
     t.index ["account_id"], name: "index_posts_on_account_id"
     t.index ["community_id"], name: "index_posts_on_community_id"
   end

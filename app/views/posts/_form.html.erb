@@ -10,9 +10,26 @@
         <%= form.rich_text_area :body, class: "textarea" %>
         <%= form.file_field :images, multiple: true, :class=>"form-control", :placeholder=>"" %>
       </div>
-        <%= form.submit "Publish", class: "btn btn-primary" %>
-        <%= button_to "Save as draft", draft_path(post: @post), :method => "get" %>
+      <div class="d-inline m-4 pr-1">
+        <div class="d-inline ml-2">
+          <%= form.label 'OC' %>
+          <%= form.check_box :oc %>
+        </div>
+      </div>
+      <div class="d-inline m-4 pr-1">
+        <div class="d-inline ml-2">
+          <%= form.label 'Spoiler' %>
+          <%= form.check_box :spoiler  %>
+        </div>
+      </div>
+      <div class="d-inline m-4 pr-1">
+        <div class="d-inline ml-2">
+          <%= form.label 'NSFW' %>
+          <%= form.check_box :nsfw %>
+        </div>
+      </div>
+      <%= form.submit "Publish", class: "btn btn-primary" %>
+      <%= button_to "Save as draft", draft_path(post: @post), :method => "get" %>
     <% end%>
   </div>
-</div>   
-  
+</div>
