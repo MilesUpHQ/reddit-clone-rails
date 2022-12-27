@@ -8,10 +8,29 @@
   </div>
   <div class="col-9" >
     <div class="card" class="card-textarea">
-      <% if @post.nsfw? %>
+      <% if @post.nsfw?  %>
         <%= render 'sensitive_post_display' %>
+      <% elsif @post.oc? %>
+        <div class="card-body" class="card-textarea">
+          <h2><%= @post.title %></h2>
+          <div class="sensitive">
+            <h5>OC Thread</h5>
+          </div>
+          <%= render 'post_display' %>
+        </div>
+      <% elsif @post.spoiler? %>
+        <div class="card-body" class="card-textarea">
+          <h2><%= @post.title %>  </h2>
+          <div class="sensitiveS">
+            <h5>Spoiler Thread</h5>
+          </div>
+          <%= render 'post_display' %>
+        </div>
       <% else %>
-        <%= render 'post_display' %>
+        <div class="card-body" class="card-textarea">
+          <h2><%= @post.title %></h2>
+          <%= render 'post_display' %>
+        </div>
       <% end %>
       <b>
         <div class="row">
