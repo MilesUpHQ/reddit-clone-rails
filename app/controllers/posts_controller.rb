@@ -81,8 +81,8 @@ class PostsController < ApplicationController
 
   def destroy
     if @post
-    @post.destroy
-    redirect_to root_path
+      @post.destroy
+      redirect_to root_path
     end
   end
 
@@ -107,10 +107,7 @@ class PostsController < ApplicationController
   end
 
   def find_my_communities
-    @subscriptions = Subscription.where(account_id: current_account.id)
-    @my_communities = []
-    @subscriptions.each do |subscription|
-      @my_communities << Community.find(subscription.community_id)
-    end
+    @subscriptions = Subscription.where(account_id: current_account.id).pluck(:community_id)
+    @my_communities = Community.find(@subscriptions)
   end
 end

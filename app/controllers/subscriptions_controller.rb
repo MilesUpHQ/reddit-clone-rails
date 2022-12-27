@@ -19,7 +19,8 @@ class SubscriptionsController < ApplicationController
   end
 
   def destroy
-    @subscriptions = Subscription.where(account_id: current_account.id).where(community_id: params[:id])
+    @community = Community.find(params[:id])
+    @subscriptions = Subscription.where(account_id: current_account.id).where(community_id: @community.id)
     @subscriptions.each do |subscription|
       subscription.destroy
     end
