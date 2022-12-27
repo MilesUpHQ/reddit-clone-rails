@@ -58,10 +58,6 @@
           <h5>Leave a comment</h5>
           <%= render partial: "comments/form", locals:{ post: @post, parent: nil} %>
         <% end %>
-        <% if !(@post.closed?) %>
-          <h5>Leave a comment</h5>
-          <%= render partial: "comments/form", locals:{ post: @post, parent: nil} %>
-        <% end %>
       </div>
       <div id = "disclaimer">
         <p>The Discussion is closed.So no one cannot add comments or replies to this Discussion </p>
