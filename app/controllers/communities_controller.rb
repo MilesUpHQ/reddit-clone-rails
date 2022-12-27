@@ -59,7 +59,13 @@ class CommunitiesController < ApplicationController
     # @community = Community.find(params[:id])
     # @community.id
     @banneduser = BannedUser.new
+    @username = Account.pluck(:username).sort
   end 
+
+  def autocomplete
+    results = AutocompleteSearchService.new(params[:username]).call
+    render json: results
+  end
 
   private
   def set_community
