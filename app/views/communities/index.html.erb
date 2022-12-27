@@ -1,4 +1,4 @@
-<%= link_to "Top", communities_path, onclick: "topFunction()", id: "myBtn" %>
+<%= render partial: "layouts/backtotop" %>
 <div class="container mb-4">
   <h3 class="text-dark">Today's Top Growing Communities</h3>
   <% if account_signed_in? %>
@@ -35,15 +35,15 @@
           <li class="list-group-item text-white bg-secondary">Today's Top Growing in Communities</li>
           <div class="tab-pane active" id="all_communities" role="tabpanel">
             <% if @communities.size > 0 %>
-             <div id = "infinity">
-               <%= render partial: "list" %>
-             </div>
-             <div id = "infinite-scrolling">
-               <%= link_to_next_page(@communities, "posts" , :remote => true) %>
-             </div>
-          <% else %>
-            <h3 class="m-4">No communities to display.</h3>
-          <% end %>
+              <div id = "infinity">
+                <%= render partial: "list" %>
+              </div>
+              <div id = "infinite-scrolling">
+                <%= link_to_next_page(@communities, "posts" , :remote => true) %>
+              </div>
+            <% else %>
+              <h3 class="m-4">No communities to display.</h3>
+            <% end %>
           </div>
         </div>
       </div>
@@ -64,5 +64,3 @@
     </div>
   </div>
 </div>
-
-
