@@ -6,6 +6,7 @@ class Community < ApplicationRecord
   has_many :subscribers, through: :subscriptions, source: :account
   has_one_attached :profile_image
   has_one_attached :cover_image
+  has_many :banned_users
 
   CATEGORIES = Category.pluck(:name)
 end
