@@ -156,9 +156,13 @@ ActiveRecord::Schema.define(version: 2022_12_26_085512) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
     t.boolean "is_drafted"
-    t.boolean "closed", default: false
-    t.integer "view_count", default: 0
     t.boolean "saved", default: false
+    t.boolean "closed", default: false
+    t.boolean "oc", default: false
+    t.boolean "spoiler", default: false
+    t.boolean "nsfw", default: false
+    t.integer "view_count", default: 0
+    t.string "slug"
     t.index ["account_id"], name: "index_posts_on_account_id"
     t.index ["community_id"], name: "index_posts_on_community_id"
     t.index ["slug"], name: "index_posts_on_slug", unique: true

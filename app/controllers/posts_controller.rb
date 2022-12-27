@@ -75,13 +75,11 @@ class PostsController < ApplicationController
   end
 
   def close
-
     @post.update(closed: "true")
   end
 
   def destroy
-    if @post
-      @post.destroy
+    if @post.destroy
       redirect_to root_path
     end
   end
@@ -103,7 +101,7 @@ class PostsController < ApplicationController
   end
 
   def post_values
-    params.require(:post).permit(:title, :body, :saved, :is_drafted, :closed, :community_id)
+    params.require(:post).permit(:title, :body, :saved, :is_drafted, :closed, :community_id, images: [])
   end
 
   def find_my_communities
