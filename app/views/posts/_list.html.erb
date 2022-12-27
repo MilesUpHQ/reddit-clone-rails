@@ -1,32 +1,32 @@
 <% posts.each do |post| %>
   <% if post.is_drafted == false %>
-  <div class="card p-3 mb-3">
-    <div class="row">
-      <div class="col-1 text-center">
-        <div id="vote-actions-<%= post.id %>" class="vote" data-id="<%= post.id %>">
-          <div class="fa fa-arrow-up upvote <%= is_upvoted post %>"></div>
-          <span class="font-weight-bold score"><%= post.score %></span>
-          <div class="fa fa-arrow-down downvote <%= is_downvoted post %>"></div>
+    <div class="card p-3 mb-3">
+      <div class="row">
+        <div class="col-1 text-center">
+          <div id="vote-actions-<%= post.id %>" class="vote" data-id="<%= post.id %>">
+            <div class="fa fa-arrow-up upvote <%= is_upvoted post %>"></div>
+            <span class="font-weight-bold score"><%= post.score %></span>
+            <div class="fa fa-arrow-down downvote <%= is_downvoted post %>"></div>
+          </div>
+        </div>
+        <div class="col-11">
+          <h4 class= "mb-1"><%= link_to post.title, post_path(post) %></h4>
+          <p><small><%= link_to post.community.name, community_path(post.community) %> Posted by <%= link_to post.account.username, profile_path(post.account.username) %> <%= time_ago_in_words post.created_at %> ago</small></p>
+          <p><%= post.body.to_plain_text.truncate(30) %></p>
+          <%= link_to post_path(post)  do %>
+            <i class="fa fa-comment"></i> <%= post.comments.size %> Comments
+          <% end %>
+          <% if post.saved? %>
+            <%= link_to unsave_post_path(post.id), method: :patch do %>
+              <i class="fa-solid fa-bookmark"></i>Unsave
+            <% end %>
+          <% else %>
+            <%= link_to save_post_path(post.id), method: :patch do %>
+              <i class="fa fa-bookmark-o"></i>Save
+            <% end %>
+          <% end %>
         </div>
       </div>
-      <div class="col-11">
-        <h4 class= "mb-1"><%= link_to post.title, post_path(post) %></h4>
-        <p><small><%= link_to post.community.name, community_path(post.community) %> Posted by <%= link_to post.account.username, profile_path(post.account.username) %> <%= time_ago_in_words post.created_at %> ago</small></p>
-        <p><%= post.body.to_plain_text.truncate(30) %></p>
-        <%= link_to post_path(post)  do %>
-         <i class="fa fa-comment"></i> <%= post.comments.size %> Comments
-        <% end %>
-        <% if post.saved? %>
-          <%= link_to unsave_post_path(post.id), method: :patch do %>
-            <i class="fa-solid fa-bookmark"></i>Unsave
-          <% end %>
-        <% else %>
-          <%= link_to save_post_path(post.id), method: :patch do %>
-            <i class="fa fa-bookmark-o"></i>Save
-          <% end %>
-        <% end %>
-      </div>
-    </div>
     </div>
   <% end %>
 <% end %>

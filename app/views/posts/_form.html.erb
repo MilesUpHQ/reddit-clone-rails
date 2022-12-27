@@ -33,7 +33,6 @@
           <%= form.check_box :nsfw %>
           <%= form.label 'NSFW' %>
         </div>
-        <%= form.file_field :images, multiple: true, class:"form-control", :placeholder=>"" %>
       </div>
       <%= form.submit "Publish", class: "btn btn-primary" %>
       <%= button_to "Save as draft", draft_path(post: @post), :method => "get" %>

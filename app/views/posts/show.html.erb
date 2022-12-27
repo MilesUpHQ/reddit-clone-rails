@@ -33,45 +33,6 @@
         </div>
       <% end %>
       <b>
-        <div class="row">
-          <div class="join-btn">
-            <%= link_to "Edit", edit_post_path %>
-          </div>
-          <div class="join-btn">
-            <%= link_to "Destroy", post_path(@post),
-  <div class="col-9" >
-    <div class="card" class="card-textarea">
-      <div class="card-body" class="card-textarea">
-        <h2><%= @post.title %></h2>
-        <div style="word-wrap: break-word;">
-          <%= @post.body  %>
-          <% if @post.images.attached? %>
-            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <%= image_tag @post.images[0], :class=>"image-size" %>
-                </div>
-                <% @post.images.each do |img| %>
-                  <div class="carousel-item">
-                    <%= image_tag img, :class=>"image-size" %>
-                  </div>
-                <% end %>
-                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Next</span>
-                </a>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <b>
-      <div class="row">
         <div class="join-btn">
           <%= link_to "Edit", edit_post_path %>
         </div>
@@ -79,43 +40,6 @@
           <%= link_to "Destroy", post_path(@post),
                   method: :delete,
                   data: { confirm: "Are you sure?" } %>
-          </div>
-          <% if ((@post.account_id == current_account.id) and !(@post.closed?)) or !(@post.closed?) %>
-            <div class="join-btn" id="close-link">
-              <%= link_to "Close Discussion", close_post_path(@post), method: :patch %>
-            </div>
-          <% end %>
-        </div>
-        <div id = "comment-hide">
-          <% if !(@post.closed?) %>
-            <h5>Leave a comment</h5>
-            <%= render partial: "comments/form", locals:{ post: @post, parent: nil} %>
-          <% end %>
-        </div>
-        <div id = "disclaimer">
-          <p>The Discussion is closed.So no one cannot add comments or replies to this Discussion </p>
-        </div>
-        <% if (@post.closed?) %>
-          <div class="card commentandreplysection"">
-            <p> The discussion is closed by owner.So no one cannot add comments or replies in the discussion.Thank You! </p>
-          </div>
-        <% end %>
-      </div>
-      <hr>
-      <div class = "commentandreplysection">
-        <div id="post-comments">
-          <h3>Comments</h3>
-          <br>
-          <%= render partial: "posts/comments", locals: { comments: @post.comments.where(parent_id: nil).order(id: :desc) } %>
-        </div>
-        <div class = "sub-comment">
-          <%= render partial: "posts/comments",  locals: { comments: @post.comments.where(parent_id: :comment_id).where(post_id: @post.id).order(id: :desc)} %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
         </div>
         <% if ((@post.account_id == current_account.id) and !(@post.closed?)) or !(@post.closed?) %>
           <div class="join-btn" id="close-link">
@@ -142,17 +66,16 @@
         </div>
       <% end %>
     </div>
+  </div>
+  <hr>
+  <div class = "commentandreplysection">
+    <div id="post-comments">
+      <h3>Comments</h3>
+      <br>
+      <%= render partial: "posts/comments", locals: { comments: @post.comments.where(parent_id: nil).order(id: :desc) } %>
     </div>
-    <hr>
-    <div class = "commentandreplysection">
-      <div id="post-comments">
-        <h3>Comments</h3>
-        <br>
-        <%= render partial: "posts/comments", locals: { comments: @post.comments.where(parent_id: nil).order(id: :desc) } %>
-      </div>
-      <div class = "sub-comment">
-        <%= render partial: "posts/comments",  locals: { comments: @post.comments.where(parent_id: :comment_id).where(post_id: @post.id).order(id: :desc)} %>
-      </div>
+    <div class = "sub-comment">
+      <%= render partial: "posts/comments",  locals: { comments: @post.comments.where(parent_id: :comment_id).where(post_id: @post.id).order(id: :desc)} %>
     </div>
   </div>
 </div>
