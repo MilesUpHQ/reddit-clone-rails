@@ -15,7 +15,14 @@ class Community < ApplicationRecord
     def should_generate_new_friendly_id?
       name_changed? || slug.blank?
     end
-
+  def score
+    # difference between upvotes and downvotes
+    if self.upvotes > 0 || self.downvotes > 0
+      self.upvotes > 0 ? (self.upvotes - self.downvotes) : (self.downvotes * -1)
+    else
+      0
+    end
+  end
     def slug_candidates
       [
         :name,

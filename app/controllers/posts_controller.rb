@@ -75,6 +75,7 @@ class PostsController < ApplicationController
   end
 
   def close
+
     @post.update(closed: "true")
   end
 
