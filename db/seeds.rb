@@ -10,6 +10,6 @@ AdminUser.create!(email: 'admin123@reddit.com', password: 'p@ssword', password_c
     url: Faker::Internet.url,
     rules: Faker::Lorem.paragraphs,
     summary: Faker::Lorem.paragraphs,
-    category: %w[Sports Gaming Technology News TV Music Crypto Fasion Food Health Science Finance].sample      
+    category: %w[Sports Gaming Technology News TV Music Crypto Fasion Food Health Science Finance].sample
   )
 end
