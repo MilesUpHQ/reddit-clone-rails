@@ -16,11 +16,16 @@ Rails.application.routes.draw do
         patch :unsave
       end
     end
+    resources :posts do
+      member do
+        get :report
+      end
+    end
   end
-
+  resources :report_reasons
   resources :subscriptions
   resources :comments, only: [:create]
-
+  resources :reports, only: [:create]
   post "post/vote" => "votes#create"
   get '/draft', to: 'posts#draft'
   # devise_scope :account do
