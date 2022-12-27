@@ -16,11 +16,11 @@
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <%= image_tag @post.images[0], :class=>"d-block w-100" %>
+                  <%= image_tag @post.images[0], :class=>"image-size" %>
                 </div>
                 <% @post.images.each do |img| %>
                   <div class="carousel-item">
-                    <%= image_tag img, :class=>"d-block w-100" %>
+                    <%= image_tag img, :class=>"image-size" %>
                   </div>
                 <% end %>
                 <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -58,6 +58,10 @@
           <h5>Leave a comment</h5>
           <%= render partial: "comments/form", locals:{ post: @post, parent: nil} %>
         <% end %>
+        <% if !(@post.closed?) %>
+          <h5>Leave a comment</h5>
+          <%= render partial: "comments/form", locals:{ post: @post, parent: nil} %>
+        <% end %>
       </div>
       <div id = "disclaimer">
         <p>The Discussion is closed.So no one cannot add comments or replies to this Discussion </p>
@@ -67,6 +71,7 @@
           <p> The discussion is closed by owner.So no one cannot add comments or replies in the discussion.Thank You! </p>
         </div>
       <% end %>
+    </div>
     </div>
     <hr>
     <div class = "commentandreplysection">

@@ -19,12 +19,14 @@
  @import "bootstrap/scss/bootstrap";
 .textarea{
     overflow: scroll;
-    height: 400px;
+    height: 400px;  
 }
 
 .card-textarea{
     overflow: scroll;
     height: 200px;
+    align-content: center;
+    object-fit: cover;
 }
 
 .cards-wrapper {
@@ -71,6 +73,12 @@
     margin-left: 0px;
     height: "200px";
     width: "1200px";
+}
+
+.image-size{
+    height: "200px";
+    width: "400px";
+    align-content: center;
 }
 
 .join-button{
