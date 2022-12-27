@@ -8,6 +8,10 @@ class PublicController < ApplicationController
   end
   def profile
     community_list
+    
+    @subscriptions = Subscription.where(account_id: current_account.id)
+    @community = Community.find(@subscriptions.pluck(:community_id))
+    @my_communities = Community.where(account_id: current_account.id)
     @profile = Account.find_by_username params[:username]
     @posts = @profile.posts
   end
