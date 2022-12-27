@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :accounts
@@ -14,7 +15,9 @@ Rails.application.routes.draw do
 
   post "post/vote" => "votes#create"
   get '/draft', to: 'posts#draft'
-  get '/communities/:id/mod' , to: 'communities#mod' , as: 'mod'  
+  get '/communities/:id/mod' , to: 'communities#mod' , as: 'mod' 
+  
+  match "/404", to: "errors#not_found", via: :all
   
   root to: 'public#index'  
 end
