@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_account!, except:  [ :index, :show ]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
- # before_action :auth_subscriber, only: [:new]
+  #before_action :auth_subscriber, only: [:new]
   before_action :set_post, only: [:show, :edit, :update, :destroy, :increment_view_count]
   before_action :find_my_communities, only: [:new, :create, :edit, :update]
   before_action :community_list
@@ -28,20 +28,19 @@ class PostsController < ApplicationController
     else
       @post.is_drafted = true
     end
-      if @post.save
-        if (params[:commit] == "Publish")
-          redirect_to community_path(@post.community_id)
-        else
-          redirect_to draft_path
-        end
+    if @post.save
+      if (params[:commit] == "Publish")
+        redirect_to community_path(@post.community_id)
       else
-        render :new
+        redirect_to draft_path
       end
+    else
+      render :new
+    end
   end
 
   def edit
     @post = Post.find(params[:id])
-
   end
 
 
@@ -117,7 +116,7 @@ class PostsController < ApplicationController
     @my_communities = []
     @subscriptions.each do |subscription|
       @my_communities << Community.find(subscription.community_id)
-  end
     end
   end
+end
 
