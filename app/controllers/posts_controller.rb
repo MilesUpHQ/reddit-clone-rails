@@ -80,8 +80,8 @@ class PostsController < ApplicationController
 
   def destroy
     if @post
-    @post.destroy
-    redirect_to root_path
+      @post.destroy
+      redirect_to root_path
     end
   end
 
