@@ -25,7 +25,7 @@ $( document ).on('turbolinks:load', function() {
     const community_link = $('.community-nav-link')
     function link_community() {
         if (community_link.length) {
-            community_link.removeClass('active')
+            community_link.removeClass('active')    
             $(this).addClass('active')
         }
     }

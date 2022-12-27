@@ -19,14 +19,34 @@
  @import "bootstrap/scss/bootstrap";
 .textarea{
     overflow: scroll;
-    height: 400px;
+    height: 400px;  
 }
+
+.card-textarea{
+    overflow: scroll;
+    height: 200px;
+    align-content: center;
+    object-fit: cover;
+}
+
+.cards-wrapper {
+    grid-column: center-start / -1;
+    display: grid;
+    grid-auto-flow: column;
+    gap: 1rem;
+    overflow: auto;
+    padding-bottom: 1rem;
+    padding-right: var(--page-margin);
+}  
 
 .commentarea{
     overflow: scroll;
     height: 200px;
 }
 
+.card-height{
+    height: 200px;
+}
 .sub-comment{
     padding-left: 20px;
   }
@@ -53,6 +73,12 @@
     margin-left: 0px;
     height: "200px";
     width: "1200px";
+}
+
+.image-size{
+    height: "200px";
+    width: "400px";
+    align-content: center;
 }
 
 .join-button{
