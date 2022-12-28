@@ -1,7 +1,7 @@
-$("<%=j render partial: "list"%>").appendTo($("#infinity"));
+$("<%=j render partial: "list"%>").appendTo($(".infinity"));
 
 <% if @communities.last_page? %>
-  $('#infinite-scrolling').remove();
+  $('.infinite-scrolling').remove();
 <% else %>
-  $('#infinite-scrolling').html("<%=j link_to_next_page(@communities, 'See more', :remote => true) %>");
+  $('.infinite-scrolling').html("<%=j link_to_next_page(@communities, 'See more', :remote => true) %>");
 <% end %>
