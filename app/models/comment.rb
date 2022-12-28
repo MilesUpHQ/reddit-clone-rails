@@ -5,15 +5,6 @@ class Comment < ApplicationRecord
   has_many :replies, class_name: "Comment", foreign_key: "parent_id", dependent: :destroy
   validates_presence_of :message, :account_id, :post_id
   has_rich_text :message  
-  
-  def score
-    # difference between upvotes and downvotes
-    if self.upvotes > 0 || self.downvotes > 0
-      self.upvotes > 0 ? (self.upvotes - self.downvotes) : (self.downvotes * -1)
-    else
-      0
-    end
-  end
 
 end
 

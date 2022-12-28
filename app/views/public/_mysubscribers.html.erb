@@ -1,7 +1,15 @@
 <% for subscriber in @subscriptions %>
   <span class="card">
-    <b><%= link_to subscriber.community.name, subscriber.community%></b>
-    <p ><%= subscriber.community.summary %></p>
-    <p class=" btn card" style="width: 12rem; "><%= link_to "Create New Post", new_post_path(subscriber.community)%></p>
+    <b>Community Name : <%= link_to subscriber.community.name, subscriber.community%></b>
+    <div class="row">
+      <div class="col-10">
+        <p> <b>Summary : </b><%= subscriber.community.summary %></p>
+      </div>
+      <div class="button">
+        <div class="col-12 sm-2">
+          <%= link_to "Create New Post", new_post_path(subscriber.community)%>
+        </div>
+      </div>
+    </div>
   </span>
 <% end %>
