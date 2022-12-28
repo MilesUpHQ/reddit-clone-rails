@@ -154,7 +154,6 @@ ActiveRecord::Schema.define(version: 2022_12_28_060408) do
     t.integer "total_comments", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "slug"
     t.boolean "is_drafted"
     t.boolean "saved", default: false
     t.boolean "closed", default: false
