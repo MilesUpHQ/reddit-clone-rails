@@ -13,9 +13,11 @@
       </div>
       <div class="form-group">
         <%= label_tag :body %>
-        <%= form.rich_text_area :body, class: "textarea" %>
-        <%= form.file_field :images, multiple: true, :class=>"form-control", :placeholder=>"" %>
+        <%= form.rich_text_area :body, class: "textarea" %><br>
+        <h6>Select the images</h6>
+        <%= form.file_field :images, multiple: true, :class=>"form-control", :placeholder=>"Upload" %>
       </div>
+      <h6>Select the type of post</h6>
       <div class="d-inline m-4 pr-1">
         <div class="d-inline ml-2">
           <%= form.check_box :oc %>
@@ -34,8 +36,9 @@
           <%= form.label 'NSFW' %>
         </div>
       </div>
-      <%= form.submit "Publish", class: "btn btn-primary" %>
-      <%= button_to "Save as draft", draft_path(post: @post), :method => "get" %>
+      <br>
+      <%= form.submit "Publish", class: "btn btn-primary" %> 
+      <%= button_to "Save as draft", draft_path(post: @post), :method => "get" , class: "btn btn-primary" %>
     <% end%>
   </div>
 </div>
