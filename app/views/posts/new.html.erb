@@ -20,7 +20,7 @@
                  <h4 class= "mb-1"><%= link_to post.title, edit_community_post_path(post.community_id, post) %></h4>
                  <p><%= post.body.to_plain_text.truncate(30) %></p>
                  <p><small> Draft saved  <%= time_ago_in_words post.created_at %> ago</small></p>
-              </div>
+              </div> 
               <div class="col-1">
                   <%= link_to community_post_path(post.community_id, post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'post' do %>
                     <i class="fa-solid fa-trash-can"  ml-2" aria-hidden="true"></i>
