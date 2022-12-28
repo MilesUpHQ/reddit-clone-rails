@@ -4,16 +4,13 @@ Rails.application.routes.draw do
   devise_for :accounts
   get "u/:username" => "public#profile", as: :profile
   get "/saved_posts" => "posts#saved_posts"
-  resources :communities do
-    resources :posts do
+
+    resources :communities, path: :r
+    resources :posts, path: :p do
       member do
-        patch :close
-      end
-    end
-    resources :posts do
-      member do
-        patch :save 
+        patch :save
         patch :unsave
+        patch :close
       end
     end
     resources :posts do
@@ -26,7 +23,7 @@ Rails.application.routes.draw do
   resources :subscriptions
   resources :comments, only: [:create]
   resources :reports, only: [:create]
-  post "post/vote" => "votes#create"
+  post "p/vote" => "votes#create"
   get '/draft', to: 'posts#draft'
   # devise_scope :account do
   #   get '/sign_in' => 'devise/sessions#new' # custom path to login/sign_in

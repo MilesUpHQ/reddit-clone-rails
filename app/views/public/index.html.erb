@@ -1,54 +1,66 @@
-<% unless account_signed_in? %>
+<div class="community_post bg-primary">
   <div class="row">
-    <div class="col">
-      <p class="h5">Trending Today</p>
+    <div class="col-sm-8">
+      <%= render partial: "posts/create_post", locals: { posts: @posts } %>
+      <%= render partial: "public/tab"%>
+      <div class="tab-content">
+        <div id="best_posts" class="tab-pane fade-in infinity active">
+          <%= render partial: "posts/list", locals: { posts: @posts } %>
+          <div class = "infinite-scrolling">
+            <%= link_to_next_page(@posts, "posts" , :remote => true, class: "text-dark") %>
+          </div>
+        </div>
+        <div id="hot_posts" class="tab-pane fade infinity">
+          <%= render partial: "posts/list", locals: { posts: @hot_posts } %>
+          <div class = "infinite-scrolling">
+            <%= link_to_next_page(@hot_posts, "posts" , :remote => true, class: "text-dark") %>
+          </div>
+        </div>
+        <div id="new_posts" class="tab-pane fade infinity">
+          <%= render partial: "posts/list", locals: { posts: @new_posts } %>
+          <div class = "infinite-scrolling">
+            <%= link_to_next_page(@new_posts, "posts" , :remote => true, class: "text-dark") %>
+          </div>
+        </div>
+        <div id="top_posts" class="tab-pane fade infinity">
+          <%= render partial: "posts/list", locals: { posts: @top_posts } %>
+          <div class = "infinite-scrolling">
+            <%= link_to_next_page(@top_posts, "posts" , :remote => true, class: "text-dark") %>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-3">
-      Trending 1
+    <div class="col-sm-4">
+      <div class="card p-2">
+        <div class="row">
+          <div class="col-2">
+            <p class="premium-logo"><i class='fa fa-shield'></i></p>
+          </div>
+          <div class="col-10">
+            <p class="premium-head mb-1">Reddit Premium</p>
+            <p class="premium-des">The best Reddit experience, with monthly Coins</p>
+          </div>
+        </div>
+        <div class="premium-join">
+          <%= link_to "Try Now", root_path, :class=>"text-white" %>
+        </div>
+      </div>
+      <div class="card mt-3">
+        <%= image_tag("Cover-Image.jpg" ,class: "cover-img home-small-cover") %>
+        <div class="d-flex">
+          <%= image_tag("profile-pic.png" ,class: "ml-3 home-small-profile") %>
+          <p class="mt-3 pl-1">Home</p>
+        </div>
+        <div class="ml-3 mt-0">
+          <p class="">Your personal Reddit frontpage. Come here to check in with your favorite communities.</p>
+        </div>
+        <div class="join-btn create-post-btn">
+          <%= link_to "Create post", new_post_path, class: "text-white" %>
+        </div>
+        <div class="join-btn text-center mb-3">
+          <%= link_to "Create Community", new_community_path, class:""%>
+        </div>
+      </div>
     </div>
-    <div class="col-sm-3">
-      Trending 2
-    </div>
-    <div class="col-sm-3">
-      Trending 3
-    </div>
-    <div class="col-sm-3">
-      Trending 4
-    </div>
-  </div>
-<% end %>
-<div class="row">
-  <div class="col">
-    <p class="h5">Popular Posts</p>
-  </div>
-</div>
-<div class="row">
-  <div class="col-12">
-    <%# <%= render partial: "posts/create_post", locals: { posts: @posts } %> 
-  </div>
-</div>
-<div class="row">
-  <div class="col-8">
-     <div id = "infinity">
-     <%= render partial: "posts/list", locals: { posts: @posts } %>
-    </div>
-    <div id = "infinite-scrolling">
-     <%= link_to_next_page(@posts, "posts" , :remote => true) %>
-    </div>
-  </div>
-  <div class="col-4">
-    <p class="h5 mb-4">Up and coming Communities</p>
-
-    <div class="card">
-      <ul class="list-group list-group-flush">
-        <% @communities.each do |community| %>
-          <li class="list-group-item"><%= link_to community.name, community_path(community) %></li>
-        <% end %>
-      </ul>
-    </div>
-
-    <%= link_to "View all", communities_path, class: "btn btn-primary mt-4" %>
   </div>
 </div>

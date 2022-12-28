@@ -6,31 +6,46 @@
       <div class="fa fa-arrow-down downvote <%= is_downvoted @post %>"></div>
     </div>
   </div>
-  <div class="col-11">
-    <h2><%= @post.title %></h2>
-
-    <div style="word-wrap: break-word;">
-      <%= @post.body  %>
-    </div>
-    <b>
-     <div class="row">
-      <div class="btn btn-secondary a-btn-slide-text">
-        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-        <%= link_to "Edit", edit_community_post_path %>          
-      </div>
-      <div class="btn btn-secondary a-btn-slide-text">
-        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-        <%= link_to "Destroy", community_post_path(@post),
-                  method: :delete,
-                  data: { confirm: "Are you sure?" } %>          
-      </div>
-      <% if (@post.account_id == current_account.id) and !(@post.closed?) %>
-      <div class="btn btn-secondary a-btn-slide-text">
-        <span class="glyphicon glyphicon-stop" aria-hidden="true"></span>        
-        <div id = "close-link">
-          <li><%= link_to "Close Discussion", close_community_post_path(@post.community), method: :patch %>   
-        </div>  
+  <div class="col-9" >
+    <div class="card" class="card-textarea">
+      <% if @post.nsfw?  %>
+        <%= render 'sensitive_post_display' %>
+      <% elsif @post.oc? %>
+        <div class="card-body" class="card-textarea">
+          <h2><%= @post.title %></h2>
+          <div class="sensitive">
+            <h5>OC Thread</h5>
+          </div>
+          <%= render 'post_display' %>
+        </div>
+      <% elsif @post.spoiler? %>
+        <div class="card-body" class="card-textarea">
+          <h2><%= @post.title %>  </h2>
+          <div class="sensitiveS">
+            <h5>Spoiler Thread</h5>
+          </div>
+          <%= render 'post_display' %>
+        </div>
+      <% else %>
+        <div class="card-body" class="card-textarea">
+          <h2><%= @post.title %></h2>
+          <%= render 'post_display' %>
+        </div>
       <% end %>
+      <b>
+        <div class="join-btn">
+          <%= link_to "Edit", edit_post_path %>
+        </div>
+        <div class="join-btn">
+          <%= link_to "Destroy", post_path(@post),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %>
+        </div>
+        <% if ((@post.account_id == current_account.id) and !(@post.closed?)) or !(@post.closed?) %>
+          <div class="join-btn" id="close-link">
+            <%= link_to "Close Discussion", close_post_path(@post), method: :patch %>
+          </div>
+        <% end %>
       </div>
 	</div>  
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" remote = "true">
@@ -56,31 +71,30 @@
 </div>
          
       <div id = "comment-hide">
-       <% if !(@post.closed?) %>
-       <h5>Leave a comment</h5>
-       <%= render partial: "comments/form", locals:{ post: @post, parent: nil} %>
-       <% end %>
+        <% if !(@post.closed?) %>
+          <h5>Leave a comment</h5>
+          <%= render partial: "comments/form", locals:{ post: @post, parent: nil} %>
+        <% end %>
       </div>
-     
-     <div id = "disclaimer">
-       <p>The Discussion is closed.So no one cannot add comments or reples to this Discussion </p>
-     </div>
-
-       <% if (@post.closed?) %>
-       <div class="card commentandreplysection"">
-        <p> The discussion is closed by owner.So no one cannot add comments or replies in the discussion.Thank You! </p>
-       </div>
+      <div id = "disclaimer">
+        <p>The Discussion is closed.So no one cannot add comments or replies to this Discussion </p>
+      </div>
+      <% if (@post.closed?) %>
+        <div class="card commentandreplysection"">
+          <p> The discussion is closed by owner.So no one cannot add comments or replies in the discussion.Thank You! </p>
+        </div>
       <% end %>
-     </div> 
-    <hr>
-    <div class = "commentandreplysection">
-     <div id="post-comments">
-       <h3>Comments</h3><br>
-       <%= render partial: "posts/comments", locals: { comments: @post.comments.where(parent_id: nil).order(id: :desc) } %>
-     </div>
-       <div class = "sub-comment">
-        <%= render partial: "posts/comments",  locals: { comments: @post.comments.where(parent_id: :comment_id).where(post_id: @post.id).order(id: :desc)} %>
-       </div>
-     </div>
+    </div>
+  </div>
+  <hr>
+  <div class = "commentandreplysection">
+    <div id="post-comments">
+      <h3>Comments</h3>
+      <br>
+      <%= render partial: "posts/comments", locals: { comments: @post.comments.where(parent_id: nil).order(id: :desc) } %>
+    </div>
+    <div class = "sub-comment">
+      <%= render partial: "posts/comments",  locals: { comments: @post.comments.where(parent_id: :comment_id).where(post_id: @post.id).order(id: :desc)} %>
+    </div>
   </div>
 </div>

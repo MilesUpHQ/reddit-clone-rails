@@ -33,7 +33,6 @@ class CommunitiesController < ApplicationController
   def create
     @community = Community.new community_values
     @community.account_id = current_account.id
-
     if @community.save
       redirect_to communities_path
     else
@@ -56,7 +55,7 @@ class CommunitiesController < ApplicationController
 
   private
   def set_community
-    @community = Community.find(params[:id])
+    @community = Community.friendly.find(params[:id])
   end
 
   def community_values

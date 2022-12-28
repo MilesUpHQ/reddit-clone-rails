@@ -1,4 +1,4 @@
-$(function(){
+$( document ).on('turbolinks:load', function() {
   $(".vote").on("click", ".upvote, .downvote", function(){
     var post_id = $(this).parent().data("id"),
       is_upvote = $(this).hasClass("upvote");

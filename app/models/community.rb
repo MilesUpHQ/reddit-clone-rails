@@ -1,4 +1,7 @@
 class Community < ApplicationRecord
+  extend FriendlyId
+  friendly_id :slug_candidates ,use: %i[slugged history finders]
+
   belongs_to :account
   validates_presence_of :url, :name, :rules, :category
   has_many :posts, dependent: :destroy
@@ -7,5 +10,18 @@ class Community < ApplicationRecord
   has_one_attached :profile_image
   has_one_attached :cover_image
 
-  CATEGORIES = Category.pluck(:name)
+  if Category.exists?
+    CATEGORIES = Category.pluck(:name)
+  end
+
+  def should_generate_new_friendly_id?
+    name_changed? || slug.blank?
+  end
+
+  def slug_candidates
+    [ :name,
+      [:name, :category],
+      [:name, :category,:url]
+    ]
+  end
 end

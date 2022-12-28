@@ -9,7 +9,7 @@
           </div>
         </div>
         <div class="col-11">
-          <h4 class= "mb-1"><%= link_to saved_post.title, community_post_path(saved_post.community_id, saved_post) %></h4>
+          <h4 class= "mb-1"><%= link_to saved_post.title, post_path(saved_post) %></h4>
           <p><small><%= link_to saved_post.community.name, community_path(saved_post.community) %> Posted by <%= link_to saved_post.account.username, profile_path(saved_post.account.username) %> <%= time_ago_in_words saved_post.created_at %> ago</small></p>
           <p><%= saved_post.body.to_plain_text.truncate(30) %></p>
         </div>
