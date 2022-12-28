@@ -18,11 +18,10 @@
           <% if !(@post.closed?) %>
             <a href = "#" class="comment-form-display">Reply</a>
           <% end %>
-          <div class = "comment-form">
+          <div class = "comment-form"=>
             <%= render partial: "comments/form", locals: {post: comment.post, parent: comment, comment_id: comment.id}%>
           </div>
         </div>
-
       </div>
       <hr>
       <% if comment.replies.any? %>
@@ -32,4 +31,3 @@
       <% end %>
     </div>
   <% end %>
-  <%= render partial: "layouts/backtotop" %>
