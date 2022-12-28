@@ -8,13 +8,13 @@ Rails.application.routes.draw do
     resources :communities, path: :r
     resources :posts, path: :p do
       member do
-        patch :save
-        patch :unsave
         patch :close
       end
     end
   resources :subscriptions
   resources :comments, only: [:create]
+
+  patch "p/:id/save" => "save#create", as: :save_post
 
   post "p/vote" => "votes#create"
   get '/draft', to: 'posts#draft'

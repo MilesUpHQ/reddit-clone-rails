@@ -11,6 +11,7 @@ require("channels")
 require("bootstrap")
 
 require("../includes/vote.js")
+require("../includes/save.js")
 require("../includes/backtotop.js")
 require("../includes/infinitescroll.js")
 require("../includes/navbar.js")
