@@ -1,0 +1,13 @@
+<%# <h1>Errors#not_found</h1>
+<p>Find me in app/views/errors/not_found.html.erb</p> %>
+<div class="container">
+  <h1>Oops! Page not found.</h1>
+  <p>We're sorry, but the page you were looking for could not be found.</p>
+  <%= form_tag(root_path, method: :get) do %>
+    <div class="form-group">
+      <%= text_field_tag :q, params[:q], placeholder: "Search", class: "form-control" %>
+    </div>
+    <%= submit_tag "Search", class: "btn btn-primary" %>
+  <% end %>
+</div>
+ 

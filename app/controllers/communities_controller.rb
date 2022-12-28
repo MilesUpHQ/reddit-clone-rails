@@ -17,6 +17,7 @@ class CommunitiesController < ApplicationController
 
   def show
     @community = Community.find(params[:id])
+    @banneduser = BannedUser.all
     @posts = @community.posts.limit(20).sort_by{ |p| p.score }.reverse
     @subscriber_count = @community.subscribers.count
     @is_subscribed = account_signed_in? ? Subscription.where(community_id: @community.id, account_id: current_account.id).any? : false
@@ -62,10 +63,11 @@ class CommunitiesController < ApplicationController
     @username = Account.pluck(:username).sort
   end 
 
-  def autocomplete
-    results = AutocompleteSearchService.new(params[:username]).call
-    render json: results
-  end
+    def usernames
+      query = params[:username]
+      usernames = Account.where("username LIKE ?", "%#{username}%").pluck(:username)
+      render json: usernames
+    end
 
   private
   def set_community

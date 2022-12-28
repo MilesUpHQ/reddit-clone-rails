@@ -6,10 +6,11 @@ class BannedUsersController < ApplicationController
         @banneduser.account_id = @username.id  
         # @banner_user.account_id = @username.id  
         @banneduser.save 
+        redirect_to mod_path(Community.find_by!(params[:community_id]).id)
     end
     
-      def banneduser_params
-        params.require(:banned_user).permit(:username, :reason, :explanation, :account_id, :community_id)    
+    def banneduser_params
+     params.require(:banned_user).permit(:username, :reason, :explanation, :account_id, :community_id)    
     end
     
 end

@@ -36,9 +36,12 @@
            </div> 
 
           <div class="form-group">
-           <%= label_tag :Enter_User_Name%>
-            <div id= "search-data" class="form-search search-data" data-skills="<%= @username.to_json %>">
-            <%= form.text_field :username, autocomplete: :off, class: "form-control search-input", placeholder: "Search by username"%>
+           <%= label_tag :Enter_User_Name %>
+            <%# <div id= "search-data" class="form-search search-data" data-skills="<%= @username.to_json %>
+            <%= form.text_field :username, autocomplete: :off, class: "form-control search-input", placeholder: "Search by username" %>
+            <%# <%= form_tag community_path, method: :get do %>
+              <%# <%= text_field_tag :username, params[:username], id: "search-input" %> 
+            <%# <% end %>  %>
           </div>
           <div class="form-group">
             <%= label_tag :Reason_For_Ban %> 
