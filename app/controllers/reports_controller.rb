@@ -5,7 +5,7 @@ class ReportsController < ApplicationController
       flash[:notice] = "Post reported"
       respond_to do |format|
         format.js
-        format.html {  redirect_to community_post_path(report.post_id, report.post) }
+        format.html {  redirect_to post_path(report.post_id, report.post) }
       end
     else
       render "form"

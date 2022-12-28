@@ -5,18 +5,13 @@ Rails.application.routes.draw do
   get "u/:username" => "public#profile", as: :profile
   get "/saved_posts" => "posts#saved_posts"
 
-    resources :communities, path: :r
-    resources :posts, path: :p do
-      member do
-        patch :save
-        patch :unsave
-        patch :close
-      end
-    end
-    resources :posts do
-      member do
-        get :report
-      end
+  resources :communities, path: :r
+  resources :posts, path: :p do
+    member do
+      patch :save
+      patch :unsave
+      patch :close
+      get :report
     end
   end
   resources :report_reasons

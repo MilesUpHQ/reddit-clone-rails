@@ -12,7 +12,6 @@ class PostsController < ApplicationController
   def show
     increment_view_count
     @comment = Comment.new
-    @post = Post.find(params[:id])
     @categories = ReportCategory.all
     @report = Report.new
   end
