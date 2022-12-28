@@ -43,7 +43,7 @@ class PostsController < ApplicationController
   end
 
   def draft 
-    @drafts =  Post.order(created_at: :desc).page(params[:page]).per 7
+    @drafts =  Post.order(created_at: :desc).page(params[:page]).per 5
   end 
 
 

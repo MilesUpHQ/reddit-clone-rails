@@ -4,7 +4,7 @@ class CommunitiesController < ApplicationController
   before_action :community_list
   before_action :check_if_banned, only: [:show]
   after_action :count_post_for_this_week, only: [:index]
- 
+  
 
   def index
     count_post_for_this_week
@@ -19,11 +19,11 @@ class CommunitiesController < ApplicationController
 
   def show
     @community = Community.find(params[:id])
-    @banneduser = BannedUser.all
     @posts = @community.posts.limit(20).sort_by{ |p| p.score }.reverse
     @subscriber_count = @community.subscribers.count
     @is_subscribed = account_signed_in? ? Subscription.where(community_id: @community.id, account_id: current_account.id).any? : false
     @subscription = Subscription.new
+    @banned_users = BannedUser.all
   end
 
   def new
@@ -63,11 +63,11 @@ class CommunitiesController < ApplicationController
     @username = Account.pluck(:username).sort
   end 
 
-    def usernames
-      query = params[:username]
-      usernames = Account.where("username LIKE ?", "%#{username}%").pluck(:username)
-      render json: usernames
-    end
+  def usernames
+    query = params[:username]
+    usernames = Account.where("username LIKE ?", "%#{username}%").pluck(:username)
+    render json: usernames
+  end
 
   private
   def set_community
