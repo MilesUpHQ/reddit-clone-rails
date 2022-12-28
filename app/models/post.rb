@@ -7,7 +7,6 @@ class Post < ApplicationRecord
   has_rich_text :body 
 
   def score
-    # difference between upvotes and downvotes
     if self.upvotes > 0 || self.downvotes > 0
       self.upvotes > 0 ? (self.upvotes - self.downvotes) : (self.downvotes * -1)
     else

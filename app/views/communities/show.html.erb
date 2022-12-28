@@ -1,5 +1,3 @@
-
-<%# <% if @banneduser.exists?(account_id: current_account.id ,community_id: params[:id])%> 
   <% if @community.cover_image.attached? %>
    <%= image_tag(@community.cover_image, class: "cover-image") %>
   <% else %>

@@ -59,8 +59,6 @@ class CommunitiesController < ApplicationController
   end
 
   def mod
-    # @community = Community.find(params[:id])
-    # @community.id
     @banneduser = BannedUser.new
     @username = Account.pluck(:username).sort
   end 
@@ -94,18 +92,11 @@ class CommunitiesController < ApplicationController
     end
   end
 
-
-
-
   def check_if_banned
-   
     community = Community.find(params[:id])
     puts current_account.id
     banned_user = BannedUser.find_by(account_id: current_account.id, community_id: community.id)
-    puts "============"
-    puts banned_user.inspect
     unless banned_user.nil?
-      
       redirect_to '/404'
     end
   end
