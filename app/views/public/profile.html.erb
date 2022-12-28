@@ -5,13 +5,13 @@
       <%= render partial: "posts/list", locals: { posts: @posts } %>
     </div>
     <div id="my_comments" class="tab-pane fade">
-      <%= render partial: "posts/list", locals: { posts: @posts } %>
+      <%= render partial: "public/mycomments", locals: { my_comments: @my_comments } %>
     </div>
     <div id="my_subscriber" class="tab-pane fade">
       <%= render partial: "public/mysubscribers" %>
     </div>
     <div id="my_community" class="tab-pane fade">
-      <%= render partial: "public/mycomments"%>
+      <%= render partial: "public/mycommunity"%>
     </div>
     <div id="my_description" class="tab-pane fade">
       <%= render partial: "public/mydescription"%>

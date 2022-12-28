@@ -14,5 +14,10 @@ class PublicController < ApplicationController
     @my_communities = Community.where(account_id: current_account.id)
     @profile = Account.find_by_username params[:username]
     @posts = @profile.posts
+    @my_comments = Comment.where(account_id: current_account.id)
+  end
+
+  def my_comments
+    @my_comments = Comment.where(account_id: current_account.id).pluck(:message).with_rich_text_content.order(created_at: :asc)
   end
 end
