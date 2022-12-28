@@ -5,7 +5,7 @@ class Account < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable, :lockable
 
   has_many :subscriptions
-  has_many :communities, through: :subscriptions
+  has_many :communities
   has_many :posts
   has_many :comments
   has_many :votes

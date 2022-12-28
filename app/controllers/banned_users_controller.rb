@@ -2,11 +2,11 @@ class BannedUsersController < ApplicationController
     def create 
         @banneduser = BannedUser.new(banneduser_params)
         @username = Account.find_by!(username: @banneduser[:username])
-        @banneduser.community_id = Community.find_by!(params[:community_id]).id
+        # @banneduser.community_id = Community.find_by(params[:id]).id
         @banneduser.account_id = @username.id  
         # @banner_user.account_id = @username.id  
         @banneduser.save 
-        redirect_to mod_path(Community.find_by!(params[:community_id]).id)
+        redirect_to mod_path(Community.find_by(params[:community_id]))
     end
     
     def banneduser_params

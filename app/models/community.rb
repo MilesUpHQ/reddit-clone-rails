@@ -1,5 +1,5 @@
 class Community < ApplicationRecord
-  belongs_to :account
+  has_many :accounts, through: :banned_users
   validates_presence_of :url, :name, :rules, :category
   has_many :posts, dependent: :destroy
   has_many :subscriptions
@@ -9,4 +9,4 @@ class Community < ApplicationRecord
   has_many :banned_users
 
   CATEGORIES = Category.pluck(:name)
-end
+end 

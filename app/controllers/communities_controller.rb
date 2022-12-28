@@ -1,12 +1,14 @@
 class CommunitiesController < ApplicationController
-  before_action :authenticate_account!, except:  [ :index, :show ]
+  before_action :authenticate_account!, except:  [ :index]
   before_action :set_community, only: [:show, :edit,:update,:destroy]
   before_action :community_list
+  before_action :check_if_banned, only: [:show]
   after_action :count_post_for_this_week, only: [:index]
+ 
 
   def index
     count_post_for_this_week
-    @categories = Community::CATEGORIES
+    @categories = Community::CATEGORIES 
     if(params.has_key?(:category))
       @communities = Community.where(category: params[:category]).order(created_at: :desc).page(params[:page]).per 7
     else
@@ -91,4 +93,21 @@ class CommunitiesController < ApplicationController
       community.save
     end
   end
+
+
+
+
+  def check_if_banned
+   
+    community = Community.find(params[:id])
+    puts current_account.id
+    banned_user = BannedUser.find_by(account_id: current_account.id, community_id: community.id)
+    puts "============"
+    puts banned_user.inspect
+    unless banned_user.nil?
+      
+      redirect_to '/404'
+    end
+  end
+
 end

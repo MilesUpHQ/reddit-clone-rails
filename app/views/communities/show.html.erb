@@ -1,8 +1,10 @@
-<% if @community.cover_image.attached? %>
-  <%= image_tag(@community.cover_image, class: "cover-image") %>
-<% else %>
+
+<%# <% if @banneduser.exists?(account_id: current_account.id ,community_id: params[:id])%> 
+  <% if @community.cover_image.attached? %>
+   <%= image_tag(@community.cover_image, class: "cover-image") %>
+  <% else %>
     <%= image_tag("Cover-Image.jpg" ,class: "cover-image") %>
-<% end %>
+  <% end %>
 <div class="container">
   <div class="row">
     <div class="col-sm-1 mr-3">
