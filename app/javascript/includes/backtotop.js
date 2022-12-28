@@ -8,8 +8,9 @@ $( document ).on('turbolinks:load', function() {
       mybutton.hide();
     }
   });
-mybutton.click(function() {
-  $('html, body').animate({scrollTop: 0}, 'slow');
-});
+
+  mybutton.click(function () {
+    $('html, body').animate({scrollTop: 0}, 'slow');
+  });
  });
  

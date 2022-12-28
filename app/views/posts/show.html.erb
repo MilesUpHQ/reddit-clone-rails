@@ -8,37 +8,31 @@
   </div>
   <div class="col-9" >
     <div class="card" class="card-textarea">
-      <div class="card-body" class="card-textarea">
-        <h2><%= @post.title %></h2>
-        <div style="word-wrap: break-word;">
-          <%= @post.body  %>
-          <% if @post.images.attached? %>
-            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <%= image_tag @post.images[0], :class=>"image-size" %>
-                </div>
-                <% @post.images.each do |img| %>
-                  <div class="carousel-item">
-                    <%= image_tag img, :class=>"image-size" %>
-                  </div>
-                <% end %>
-                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Next</span>
-                </a>
-              </div>
-            </div>
-          <% end %>
+      <% if @post.nsfw?  %>
+        <%= render 'sensitive_post_display' %>
+      <% elsif @post.oc? %>
+        <div class="card-body" class="card-textarea">
+          <h2><%= @post.title %></h2>
+          <div class="sensitive">
+            <h5>OC Thread</h5>
+          </div>
+          <%= render 'post_display' %>
         </div>
-      </div>
-    </div>
-    <b>
-      <div class="row">
+      <% elsif @post.spoiler? %>
+        <div class="card-body" class="card-textarea">
+          <h2><%= @post.title %>  </h2>
+          <div class="sensitiveS">
+            <h5>Spoiler Thread</h5>
+          </div>
+          <%= render 'post_display' %>
+        </div>
+      <% else %>
+        <div class="card-body" class="card-textarea">
+          <h2><%= @post.title %></h2>
+          <%= render 'post_display' %>
+        </div>
+      <% end %>
+      <b>
         <div class="join-btn">
           <%= link_to "Edit", edit_post_path %>
         </div>
@@ -54,10 +48,10 @@
       <% end %>
 	</div>
       <div id = "comment-hide">
-       <% if !(@post.closed?) %>
-       <h5>Leave a comment</h5>
-       <%= render partial: "comments/form", locals:{ post: @post, parent: nil} %>
-       <% end %>
+        <% if !(@post.closed?) %>
+          <h5>Leave a comment</h5>
+          <%= render partial: "comments/form", locals:{ post: @post, parent: nil} %>
+        <% end %>
       </div>
 
      <div id = "disclaimer">
@@ -70,16 +64,16 @@
        </div>
       <% end %>
     </div>
-    <hr>
-    <div class = "commentandreplysection">
-      <div id="post-comments">
-        <h3>Comments</h3>
-        <br>
-        <%= render partial: "posts/comments", locals: { comments: @post.comments.where(parent_id: nil).order(id: :desc) } %>
-      </div>
-      <div class = "sub-comment">
-        <%= render partial: "posts/comments",  locals: { comments: @post.comments.where(parent_id: :comment_id).where(post_id: @post.id).order(id: :desc)} %>
-       </div>
-     </div>
+  </div>
+  <hr>
+  <div class = "commentandreplysection">
+    <div id="post-comments">
+      <h3>Comments</h3>
+      <br>
+      <%= render partial: "posts/comments", locals: { comments: @post.comments.where(parent_id: nil).order(id: :desc) } %>
+    </div>
+    <div class = "sub-comment">
+      <%= render partial: "posts/comments",  locals: { comments: @post.comments.where(parent_id: :comment_id).where(post_id: @post.id).order(id: :desc)} %>
+    </div>
   </div>
 </div>
