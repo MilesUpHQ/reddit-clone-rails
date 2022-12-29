@@ -7,6 +7,7 @@ class Community < ApplicationRecord
   has_one_attached :profile_image
   has_one_attached :cover_image
   has_many :banned_users
-
+ if Category.table_exists?
   CATEGORIES = Category.pluck(:name)
+ end
 end 

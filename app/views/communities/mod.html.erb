@@ -8,8 +8,6 @@
         </div>
       </div>
     </div>
-  <% if params[:mod] == "Banusers" %>
-    <%= render partial: "banusers" %> 
-  <%elsif params[:mod] == "flairs" %>
-    <%= render partial: "flairs" %>
-  <% end %>
+   
+   <%= render params[:mod].downcase %>
+ 
