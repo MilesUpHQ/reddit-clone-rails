@@ -10,21 +10,12 @@ class Community < ApplicationRecord
   has_one_attached :profile_image
   has_one_attached :cover_image
 
-  if Category.exists?
+  if Category.table_exists?
     CATEGORIES = Category.pluck(:name)
   end
     def should_generate_new_friendly_id?
       name_changed? || slug.blank?
     end
-
-  def score
-    # difference between upvotes and downvotes
-    if self.upvotes > 0 || self.downvotes > 0
-      self.upvotes > 0 ? (self.upvotes - self.downvotes) : (self.downvotes * -1)
-    else
-      0
-    end
-  end
 
     def slug_candidates
       [
