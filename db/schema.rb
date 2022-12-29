@@ -167,6 +167,33 @@ ActiveRecord::Schema.define(version: 2022_12_28_060408) do
     t.index ["slug"], name: "index_posts_on_slug", unique: true
   end
 
+  create_table "report_categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "report_reasons", force: :cascade do |t|
+    t.string "reason"
+    t.integer "report_category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["report_category_id"], name: "index_report_reasons_on_report_category_id"
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "report_reason_id", null: false
+    t.integer "account_id", null: false
+    t.integer "report_category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_reports_on_account_id"
+    t.index ["post_id"], name: "index_reports_on_post_id"
+    t.index ["report_category_id"], name: "index_reports_on_report_category_id"
+    t.index ["report_reason_id"], name: "index_reports_on_report_reason_id"
+  end
+
   create_table "subscriptions", force: :cascade do |t|
     t.integer "account_id"
     t.integer "community_id"
@@ -188,4 +215,9 @@ ActiveRecord::Schema.define(version: 2022_12_28_060408) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "report_reasons", "report_categories"
+  add_foreign_key "reports", "accounts"
+  add_foreign_key "reports", "posts"
+  add_foreign_key "reports", "report_categories"
+  add_foreign_key "reports", "report_reasons"
 end

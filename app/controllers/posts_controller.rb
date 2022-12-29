@@ -10,6 +10,8 @@ class PostsController < ApplicationController
   def show
     increment_view_count
     @comment = Comment.new
+    @categories = ReportCategory.all
+    @report = Report.new
   end
 
   def new
@@ -40,9 +42,14 @@ class PostsController < ApplicationController
   end
 
 
-  def draft
-    @drafts =  Post.order(created_at: :desc).page(params[:page]).per 7
-  end
+  def draft 
+    @posts=  Post.all
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end 
+
 
   def update
     if @post.update(post_values)

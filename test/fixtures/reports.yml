@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  post: one
+  report_reason: one
+  account: one
+
+two:
+  post: two
+  report_reason: two
+  account: two

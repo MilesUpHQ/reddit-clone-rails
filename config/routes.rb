@@ -5,17 +5,19 @@ Rails.application.routes.draw do
   get "u/:username" => "public#profile", as: :profile
   get "/saved_posts" => "posts#saved_posts"
 
-    resources :communities, path: :r
-    resources :posts, path: :p do
-      member do
-        patch :save
-        patch :unsave
-        patch :close
-      end
+  resources :communities, path: :r
+  resources :posts, path: :p do
+    member do
+      patch :save
+      patch :unsave
+      patch :close
+      get :report
     end
+  end
+  resources :report_reasons
   resources :subscriptions
   resources :comments, only: [:create]
-
+  resources :reports, only: [:create]
   post "p/vote" => "votes#create"
   get '/draft', to: 'posts#draft'
   # devise_scope :account do
