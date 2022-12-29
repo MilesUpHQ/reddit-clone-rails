@@ -41,25 +41,27 @@
                   method: :delete,
                   data: { confirm: "Are you sure?" } %>
         </div>
-        <% if ((@post.account_id == current_account.id) and !(@post.closed?)) or !(@post.closed?) %>
-          <div class="join-btn" id="close-link">
-            <%= link_to "Close Discussion", close_post_path(@post), method: :patch %>
-          </div>
-        <% end %>
-      </div>
+      <% if ((@post.account_id == current_account.id) and !(@post.closed?)) or !(@post.closed?) %>
+        <div class="join-btn" id="close-link">
+          <%= link_to "Close Discussion", close_post_path(@post), method: :patch %>
+        </div>
+      <% end %>
+	</div>
       <div id = "comment-hide">
         <% if !(@post.closed?) %>
           <h5>Leave a comment</h5>
           <%= render partial: "comments/form", locals:{ post: @post, parent: nil} %>
         <% end %>
       </div>
-      <div id = "disclaimer">
-        <p>The Discussion is closed.So no one cannot add comments or replies to this Discussion </p>
-      </div>
-      <% if (@post.closed?) %>
-        <div class="card commentandreplysection"">
-          <p> The discussion is closed by owner.So no one cannot add comments or replies in the discussion.Thank You! </p>
-        </div>
+
+     <div id = "disclaimer">
+       <p>The Discussion is closed.So no one cannot add comments or replies to this Discussion </p>
+     </div>
+
+       <% if (@post.closed?) %>
+       <div class="card commentandreplysection"">
+        <p> The discussion is closed by owner.So no one cannot add comments or replies in the discussion.Thank You! </p>
+       </div>
       <% end %>
     </div>
   </div>

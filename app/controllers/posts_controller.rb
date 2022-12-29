@@ -1,7 +1,5 @@
 class PostsController < ApplicationController
   before_action :authenticate_account!, except:  [ :index, :show ]
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
-  #before_action :auth_subscriber, only: [:new]
   before_action :set_post, only: [:show, :edit, :update, :destroy, :increment_view_count ,:close]
   before_action :find_my_communities, only: [:new, :create, :edit, :update]
   before_action :community_list
@@ -81,8 +79,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    if @post
-      @post.destroy
+    if @post.destroy
       redirect_to root_path
     end
   end
@@ -112,4 +109,3 @@ class PostsController < ApplicationController
     @my_communities = Community.find(@subscriptions)
   end
 end
-
