@@ -22,6 +22,6 @@ class Community < ApplicationRecord
         :name,
         [:name, :category],
         [:name, :category,:url]
-      ] 
+      ]
     end
 end
