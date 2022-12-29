@@ -1,13 +1,14 @@
 class Post < ApplicationRecord
   extend FriendlyId
-  friendly_id :title ,use: %i[slugged history] 
+  friendly_id :title ,use: %i[slugged history finders] 
   
   belongs_to :account
   belongs_to :community
   validates_presence_of :title, :body, :account_id, :community_id
   has_many :comments
+  belongs_to :report
+  has_rich_text :body 
   has_many_attached :images
-  has_rich_text :body
 
   def score
     # difference between upvotes and downvotes
