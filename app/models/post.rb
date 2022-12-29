@@ -6,7 +6,7 @@ class Post < ApplicationRecord
   belongs_to :community
   validates_presence_of :title, :body, :account_id, :community_id
   has_many :comments
-  belongs_to :report
+  has_many :report
   has_rich_text :body 
   has_many_attached :images
 
