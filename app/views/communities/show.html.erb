@@ -72,7 +72,7 @@
           <p><%= pluralize @subscriber_count, "member" %></p>
         </div>
         <div class="join-btn create-post-btn">
-          <%= link_to "Create post", new_community_post_path(@community), :class=>"" %>
+          <%= link_to "Create post", new_post_path(community: @community), :class=>"" %>
         </div>
       </div>
       <div class="card mt-3 p-2 bg-secondary">

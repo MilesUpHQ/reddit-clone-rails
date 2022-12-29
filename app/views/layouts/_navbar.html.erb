@@ -8,8 +8,8 @@
       <ul class="navbar-nav mr-auto">
         <li class="ml-5 nav-item dropdown">
           <%= link_to "Home", root_path, :class => "nav-link dropdown-toggle", :id=>"navbarDropdown", "data-toggle"=>"dropdown" %>
-          <div class="dropdown-menu" id="myDropdown" aria-labelledby="navbarDropdown">
-						<input type="text" placeholder="Filter.." id="myInput_mycommunities">
+          <div class="dropdown-menu myDropdown" aria-labelledby="navbarDropdown">
+						<input type="text" placeholder="Filter.." class="myInput_mycommunities">
             <%= link_to "All Communities", communities_path, :class=>"dropdown-item" %>
             <%= link_to "Top Trending", communities_path, :class=>"dropdown-item"  %>
             <%= link_to "Create a Community", new_community_path, :class=>"dropdown-item"  %>
@@ -25,8 +25,8 @@
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
           <%= link_to "Search Community", root_path, :class => "nav-link dropdown-toggle", :id=>"navbarDropdown", "data-toggle"=>"dropdown" %>
-          <div class="dropdown-menu" id="myDropdown" aria-labelledby="navbarDropdown">
-            <input type="text" placeholder="Search.." id="myInput_mycommunities">
+          <div class="dropdown-menu myDropdown" aria-labelledby="navbarDropdown">
+            <input type="text" placeholder="Search.." class="myInput_mycommunities">
             <% if @communities.present? %>
               <% @communities.each do |community| %>
                 <%= link_to community.name, community_path(community), :class=>"dropdown-item" %>
@@ -36,7 +36,7 @@
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" id="myDropdown" type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control mr-sm-2 myDropdown" type="search" placeholder="Search" aria-label="Search">
       </form>
       <ul class="navbar-nav">
         <% if account_signed_in? %>
@@ -51,6 +51,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <%= link_to "Profile", profile_path(current_account.username), class: "dropdown-item" %>
               <%= link_to "Settings", edit_account_registration_path, class: "dropdown-item" %>
+              <%= link_to "Saved Posts", saved_posts_path, class: "dropdown-item" %>
               <%= link_to "Sign Out", destroy_account_session_path, method: :delete, class: "dropdown-item" %>
             </div>
           </li>

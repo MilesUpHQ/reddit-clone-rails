@@ -1,7 +1,7 @@
-$("<%=j render partial: "posts/list", locals: { posts:@posts } %>").appendTo($("#infinity"));
+$("<%=j render partial: "posts/list", locals: { posts:@posts } %>").appendTo($(".infinity"));
 
 <% if @posts.last_page? %>
-  $('#infinite-scrolling').remove();
+  $('.infinite-scrolling').remove();
 <% else %>
-  $('#infinite-scrolling').html("<%=j link_to_next_page(@posts, 'See more', :remote => true) %>");
+  $('.infinite-scrolling').html("<%=j link_to_next_page(@posts, 'See more', :remote => true) %>");
 <% end %>

@@ -1,14 +1,17 @@
 class PostsController < ApplicationController
   before_action :authenticate_account!, except:  [ :index, :show ]
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :auth_subscriber, only: [:new]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :increment_view_count ,:close]
+  before_action :find_my_communities, only: [:new, :create, :edit, :update]
   before_action :community_list
   def index
     @posts = Post.all
   end
 
   def show
+    increment_view_count
     @comment = Comment.new
+    @categories = ReportCategory.all
+    @report = Report.new
   end
 
   def new
@@ -18,6 +21,7 @@ class PostsController < ApplicationController
   end
 
   def create
+    @drafts = Post.all
     @post = Post.new post_values
     @post.account_id = current_account.id
     @post.community_id = params[:community_id]
@@ -55,20 +59,36 @@ def update
   else
     render :edit
   end
-end
 
-def destroy
-  if @post
-    @post.destroy
-    redirect_to root_path
+  def unsave
+    @post = Post.find(params[:id])
+    @post.update(saved: false)
+    redirect_back(fallback_location: root_path)
   end
-end
 
+
+  def saved_posts
+    @saved_posts=Post.where(saved: true)
+  end
+
+  def close
+    @post.update(closed: "true")
+  end
+
+  def destroy
+    if @post.destroy
+      redirect_to root_path
+    end
+  end
 
   private
+  def increment_view_count
+    @post.view_count += 1
+    @post.save
+  end
 
   def set_post
-    @post = Post.includes(:comments).find(params[:id])
+    @post = Post.friendly.includes(:comments).find(params[:id])
   end
 
   def auth_subscriber
@@ -78,6 +98,11 @@ end
   end
 
   def post_values
-    params.require(:post).permit(:title, :body, :is_drafted)
+      params.require(:post).permit(:title, :body , :oc , :spoiler , :nsfw, :saved, :is_drafted, :closed, :community_id,  images: [])
+  end
+
+  def find_my_communities
+    @subscriptions = Subscription.where(account_id: current_account.id).pluck(:community_id)
+    @my_communities = Community.find(@subscriptions)
   end
 end

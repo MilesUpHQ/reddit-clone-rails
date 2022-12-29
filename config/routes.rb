@@ -4,16 +4,24 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :accounts
   get "u/:username" => "public#profile", as: :profile
+  get "/saved_posts" => "posts#saved_posts"
 
-  resources :communities do
-    resources :posts
+  resources :communities, path: :r
+  resources :posts, path: :p do
+    member do
+      patch :save
+      patch :unsave
+      patch :close
+      get :report
+    end
   end
-
+  resources :report_reasons
   resources :banned_users
   resources :subscriptions
   resources :comments, only: [:create]
 
-  post "post/vote" => "votes#create"
+  resources :reports, only: [:create]
+  post "p/vote" => "votes#create"
   get '/draft', to: 'posts#draft'
   get '/communities/:id/mod' , to: 'communities#mod' , as: 'mod' 
   

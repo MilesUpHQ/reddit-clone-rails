@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_25_153111) do
+ActiveRecord::Schema.define(version: 2022_12_28_060408) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "first_name"
@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(version: 2022_12_25_153111) do
     t.text "message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "parent_id"
     t.index ["account_id"], name: "index_comments_on_account_id"
     t.index ["post_id"], name: "index_comments_on_post_id"
   end
@@ -142,7 +143,20 @@ ActiveRecord::Schema.define(version: 2022_12_25_153111) do
     t.integer "post_count_this_week", default: 0
     t.string "category"
     t.integer "owner_id"
+    t.string "slug"
     t.index ["account_id"], name: "index_communities_on_account_id"
+    t.index ["slug"], name: "index_communities_on_slug", unique: true
+  end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -156,8 +170,43 @@ ActiveRecord::Schema.define(version: 2022_12_25_153111) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "is_drafted"
+    t.boolean "saved", default: false
+    t.boolean "closed", default: false
+    t.integer "view_count", default: 0
+    t.string "slug"
+    t.boolean "oc", default: false
+    t.boolean "spoiler", default: false
+    t.boolean "nsfw", default: false
     t.index ["account_id"], name: "index_posts_on_account_id"
     t.index ["community_id"], name: "index_posts_on_community_id"
+    t.index ["slug"], name: "index_posts_on_slug", unique: true
+  end
+
+  create_table "report_categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "report_reasons", force: :cascade do |t|
+    t.string "reason"
+    t.integer "report_category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["report_category_id"], name: "index_report_reasons_on_report_category_id"
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "report_reason_id", null: false
+    t.integer "account_id", null: false
+    t.integer "report_category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_reports_on_account_id"
+    t.index ["post_id"], name: "index_reports_on_post_id"
+    t.index ["report_category_id"], name: "index_reports_on_report_category_id"
+    t.index ["report_reason_id"], name: "index_reports_on_report_reason_id"
   end
 
   create_table "subscriptions", force: :cascade do |t|
@@ -181,4 +230,9 @@ ActiveRecord::Schema.define(version: 2022_12_25_153111) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "report_reasons", "report_categories"
+  add_foreign_key "reports", "accounts"
+  add_foreign_key "reports", "posts"
+  add_foreign_key "reports", "report_categories"
+  add_foreign_key "reports", "report_reasons"
 end
