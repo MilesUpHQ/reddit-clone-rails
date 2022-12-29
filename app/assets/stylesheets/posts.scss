@@ -15,6 +15,23 @@
   }
 }
 
+.save{
+  display: block;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: #000;
+
+  &.active {
+    color: #ff0000;
+  }
+
+  &:hover {
+    color: #ff0000;
+    cursor: pointer;
+  }
+}
+
 .sub-comment{
   padding-left: 20px;
 }
