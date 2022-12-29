@@ -44,7 +44,7 @@
                   data: { confirm: "Are you sure?" } %>
         </div>
       <% end %>
-         <% if ((@post.account_id == current_account.id) and !(@post.closed?)) or !(@post.closed?) %>
+         <% if  !(@post.closed?) %>
           <div class="join-btn" id="close-link">
             <%= link_to "Close Discussion", close_post_path(@post), method: :patch %>
           </div>
