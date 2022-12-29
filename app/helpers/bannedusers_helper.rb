@@ -1,0 +1,2 @@
+module BannedusersHelper
+end
