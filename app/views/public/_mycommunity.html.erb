@@ -1,0 +1,6 @@
+<% @my_communities.each do |my_community| %>
+  <div class="card p-3 mb-3">
+    <b><%= link_to my_community.name ,  community_path(my_community)%></b>
+    <p>Created <%= time_ago_in_words my_community.created_at %> ago</p>
+  </div>
+<% end %>

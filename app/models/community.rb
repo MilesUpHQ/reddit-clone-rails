@@ -3,7 +3,7 @@ class Community < ApplicationRecord
   friendly_id :slug_candidates ,use: %i[slugged history finders]
 
   belongs_to :account
-  validates_presence_of :url, :name, :rules, :category
+  validates_presence_of :summary, :name, :rules, :category
   has_many :posts, dependent: :destroy
   has_many :subscriptions
   has_many :subscribers, through: :subscriptions, source: :account
@@ -13,15 +13,24 @@ class Community < ApplicationRecord
   if Category.exists?
     CATEGORIES = Category.pluck(:name)
   end
+    def should_generate_new_friendly_id?
+      name_changed? || slug.blank?
+    end
 
-  def should_generate_new_friendly_id?
-    name_changed? || slug.blank?
+  def score
+    # difference between upvotes and downvotes
+    if self.upvotes > 0 || self.downvotes > 0
+      self.upvotes > 0 ? (self.upvotes - self.downvotes) : (self.downvotes * -1)
+    else
+      0
+    end
   end
 
-  def slug_candidates
-    [ :name,
-      [:name, :category],
-      [:name, :category,:url]
-    ]
-  end
+    def slug_candidates
+      [
+        :name,
+        [:name, :category],
+        [:name, :category,:url]
+      ] 
+    end
 end

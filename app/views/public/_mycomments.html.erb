@@ -1,0 +1,8 @@
+<% my_comments.each do |my_comment| %>
+  <div class="card">
+    <p><b>Username : </b><%= my_comment.account.full_name %></p>
+    <p><b>Commented message : </b><%= my_comment.message %></p>
+    <p><%= link_to 'Post path:', post_path(my_comment.post_id) %></p>
+    <p><b>Created At : </b><%= my_comment.created_at.strftime("%d-%m-%Y") %></p>
+  </div>
+<%end%>

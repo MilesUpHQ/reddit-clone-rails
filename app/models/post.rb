@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
   extend FriendlyId
-  friendly_id :title ,use: %i[slugged history] 
+  friendly_id :title ,use: %i[slugged history finders] 
   
   belongs_to :account
   belongs_to :community

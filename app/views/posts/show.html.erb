@@ -76,13 +76,15 @@
           <%= render partial: "comments/form", locals:{ post: @post, parent: nil} %>
         <% end %>
       </div>
-      <div id = "disclaimer">
-        <p>The Discussion is closed.So no one cannot add comments or replies to this Discussion </p>
-      </div>
-      <% if (@post.closed?) %>
-        <div class="card commentandreplysection"">
-          <p> The discussion is closed by owner.So no one cannot add comments or replies in the discussion.Thank You! </p>
-        </div>
+
+     <div id = "disclaimer">
+       <p>The Discussion is closed.So no one cannot add comments or replies to this Discussion </p>
+     </div>
+
+       <% if (@post.closed?) %>
+       <div class="card commentandreplysection"">
+        <p> The discussion is closed by owner.So no one cannot add comments or replies in the discussion.Thank You! </p>
+       </div>
       <% end %>
     </div>
   </div>

@@ -4,7 +4,7 @@ $( document ).on('turbolinks:load', function() {
       is_upvote = $(this).hasClass("upvote");
 
     $.ajax({
-      url: "/post/vote",
+      url: "/p/vote",
       method: "POST",
       data: { post_id: post_id, upvote: is_upvote },
       success: function(){
