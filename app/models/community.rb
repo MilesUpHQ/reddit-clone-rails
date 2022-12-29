@@ -10,7 +10,19 @@ class Community < ApplicationRecord
   has_one_attached :profile_image
   has_one_attached :cover_image
   has_many :banned_users
- if Category.table_exists?
-  CATEGORIES = Category.pluck(:name)
- end
-end 
+
+  if Category.table_exists?
+    CATEGORIES = Category.pluck(:name)
+  end
+    def should_generate_new_friendly_id?
+      name_changed? || slug.blank?
+    end
+
+    def slug_candidates
+      [
+        :name,
+        [:name, :category],
+        [:name, :category,:url]
+      ]
+    end
+end
