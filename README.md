@@ -57,3 +57,9 @@ MAILGUN_DOMAIN=xxxx
   $ rails server
 ```
 And now you can vist the site with the URL http://localhost:3000
+If you want to add categories and access admin page vist the site with the URL http://localhost:3000/admin
+`````
+If you face Issues Like Javascript error install Yarn 
+
+$ sudo yarn
+````
