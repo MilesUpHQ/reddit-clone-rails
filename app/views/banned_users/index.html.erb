@@ -1,0 +1,13 @@
+<div class="col-md-4 offset-md-4">  
+ <div class="card" style="width: 18rem;">
+  <div class="card-header">Banned Users</div>
+  <% @banneduser.each do |user| %>
+   <ul class="list-group list-group-flush">
+      <li class="list-group-item"> <%= user.username %> </li>
+   </ul>
+  <% end %>
+  </div>
+  </div> 
+</div>                                                
+
+

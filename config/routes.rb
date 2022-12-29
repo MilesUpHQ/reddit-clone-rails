@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :accounts
@@ -13,16 +14,18 @@ Rails.application.routes.draw do
       end
     end
   resources :report_reasons
+  resources :banned_users
   resources :subscriptions
   resources :comments, only: [:create]
+
   resources :reports, only: [:create]
   patch "p/:id/save" => "save_post#create", as: :save_post
 
   post "p/vote" => "votes#create"
   get '/draft', to: 'posts#draft'
-  # devise_scope :account do
-  #   get '/sign_in' => 'devise/sessions#new' # custom path to login/sign_in
-  #   get '/sign_up' => 'devise/registrations#new', as: 'new_account_registration' # custom path to sign_up/registration
-  # end
-  root to: 'public#index'
+  get '/communities/:id/mod' , to: 'communities#mod' , as: 'mod' 
+  
+  match '*path', to: 'errors#not_found', via: :all
+  get :autocomplete, to: 'communities#autocomplete'
+  root to: 'public#index'  
 end

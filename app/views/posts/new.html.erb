@@ -12,10 +12,10 @@
         <h4 class="modal-title" id="myModalLabel">Drafts</h4>
       </div>
       <div class="modal-body">
-        <div class = "infinity">
+        <div id = "infinity">
           <%= render partial: "posts/draftlist", locals: { posts: @drafts } %>
         </div>
-        <div class = "infinite-scrolling">
+        <div id = "infinite-scrolling">
           <%= link_to_next_page(@drafts, "posts" , :remote => true) %>
         </div>
       </div>

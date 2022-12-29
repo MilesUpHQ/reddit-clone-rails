@@ -11,7 +11,6 @@ class Post < ApplicationRecord
   has_many_attached :images
 
   def score
-    # difference between upvotes and downvotes
     if self.upvotes > 0 || self.downvotes > 0
       self.upvotes > 0 ? (self.upvotes - self.downvotes) : (self.downvotes * -1)
     else
