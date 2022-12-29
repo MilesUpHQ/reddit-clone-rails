@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :subscriptions
   resources :comments, only: [:create]
 
-  patch "p/:id/save" => "save#create", as: :save_post
+  patch "p/:id/save" => "save_post#create", as: :save_post
 
   post "p/vote" => "votes#create"
   get '/draft', to: 'posts#draft'

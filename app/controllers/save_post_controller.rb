@@ -1,18 +1,14 @@
-class SaveController < ApplicationController
+class SavePostController < ApplicationController
   def create
     @post = Post.find(params[:id])
 
-    if @post.saved == true
-      @post.update(saved: false)
-    else
-      @post.update(saved: true)
-    end
+    @post.update(saved: @post.saved ? false : true)
 
     respond_to do |format|
       format.js {
         @post = Post.find(params[:id])
         @is_saved = @post.saved
-        render "save/create"
+        render "save_post/create"
       }
     end
 
