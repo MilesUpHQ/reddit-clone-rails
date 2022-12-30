@@ -24,15 +24,15 @@ class PostsController < ApplicationController
     @drafts =  Post.order(created_at: :desc).page(params[:page]).per(5)
     @post = Post.new post_values
     @post.account_id = current_account.id
-    @post.is_drafted = params[:commit] == "Publish" ? false : true 
-    
+    @post.is_drafted = params[:commit] == "Publish" ? false : true
+
     if @post.save
       redirect_to @post.is_drafted? ? draft_path : community_path(@post.community_id)
     else
       render :new
     end                       
   end
-
+  
   def edit
   end
 
