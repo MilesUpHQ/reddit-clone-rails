@@ -3,12 +3,12 @@
       <div class="card p-1 mb-3">
          <div class="row">
             <div class="col-11">
-               <h4 class= "mb-1"><%= link_to post.title, edit_post_path(post) %></h4>
+               <h4 class= "mb-1"><%= link_to post.title, edit_community_post_path(post.community, post) %></h4>
                <p><%= post.body.to_plain_text.truncate(30) %></p>
                <p><small> Draft saved  <%= time_ago_in_words post.created_at %> ago</small></p>
             </div>
             <div class="col-1">
-               <%= link_to post_path(post.community_id, post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'post' do %>
+               <%= link_to community_post_path(post.community_id, post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'post' do %>
                   <i class="fa-solid fa-trash-can"  ml-2" aria-hidden="true"></i>
                <% end %>
             </div>
