@@ -12,7 +12,7 @@
         <%= link_to "#" do %>
           <%= image_tag("profile-pic.png" ,class: "profile-pic") %>
         <% end %>
-      <% end %>  
+      <% end %>
     </div>
     <div class="col-sm-10">
       <div class = "d-flex">
@@ -21,9 +21,7 @@
         </span>
         <div class="ml-3 pl-2">
           <% if @is_subscribed %>
-            <div class="join-btn">
               <%= render partial: "communities/unsubscribe" %>
-            </div>
           <% else %>
             <%= render partial: "communities/subscribe", locals: { community_id: @community.id } %>
           <% end %>
@@ -59,7 +57,7 @@
       </div>
     </div>
     <div class="col-sm-4">
-      <div class="card p-2 bg-secondary"> 
+      <div class="card p-2 bg-secondary">
         <p class="h6 pt-2 text-light">About this community</p>
         <% if @community.owner_id == current_account.id %>
           <%= link_to "Mod Tools", mod_path, class: "btn btn-primary"%>
@@ -71,9 +69,7 @@
         <div class="member">
           <p><%= pluralize @subscriber_count, "member" %></p>
         </div>
-        <div class="join-btn create-post-btn">
-          <%= link_to "Create post", new_community_post_path(community_id: @community.id), :class=>"" %>
-        </div>
+        <%= link_to "Create post", new_community_post_path(community_id: @community.id), :class=>"join-btn create-post-btn text-white" %>
       </div>
       <div class="card mt-3 p-2 bg-secondary">
         <p class="h6 pt-2 text-light">r/<%= @community.name.downcase %> Rules</p>

@@ -30,7 +30,14 @@
   padding: 3px 30px;
   display: inline-block;
   border-radius: 25px;
-
+  font-size: 1em;
+  font-weight: 700;
+  color: #0079d3;
+  text-align: center;
+  text-decoration: none;
+}
+.join-btn:hover {
+  text-decoration: none;
 }
 
 .join-btn input[type=submit] {

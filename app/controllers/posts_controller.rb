@@ -25,8 +25,6 @@ class PostsController < ApplicationController
     @drafts = Post.drafts(current_account.id)
     @post = Post.new post_values
     @post.account_id = current_account.id
-    @post.community_id = params[:community_id]
-
     @post.is_drafted = params[:commit] == "Publish" ? false : true
 
     if @post.save
@@ -35,7 +33,7 @@ class PostsController < ApplicationController
       render :new
     end
   end
-
+  
   def edit
     @post = Post.find(params[:id])
     @community = Community.find(params[:community_id])
