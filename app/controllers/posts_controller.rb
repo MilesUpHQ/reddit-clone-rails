@@ -17,11 +17,11 @@ class PostsController < ApplicationController
   def new
     @post = Post.new 
     @community = Community.find_by(params[:community_id])  
-    @drafts = Post.order(created_at: :desc).page(params[:page]).per(5)
+    @drafts = Post.drafts(current_account.id).order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def create
-    @drafts = Post.where(account_id: current_account.id , is_drafted: true)
+    @drafts = Post.drafts(current_account.id)
     @post = Post.new post_values
     @post.account_id = current_account.id
     @post.community_id = params[:community_id]
