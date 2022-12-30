@@ -9,6 +9,7 @@ class Account < ApplicationRecord
   has_many :posts
   has_many :comments
   has_many :votes
+  has_many :saved_posts
   has_one_attached :profile_image
 
   validates_presence_of :first_name, :last_name, :username
