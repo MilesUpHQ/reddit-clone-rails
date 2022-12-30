@@ -1,6 +1,6 @@
-<% @drafts.each do |post| %>
-   <% if post.is_drafted && post.account_id == current_account.id %>
-      <div class="card p-1 mb-3">
+<% if !(@drafts.nil?) %>
+  <% @drafts.each do |post| %>
+   <div class="card p-1 mb-3">
          <div class="row">
             <div class="col-11">
                <h4 class= "mb-1"><%= link_to post.title, edit_community_post_path(post.community, post) %></h4>
@@ -14,5 +14,7 @@
             </div>
          </div>
       </div> 
-   <% end %>
-<% end %>  
+   <% end %>  
+<% else %>
+  <p> No drafts to display </p> 
+<% end %>
