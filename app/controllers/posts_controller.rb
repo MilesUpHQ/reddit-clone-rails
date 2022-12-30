@@ -27,15 +27,7 @@ class PostsController < ApplicationController
     @post.is_drafted = params[:commit] == "Publish" ? false : true
 
     if @post.save
-      if params[:commit] == "Publish"
-        @post.is_drafted = false
-        @post.save
-        redirect_to community_path(@post.community_id)
-      else
-        @post.is_drafted = true
-        @post.save
-        redirect_to draft_path
-      end
+      redirect_to @post.is_drafted? ? draft_path : community_path(@post.community_id)
     else
       render :new
     end                       
