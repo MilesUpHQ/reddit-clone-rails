@@ -23,6 +23,8 @@ class PostsController < ApplicationController
     @drafts =  Post.order(created_at: :desc).page(params[:page]).per(5)
     @post = Post.new post_values
     @post.account_id = current_account.id
+    @post.is_drafted = params[:commit] == "Publish" ? false : true
+
     if @post.save
       if params[:commit] == "Publish"
         @post.is_drafted = false
@@ -35,7 +37,7 @@ class PostsController < ApplicationController
       end
     else
       render :new
-    end
+    end                       
   end
   
   def edit
