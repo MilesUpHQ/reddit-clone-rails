@@ -1,0 +1,27 @@
+.warning-nav-link {
+	background-color: #fff;
+  padding: 5px 20px;
+  display: inline-block;
+	border-radius: 25px;
+  color: #636c72;
+  border: 1px solid #636c72;
+  user-select: none;
+}
+.warning-nav-link.active {
+	background: #f6f7f8;
+	color: #007BFF;
+}
+.warning-nav-link.active a {
+	color: #007BFF;
+}
+.warning-nav-link a {
+  color: #636c72;
+  font-size: 1em;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+}
+.warning-nav-link a:hover {
+	text-decoration: none;
+	color: #007BFF;
+}
