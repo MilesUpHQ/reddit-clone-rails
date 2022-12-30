@@ -1,4 +1,4 @@
-$( document ).on('turbolinks:load', function() {
+$(document).on('turbolinks:load', function () {
     $(".myInput_mycommunities").keydown(function () {
         input = $('.myInput_mycommunities');
         var input, filter, ul, li, a, i;
@@ -16,6 +16,7 @@ $( document ).on('turbolinks:load', function() {
     });
 
     const tab_link = $('.tab-nav-link')
+
     function link_tab() {
         if (tab_link.length) {
             tab_link.removeClass('active')
@@ -23,12 +24,20 @@ $( document ).on('turbolinks:load', function() {
         }
     }
     const community_link = $('.community-nav-link')
+
     function link_community() {
         if (community_link.length) {
             community_link.removeClass('active')
             $(this).addClass('active')
         }
     }
+    $('.warning-nav-link').click(function (event) {
+        $(this).children(".fa-solid").toggleClass('fa-plus fa-check ');
+        $(this).toggleClass(' active');
+        $(this).children("#check").prop('checked', !$(this).children("#check").prop('checked'));
+    });
+
     tab_link.click(link_tab)
     community_link.click(link_community)
+    // warning_link.click(link_warning)
 });
