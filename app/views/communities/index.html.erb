@@ -15,15 +15,17 @@
         <div class="list-group" id="list-tab" role="tablist">
           <li class="list-group-item text-white bg-secondary">Category</li>
           <% if !(params.has_key?(:category)) %>
-            <li class="list-group-item border-left border-danger"><%= link_to "All", communities_path %></li>
+            <%= link_to communities_path, class: "text-decoration-none" do %><li class="list-group-item border-left border-secondary">All</li><% end %>
           <% else %>
-            <li class="list-group-item"><%= link_to "All", communities_path %></li>
+            <%= link_to communities_path, class: "text-decoration-none" do %><li class="list-group-item">All</li><% end %>
           <% end %>
           <% @categories.each do |category| %>
             <% if params[:category] == category %>
-              <li class="list-group-item border-left border-danger"><%= link_to category, communities_path(category: category) %></li>
+              <%= link_to communities_path(category: category), class: "text-decoration-none" do %><li class="list-group-item border-left border-secondary"><%= category %></li>
+              <% end %>
             <% else %>
-              <li class="list-group-item"><%= link_to category, communities_path(category: category) %></li>
+              <%= link_to communities_path(category: category), class: "text-decoration-none" do %><li class="list-group-item"><%= category %></li>
+              <% end %>
             <% end %>
           <% end %>
         </div>
