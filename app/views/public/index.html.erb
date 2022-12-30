@@ -55,7 +55,7 @@
           <p class="">Your personal Reddit frontpage. Come here to check in with your favorite communities.</p>
         </div>
         <div class="join-btn create-post-btn">
-          <%= link_to "Create post", new_post_path, class: "text-white" %>
+          <%= link_to "Create post", new_community_post_path(community_id: Community.first.id), class: "text-white" %>
         </div>
         <div class="join-btn text-center mb-3">
           <%= link_to "Create Community", new_community_path, class:""%>

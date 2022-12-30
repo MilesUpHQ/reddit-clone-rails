@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_account!, except:  [ :index, :show ]
+  before_action :set_community, only: [:new, :show, :create, :edit, :update, :destroy, :increment_view_count ,:close]
   before_action :set_post, only: [:show, :edit, :update, :destroy, :increment_view_count ,:close]
   before_action :find_my_communities, only: [:new, :create, :edit, :update]
   before_action :community_list
@@ -87,6 +88,10 @@ class PostsController < ApplicationController
   def increment_view_count
     @post.view_count += 1
     @post.save
+  end
+
+  def set_community
+    @community = Community.friendly.find(params[:community_id])
   end
 
   def set_post

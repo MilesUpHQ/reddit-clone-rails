@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new comment_params
     @comment.save
-    redirect_to post_path(@comment.post_id, @comment.post)
+    redirect_to community_post_path(@comment.post.community_id, @comment.post)
   end
 
   def comment_params
