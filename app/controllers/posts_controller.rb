@@ -15,29 +15,30 @@ class PostsController < ApplicationController
   end
 
   def new
-    @community = Community.find(params[:community_id])
     @post = Post.new 
     @drafts = Post.order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def create
-    @drafts = Post.all
+    @drafts =  Post.order(created_at: :desc).page(params[:page]).per(5)
     @post = Post.new post_values
     @post.account_id = current_account.id
-    @post.community_id = params[:community_id]
-
-    @post.is_drafted = params[:commit] == "Publish" ? false : true
-
     if @post.save
-      redirect_to @post.is_drafted? ? draft_path : community_path(@post.community_id)
+      if params[:commit] == "Publish"
+        @post.is_drafted = false
+        @post.save
+        redirect_to community_path(@post.community_id)
+      else
+        @post.is_drafted = true
+        @post.save
+        redirect_to draft_path
+      end
     else
       render :new
     end
   end
-
+  
   def edit
-    @post = Post.find(params[:id])
-    @community = Community.find(params[:community_id])
   end
 
   def draft 
@@ -46,8 +47,6 @@ class PostsController < ApplicationController
 
 
   def update
-   @post = Post.find(params[:id])
-   @post.community_id = params[:community_id] 
    @post.is_drafted = false
    if @post.update(post_values)
     if params[:commit] == "Publish"
