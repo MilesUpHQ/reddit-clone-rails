@@ -1,19 +1,19 @@
 class Account < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :lockable
 
   has_many :subscriptions
-  has_many :communities, through: :subscriptions
+  has_many :communities ,through: :subscriptions
   has_many :posts
   has_many :comments
   has_many :votes
   has_many :saved_posts
   has_one_attached :profile_image
+  has_many :banned_users
 
   validates_presence_of :first_name, :last_name, :username
-
+  validates :username, uniqueness: true
   def full_name
     "#{first_name} #{last_name}"
   end

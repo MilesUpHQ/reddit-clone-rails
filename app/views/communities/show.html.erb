@@ -1,8 +1,8 @@
-<% if @community.cover_image.attached? %>
-  <%= image_tag(@community.cover_image, class: "cover-image") %>
-<% else %>
+  <% if @community.cover_image.attached? %>
+   <%= image_tag(@community.cover_image, class: "cover-image") %>
+  <% else %>
     <%= image_tag("Cover-Image.jpg" ,class: "cover-image") %>
-<% end %>
+  <% end %>
 <div class="container">
   <div class="row">
     <div class="col-sm-1 mr-3">
@@ -21,9 +21,7 @@
         </span>
         <div class="ml-3 pl-2">
           <% if @is_subscribed %>
-            <div class="join-btn">
               <%= render partial: "communities/unsubscribe" %>
-            </div>
           <% else %>
             <%= render partial: "communities/subscribe", locals: { community_id: @community.id } %>
           <% end %>
@@ -61,6 +59,9 @@
     <div class="col-sm-4">
       <div class="card p-2 bg-secondary">
         <p class="h6 pt-2 text-light">About this community</p>
+        <% if @community.owner_id == current_account.id %>
+          <%= link_to "Mod Tools", mod_path, class: "btn btn-primary"%>
+        <% end %>
       </div>
       <div class="card p-3">
         <p class=""><%= @community.summary %></p>
@@ -68,9 +69,7 @@
         <div class="member">
           <p><%= pluralize @subscriber_count, "member" %></p>
         </div>
-        <div class="join-btn create-post-btn">
-          <%= link_to "Create post", new_post_path(community: @community), :class=>"" %>
-        </div>
+        <%= link_to "Create post", new_community_post_path(community_id: @community.id), :class=>"join-btn create-post-btn text-white" %>
       </div>
       <div class="card mt-3 p-2 bg-secondary">
         <p class="h6 pt-2 text-light">r/<%= @community.name.downcase %> Rules</p>
