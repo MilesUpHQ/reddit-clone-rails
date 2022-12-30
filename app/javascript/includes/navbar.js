@@ -29,6 +29,13 @@ $( document ).on('turbolinks:load', function() {
             $(this).addClass('active')
         }
     }
+    $('.warning-nav-link').click(function(event){
+        $(this).children(".fa-solid").toggleClass('fa-plus fa-check ');
+        $(this).toggleClass(' active');
+        $(this).children("#check").prop('checked',!$(this).children("#check").prop('checked'));
+    });
+
     tab_link.click(link_tab)
     community_link.click(link_community)
+    // warning_link.click(link_warning)
 });
