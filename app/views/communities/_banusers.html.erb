@@ -1,0 +1,44 @@
+<div class="col-md-4 offset-md-4">  
+  <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal"> Ban Users </button>
+</div>
+  
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+     <div class="modal-header">
+        <h5 class="modal-title">Ban a User:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <%= form_for @banneduser do |form| %> 
+          <div class="form-group">
+            <%= form.hidden_field :community_id, :value => params[:id], class: "form-control" %> 
+           </div> 
+
+          <div class="form-group">
+           <%= label_tag :Enter_User_Name %>
+            <%= form.text_field :username, autocomplete: :off, class: "form-control search-input", placeholder: "Search by username" %>
+          </div>
+          <div class="form-group">
+            <%= label_tag :Reason_For_Ban %> 
+          </div>
+          <div> 
+            <%= form.select :reason, ["Spam","Personal Confidential Information","Threatening Harassing or inciting violence","Others"] %>
+          </div>
+          <div class="form-group">
+           <%= label_tag :Note_to_include_in_ban_message %>
+            <%= form.text_area :explanation, placeholder: "Reason they were Banned", class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+            <%= form.submit "Ban user", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>  
+

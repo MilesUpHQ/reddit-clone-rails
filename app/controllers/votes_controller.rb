@@ -7,17 +7,14 @@ class VotesController < ApplicationController
     vote.upvote = params[:upvote]
     vote.account_id = current_account.id
 
-    # check if vote by this user exists
     existing_vote = Vote.where(account_id: current_account.id, post_id: post_id)
     @new_vote = existing_vote.size > 1
 
     respond_to do |format|
       format.js {
         if existing_vote.size > 0
-          # destroy existing vote
           existing_vote.first.destroy
         else
-          # save new vote
           if vote.save
             @success = true
           else

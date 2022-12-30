@@ -16,58 +16,42 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new 
-    @drafts = Post.order(created_at: :desc).page(params[:page]).per 5
+    @drafts = Post.order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def create
-    @drafts = Post.all
+    @drafts =  Post.order(created_at: :desc).page(params[:page]).per(5)
     @post = Post.new post_values
     @post.account_id = current_account.id
+    @post.is_drafted = params[:commit] == "Publish" ? false : true 
+    
     if @post.save
-      if params[:commit] == "Publish"
-        @post.is_drafted = false
-        @post.save
-        redirect_to community_path(@post.community_id)
-      else
-        @post.is_drafted = true
-        @post.save
-        redirect_to draft_path
-      end
+      redirect_to @post.is_drafted? ? draft_path : community_path(@post.community_id)
     else
       render :new
-    end
+    end                       
   end
 
   def edit
   end
 
-
   def draft 
-    @posts=  Post.all
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    @drafts =  Post.order(created_at: :desc).page(params[:page]).per(5)
   end 
 
 
   def update
-    if @post.update(post_values)
-      if params[:commit] == "Publish"
-        redirect_to root_path
-      else
-        @post.is_drafted = true
-        redirect_to draft_path
-      end
-    else
-      render :edit
-    end
-  end
-
-  def save
-    @post = Post.find(params[:id])
-    @post.update(saved: true)
-    redirect_back(fallback_location: root_path)
+   @post.is_drafted = false
+   if @post.update(post_values)
+    if params[:commit] == "Publish"
+      redirect_to community_path(@post.community_id)
+    else 
+      @post.is_drafted = true
+      redirect_to draft_path
+    end  
+   else
+    render :edit
+   end
   end
 
   def unsave

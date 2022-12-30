@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="col-3">
+      <div class="text-dark mb-3">
+        <div class="list-group" id="list-tab" role="tablist">
+          <li class="list-group-item text-white bg-secondary">Mod Operations</li>
+            <li class="list-group-item border-left border-danger"><%= link_to "Ban Users", mod_path(mod: "Banusers") %></li>
+            <li class="list-group-item"><%= link_to "Flairs" , mod_path(mod: "flairs") %></li>
+        </div>
+      </div>
+    </div>
+   
+   <%= render params[:mod].downcase %>
+ 
