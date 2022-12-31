@@ -2,8 +2,8 @@ AdminUser.create!(email: 'admin@reddit.com', password: 'password', password_conf
 AdminUser.create!(email: 'admin@example.com', password: '123456', password_confirmation: '123456') if Rails.env.development?
 
 # for these Accounts you need to confirmation token for logging in
-Account.create!(first_name: 'Vasanth', last_name: 'A', username: 'vasi', email: 'vasanthakumar@sedintechnologies.com', password: '123456', password_confirmation: '123456') if Rails.env.development?
-Account.create!(first_name: 'Tushar', last_name: 'R', username: 'tush', email: 'tushar@sedintechnologies.com', password: '123456', password_confirmation: '123456') if Rails.env.development?
+Account.create!(first_name: 'Mithun', last_name: 'L', username: 'MITHUN', email: 'mitun@sedintechnologies.com', password: '123456', password_confirmation: '123456') if Rails.env.development?
+Account.create!(first_name: 'Sowndar', last_name: 'K', username: 'SOWNDAR', email: 'sowndar@sedintechnologies.com', password: '123456', password_confirmation: '123456') if Rails.env.development?
 
 %w[Sports Gaming Technology News TV Music Crypto Fasion Food Health Science Finance].each do |category|
   Category.create!(name: category)
