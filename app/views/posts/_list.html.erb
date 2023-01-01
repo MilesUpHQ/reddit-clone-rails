@@ -1,6 +1,6 @@
 <% posts.each do |post| %>
   <% unless post.is_drafted %>
-<div class="card mb-3">
+<div class="card post-card mb-3">
       <div class="row m-0">
         <div class="col-1 m-0 vote-col text-center">
           <div id="vote-actions-<%= post.id %>" class="vote" data-id="<%= post.id %>">
@@ -30,7 +30,7 @@
           </div>
           <div class="row">
             <div class="col-12 d-flex post-title">
-              <h5><%= post.title %></h5>
+              <h5><%= link_to post.title, community_post_path(post.community_id, post), class: "text-dark" %></h5>
               <p class="flair-badge">Flair</p>
               <% if post.oc %>
                 <p class="flair-badge bg-success">OC</p>
