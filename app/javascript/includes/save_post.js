@@ -1,6 +1,6 @@
 $( document ).on('turbolinks:load', function() {
-  $(".saved").on("click", ".save", function(){
-    let post_id = $(this).parent().data("id");
+  $(".save").on("click", function(){
+    let post_id = $(this).data("id");
 
     $.ajax({
       url: "p/"+post_id+"/save",
