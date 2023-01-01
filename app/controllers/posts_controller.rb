@@ -17,11 +17,12 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new 
-    @drafts = Post.order(created_at: :desc).page(params[:page]).per(5)
+    @community = Community.find_by(params[:community_id])  
+    @drafts = Post.drafts(current_account.id).order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def create
-    @drafts =  Post.order(created_at: :desc).page(params[:page]).per(5)
+    @drafts = Post.drafts(current_account.id)
     @post = Post.new post_values
     @post.account_id = current_account.id
     @post.is_drafted = params[:commit] == "Publish" ? false : true
@@ -30,10 +31,12 @@ class PostsController < ApplicationController
       redirect_to @post.is_drafted? ? draft_path : community_path(@post.community_id)
     else
       render :new
-    end                       
+    end
   end
   
   def edit
+    @post = Post.find(params[:id])
+    @community = Community.find(params[:community_id])
   end
 
   def draft 
@@ -41,19 +44,21 @@ class PostsController < ApplicationController
   end 
 
 
-  def update
-   @post.is_drafted = false
-   if @post.update(post_values)
+def update
+  @post = Post.find(params[:id])
+  @post.community_id = params[:community_id] 
+  @post.is_drafted = false
+  if @post.update(post_values)
     if params[:commit] == "Publish"
       redirect_to community_path(@post.community_id)
     else 
       @post.is_drafted = true
       redirect_to draft_path
     end  
-   else
+  else
     render :edit
-   end
   end
+end 
 
   def unsave
     @post = Post.find(params[:id])
@@ -74,7 +79,7 @@ class PostsController < ApplicationController
     if @post.destroy
       redirect_to root_path
     end
-  end
+  end 
 
   private
   def increment_view_count
@@ -87,7 +92,7 @@ class PostsController < ApplicationController
   end
 
   def set_post
-    @post = Post.friendly.includes(:comments).find(params[:id])
+    @post = Post.includes(:comments).find(params[:id])
   end
 
   def auth_subscriber
