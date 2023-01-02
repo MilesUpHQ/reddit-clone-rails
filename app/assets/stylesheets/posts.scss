@@ -32,6 +32,10 @@
   }
 }
 
+.comment {
+  margin-left: 10px;
+}
+
 .sub-comment {
   padding-left: 20px;
 }
@@ -41,7 +45,8 @@
 }
 
 .comment-field {
-  margin-left: 50px;
+  margin-left: 30px;
+  margin-right: 30px; 
 }
 
 .downvote {
@@ -99,6 +104,14 @@
   justify-content: center;
 }
 
+.show-content {
+  display: flex;
+}
+
+.like-unlike {
+  display: inline;
+}
+
 .post-tab-nav-link.active {
   border-bottom: 2px solid #0079d3;
 }
@@ -137,4 +150,14 @@
 .create-post a:hover {
   cursor: text;
   text-decoration: none;
+}
+
+.reactions{
+  display: flex;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  a {
+    color: black;
+  }
 }
