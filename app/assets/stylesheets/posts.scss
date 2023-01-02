@@ -15,23 +15,6 @@
   }
 }
 
-.save {
-  display: block;
-  width: 100%;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  color: #000;
-
-  &.active {
-    color: #ff0000;
-  }
-
-  &:hover {
-    color: #ff0000;
-    cursor: pointer;
-  }
-}
-
 .comment {
   margin-left: 10px;
 }
@@ -150,98 +133,6 @@
 .create-post a:hover {
   cursor: text;
   text-decoration: none;
-}
-
-
-.list-join-btn {
-  border: 1px solid #0079d3;
-  margin: 5px;
-  padding: 2px 15px;
-  display: inline-block;
-  border-radius: 25px;
-  font-size: 0.8em;
-  font-weight: 700;
-  color: #0079d3;
-  text-align: center;
-  text-decoration: none;
-  background-color: #0079d3;
-}
-.list-join-btn:hover {
-  text-decoration: none;
-}
-
-.post-list-head {
-  font-size: 0.7em;
-}
-
-.post-list-profile-img {
-  position: relative;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-.post-list-profile-img img {
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.flair-badge {
-  margin-top: 2px;
-  margin-left: 5px;
-  padding: 1px 10px;
-  font-size: 0.8em;
-  background-color: #ff4500;
-  color: #fff;
-  border-radius: 25px;
-}
-
-.list-post-img {
-  position: relative;
-  width: 100%;
-  max-height: 400px;
-  overflow: hidden;
-}
-
-.list-post-img img {
-  position: relative;
-  display: block;
-  margin: 0 auto;
-  top: 0;
-  max-width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.list-post-tab {
-  background-color: #fff;
-  padding: 8px;
-  display: inline-block;
-  font-size: 0.9em;
-  text-align: center;
-  text-decoration: none;
-  color: #8c8f91;
-  border-radius: 5px;
-}
-
-.list-post-tab:hover {
-  color: #8c8f91;
-  text-decoration: none;
-  background-color: rgba(157,160,161,0.2);
-}
-
-.vote-col {
-  background-color: #f8f9fa;
-}
-
-.post-card:hover {
-  cursor: pointer;
-  border: 1px solid #636c72;
 }
 
 
