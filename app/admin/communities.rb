@@ -16,7 +16,6 @@ ActiveAdmin.register Community do
   end 
   form do |f|
     f.inputs "Create Community" do
-      f.input :account
       f.input :name
       f.input :url
       f.input :summary
