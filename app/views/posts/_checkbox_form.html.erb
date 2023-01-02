@@ -1,0 +1,19 @@
+<%= form_for [@community, @post] do |form| %>
+  <ul class="ml-4 mr-4 pb-3 border-bottom">
+    <li class="warning-nav-link" id="oc_warning"><i class='fa-solid fa-plus mr-1'></i>
+      <%= form.check_box :oc, class: "d-none btn-check", id: "check", autocomplete: "off" %>
+      OC
+    </li>
+    <li class="warning-nav-link" id="spoiler_warning"><i class='fa-solid fa-plus mr-1'></i>
+      <%= form.check_box :spoiler, class: "d-none btn-check", id:"check", autocomplete: "off" %>
+      Spoiler
+    </li>
+    <li class="warning-nav-link" id="nsfw_warning"><i class='fa-solid fa-plus mr-1'></i>
+      <%= form.check_box :nsfw, class: "d-none btn-check", id:"check", autocomplete: "off" %>
+      NSFW
+    </li>
+    <li class="warning-nav-link text-disabled" id="nsfw_warning"><i class='fa-solid fa-plus mr-1'></i>
+      Flair
+    </li>
+  </ul>
+<% end %>
