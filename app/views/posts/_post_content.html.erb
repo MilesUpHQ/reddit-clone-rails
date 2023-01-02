@@ -23,13 +23,13 @@
             <%= time_ago_in_words @post.created_at %> ago</small></p>
         <h3 class="card-title"><%= @post.title %></h3>
         <% if @post.oc %>
-        <h5 class="sensitive">OC Thread</h5>
+        <h5 class="button-58">OC</h5>
         <% end %>
         <% if @post.spoiler %>
-        <h5 class="sensitiveS">Spoiler</h5>
+        <h5 class="button-s">Spoiler</h5>
         <% end %>
         <% if @post.nsfw %>
-        <h5 class="sensitiveC">Sensitive Content</h5>
+        <h5 class="button-59">nsfw</h5>
         <% end %>
       </div>
     </div>
