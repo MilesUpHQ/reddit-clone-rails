@@ -59,9 +59,9 @@ class CommunitiesController < ApplicationController
   end
 
   def mod
-    @banneduser = BannedUser.new
-    @username = Account.pluck(:username).sort
-  end 
+      @banneduser = BannedUser.new
+      @username = Account.pluck(:username).sort
+   end 
 
   def usernames
     query = params[:username]

@@ -1,8 +1,12 @@
 <% my_comments.each do |my_comment| %>
-  <div class="card">
-    <p><b>Username : </b><%= my_comment.account.full_name %></p>
-    <p><b>Commented message : </b><%= my_comment.message %></p>
-    <p><%= link_to 'Post path:', community_post_path(my_comment.post.community_id,my_comment.post_id) %></p>
-    <p><b>Created At : </b><%= my_comment.created_at.strftime("%d-%m-%Y") %></p>
+
+  <div class="card mb-4">
+    <div class="contents ml-2">
+      <b >
+        <p class="p-0 mt-1">Username : </b><%= link_to my_comment.account.full_name %></p>
+      <b>
+        <p class="m-0">Message : </b><%= my_comment.message %></p>
+      <p><%= link_to 'Post ', community_post_path(my_comment.id,my_comment.post_id) %><b>Created At : </b><%= my_comment.created_at.strftime("%d-%m-%Y") %></p>
+    </div>
   </div>
-<%end%>
+<% end %>

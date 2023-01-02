@@ -17,7 +17,7 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new 
-    @community = Community.find_by(params[:community_id])  
+    @community = Community.find_by(params[:id])  
     @drafts = Post.drafts(current_account.id).order(created_at: :desc).page(params[:page]).per(5)
   end
 
@@ -75,6 +75,10 @@ end
     @post.update(closed: "true")
   end
 
+  def my_posts
+    @my_posts = Post.where(account_id: current_account.id)
+  end
+  
   def destroy
     if @post.destroy
       redirect_to root_path

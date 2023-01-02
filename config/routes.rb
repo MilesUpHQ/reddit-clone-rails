@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
   post "p/vote" => "votes#create"
   get '/draft', to: 'posts#draft'
-  get '/communities/:id/mod' , to: 'communities#mod' , as: 'mod' 
+  get 'r/:id/mod' , to: 'communities#mod' , as: 'mod' 
   
   match '*path', to: 'errors#not_found', via: :all
   get :autocomplete, to: 'communities#autocomplete'

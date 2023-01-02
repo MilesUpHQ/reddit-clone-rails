@@ -1,4 +1,4 @@
-<div class="p-1 bg-light mr-5">
+<div class="p-1 bg-light mr-auto">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="navbar-nav">
       <%= image_tag 'rediit-logo.png', class: "navbar-brand", width: 35, height: 45%>
@@ -8,7 +8,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav">
       <li class=" nav-item dropdown">
         <%= link_to "Home", root_path, :class => "nav-link dropdown-toggle", :id=>"navbarDropdown", "data-toggle"=>"dropdown" %>
         <div class="dropdown-menu myDropdown" aria-labelledby="navbarDropdown">
