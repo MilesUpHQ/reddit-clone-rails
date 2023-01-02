@@ -12,7 +12,6 @@ class Community < ApplicationRecord
   has_one_attached :profile_image
   has_one_attached :cover_image
   has_many :banned_users
-  has_many :save_posts
 
 
   def validate_name

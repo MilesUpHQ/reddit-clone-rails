@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_02_053240) do
+ActiveRecord::Schema.define(version: 2023_01_02_160244) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "first_name"
@@ -211,18 +211,11 @@ ActiveRecord::Schema.define(version: 2023_01_02_053240) do
 
   create_table "save_posts", force: :cascade do |t|
     t.integer "account_id"
-    t.integer "community_id"
     t.integer "post_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["account_id"], name: "index_save_posts_on_account_id"
-    t.index ["community_id"], name: "index_save_posts_on_community_id"
     t.index ["post_id"], name: "index_save_posts_on_post_id"
-  end
-
-  create_table "saveposts", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "subscriptions", force: :cascade do |t|

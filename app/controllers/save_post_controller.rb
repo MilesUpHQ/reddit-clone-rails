@@ -7,10 +7,10 @@ class SavePostController < ApplicationController
   def save
     @saved_post = SavePost.new(
       account_id: current_account.id,
-      post_id: params[:id],
-      community_id: Post.find_by(id: params[:id]).community_id
+      post_id: params[:id]
+      #community_id: Post.find_by(id: params[:id]).community_id
     )
-    @saved_post.save
+    @saved_post.save!
   end
   
   def unsave
