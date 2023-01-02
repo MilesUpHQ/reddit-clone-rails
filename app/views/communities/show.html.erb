@@ -41,7 +41,7 @@
 <div class="community_post bg-primary">
   <div class="row">
     <div class="col-sm-8">
-      <%= render partial: "posts/create_post", locals: { posts: @posts } %>
+      <%= render partial: "posts/create_post", locals: { community: @community } %>
       <div class="tab-content">
         <div id="post" class="tab-pane fade-in active">
           <%= render partial: "posts/list", locals: { posts: @posts } %>

@@ -12,4 +12,13 @@ module SavePostHelper
     Subscription.where(community_id: post.community_id, account_id: post.account_id).exists?
   end
 
+  def selected_community communities
+    print "#############\n\n\n\n\n#################\n\n\n\n###################\n\n\n ",params[:community]
+    communities.include?(params[:community].to_i) ? params[:community] : ""
+  end
+
+  def pass_community_params community
+    community.nil? ? new_community_post_path : new_community_post_path(community: community.id)
+  end
+
 end
