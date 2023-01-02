@@ -15,6 +15,7 @@ class PublicController < ApplicationController
     @profile = Account.find_by_username params[:username]
     @posts = @profile.posts
     @my_comments = Comment.where(account_id: current_account.id)
+    @my_posts = Post.where(account_id: current_account.id)
   end
 
  
@@ -23,3 +24,4 @@ class PublicController < ApplicationController
     @my_comments = Comment.where(account_id: current_account.id).pluck(:message).with_rich_text_content.order(created_at: :asc)
   end
 end
+

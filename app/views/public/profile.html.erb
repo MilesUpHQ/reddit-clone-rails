@@ -1,24 +1,21 @@
-<div class="col-sm-10">
-  <%= render partial: "public/profiletab"%>
-  <div class="tab-content">
-    <div id="my_posts" class="tab-pane fade-in active">
-      <%= render partial: "posts/list", locals: { posts: @posts } %>
+<%= render partial: "public/profiletab"%>
+<div class="community_post">
+  <div class="row ">
+    <div class="tab-content col-sm-7">
+      <div id="POSTS" class="tab-pane fade-in active">
+        <%= render partial: "public/tab"%>
+        <%= render partial: "posts/list", locals: { posts: @my_posts } %>
+      </div>
+      <div id="COMMENTS" class="tab-pane fade">
+        <%= render partial: "public/mycomments", locals: { my_comments: @my_comments } %>
+      </div>
+      <div id="SAVED" class="tab-pane fade">
+        <%= render partial: "public/mysavedpost"%>
+      </div>
     </div>
-    <div id="my_comments" class="tab-pane fade">
-      <%= render partial: "public/mycomments", locals: { my_comments: @my_comments } %>
-    </div>
-    <div id="my_subscriber" class="tab-pane fade">
-      <%= render partial: "public/mysubscribers" %>
-    </div>
-    <div id="my_community" class="tab-pane fade">
-      <%= render partial: "public/mycommunity"%>
-    </div>
-    <div id="saved_posts" class="tab-pane fade">
-      <%= render partial: "public/mysavedposts"%>
-    </div>
-    <div id="my_description" class="tab-pane fade">
+    <div class="col-4 p-3 ml-4" >
       <%= render partial: "public/mydescription"%>
     </div>
-
   </div>
+
 </div>

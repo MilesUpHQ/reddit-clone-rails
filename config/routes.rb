@@ -1,18 +1,21 @@
 Rails.application.routes.draw do
-  
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :accounts
   get "u/:username" => "public#profile", as: :profile
   get "/saved_posts" => "save_post#saved_posts"
   resources :communities, path: :r do
-    resources :posts, path: :p do 
+    resources :posts, path: :p, except: [:new] do
       member do
         patch :close
         get :report
       end
     end
   end
+
+  get "/submit", to: "posts#new", as: "new_community_post"
+
 
   resources :save_post do
     member do
@@ -29,9 +32,9 @@ Rails.application.routes.draw do
  
   post "p/vote" => "votes#create"
   get '/draft', to: 'posts#draft'
-  get '/communities/:id/mod' , to: 'communities#mod' , as: 'mod' 
+  get 'r/:id/mod' , to: 'communities#mod' , as: 'mod' 
   
   match '*path', to: 'errors#not_found', via: :all
   get :autocomplete, to: 'communities#autocomplete'
-  root to: 'public#index'  
+  root to: 'public#index'
 end
