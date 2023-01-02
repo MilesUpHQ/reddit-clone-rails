@@ -1,6 +1,14 @@
 <% @my_communities.each do |my_community| %>
   <div class="card p-3 mb-3">
-    <b><%= link_to my_community.name ,  community_path(my_community)%></b>
-    <p>Created <%= time_ago_in_words my_community.created_at %> ago</p>
+    <div class="row">
+      <div class="col-6">
+        <b><%= link_to my_community.name ,  community_path(my_community)%></b>
+        <p>Created <%= time_ago_in_words my_community.created_at %> ago</p>
+      </div>
+    </div>
+
+    <div class="col-2">
+      <%= link_to "Mod Tools", mod_path(my_community), class: "btn btn-primary"%>
+    </div>
   </div>
 <% end %>
