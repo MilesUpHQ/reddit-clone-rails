@@ -10,7 +10,8 @@ class Post < ApplicationRecord
   has_many :save_posts
   has_rich_text :body 
   has_many_attached :images
-
+  scope :drafts, ->(account_id) { where(account_id: account_id, is_drafted: true) }
+  
   def score
     if self.upvotes > 0 || self.downvotes > 0
       self.upvotes > 0 ? (self.upvotes - self.downvotes) : (self.downvotes * -1)
