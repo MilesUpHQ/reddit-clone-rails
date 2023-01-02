@@ -21,16 +21,12 @@ Rails.application.routes.draw do
     end
   end
 
-  # get "/saved_posts" => "save_posts#saved_posts"
-  
   resources :report_reasons
   resources :banned_users
   resources :subscriptions
   resources :comments, only: [:create]
-
   resources :reports, only: [:create]
- # patch "p/:id/save" => "save_post#create", as: :save_post
-
+ 
   post "p/vote" => "votes#create"
   get '/draft', to: 'posts#draft'
   get '/communities/:id/mod' , to: 'communities#mod' , as: 'mod' 
