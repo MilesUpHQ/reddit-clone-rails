@@ -134,6 +134,15 @@
     border: 1px solid none;
 }
 
+.imagecss {
+    object-fit: cover;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    height: 50%;
+  }
+
 .cover-pic {
     margin-left: 0px;
     height: "200px";
