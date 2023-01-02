@@ -49,3 +49,7 @@
 	left: 0.5em;
 	margin-right: -50%;
 }
+
+::-webkit-file-upload-button {
+  display: none;
+}

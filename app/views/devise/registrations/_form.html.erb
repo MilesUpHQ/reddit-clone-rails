@@ -1,37 +1,47 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <div class="form-group">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, class: "field" %>
+  <div class="form-group first">
+    <%= f.label :username, class: "form-label" %>
+    <%= f.text_field :username, class: "form-control", autofocus: true, autocomplete: "username" %>
+  </div>
+  <div class="form-group first">
+    <%= f.label :first_name, class: "form-label" %>
+    <%= f.text_field :first_name, class: "form-control", autofocus: true, autocomplete: "first_name" %>
+  </div>
+  <div class="form-group first">
+    <%= f.label :last_name, class: "form-label" %>
+    <%= f.text_field :last_name, class: "form-control", autofocus: true, autocomplete: "last_name" %>
   </div>
   <div class="form-group">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, class: "field" %>
+    <%= f.label :email, class: "form-label" %>
+    <%= f.email_field :email, class: "form-control", autocomplete: "email" %>
   </div>
   <div class="form-group">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, class: "field" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :password %>
+    <%= f.label :password, class: "form-label" %>
+    <%= f.password_field :password, class: "form-control", autocomplete: "new-password" %>
     <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <% end %>
   </div>
   <div class="form-group">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.label :password_confirmation, class: "form-label" %>
+    <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "new-password" %>
+  </div>
+  <div class="form-group last">
+    <%= f.label :current_password, class: "form-label" %>
+    <%= f.password_field :current_password, class: "form-control", autocomplete: "current-password" %>
   </div>
   <div class="form-group">
-    <%= label_tag :profile_picture %>
+    <%= f.label :profile_picture, class: "form-label" %>
     <%= f.file_field :profile_image, class: "form-control" %>
   </div>
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <p class="small pb-lg-2">
+    Didn't receive
+    <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+      <%= link_to "confirmation instructions", new_account_confirmation_path(resource_name) %>
+    <% end %>
+    ?
+  </p>
+  <div class="form-group">
+    <%= f.submit params[:action]=="edit" ? "Edit" : "Signup", class: "btn btn-login" %>
   </div>
-<% end %>
+  <% end %>
