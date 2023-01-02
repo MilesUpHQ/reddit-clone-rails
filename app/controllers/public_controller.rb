@@ -14,7 +14,7 @@ class PublicController < ApplicationController
     @my_communities = Community.where(account_id: current_account.id)
     @profile = Account.find_by_username params[:username]
     @posts = @profile.posts
-      @saved_posts=Post.where(saved: true,account_id: current_account.id)
+    @saved_posts=Post.where(saved: true,account_id: current_account.id)
     @my_comments = Comment.where(account_id: current_account.id)
     @my_posts = Post.where(account_id: current_account.id)
   end
