@@ -17,8 +17,6 @@ class SavePostController < ApplicationController
        
   end
 
-  
- 
   private
 
   def save_post_params

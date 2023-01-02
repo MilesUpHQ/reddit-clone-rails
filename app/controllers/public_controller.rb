@@ -17,9 +17,7 @@ class PublicController < ApplicationController
     @my_comments = Comment.where(account_id: current_account.id)
   end
 
-  def saved_posts
-    @saved_posts = SavePost.where(account_id: current_account.id)
- end
+ 
 
   def my_comments
     @my_comments = Comment.where(account_id: current_account.id).pluck(:message).with_rich_text_content.order(created_at: :asc)
