@@ -1,9 +1,9 @@
-<% for subscriber in @subscriptions %>
-  <span class="card">
+  <% for subscriber in @subscriptions %>
+  <span class="card mb-3">
     <b>Community Name : <%= link_to subscriber.community.name, subscriber.community%></b>
     <div class="row">
       <div class="col-10">
-        <p> <b>Summary : </b><%= subscriber.community.summary %></p>
+        <p> <b>Summary : </b>  <%= truncate(subscriber.community.summary, :length => 60, :omission => "%s") % link_to("...more", subscriber.community) %></p>
       </div>
       <div class="button">
         <div class="col-12 sm-2">
