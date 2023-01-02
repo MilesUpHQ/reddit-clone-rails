@@ -36,7 +36,6 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
-    @community = Community.find(params[:community_id])
   end
 
   def draft
