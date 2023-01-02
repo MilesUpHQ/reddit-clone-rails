@@ -1,8 +1,8 @@
   <% if @community.cover_image.attached? %>
-   <%= image_tag(@community.cover_image, class: "cover-image") %>
-  <% else %>
-    <%= image_tag("Cover-Image.jpg" ,class: "cover-image") %>
-  <% end %>
+  <%= image_tag(@community.cover_image, class: "cover-image") %>
+<% else %>
+  <%= image_tag("Cover-Image.jpg" ,class: "cover-image") %>
+<% end %>
 <div class="container">
   <div class="row">
     <div class="col-sm-1 mr-3">
@@ -21,7 +21,7 @@
         </span>
         <div class="ml-3 pl-2">
           <% if @is_subscribed %>
-              <%= render partial: "communities/unsubscribe" %>
+            <%= render partial: "communities/unsubscribe" %>
           <% else %>
             <%= render partial: "communities/subscribe", locals: { community_id: @community.id } %>
           <% end %>
