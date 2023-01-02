@@ -8,7 +8,7 @@ class PublicController < ApplicationController
   end
   def profile
     community_list
-    
+    @saved_posts = SavePost.where(account_id: current_account.id)
     @subscriptions = Subscription.where(account_id: current_account.id)
     @community = Community.find(@subscriptions.pluck(:community_id))
     @my_communities = Community.where(account_id: current_account.id)
@@ -16,6 +16,10 @@ class PublicController < ApplicationController
     @posts = @profile.posts
     @my_comments = Comment.where(account_id: current_account.id)
   end
+
+  def saved_posts
+    @saved_posts = SavePost.where(account_id: current_account.id)
+ end
 
   def my_comments
     @my_comments = Comment.where(account_id: current_account.id).pluck(:message).with_rich_text_content.order(created_at: :asc)

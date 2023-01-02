@@ -7,6 +7,7 @@ class Post < ApplicationRecord
   validates_presence_of :title, :body, :account_id, :community_id
   has_many :comments
   has_many :reports
+  has_many :save_posts
   has_rich_text :body 
   has_many_attached :images
 
