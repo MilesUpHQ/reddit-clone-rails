@@ -13,7 +13,6 @@ module SavePostHelper
   end
 
   def selected_community communities
-    print "#############\n\n\n\n\n#################\n\n\n\n###################\n\n\n ",params[:community]
     communities.include?(params[:community].to_i) ? params[:community] : ""
   end
 
