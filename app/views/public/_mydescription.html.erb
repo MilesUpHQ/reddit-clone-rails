@@ -1,18 +1,20 @@
-<div class="card mt-auto" style="height: 58rem;">
-  <% if @profile.profile_image.attached? %>
-    <%= image_tag(@profile.profile_image, class: "profile-pic") %>
-  <% else %>
-    <%= image_tag("rediit-logo.png",class: "profile-pic") %>
-  <% end %>
-
-  <%= image_tag("reddit-png.jpg",class: "rounded bg-danger") %>
-  <center class="h4"><%= @profile.full_name %></center>
-  <div class="contents ml-3">
-
-    <p><b>Username:</b> <%= @profile.username %></p>
+<div class="card mt-auto" style="height: 50rem;">
+  <div class="cover_image">
+    <%= image_tag("Cover-Image.jpg" ,class: "cover-image h-25") %>
+    <div class="topcover">
+      <%= image_tag("reddit-png.jpg",class: "img-fluid ml-5 mr-5 ") %>
+      <div class="contents ml-5 mr-5">
+  
+    <center class="h4"><%= @profile.full_name %></center>
+    <center><b><%=link_to 'u/'+@profile.username,edit_account_registration_path %></b></center><br>
     <p><b>Bio: </b>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <p><b>Cake day:</b> <%= @profile.created_at.strftime("%d/%m/%Y") %></p>
-    <center><b>Karma:</b> <%= @profile.karma %> <span class="fa fa-star text-warning"></span> </center>
+    <div class="row">
+    <div class="col-7"><p><b>Cake day:</b> <%= @profile.created_at.strftime("%d/%m/%Y") %></p></div>
+    <div class="col-5"><b>Karma:</b> <%= @profile.karma %> <span class="fa fa-star text-warning"></span></div>
   </div>
-  <%= link_to "Create post", new_community_post_path(community_id: Community.first.id), class: "join-btn create-post-btn text-white" %>
+    <center><%= link_to "Create post", new_community_post_path(community_id: Community.first.id), class: "join-btn create-post-btn text-white mt-3 mr-4" %></center>
+  </div>
+    </div>
+  </div>
+</div>
 </div>

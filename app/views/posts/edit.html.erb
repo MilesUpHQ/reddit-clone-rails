@@ -5,11 +5,9 @@
       <div class="col-10 p-0">
         <h5 class="">Edit Post</h5>
       </div>
-      <% unless params[:action] == 'edit' %>
       <div class="col-2 p-0">
         <button type="button" class="draft-btn" data-toggle="modal" data-target="#myModal">Drafts</button>
       </div>
-      <% end %>
     </div>
     <div class="row mt-3">
       <%= render partial: "form" %>
