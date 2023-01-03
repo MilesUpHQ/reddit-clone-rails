@@ -1,6 +1,6 @@
 <div class = "comment" >
   <% if reply.account.profile_image.attached? %>
-    <%= link_to image_tag(reply.account.profile_image, :class => "small-pic float-left m-r-15"),profile_path(reply.account.username) %>
+    <%= link_to image_tag(reply.account.profile_image, class: "small-pic float-left m-r-15"),profile_path(reply.account.username) %>
   <% else %>
     <img class="small-pic float-left m-r-15" src="https://www.iconpacks.net/icons/2/free-reddit-logo-icon-2436-thumb.png">
   <% end %> 
