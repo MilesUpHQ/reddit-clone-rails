@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :accounts
   get "u/:username" => "public#profile", as: :profile
-  get "/saved_posts" => "posts#saved_posts"
+  get "/saved_posts" => "save_post#saved_posts"
   resources :communities, path: :r do
     resources :posts, path: :p, except: [:new] do
       member do
@@ -16,14 +16,20 @@ Rails.application.routes.draw do
 
   get "/submit", to: "posts#new", as: "new_community_post"
 
+
+  resources :save_post do
+    member do
+      patch :save
+      patch :unsave
+    end
+  end
+
   resources :report_reasons
   resources :banned_users
   resources :subscriptions
   resources :comments, only: [:create]
-
   resources :reports, only: [:create]
-  patch "p/:id/save" => "save_post#create", as: :save_post
-
+ 
   post "p/vote" => "votes#create"
   
   get 'r/:id/mod' , to: 'communities#mod' , as: 'mod' 

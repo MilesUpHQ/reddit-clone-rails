@@ -65,16 +65,8 @@ def update
   end
 end
 
-  def unsave
-    @post = Post.find(params[:id])
-    @post.update(saved: false)
-    redirect_back(fallback_location: root_path)
-  end
 
-
-  def saved_posts
-    @saved_posts=Post.where(saved: true)
-  end
+  
 
   def close
     @post.update(closed: "true")

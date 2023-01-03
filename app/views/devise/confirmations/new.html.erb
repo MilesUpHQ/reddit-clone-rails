@@ -1,16 +1,39 @@
-<h2>Resend confirmation instructions</h2>
-
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+<div class="community_post pb-5">
+  <div class="row d-flex justify-content-center align-items-center">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+      <div class="card text-dark" style="border-radius: 1rem;">
+        <div class="card-body p-5 text-center">
+          <div class="text-left">
+            <h5 class="fw-bold mb-4">Resend confirmation instructions</h5>
+            <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+              <div class="form-group">
+                <%= f.label :email, class: "form-label" %>
+                <%= f.email_field :email, class: "form-control "+is_error(:email).to_s, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+                <p class="text-danger"><%= error_msg :email %></p>
+              </div>
+              <p class="small">
+                Forgot your
+                <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                  <%= link_to "password", new_account_password_path(resource_name) %>
+                <% end %>
+                ?</p>
+              <div class="form-group">
+                <%= f.submit "Resend confirmation email", class: "btn btn-login" %>
+              </div>
+            <% end %>
+            <p class="small">Already a Redditor?
+              <%- if controller_name != 'sessions' %>
+                <%= link_to "Log in", new_account_session_path %>
+              <% end %>
+            </p>
+            <p class="small">New to Reddit?
+              <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+                <%= link_to "Sign up", new_account_registration_path %>
+              <% end %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

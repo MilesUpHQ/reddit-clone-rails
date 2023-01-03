@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_28_060408) do
+ActiveRecord::Schema.define(version: 2023_01_03_072531) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "first_name"
@@ -142,8 +142,8 @@ ActiveRecord::Schema.define(version: 2022_12_28_060408) do
     t.string "summary"
     t.integer "post_count_this_week", default: 0
     t.string "category"
-    t.string "slug"
     t.integer "owner_id"
+    t.string "slug"
     t.index ["account_id"], name: "index_communities_on_account_id"
     t.index ["slug"], name: "index_communities_on_slug", unique: true
   end
@@ -207,6 +207,15 @@ ActiveRecord::Schema.define(version: 2022_12_28_060408) do
     t.index ["post_id"], name: "index_reports_on_post_id"
     t.index ["report_category_id"], name: "index_reports_on_report_category_id"
     t.index ["report_reason_id"], name: "index_reports_on_report_reason_id"
+  end
+
+  create_table "save_posts", force: :cascade do |t|
+    t.integer "account_id"
+    t.integer "post_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_save_posts_on_account_id"
+    t.index ["post_id"], name: "index_save_posts_on_post_id"
   end
 
   create_table "subscriptions", force: :cascade do |t|

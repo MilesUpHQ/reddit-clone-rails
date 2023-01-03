@@ -23,6 +23,7 @@ $(document).on('turbolinks:load', function () {
             $(this).addClass('active')
         }
     }
+
     const community_link = $('.community-nav-link')
 
     function link_community() {
