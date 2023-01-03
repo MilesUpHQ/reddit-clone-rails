@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   patch "p/:id/save" => "save_post#create", as: :save_post
 
   post "p/vote" => "votes#create"
-  get '/draft', to: 'posts#draft'
+  
   get 'r/:id/mod' , to: 'communities#mod' , as: 'mod' 
   
   match '*path', to: 'errors#not_found', via: :all
