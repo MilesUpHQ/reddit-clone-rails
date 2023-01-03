@@ -42,7 +42,7 @@ end
   )
 end
 
-%w[Spam Copyright Hate Impersonation Harassment Misinformation].each do |category|
+%w[Spam Copyright Hate Impersonation Harassment].each do |category|
   ReportCategory.create!(name: category)
 end
 
@@ -79,11 +79,4 @@ ReportReason.create!(
   report_category_id: 5,
   reason: reason
 )
-end
-
-["Yours or an individual","Someone else's"].each do |reason|
-  ReportReason.create!(
-    report_category_id: 12,
-    reason: reason
-  )
 end
