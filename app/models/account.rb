@@ -8,6 +8,7 @@ class Account < ApplicationRecord
   has_many :posts
   has_many :comments
   has_many :votes
+  has_many :save_posts
   has_one_attached :profile_image
   has_many :banned_users
 
