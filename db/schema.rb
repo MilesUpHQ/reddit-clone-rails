@@ -142,8 +142,8 @@ ActiveRecord::Schema.define(version: 2022_12_28_060408) do
     t.string "summary"
     t.integer "post_count_this_week", default: 0
     t.string "category"
-    t.string "slug"
     t.integer "owner_id"
+    t.string "slug"
     t.index ["account_id"], name: "index_communities_on_account_id"
     t.index ["slug"], name: "index_communities_on_slug", unique: true
   end

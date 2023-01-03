@@ -1,4 +1,4 @@
-<div class="card mt-auto" style="height: 50rem;">
+<div class="card mt-auto" style="height: 52rem;">
   <div class="cover_image" >
       <%= image_tag("Cover-Image.jpg" ,class: "cover-image h-25") %>
     <div class="topcover">
@@ -13,6 +13,6 @@
     <p><b>Cake day:</b> <%= @profile.created_at.strftime("%d/%m/%Y") %></p>
     <center><b>Karma:</b> <%= @profile.karma %> <span class="fa fa-star text-warning"></span> </center>
   </div>
-  <%= link_to "Create post", new_community_post_path(community_id: Community.first.id), class: "join-btn create-post-btn text-white" %>
+  <%= link_to "Create post", new_community_post_path(community_id: Community.first.id), class: "join-btn create-post-btn text-white mt-4" %>
   </div>
 </div>
