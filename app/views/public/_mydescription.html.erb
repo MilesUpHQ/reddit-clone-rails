@@ -1,4 +1,4 @@
-<div class="card mt-auto" style="height: 47rem;">
+<div class="card mt-auto" style="height: 50rem;">
   <div class="cover_image">
     <%= image_tag("Cover-Image.jpg" ,class: "cover-image h-25") %>
     <div class="topcover">
@@ -6,7 +6,7 @@
       <div class="contents ml-5 mr-5">
   
     <center class="h4"><%= @profile.full_name %></center>
-    <center><b><%=link_to 'u/'+@profile.username,edit_account_registration_path %></b></center>
+    <center><b><%=link_to 'u/'+@profile.username,edit_account_registration_path %></b></center><br>
     <p><b>Bio: </b>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     <div class="row">
     <div class="col-7"><p><b>Cake day:</b> <%= @profile.created_at.strftime("%d/%m/%Y") %></p></div>
