@@ -79,6 +79,13 @@
   cursor: pointer;
 }
 
+.show_post {
+  background: #dae0e6;
+  padding-top: 20px;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
 .post-tab-nav-link {
   background-color: #fff;
   padding: 10px 20px;
@@ -132,24 +139,6 @@
 
 .create-post a:hover {
   cursor: text;
-  text-decoration: none;
-}
-
-
-.list-join-btn {
-  border: 1px solid #0079d3;
-  margin: 5px;
-  padding: 2px 15px;
-  display: inline-block;
-  border-radius: 25px;
-  font-size: 0.8em;
-  font-weight: 700;
-  color: #0079d3;
-  text-align: center;
-  text-decoration: none;
-  background-color: #0079d3;
-}
-.list-join-btn:hover {
   text-decoration: none;
 }
 
@@ -240,4 +229,16 @@
   a {
     color: black;
   }
+  i {
+    padding: 3px;
+  }
+}
+
+.rules-card-title {
+  background-color: #0079d3;
+  font-size: 22px;
+  font-weight: bold;
+  color: #333333;
+  text-transform: uppercase;
+  text-align: center;
 }

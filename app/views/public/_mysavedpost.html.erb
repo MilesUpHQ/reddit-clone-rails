@@ -1,0 +1,15 @@
+<div class="card p-3 mb-3">
+  <p>Saved Posts</p>
+
+<% @saved_posts.each do |saved_post| %>
+  <div class="card p-3 mb-3">
+    <div class="row">
+      <div class="col-11">
+        <h4 class= "mb-1"><%= link_to saved_post.post.title, community_post_path(saved_post.post.community,saved_post.post) %></h4>
+        <p><small><%= link_to saved_post.post.community.name, community_path(saved_post.post.community) %> Posted by <%= link_to saved_post.account.username, profile_path(saved_post.account.username) %> <%= time_ago_in_words saved_post.created_at %> ago</small></p>
+        <p><%= saved_post.post.body.to_plain_text.truncate(30) %></p>
+      </div>
+    </div>
+  </div>
+<% end %>   
+</div>  
