@@ -17,23 +17,18 @@ Rails.application.routes.draw do
   get "/submit", to: "posts#new", as: "new_community_post"
 
 
-  resources :save_post do
-    member do
-      patch :save
-      patch :unsave
-    end
-  end
+  post 'save_post/:id', to: "save_post#create", as: "save_post_path"
 
   resources :report_reasons
   resources :banned_users
   resources :subscriptions
   resources :comments, only: [:create]
   resources :reports, only: [:create]
- 
+
   post "p/vote" => "votes#create"
-  
-  get 'r/:id/mod' , to: 'communities#mod' , as: 'mod' 
-  
+
+  get 'r/:id/mod' , to: 'communities#mod' , as: 'mod'
+
   match '*path', to: 'errors#not_found', via: :all
   get :autocomplete, to: 'communities#autocomplete'
   root to: 'public#index'

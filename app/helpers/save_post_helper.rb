@@ -1,11 +1,17 @@
 module SavePostHelper
 
+  def set_saved_post post
+    @saved_post = SavePost.find_by(account_id: current_account.id,  post_id: post.id) if account_signed_in?
+  end
+
   def is_saved post
-    account_signed_in? && post.saved ? true : false
+    set_saved_post post
+    account_signed_in? && @saved_post ? "fa-bookmark" : "fa-bookmark-o"
   end
 
   def save_or_unsave post
-    post.saved? ? " Unsave" : " Save"
+    set_saved_post post
+    @saved_post ? " Unsave" : " Save"
   end
 
   def joined post
