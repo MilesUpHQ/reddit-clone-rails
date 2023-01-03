@@ -1,0 +1,26 @@
+<div class="card">
+  <div class="card-body">
+    <div class="text-center">
+      <% if @post.community.cover_image.attached? %>
+        <%= image_tag(@post.community.cover_image, class: "card-img-top home-small-cover") %>
+      <% else %>
+        <%= image_tag("Cover-Image.jpg" ,class: "card-img-top home-small-cover") %>
+      <% end %>
+      <% if @post.community.profile_image.attached? %>
+        <%= image_tag(@post.community.profile_image, class: "ml-3 home-small-profile") %>
+      <% else %>
+        <%= link_to "#" do %>
+          <%= image_tag("profile-pic.png" ,class: "ml-3 home-small-profile") %>
+        <% end %>
+      <% end %>
+      <h5 class="card-title mt-1"><%= @post.community.name %></h5>
+      <p class="card-text"><%= @post.community.summary %></p>
+    </div>
+  </div>
+</div>
+<div class="card mt-5">
+  <h5 class="card-title">Community Rules</h5>
+  <div class="card-body">
+    <p class="card-text"><%= @post.community.rules %></p>
+  </div>
+</div>     
