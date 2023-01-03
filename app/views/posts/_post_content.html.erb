@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class = "like-unlike">
-        <p><small><%= link_to @post.community.name, community_path(@post.community) %> Posted by <%= link_to @post.account.username, profile_path(@post.account.username) %> <%= time_ago_in_words @post.created_at %> ago</small></p> 
+        <p><small>r/<%= link_to @post.community.name.downcase, community_path(@post.community) %> Posted by u/<%= link_to @post.account.username, profile_path(@post.account.username) %> <%= time_ago_in_words @post.created_at %> ago</small></p> 
         <h3 class="card-title"><%= @post.title %></h3>
       </div>
     </div>      

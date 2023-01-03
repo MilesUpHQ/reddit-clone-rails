@@ -79,6 +79,13 @@
   cursor: pointer;
 }
 
+.show_post {
+  background: #dae0e6;
+  padding-top: 20px;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
 .post-tab-nav-link {
   background-color: #fff;
   padding: 10px 20px;
@@ -240,4 +247,16 @@
   a {
     color: black;
   }
+  i {
+    padding: 3px;
+  }
+}
+
+.rules-card-title {
+  background-color: #0079d3;
+  font-size: 22px;
+  font-weight: bold;
+  color: #333333;
+  text-transform: uppercase;
+  text-align: center;
 }
