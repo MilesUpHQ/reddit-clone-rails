@@ -1,5 +1,5 @@
 class Account < ApplicationRecord
-  
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :lockable
 
@@ -13,6 +13,10 @@ class Account < ApplicationRecord
 
   validates_presence_of :first_name, :last_name, :username
   validates :username, uniqueness: true
+  validates_format_of :first_name, :last_name,:multiline => true, :with => /^[a-z]+$/i
+  validates_format_of :username, :multiline => true, :with => /^[a-z0-9]+$/i
+  validate :acceptable_image
+
   def full_name
     "#{first_name} #{last_name}"
   end
@@ -24,5 +28,13 @@ class Account < ApplicationRecord
   def downvoted_post_ids
     self.votes.where(upvote: false).pluck(:post_id)
   end
-  
+
+  def acceptable_image
+    return unless profile_image.attached?
+    acceptable_types = ["image/jpeg", "image/png", "image/gif"]
+    unless acceptable_types.include?(profile_image.content_type)
+      errors.add(:profile_image, "must be a JPEG or PNG")
+    end
+  end
+
 end
