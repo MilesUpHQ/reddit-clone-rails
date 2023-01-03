@@ -1,18 +1,20 @@
-<div class="card mt-auto" style="height: 52rem;">
-  <div class="cover_image" >
-      <%= image_tag("Cover-Image.jpg" ,class: "cover-image h-25") %>
+<div class="card mt-auto" style="height: 47rem;">
+  <div class="cover_image">
+    <%= image_tag("Cover-Image.jpg" ,class: "cover-image h-25") %>
     <div class="topcover">
-      <%= image_tag("reddit-png.jpg",class: "rounded bg-danger ml-5 mr-5 ") %>
+      <%= image_tag("reddit-png.jpg",class: "img-fluid ml-5 mr-5 ") %>
+      <div class="contents ml-5 mr-5">
+  
+    <center class="h4"><%= @profile.full_name %></center>
+    <center><b><%=link_to 'u/'+@profile.username,edit_account_registration_path %></b></center>
+    <p><b>Bio: </b>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <div class="row">
+    <div class="col-7"><p><b>Cake day:</b> <%= @profile.created_at.strftime("%d/%m/%Y") %></p></div>
+    <div class="col-5"><b>Karma:</b> <%= @profile.karma %> <span class="fa fa-star text-warning"></span></div>
+    <center><%= link_to "Create post", new_community_post_path(community_id: Community.first.id), class: "join-btn create-post-btn text-white mt-3 mr-3" %></center>
+  </div>
+  </div>
     </div>
   </div>
-  <center class="h4"><%= @profile.full_name %></center>
-  <div class="contents ml-5 mr-5">
-
-    <p><b>Username:</b> <%= @profile.username %></p>
-    <p><b>Bio: </b>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <p><b>Cake day:</b> <%= @profile.created_at.strftime("%d/%m/%Y") %></p>
-    <center><b>Karma:</b> <%= @profile.karma %> <span class="fa fa-star text-warning"></span> </center>
-  </div>
-  <%= link_to "Create post", new_community_post_path(community_id: Community.first.id), class: "join-btn create-post-btn text-white mt-4" %>
-  </div>
+</div>
 </div>
