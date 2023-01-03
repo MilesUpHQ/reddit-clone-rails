@@ -2,13 +2,13 @@ class ReportsController < ApplicationController
   def create
     report = Report.new (report_params)
     if report.save 
-      flash[:notice] = "Post reported"
-      respond_to do |format|
-        format.js
-        format.html {  redirect_to post_path(report.post_id, report.post) }
-      end
+      flash[:notice] = "Thanks for your report. Your reporting helps make Reddit a better, safer, and more welcoming place for everyone; and it means a lot to us."
     else
-      render "form"
+      flash[:alert] = "Sorry something went wrong and this post was not reported. Can you please try again?"
+    end
+    respond_to do |format|
+      format.html {  redirect_to community_post_path(report.post.community_id, report.post) }
+      format.js
     end
   end
 
