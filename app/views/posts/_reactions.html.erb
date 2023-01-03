@@ -1,0 +1,24 @@
+<div class = "reactions">
+  <% if signed_in? %>
+    <% if(@post.account_id == current_account.id) %>
+      <div class="btn btn-light">
+        <i class="fa fa-edit"></i><%= link_to "Edit", edit_community_post_path %>
+      </div>
+      <div class="btn btn-light">
+        <i class="fa fa-trash"></i><%= link_to "Destroy", community_post_path(@post.community,@post),
+              method: :delete,
+              data: { confirm: "Are you sure?" } %>
+      </div>
+      <% if !(@post.closed?) %>
+        <div class="btn btn-light" id="close-link">
+          <i class="fa fa-times"></i><%= link_to "Close", close_community_post_path(@post.community,@post), method: :patch %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>   
+  <div class = "btn btn-light"><i class="fa fa-comment"></i><%= @post.comments.count %> Comments </div>
+  <button type="button" class="btn btn-light" data-toggle="modal" data-target="#myModal" remote = "true">
+    <i class="far fa-flag"></i>Report
+  </button>
+</div>    
+<%= render partial: "report" %>
