@@ -7,7 +7,7 @@
     </div>
     <div class="col-9">
       <div class="create-post m-1">
-        <%= link_to "Create Post", new_community_post_path(community_id: Community.first.id), class: "form-control"  %>
+        <%= link_to "Create Post", pass_community_params(community), class: "form-control"  %>
       </div>
     </div>
     <div class="col-2 create-post-img">
