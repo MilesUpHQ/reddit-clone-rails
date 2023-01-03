@@ -8,8 +8,17 @@
           <div class="fa fa-arrow-down downvote <%= is_downvoted @post %>"></div>
         </div>
       </div>
+       <% if @post.community.profile_image.attached? %>
+        <%= link_to community_path(@post.community) do %>
+          <%= image_tag(@post.community.profile_image, class: "community-icon") %>
+        <% end %>
+      <% else %>
+        <%= link_to community_path(@post.community) do %>
+          <%= image_tag("profile-pic.png" ,class: "community-icon") %>
+        <% end %>
+      <% end %>
       <div class = "like-unlike">
-        <p><small><%= link_to @post.community.name, community_path(@post.community) %> Posted by <%= link_to @post.account.username, profile_path(@post.account.username) %> <%= time_ago_in_words @post.created_at %> ago</small></p> 
+        <p><small>r/<%= link_to @post.community.name.downcase, community_path(@post.community) %> Posted by u/<%= link_to @post.account.username, profile_path(@post.account.username) %> <%= time_ago_in_words @post.created_at %> ago</small></p> 
         <h3 class="card-title"><%= @post.title %></h3>
       </div>
     </div>      
