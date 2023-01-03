@@ -5,11 +5,11 @@
         <div class="card-body p-5 text-center">
           <div class="text-left">
             <h5 class="fw-bold mb-4">Resend confirmation instructions</h5>
-            <%= render "devise/shared/error_messages", resource: resource %>
             <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
               <div class="form-group">
                 <%= f.label :email, class: "form-label" %>
-                <%= f.email_field :email, class: "form-control", autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+                <%= f.email_field :email, class: "form-control "+is_error(:email).to_s, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+                <p class="text-danger"><%= error_msg :email %></p>
               </div>
               <p class="small">
                 Forgot your
