@@ -59,9 +59,9 @@ class CommunitiesController < ApplicationController
   end
 
   def mod
-    @banneduser = BannedUser.new
+    @banneduser = BannedUser.order(created_at: :desc).page(params[:page]).per 5
     @username = Account.pluck(:username).sort
-   end 
+    end 
 
   def usernames
     query = params[:username]

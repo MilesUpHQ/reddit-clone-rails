@@ -4,12 +4,12 @@ class Account < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable, :lockable
 
   has_many :subscriptions
-  has_many :communities ,through: :subscriptions
-  has_many :posts
-  has_many :comments
-  has_many :votes
+  has_many :communities ,through: :subscriptions, dependent: :destroy
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :votes, dependent: :destroy
   has_many :save_posts
-  has_one_attached :profile_image
+  has_one_attached :profile_image, dependent: :destroy
   has_many :banned_users
 
   validates_presence_of :first_name, :last_name, :username

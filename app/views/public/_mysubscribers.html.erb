@@ -1,13 +1,13 @@
   <% for subscriber in @subscriptions %>
   <span class="card mb-3">
-    <b>Community Name : <%= link_to subscriber.community.name, subscriber.community%></b>
+    <b class="ml-3">Community Name : <%= link_to subscriber.community.name, subscriber.community%></b>
     <div class="row">
-      <div class="col-10">
+      <div class="col-10 ml-3">
         <p> <b>Summary : </b>  <%= truncate(subscriber.community.summary, :length => 60, :omission => "%s") % link_to("...more", subscriber.community) %></p>
       </div>
       <div class="button">
         <div class="col-12 sm-2">
-          <%= link_to "Create New Post", new_community_post_path(subscriber.community)%>
+          <%= link_to "Create New Post", new_community_post_path(subscriber.community)  , class: "join-btn create-post-btn text-white"%>
         </div>
       </div>
     </div>
