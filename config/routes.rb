@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   resources :reports, only: [:create]
  
   post "p/vote" => "votes#create"
-  get '/draft', to: 'posts#draft'
+  
   get 'r/:id/mod' , to: 'communities#mod' , as: 'mod' 
   
   match '*path', to: 'errors#not_found', via: :all

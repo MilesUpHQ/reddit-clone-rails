@@ -3,7 +3,7 @@
   <div class="row ">
     <div class="tab-content col-sm-7">
       <div id="POSTS" class="tab-pane fade-in active">
-        <%= render partial: "public/tab"%>
+        <%= render partial: "public/tabcpy"%>
         <%= render partial: "posts/list", locals: { posts: @my_posts } %>
       </div>
       <div id="COMMENTS" class="tab-pane fade">
@@ -13,7 +13,7 @@
         <%= render partial: "public/mysavedpost"%>
       </div>
     </div>
-    <div class="col-4 p-3 ml-4" >
+    <div class="col-4 p-2 ml-5" >
       <%= render partial: "public/mydescription"%>
     </div>
   </div>
