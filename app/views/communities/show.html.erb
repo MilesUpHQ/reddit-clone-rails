@@ -20,14 +20,14 @@
           <h3>/r/<%= @community.name.downcase %> : <%= @community.category.downcase %></h3>
         </span>
         <div class="ml-3 pl-2">
-          <% if @is_subscribed %>
-            <%= render partial: "communities/unsubscribe" %>
-          <% else %>
-            <%= render partial: "communities/subscribe", locals: { community_id: @community.id } %>
+          <% unless @community.owner_id == current_account.id %>
+            <% if @is_subscribed %>
+              <%= render partial: "communities/unsubscribe" %>
+            <% else %>
+              <%= render partial: "communities/subscribe", locals: { community_id: @community.id } %>
             <% end %>
-          </div>
+          <% end %>
         </div>
-        <p class="ml-3 pl-2 text-muted">r/<%= @community.name.downcase %></p>
       </div>
     </div>
   </div>
@@ -86,8 +86,8 @@
         <div class="card p-3">
           <%= simple_format @community.rules %>
         </div>
-    
-    
+
+
       </div>
     </div>
   </div>
