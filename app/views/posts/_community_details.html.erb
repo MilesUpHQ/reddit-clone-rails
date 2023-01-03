@@ -2,24 +2,32 @@
   <div class="card-body">
     <div class="text-center">
       <% if @post.community.cover_image.attached? %>
-        <%= image_tag(@post.community.cover_image, class: "card-img-top home-small-cover") %>
+        <%= link_to community_path(@post.community) do %>
+          <%= image_tag(@post.community.cover_image, class: "card-img-top home-small-cover") %>
+        <% end %>  
       <% else %>
-        <%= image_tag("Cover-Image.jpg" ,class: "card-img-top home-small-cover") %>
+        <%= link_to community_path(@post.community) do %>
+          <%= image_tag("Cover-Image.jpg" ,class: "card-img-top home-small-cover") %>
+        <% end %>  
       <% end %>
       <% if @post.community.profile_image.attached? %>
-        <%= image_tag(@post.community.profile_image, class: "ml-3 home-small-profile") %>
+        <%= link_to community_path(@post.community) do %>
+          <%= image_tag(@post.community.profile_image, class: "ml-3 home-small-profile") %>
+        <% end %>
       <% else %>
-        <%= link_to "#" do %>
+        <%= link_to community_path(@post.community) do %>
           <%= image_tag("profile-pic.png" ,class: "ml-3 home-small-profile") %>
         <% end %>
       <% end %>
-      <h5 class="card-title mt-1"><%= @post.community.name %></h5>
+      <%= link_to community_path(@post.community) do %>
+        <h5 class="card-title"><%= @post.community.name %></h5>
+      <% end %>  
       <p class="card-text"><%= @post.community.summary %></p>
     </div>
   </div>
 </div>
 <div class="card mt-5">
-  <h5 class="card-title">Community Rules</h5>
+  <h5 class="rules-card-title">Community Rules</h5>
   <div class="card-body">
     <p class="card-text"><%= @post.community.rules %></p>
   </div>
