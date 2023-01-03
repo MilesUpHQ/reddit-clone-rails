@@ -14,7 +14,6 @@ class Community < ApplicationRecord
   has_many :banned_users
 
 
-
   def validate_name
     if Community.where(name: name).exists?
       errors.add(:name, "has already been taken please choose some other Community name")
