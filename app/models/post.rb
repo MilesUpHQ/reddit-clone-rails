@@ -10,6 +10,11 @@ class Post < ApplicationRecord
   validates :body, presence: { message: "Body can't be blank" }
   has_many :comments, dependent: :destroy
   has_many :reports, dependent: :destroy
+=======
+  validates_presence_of :title, :body,:images,:account_id, :community_id
+  has_many :comments
+  has_many :reports
+>>>>>>> 97afb7e (Multiple images fixed)
   has_many :save_posts
   has_rich_text :body
   has_many_attached :images, dependent: :destroy
