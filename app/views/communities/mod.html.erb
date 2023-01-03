@@ -7,19 +7,16 @@
         <li class="list-group-item"><%= link_to "Flairs" , mod_path(mod: "flairs") %></li>
      </div>
     <div class="col-4 offset-md-4">  
- <div class="card" style="width: 18rem;">
-  <div class="card-header">Banned Users</div>
-  <% @banneduser.each do |user| %>
-   <ul class="list-group list-group-flush">
-      <li class="list-group-item"> <%= user.username %> </li>
-   </ul>
-  <% end %>
+      <div class="card" style="width: 18rem;">
+        <div class="card-header">Banned Users</div>
+        <% @banneduser.each do |user| %>
+        <ul class="list-group list-group-flush">
+        <li class="list-group-item"> <%= user.username %> </li>
+        </ul>
+        <% end %>
+        </div>
+      </div> 
+    </div>                                                
   </div>
-  </div> 
-</div>                                                
-  </div>
- 
-    </div>
-
-
-  <%= render params[:mod].downcase if params[:mod] %>
+</div>
+<%= render params[:mod].downcase if params[:mod] %>
