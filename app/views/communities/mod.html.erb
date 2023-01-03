@@ -1,12 +1,25 @@
 <div class="row">
-  <div class="col-3">
+  <div class="col-2">
     <div class="text-dark mb-3">
       <div class="list-group" id="list-tab" role="tablist">
         <li class="list-group-item text-white bg-secondary">Mod Operations</li>
         <li class="list-group-item border-left border-danger"><%= link_to "Ban Users", mod_path(mod: "Banusers") %></li>
         <li class="list-group-item"><%= link_to "Flairs" , mod_path(mod: "flairs") %></li>
-      </div>
-    </div>
+     </div>
+    <div class="col-4 offset-md-4">  
+ <div class="card" style="width: 18rem;">
+  <div class="card-header">Banned Users</div>
+  <% @banneduser.each do |user| %>
+   <ul class="list-group list-group-flush">
+      <li class="list-group-item"> <%= user.username %> </li>
+   </ul>
+  <% end %>
   </div>
+  </div> 
+</div>                                                
+  </div>
+ 
+    </div>
+
 
   <%= render params[:mod].downcase if params[:mod] %>

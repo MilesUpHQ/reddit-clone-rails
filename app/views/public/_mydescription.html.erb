@@ -1,13 +1,12 @@
-<div class="card mt-auto" style="height: 58rem;">
-  <% if @profile.profile_image.attached? %>
-    <%= image_tag(@profile.profile_image, class: "profile-pic") %>
-  <% else %>
-    <%= image_tag("rediit-logo.png",class: "profile-pic") %>
-  <% end %>
-
-  <%= image_tag("reddit-png.jpg",class: "rounded bg-danger") %>
+<div class="card mt-auto" style="height: 50rem;">
+  <div class="cover_image" >
+      <%= image_tag("Cover-Image.jpg" ,class: "cover-image h-25") %>
+    <div class="topcover">
+      <%= image_tag("reddit-png.jpg",class: "rounded bg-danger ml-5 mr-5 ") %>
+    </div>
+  </div>
   <center class="h4"><%= @profile.full_name %></center>
-  <div class="contents ml-3">
+  <div class="contents ml-5 mr-5">
 
     <p><b>Username:</b> <%= @profile.username %></p>
     <p><b>Bio: </b>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
@@ -15,4 +14,5 @@
     <center><b>Karma:</b> <%= @profile.karma %> <span class="fa fa-star text-warning"></span> </center>
   </div>
   <%= link_to "Create post", new_community_post_path(community_id: Community.first.id), class: "join-btn create-post-btn text-white" %>
+  </div>
 </div>
