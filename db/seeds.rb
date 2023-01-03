@@ -45,21 +45,45 @@ end
 %w[Spam Copyright Hate Impersonation Harassment Misinformation].each do |category|
   ReportCategory.create!(name: category)
 end
+
 ["Harmful Bots","Unsolicited Messaging"].each do |reason|
   ReportReason.create!(
     report_category_id: 1,
     reason: reason
   )
 end
+
 ["Yours or an individual","Someone else's"].each do |reason|
 ReportReason.create!(
   report_category_id: 2,
   reason: reason
 )
 end
+
+["About you","Social problem"].each do |reason|
+  ReportReason.create!(
+    report_category_id: 3,
+    reason: reason
+  )
+end
+
+["Fraud","purpose of entertainment"].each do |reason|
+  ReportReason.create!(
+    report_category_id: 4,
+    reason: reason
+  )
+end
+
 ["You","Someone else"].each do |reason|
 ReportReason.create!(
   report_category_id: 5,
   reason: reason
 )
+end
+
+["Yours or an individual","Someone else's"].each do |reason|
+  ReportReason.create!(
+    report_category_id: 12,
+    reason: reason
+  )
 end
