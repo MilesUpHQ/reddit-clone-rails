@@ -1,6 +1,6 @@
 class CommunitiesController < ApplicationController
   before_action :authenticate_account!, except:  [ :index]
-  before_action :set_community, only: [:show, :edit,:update,:destroy]
+  before_action :set_community, only: [:show, :edit, :update, :destroy, :mod]
   before_action :community_list
   before_action :check_if_banned, only: [:show]
   after_action :count_post_for_this_week, only: [:index]
@@ -58,8 +58,11 @@ class CommunitiesController < ApplicationController
     redirect_to communities_path
   end
 
-  def mod
-    @banneduser = BannedUser.order(created_at: :desc).page(params[:page]).per 5
+  def mod 
+    unless @community.owner_id == current_account.id
+      redirect_back(fallback_location: root_path) and return
+    end
+    @banneduser = BannedUser.where(community_id: @community.id).order(created_at: :desc).page(params[:page]).per 5
     @username = Account.pluck(:username).sort
     end 
 
@@ -94,10 +97,9 @@ class CommunitiesController < ApplicationController
 
   def check_if_banned
     community = Community.find(params[:id])
-    puts current_account.id
     banned_user = BannedUser.find_by(account_id: current_account.id, community_id: community.id)
     unless banned_user.nil?
-      redirect_to '/404'
+      redirect_to '/302' and return
     end
   end
 
