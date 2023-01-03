@@ -36,7 +36,7 @@
     <%= f.password_field :password_confirmation, class: "form-control "+is_error(:password_confirmation).to_s, autocomplete: "new-password" %>
     <p class="text-danger"><%= error_msg :password_confirmation %></p>
   </div>
-  <% if signed_in? and params[:action] == "edit" %>
+  <% if signed_in? %>
     <div class="form-group last">
       <%= f.label :current_password, class: "form-label" %> *
       <%= f.password_field :current_password, class: "form-control "+is_error(:current_password).to_s, autocomplete: "current-password" %>
@@ -48,14 +48,14 @@
     <%= f.file_field :profile_image, class: "form-control "+is_error(:profile_image).to_s %>
     <p class="text-danger"><%= error_msg :profile_image %></p>
   </div>
-  <p class="small pb-lg-2">
-    Didn't receive
-    <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+  <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+    <p class="small pb-lg-2">
+      Didn't receive
       <%= link_to "confirmation instructions", new_account_confirmation_path(resource_name) %>
-    <% end %>
-    ?
-  </p>
-  <div class="form-group">
-    <%= f.submit params[:action]=="edit" ? "Edit" : "Signup", class: "btn btn-login" %>
-  </div>
+      ?
+    </p>
   <% end %>
+  <div class="form-group">
+    <%= f.submit signed_in? ? "Edit" : "Signup", class: "btn btn-login" %>
+  </div>
+<% end %>
