@@ -46,12 +46,6 @@
           </li>
         </ul>
         <div class="float-right">
-        <% unless params[:action] == 'edit' %>
-        <div class="join-btn">
-          <%= button_to "Save as draft", draft_path(post: @post), :method => "get" %>
-          
-        </div>
-        <% end %>
         <div class="join-btn create-post-btn mb-4">
         <%= form.submit "Publish", class: "text-white" %>
         </div>

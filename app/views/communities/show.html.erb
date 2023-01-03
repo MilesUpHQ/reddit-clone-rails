@@ -20,10 +20,12 @@
           <h3>/r/<%= @community.name.downcase %> : <%= @community.category.downcase %></h3>
         </span>
         <div class="ml-3 pl-2">
-          <% if @is_subscribed %>
-            <%= render partial: "communities/unsubscribe" %>
-          <% else %>
-            <%= render partial: "communities/subscribe", locals: { community_id: @community.id } %>
+          <% unless @community.owner_id == current_account.id %>
+            <% if @is_subscribed %>
+              <%= render partial: "communities/unsubscribe" %>
+            <% else %>
+              <%= render partial: "communities/subscribe", locals: { community_id: @community.id } %>
+            <% end %>
           <% end %>
         </div>
       </div>
