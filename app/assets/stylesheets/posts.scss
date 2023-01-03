@@ -15,6 +15,10 @@
   }
 }
 
+.comment {
+  margin-left: 10px;
+}
+
 .sub-comment {
   padding-left: 20px;
 }
@@ -24,7 +28,8 @@
 }
 
 .comment-field {
-  margin-left: 50px;
+  margin-left: 30px;
+  margin-right: 30px; 
 }
 
 .downvote {
@@ -80,6 +85,14 @@
   display: inline-block;
   border: 0.8px solid rgba(99, 108, 114, 0.2);
   justify-content: center;
+}
+
+.show-content {
+  display: flex;
+}
+
+.like-unlike {
+  display: inline;
 }
 
 .post-tab-nav-link.active {
@@ -212,4 +225,19 @@
 .post-card:hover {
   cursor: pointer;
   border: 1px solid #636c72;
+}
+
+.small-pic{
+  height: 30px;
+  width: 30px;
+}
+
+.reactions{
+  display: flex;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  a {
+    color: black;
+  }
 }
