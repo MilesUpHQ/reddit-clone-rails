@@ -1,5 +1,26 @@
-<div class="container">
-  <h2>Sign Up</h2>
-    <%= render 'form'%>
-  <%= render "devise/shared/links" %>
+<div class="community_post pb-5">
+  <div class="row d-flex justify-content-center align-items-center">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+      <div class="card text-dark" style="border-radius: 1rem;">
+        <div class="card-body p-5 text-center">
+          <div class="text-left">
+            <h5 class="fw-bold mb-2">Sign Up</h5>
+            <p class="text-dark-50 login-head-text mb-4">By continuing, you agree are setting up a Reddit account and agree to our User Agreement and Privacy Policy.</p>
+            <div class="d-flex justify-content-center text-center mt-4 pt-1">
+              <a href="#!" class="text-dark"><i class="fab fa-apple fa-lg"></i></a>
+              <a href="#!" class="text-dark"><i class="fab fa-facebook-f fa-lg mx-4 px-2"></i></a>
+              <a href="#!" class="text-dark"><i class="fab fa-google fa-lg"></i></a>
+            </div>
+            <p class="or-line mt-4">OR</p>
+            <%= render 'form'%>
+            <p class="small">Already a Redditor?
+              <%- if controller_name != 'sessions' %>
+                <%= link_to "Log in", new_account_session_path %>
+              <% end %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
