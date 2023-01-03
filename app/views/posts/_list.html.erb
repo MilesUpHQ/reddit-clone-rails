@@ -23,11 +23,6 @@
                   <%= time_ago_in_words post.created_at %> ago</p>
               </div>
             </div>
-            <div class="col-2">
-              <% unless joined post %>
-                <%= link_to "Join", community_path(post.community_id), class: "list-join-btn text-white" %>
-              <% end %>
-            </div>
           </div>
           <div class="row">
             <div class="col-12 d-flex post-title">
