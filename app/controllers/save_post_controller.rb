@@ -1,17 +1,21 @@
 class SavePostController < ApplicationController
+  before_action :authenticate_account!
+
   def create
-    @post = Post.find(params[:id])
+  end
 
-    @post.update(saved: @post.saved ? false : true)
-
-    respond_to do |format|
-      format.js {
-        @post = Post.find(params[:id])
-        @is_saved = @post.saved
-        render "save_post/create"
-      }
-    end
-
+  def save
+    @saved_post = SavePost.new(
+      account_id: current_account.id,
+      post_id: params[:id]
+     )
+    @saved_post.save!
+  end
+  
+  def unsave
+      @saved_post=SavePost.find_by(account_id: current_account.id,  post_id: params[:id])
+       @saved_post.destroy
+       
   end
 
   private
