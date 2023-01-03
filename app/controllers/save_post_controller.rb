@@ -6,7 +6,7 @@ class SavePostController < ApplicationController
     if @saved_post.nil?
       @saved_post = SavePost.new(
         account_id: current_account.id,
-        post_id: params[:post_id]
+        post_id: params[:id]
       )
       @saved_post.save
       @is_saved = true
@@ -17,7 +17,7 @@ class SavePostController < ApplicationController
 
     respond_to do |format|
       format.js {
-        @post_id = params[:post_id]
+        @post_id = params[:id]
         render "save_post/create"
       }
     end
@@ -26,7 +26,7 @@ class SavePostController < ApplicationController
   private
 
   def set_saved_post
-    @saved_post = SavePost.find_by(account_id: current_account.id,  post_id: params[:post_id])
+    @saved_post = SavePost.find_by(account_id: current_account.id,  post_id: params[:id])
   end
 
   def save_post_params

@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get "/submit", to: "posts#new", as: "new_community_post"
 
 
-  resources :save_post
+  post 'save_post/:id', to: "save_post#create", as: "save_post_path"
 
   resources :report_reasons
   resources :banned_users
