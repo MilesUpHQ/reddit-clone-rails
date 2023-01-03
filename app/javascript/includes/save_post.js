@@ -1,11 +1,11 @@
 $( document ).on('turbolinks:load', function() {
-  $(".save").on("click", function(){
-    let post_id = $(this).data("id");
+  $(".saved").on("click", '.save', function(){
+    let post_id = $(this).parent().data("id");
 
     $.ajax({
-      url: "p/"+post_id+"/save",
-      method: "PATCH",
-      data: {},
+      url: "save_post/"+post_id,
+      method: "POST",
+      data: { post_id: post_id },
       success: function(){
         console.log("Saved Successfully..");
       }

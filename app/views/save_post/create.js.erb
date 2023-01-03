@@ -1,2 +1,1 @@
-$(".save").children('.fa').toggleClass(" fa-bookmark-o fa-bookmark");
-$('#save-actions-<%= @post.id %>').text("<%= @is_saved == false ? " Save" : " Unsave" %>");
+$("#save-actions-<%= @post_id %>").children('.fa ').toggleClass(" fa-bookmark-o fa-bookmark").text("<%= @is_saved == false ? " Save" : " Unsave" %>");

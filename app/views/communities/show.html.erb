@@ -8,9 +8,9 @@
     <div class="col-sm-1 mr-3">
       <% if @community.profile_image.attached? %>
         <%= image_tag(@community.profile_image, class: "profile-pic") %>
-      <% else %>
+        <% else %>
         <%= link_to "#" do %>
-          <%= image_tag("profile-pic.png" ,class: "profile-pic") %>
+        <%= image_tag("profile-pic.png" ,class: "profile-pic") %>
         <% end %>
       <% end %>
     </div>
@@ -29,57 +29,66 @@
           <% end %>
         </div>
       </div>
-      <p class="ml-3 pl-2 text-muted">r/<%= @community.name.downcase %></p>
     </div>
   </div>
-</div>
-<div class="community-nav-tab">
-  <ul class="nav">
-    <li class="community-nav-link active"><a data-toggle="tab" href="#post">Posts</a></li>
-    <li class="community-nav-link"><a data-toggle="tab" href="#menu1">Menu 1</a></li>
-    <li class="community-nav-link"><a data-toggle="tab" href="#menu2">Menu 2</a></li>
-  </ul>
-</div>
-<div class="community_post bg-primary">
-  <div class="row">
-    <div class="col-sm-8">
-      <%= render partial: "posts/create_post", locals: { community: @community } %>
-      <div class="tab-content">
-        <div id="post" class="tab-pane fade-in active">
-          <%= render partial: "posts/list", locals: { posts: @posts } %>
+  <div class="community-nav-tab">
+    <ul class="nav">
+      <li class="community-nav-link active"><a data-toggle="tab" href="#post">Posts</a></li>
+      <li class="community-nav-link"><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+      <li class="community-nav-link"><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+    </ul>
+  </div>
+  <div class="community_post bg-primary">
+    <div class="row">
+      <div class="col-sm-8">
+        <% if flash[:notice] %>
+         <div id="notice">
+          <div class="alert alert-success alert-dismissible fade show" role="alert"><%= flash[:notice] %><button
+              type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+          </div>
         </div>
-        <div id="menu1" class="tab-pane fade">
-          <h3>Menu 1</h3>
-          <p>Some content in menu 1.</p>
-        </div>
-        <div id="menu2" class="tab-pane fade">
-          <h3>Menu 2</h3>
-          <p>Some content in menu 2.</p>
+      <% end %>
+        <%= render partial: "posts/create_post", locals: { community: @community } %>
+        <div class="tab-content">
+          <div id="post" class="tab-pane fade-in active">
+            <%= render partial: "posts/list", locals: { posts: @posts } %>
+          </div>
+          <div id="menu1" class="tab-pane fade">
+            <h3>Menu 1</h3>
+            <p>Some content in menu 1.</p>
+          </div>
+          <div id="menu2" class="tab-pane fade">
+            <h3>Menu 2</h3>
+            <p>Some content in menu 2.</p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-sm-4">
-      <div class="card p-2 bg-secondary">
-        <p class="h6 pt-2 text-light">About this community</p>
-        <% if @community.owner_id == current_account.id %>
+      <div class="col-sm-4">
+        <div class="card p-2 bg-secondary">
+          <p class="h6 pt-2 text-light">About this community</p>
+          <% if @community.owner_id == current_account.id %>
           <%= link_to "Mod Tools", mod_path, class: "btn btn-primary"%>
-        <% end %>
-      </div>
-      <div class="card p-3">
-        <p class=""><%= @community.summary %></p>
-        <p class="text-muted"><i class='mr-2 fa fa-birthday-cake'></i>Created <%= @community.created_at.strftime("%b %d, %Y") %></p>
-        <div class="member">
-          <p><%= pluralize @subscriber_count, "member" %></p>
+          <% end %>
         </div>
-        <%= link_to "Create post", new_community_post_path(community: @community.id), :class=>"join-btn create-post-btn text-white" %>
-      </div>
-      <div class="card mt-3 p-2 bg-secondary">
-        <p class="h6 pt-2 text-light">r/<%= @community.name.downcase %> Rules</p>
-      </div>
-      <div class="card p-3">
-        <%= simple_format @community.rules %>
+        <div class="card p-3">
+          <p class=""><%= @community.summary %></p>
+          <p class="text-muted"><i class='mr-2 fa fa-birthday-cake'></i>Created
+            <%= @community.created_at.strftime("%b %d, %Y") %></p>
+          <div class="member">
+            <p><%= pluralize @subscriber_count, "member" %></p>
+          </div>
+          <%= link_to "Create post", new_community_post_path(community: @community.id), :class=>"join-btn create-post-btn text-white" %>
+        </div>
+        <div class="card mt-3 p-2 bg-secondary">
+          <p class="h6 pt-2 text-light">r/<%= @community.name.downcase %> Rules</p>
+        </div>
+        <div class="card p-3">
+          <%= simple_format @community.rules %>
+        </div>
+
+
       </div>
     </div>
   </div>
-</div>
-</div>
+  </div>
