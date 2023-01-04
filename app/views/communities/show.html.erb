@@ -37,7 +37,7 @@
       <li class="community-nav-link"><a data-toggle="tab" href="#menu2">Menu 2</a></li>
     </ul>
   </div>
-  <div class="community_post bg-primary">
+  <div class="community_post">
     <div class="row">
       <div class="col-sm-8">
         <% if flash[:notice] %>
@@ -64,7 +64,7 @@
         </div>
       </div>
       <div class="col-sm-4">
-        <div class="card p-2 bg-secondary">
+        <div class="card p-2 bg-gradient">
           <p class="h6 pt-2 text-light">About this community</p>
           <% if @community.owner_id == current_account.id %>
             <%= link_to "Mod Tools", mod_path, class: "btn btn-primary"%>
@@ -79,7 +79,7 @@
           </div>
           <%= link_to "Create post", new_community_post_path(community: @community.id), :class=>"join-btn create-post-btn text-white" %>
         </div>
-        <div class="card mt-3 p-2 bg-secondary">
+        <div class="card mt-3 p-2 bg-gradient">
           <p class="h6 pt-2 text-light">r/<%= @community.name.downcase %> Rules</p>
         </div>
         <div class="card p-3">

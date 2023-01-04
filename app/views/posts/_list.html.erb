@@ -1,6 +1,6 @@
 <% posts.each do |post| %>
   <% unless post.is_drafted %>
-    <div class="card post-card mb-3">
+    <div class="card post-card mb-3 shadow">
       <div class="row m-0">
         <div class="col-1 m-0 vote-col text-center">
           <div id="vote-actions-<%= post.id %>" class="vote" data-id="<%= post.id %>">
