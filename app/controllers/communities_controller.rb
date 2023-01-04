@@ -101,7 +101,7 @@ class CommunitiesController < ApplicationController
     community = Community.find(params[:id])
     banned_user = BannedUser.find_by(account_id: current_account.id, community_id: community.id)
     unless banned_user.nil?
-      redirect_to '/302' and return
+      redirect_to '/403' and return
     end
   end
 

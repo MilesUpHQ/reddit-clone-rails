@@ -3,7 +3,6 @@
 <% else %>
   <%= image_tag("Cover-Image.jpg" ,class: "cover-image") %>
 <% end %>
-<div class="container">
   <div class="row">
     <div class="col-sm-1 mr-3">
       <% if @community.profile_image.attached? %>
@@ -86,9 +85,7 @@
         <div class="card p-3">
           <%= simple_format @community.rules %>
         </div>
-
-
       </div>
     </div>
   </div>
-  </div>
+ 
