@@ -70,6 +70,11 @@ form input[type=submit] {
   color: #fff;
 }
 
+.bg-gradient {
+  border: none;
+  background: linear-gradient(to top,#001195, #00aff6 );
+}
+
 .community_post {
   background: #dae0e6;
   padding-top: 20px;
