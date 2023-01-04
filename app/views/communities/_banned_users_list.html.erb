@@ -1,7 +1,7 @@
 <div class="card" style="width: 40rem;">
   <div class="card-header">Banned Users <i class="fa fa-info-circle text-primary ml-1"></i></div>
   <% if @banneduser.empty? %>
-    <p>***No Banned Users***</p>
+    <Center>No Banned Users in this community</Center>
   <% else %>
     <% @banneduser.each do |user| %>
       <ul class="list-group list-group-flush">
