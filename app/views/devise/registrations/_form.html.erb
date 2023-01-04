@@ -34,7 +34,7 @@
   <div class="form-group">
     <%= f.label :password_confirmation, class: "form-label" %>
     <%= f.password_field :password_confirmation, class: "form-control "+is_error(:password_confirmation).to_s, autocomplete: "new-password" %>
-    <p class="text-danger"><%= error_msg :password_confirmation %></p>
+    <p class="text-danger"><%= error_msg :password_confirmation %> </p>
   </div>
   <% if signed_in? %>
     <div class="form-group last">
