@@ -1,9 +1,9 @@
 <div class="card" style="width: 40rem;">
   <div class="card-header">Banned Users <i class="fa fa-info-circle text-primary ml-1"></i></div>
-  <% if @banneduser.empty? %>
+  <% if @banned_user.empty? %>
     <Center>No Banned Users in this community</Center>
   <% else %>
-    <% @banneduser.each do |user| %>
+    <% @banned_user.each do |user| %>
       <ul class="list-group list-group-flush">
         <li class="list-group-item"> <%= user.username %> </li>
       </ul>
