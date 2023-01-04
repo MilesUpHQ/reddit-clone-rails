@@ -2,7 +2,7 @@
   <div class="col-3">
     <div class="list-group ml-4" id="list-tab" role="tablist">
       <li class="list-group-item text-white bg-secondary "><i class="fa fa-cog mr-2"></i>User Management</li>
-      <%= link_to mod_path(mod: "Banusers")  do %>
+      <%= link_to mod_path(mod: "Ban_users")  do %>
         <li class="list-group-item border-left border-danger">Ban Users</li>
       <% end %>
       <li class="list-group-item text-white bg-secondary "><i class="fa fa-envelope-open-o mr-2"></i>Mod Help Center</li>
@@ -12,9 +12,9 @@
     </div>
   </div>
   <div class="col-3">
-    <%= render partial: "communities/bannedusers"%>
+    <%= render partial: "communities/banned_users"%>
   </div>
   <div class="col-5 p-2 ml-4">
     <%= render params[:mod].downcase if params[:mod] %>
   </div>
-  </div>
+</div>
