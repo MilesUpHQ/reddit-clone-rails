@@ -1,6 +1,0 @@
-<div class = "infinity">
-  <%= render partial: "posts/draftlist", locals: { posts: @drafts } %>
-</div>
-<div class = "infinite-scrolling">
-   <%= link_to_next_page(@drafts, "posts" , :remote => true) %>
-</div>
