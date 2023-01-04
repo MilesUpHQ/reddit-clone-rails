@@ -15,10 +15,13 @@ class PublicController < ApplicationController
     @profile = Account.find_by_username params[:username]
     @posts = @profile.posts
     @my_comments = Comment.where(account_id: current_account.id)
-    @my_posts = Post.where(account_id: current_account.id)
+
+    @hot_myposts = Post.where(account_id: current_account.id).order(view_count: :desc).page(params[:page]).per 5
+    @top_myposts = Post.where(account_id: current_account.id).order(view_count: :desc).page(params[:page]).per 5
+    @new_myposts = Post.where(account_id: current_account.id).order(created_at: :desc).page(params[:page]).per 5
   end
 
- 
+
 
   def my_comments
     @my_comments = Comment.where(account_id: current_account.id).pluck(:message).with_rich_text_content.order(created_at: :asc)
