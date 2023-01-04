@@ -1,7 +1,0 @@
-$("<%=j render partial: "draftlist", locals: { posts:@drafts } %>").appendTo($(".infinity"));
-
-<% if @drafts.last_page? %>
-  $('.infinite-scrolling').remove();
-<% else %>
-  $('.infinite-scrolling').html("<%=j link_to_next_page(@drafts, 'See more', :remote => true) %>");
-<% end %>
