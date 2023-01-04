@@ -29,7 +29,7 @@ Rails.application.routes.draw do
 
   get 'r/:id/mod' , to: 'communities#mod' , as: 'mod'
 
-  match '*path', to: 'errors#not_found', via: :all
+  match "/404", to: "errors#not_found",via: :all 
   get :autocomplete, to: 'communities#autocomplete'
   root to: 'public#index'
 end
