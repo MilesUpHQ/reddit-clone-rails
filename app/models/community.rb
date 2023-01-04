@@ -5,7 +5,7 @@ class Community < ApplicationRecord
   has_many :accounts, through: :banned_users
   validates_presence_of :summary, :name, :rules, :category
   validates :name ,uniqueness: true
-  validates :url, format: { with: /\A(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?\z/ix }
+  validates :url, format: { with: /\A[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?\z/ix }
   has_many :posts, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
   has_many :subscribers, through: :subscriptions, source: :account
