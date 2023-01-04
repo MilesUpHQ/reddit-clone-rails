@@ -1,7 +1,7 @@
-<%= render partial: "public/profiletab"%>
+<%= render partial: "public/profile_tab"%>
 <div class="community_post">
   <div class="row ">
-    <div class="tab-content col-sm-7">
+    <div class="tab-content col-sm-8">
       <div id="POSTS" class="tab-pane fade-in active">
         <%= render partial: "public/tab_my_post"%>
         <div class="tab-content">
@@ -26,15 +26,14 @@
       </div>
       </div>
       <div id="COMMENTS" class="tab-pane fade">
-        <%= render partial: "public/mycomments", locals: { my_comments: @my_comments } %>
+        <%= render partial: "public/my_comments", locals: { my_comments: @my_comments } %>
       </div>
       <div id="SAVED" class="tab-pane fade">
-        <%= render partial: "public/mysavedpost"%>
+        <%= render partial: "public/my_saved_post"%>
       </div>
     </div>
-    <div class="col-4 p-2 ml-5" >
-      <%= render partial: "public/mydescription"%>
+    <div class="col-sm-4" >
+      <%= render partial: "public/my_description"%>
     </div>
   </div>
-
 </div>
