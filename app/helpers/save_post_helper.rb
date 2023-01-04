@@ -1,7 +1,7 @@
 module SavePostHelper
 
   def set_saved_post post
-    @saved_post = SavePost.find_by(account_id: current_account.id,  post_id: post.id)
+    @saved_post = SavePost.find_by(account_id: current_account.id,  post_id: post.id) if account_signed_in?
   end
 
   def is_saved post
