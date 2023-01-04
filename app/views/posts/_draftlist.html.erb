@@ -1,12 +1,15 @@
-<% if !(@drafts.nil?) %>
+<% if !(@drafts.present?) %>
+  <p class="text-center"> No drafts available </p>
+<% else %> 
   <% @drafts.each do |post| %>
     <div class=" mb-2">
       <div class="row">
         <div class="col-1">
-         <i class="fa fa-file-text-o" aria-hidden="true"></i>  
+          <i class="fa fa-file-text-o" aria-hidden="true"></i>  
         </div>
         <div class="col-9">
-          <h6 class= "mb-1"><%= link_to post.title, edit_community_post_path(post.community, post) %></h6>
+          <h6 class= "mb-1"><%= link_to post.title, edit_community_post_path(post.community_id, post) %></h6>
+            <strong><%= link_to "r/"+post.community.name.capitalize, community_path(post.community), class: "text-dark" %></strong>
           <small> Draft saved  <%= time_ago_in_words post.created_at %> ago</small>
         </div>
         <div class="col-1">
@@ -18,6 +21,4 @@
       <hr>
     </div> 
   <% end %>  
-<% else %>
-  <p> No drafts to display </p> 
 <% end %>
