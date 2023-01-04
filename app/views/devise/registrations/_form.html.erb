@@ -48,12 +48,14 @@
     <%= f.file_field :profile_image, class: "form-control "+is_error(:profile_image).to_s %>
     <p class="text-danger"><%= error_msg :profile_image %></p>
   </div>
-  <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-    <p class="small pb-lg-2">
-      Didn't receive
-      <%= link_to "confirmation instructions", new_account_confirmation_path(resource_name) %>
-      ?
-    </p>
+  <% unless params[:action]=="edit" %>
+    <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+      <p class="small pb-lg-2">
+        Didn't receive
+        <%= link_to "confirmation instructions", new_account_confirmation_path(resource_name) %>
+        ?
+      </p>
+    <% end %>
   <% end %>
   <div class="form-group">
     <%= f.submit signed_in? ? "Edit" : "Signup", class: "btn btn-login" %>
