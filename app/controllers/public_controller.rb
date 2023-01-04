@@ -5,6 +5,7 @@ class PublicController < ApplicationController
     @top_posts = Post.order(view_count: :desc).page(params[:page]).per 5
     @new_posts = Post.order(created_at: :desc).page(params[:page]).per 5
     @hot_posts = Post.order(view_count: :desc).page(params[:page]).per 5
+    
   end
   def profile
     community_list
@@ -16,6 +17,9 @@ class PublicController < ApplicationController
     @posts = @profile.posts
     @my_comments = Comment.where(account_id: current_account.id)
     @my_posts = Post.where(account_id: current_account.id)
+    @hot_myposts = Post.where(account_id: current_account.id).order(view_count: :desc).page(params[:page]).per 5
+    @top_myposts = Post.where(account_id: current_account.id).order(view_count: :desc).page(params[:page]).per 5
+    @new_myposts = Post.where(account_id: current_account.id).order(created_at: :desc).page(params[:page]).per 5
   end
 
  
