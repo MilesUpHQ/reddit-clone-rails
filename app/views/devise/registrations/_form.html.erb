@@ -1,28 +1,28 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <div class="form-group first">
-    <%= f.label "Username *", class: "form-label" %>
-    <%= f.text_field :username, class: "form-control "+is_error(:username).to_s, autofocus: true, autocomplete: "username" %>
-    <p class="text-danger"><%= error_msg :username %></p>
+    <%= f.label "Username *", class: "form-label" %> 
+    <%= f.text_field :username, class: "form-control "+is_errors(:username).to_s, autofocus: true, autocomplete: "username" %>
+    <p class="text-danger"><%= error_message :username %></p>
   </div>
   <div class="form-group first">
     <%= f.label "First Name *", class: "form-label" %>
-    <%= f.text_field :first_name, class: "form-control "+is_error(:first_name).to_s, autofocus: true, autocomplete: "first_name" %>
-    <p class="text-danger"><%= error_msg :first_name %></p>
+    <%= f.text_field :first_name, class: "form-control "+is_errors(:first_name).to_s, autofocus: true, autocomplete: "first_name" %>
+    <p class="text-danger"><%= error_message :first_name %></p>
   </div>
   <div class="form-group first">
     <%= f.label "Last Name *", class: "form-label" %>
-    <%= f.text_field :last_name, class: "form-control "+is_error(:last_name).to_s, autofocus: true, autocomplete: "last_name" %>
-    <p class="text-danger"><%= error_msg :last_name %></p>
+    <%= f.text_field :last_name, class: "form-control "+is_errors(:last_name).to_s, autofocus: true, autocomplete: "last_name" %>
+    <p class="text-danger"><%= error_message :last_name %></p>
   </div>
   <div class="form-group">
     <%= f.label "Email *", class: "form-label" %>
-    <%= f.email_field :email, class: "form-control "+is_error(:email).to_s, autocomplete: "email" %>
-    <p class="text-danger"><%= error_msg :email %></p>
+    <%= f.email_field :email, class: "form-control "+is_errors(:email).to_s, autocomplete: "email" %>
+    <p class="text-danger"><%= error_message :email %></p>
   </div>
   <div class="form-group">
     <%= f.label params[:action] == "edit" ? :new_password : :password, class: "form-label" %>
-    <%= f.password_field :password, class: "form-control "+is_error(:password).to_s, autocomplete: "new-password" %>
-    <p class="text-danger"><%= error_msg :password %></p>
+    <%= f.password_field :password, class: "form-control "+is_errors(:password).to_s, autocomplete: "new-password" %>
+    <p class="text-danger"><%= error_message :password %></p>
     <% if @minimum_password_length %>
       <% if signed_in? and params[:action] == "edit" %>
         <em>(Leave blank if no change)</em>
@@ -33,20 +33,20 @@
   </div>
   <div class="form-group">
     <%= f.label :password_confirmation, class: "form-label" %>
-    <%= f.password_field :password_confirmation, class: "form-control "+is_error(:password_confirmation).to_s, autocomplete: "new-password" %>
-    <p class="text-danger"><%= error_msg :password_confirmation %> </p>
+    <%= f.password_field :password_confirmation, class: "form-control "+is_errors(:password_confirmation).to_s, autocomplete: "new-password" %>
+    <p class="text-danger"><%= error_message :password_confirmation %> </p>
   </div>
   <% if signed_in? %>
     <div class="form-group last">
       <%= f.label :current_password, class: "form-label" %> *
-      <%= f.password_field :current_password, class: "form-control "+is_error(:current_password).to_s, autocomplete: "current-password" %>
-      <p class="text-danger"><%= error_msg :current_password %></p>
+      <%= f.password_field :current_password, class: "form-control "+is_errors(:current_password).to_s, autocomplete: "current-password" %>
+      <p class="text-danger"><%= error_message :current_password %></p>
     </div>
   <% end %>
   <div class="form-group">
     <%= f.label :profile_picture, class: "form-label" %>
-    <%= f.file_field :profile_image, class: "form-control "+is_error(:profile_image).to_s %>
-    <p class="text-danger"><%= error_msg :profile_image %></p>
+    <%= f.file_field :profile_image, class: "form-control "+is_errors(:profile_image).to_s %>
+    <p class="text-danger"><%= error_message :profile_image %></p>
   </div>
   <% unless params[:action]=="edit" %>
     <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
