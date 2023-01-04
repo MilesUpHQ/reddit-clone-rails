@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_account!, except:  [ :index, :show ]
   before_action :set_community, only: [:show, :create, :edit, :update, :destroy, :increment_view_count ,:close]
   before_action :set_post, only: [:show, :edit, :update, :destroy, :increment_view_count ,:close]
+  before_action :set_draft, only: [:new, :edit]
   before_action :find_my_communities, only: [:new, :create, :edit, :update]
   before_action :community_list
   def index
@@ -18,7 +19,6 @@ class PostsController < ApplicationController
   def new
     @post = Post.new 
     @community = Community.find_by(params[:id])  
-    @drafts = Post.drafts(current_account.id).order(created_at: :desc)
   end
 
   def create
@@ -44,21 +44,18 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
-  def draft
-    @drafts =  Post.order(created_at: :desc).page(params[:page]).per(5)
-  end
+  
 
 
 def update
   @post = Post.find(params[:id])
-  @post.community_id = params[:community_id]
+  @post.community_id = params[:community_id] 
   @post.is_drafted = false
   if @post.update(post_values)
     if params[:commit] == "Publish"
       redirect_to community_path(@post.community_id)
     else
       @post.is_drafted = true
-      redirect_to draft_path
     end
   else
     render :edit
@@ -94,6 +91,10 @@ end
 
   def set_post
     @post = Post.includes(:comments).find(params[:id])
+  end
+
+  def set_draft
+    @drafts = Post.drafts(current_account.id).order(created_at: :desc)
   end
 
   def auth_subscriber
