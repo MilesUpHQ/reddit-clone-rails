@@ -1,7 +1,7 @@
 <%= render partial: "public/profiletab"%>
 <div class="community_post">
   <div class="row ">
-    <div class="tab-content col-sm-7">
+    <div class="tab-content col-sm-8">
       <div id="POSTS" class="tab-pane fade-in active">
         <%= render partial: "public/tabcpy"%>
         <%= render partial: "posts/list", locals: { posts: @my_posts } %>
@@ -13,7 +13,7 @@
         <%= render partial: "public/mysavedpost"%>
       </div>
     </div>
-    <div class="col-4 p-2 ml-5" >
+    <div class="col-sm-4" >
       <%= render partial: "public/mydescription"%>
     </div>
   </div>
