@@ -18,7 +18,7 @@ class PostsController < ApplicationController
   def new
     @post = Post.new 
     @community = Community.find_by(params[:id])  
-    @drafts = Post.drafts(current_account.id).order(created_at: :desc).page(params[:page]).per(5)
+    @drafts = Post.drafts(current_account.id).order(created_at: :desc)
   end
 
   def create
