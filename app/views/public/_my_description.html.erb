@@ -1,12 +1,11 @@
-<div class="card mt-auto" style="height: 45rem; width: 20rem">
-  <div class="cover_image">
+<div class="card mt-auto" style="width: 20rem">
     <%= image_tag("Cover-Image.jpg" ,class: "cover_image") %>
     <div class="topcover">
       <%= image_tag("reddit-png.jpg",class: "img-fluid ml-5 mr-5 ") %>
-      <div class="contents ml-5 mr-5">
-
+    </div>
+      <div class="contents ml-5 mr-5 pb-4">
         <center class="h4"><%= @profile.full_name %></center>
-        <center><b><%=link_to 'u/'+@profile.username,edit_account_registration_path %></b></center><br>
+        <center><b class="text-primary">u/<%=@profile.username%></b></center><br>
         <p><b>Bio: </b>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         <div class="row">
           <div class="col-7">
@@ -14,9 +13,10 @@
           </div>
           <div class="col-4"><b>Karma</b> <%= @profile.karma %> <span class="fa fa-star text-warning"></span></div>
         </div>
+        <% if @profile.id == current_account.id %>
         <center><%= link_to "Create post", new_community_post_path(community_id: Community.first.id), class: "join-btn create-post-btn text-white mt-3 mr-4" %></center>
+        <% end %>
       </div>
-    </div>
-  </div>
+
 </div>
 </div>
