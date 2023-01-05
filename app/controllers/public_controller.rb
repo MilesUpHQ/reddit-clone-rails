@@ -7,14 +7,14 @@ class PublicController < ApplicationController
     @top_posts = Post.order(view_count: :desc).page(params[:page]).per 5
     @new_posts = Post.order(created_at: :desc).page(params[:page]).per 5
     @hot_posts = Post.order(view_count: :desc).page(params[:page]).per 5
-
   end
   def profile
+    redirect_to new_account_session_path  unless account_signed_in? 
     community_list
-    @saved_posts = SavePost.where(account_id: current_account.id)
-    @subscriptions = Subscription.where(account_id: current_account.id)
+    @saved_posts =  account_signed_in? ? SavePost.where(account_id: current_account.id) : []
+    @subscriptions = account_signed_in? ? Subscription.where(account_id: current_account.id) : []
     @community = Community.find(@subscriptions.pluck(:community_id))
-    @my_communities = Community.where(account_id: current_account.id)
+    @my_communities = account_signed_in? ? Community.where(account_id: current_account.id) : []
     @profile = Account.find_by_username params[:username]
     @posts = @profile.posts
     @my_comments = Comment.where(account_id: @profile.id)
