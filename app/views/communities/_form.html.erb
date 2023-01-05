@@ -4,15 +4,17 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="create-post m-3">
-          <div class="form-group"> 
+          <div class="form-group">
             <%= label_tag :profile_picture %>
-            <%= form.file_field :profile_image, class: "form-control" %>
+            <%= form.file_field :profile_image, class: "form-control "+is_error(@community,(:profile_image)).to_s %>
+            <p class="text-danger"><%= error_msg(@community, (:profile_image))  %></p>
           </div>
         </div>
         <div class="create-post m-3">
-          <div class="form-group"> 
-            <%= label_tag :cover_picture %> 
-            <%= form.file_field :cover_image, class: "form-control" %>
+          <div class="form-group">
+            <%= label_tag :cover_picture %>
+            <%= form.file_field :cover_image, class: "form-control "+is_error(@community,(:cover_image)).to_s %>
+            <p class="text-danger"><%= error_msg(@community, (:cover_image))  %></p>
           </div>
         </div>
         <div class="create-post m-3 ">
@@ -39,7 +41,8 @@
         <div class="create-post m-3">
           <div class="form-group">
             <%= label_tag :category %>
-            <%= form.select :category, Community::CATEGORIES, class: "form-control" %>
+            <%= form.select :category, Community::CATEGORIES, prompt: "Select Category" ,class: "form-control "+is_error(@community,(:category)).to_s %>
+            <p class="text-danger"><%= error_msg(@community, :category)  %></p>
           </div>
         </div>
         <div class="create-post m-3">
@@ -58,4 +61,4 @@
     </div>
   </div>
 <% end%>
- 
+
