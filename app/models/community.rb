@@ -12,6 +12,8 @@ class Community < ApplicationRecord
   has_one_attached :profile_image
   has_one_attached :cover_image
   has_many :banned_users
+  validate :accept_proflie_image
+  validate :accept_cover_image
 
 
   def validate_name
@@ -20,7 +22,7 @@ class Community < ApplicationRecord
     end
   end
 
-  if Category.table_exists? 
+  if Category.table_exists?
     CATEGORIES = Category.pluck(:name)
   end
     def should_generate_new_friendly_id?
@@ -33,5 +35,20 @@ class Community < ApplicationRecord
         [:name, :category],
         [:name, :category,:url]
       ]
+    end
+
+    def accept_proflie_image
+      return unless profile_image.attached?
+      profile_acceptable_types = ["image/jpeg", "image/png", "image/gif"]
+      unless profile_acceptable_types.include?(profile_image.content_type)
+        errors.add(:profile_image, "must be a JPEG or PNG")
+      end
+    end
+    def accept_cover_image
+      return unless cover_image.attached?
+      cover_acceptable_types = ["image/jpeg", "image/png", "image/gif"]
+      unless cover_acceptable_types.include?(cover_image.content_type)
+        errors.add(:cover_image, "must be a JPEG or PNG")
+      end
     end
 end
