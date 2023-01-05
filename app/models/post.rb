@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   extend FriendlyId
   friendly_id :title ,use: %i[slugged history finders]
+  include Image
 
   belongs_to :account
   belongs_to :community
@@ -28,13 +29,7 @@ class Post < ApplicationRecord
   end
 
   def acceptable_image
-    return unless images.attached?
-    acceptable_types = ["image/jpeg", "image/png", "image/gif"]
-    images.each do |image|
-      unless acceptable_types.include?(image.content_type)
-        errors.add(:images, "All images must be a JPEG or PNG")
-      end
-    end
+    validate_multiple_images(images, :images)
   end
 
 end

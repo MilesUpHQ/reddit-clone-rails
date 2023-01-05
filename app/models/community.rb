@@ -1,5 +1,6 @@
 class Community < ApplicationRecord
   extend FriendlyId
+  include Image
   friendly_id :slug_candidates ,use: %i[slugged history finders]
 
   has_many :accounts, through: :banned_users
@@ -38,17 +39,9 @@ class Community < ApplicationRecord
     end
 
     def accept_proflie_image
-      return unless profile_image.attached?
-      profile_acceptable_types = ["image/jpeg", "image/png", "image/gif"]
-      unless profile_acceptable_types.include?(profile_image.content_type)
-        errors.add(:profile_image, "must be a JPEG or PNG")
-      end
+      validate_image(profile_image, :profile_image)
     end
     def accept_cover_image
-      return unless cover_image.attached?
-      cover_acceptable_types = ["image/jpeg", "image/png", "image/gif"]
-      unless cover_acceptable_types.include?(cover_image.content_type)
-        errors.add(:cover_image, "must be a JPEG or PNG")
-      end
+      validate_image(cover_image, :cover_image)
     end
 end
