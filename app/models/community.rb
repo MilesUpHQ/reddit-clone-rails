@@ -1,5 +1,6 @@
 class Community < ApplicationRecord
   extend FriendlyId
+  include ImageValidation
   friendly_id :slug_candidates ,use: %i[slugged history finders]
 
   has_many :accounts, through: :banned_users
@@ -12,6 +13,8 @@ class Community < ApplicationRecord
   has_one_attached :profile_image
   has_one_attached :cover_image
   has_many :banned_users
+  validate :accept_proflie_image
+  validate :accept_cover_image
 
 
   def validate_name
@@ -20,7 +23,7 @@ class Community < ApplicationRecord
     end
   end
 
-  if Category.table_exists? 
+  if Category.table_exists?
     CATEGORIES = Category.pluck(:name)
   end
     def should_generate_new_friendly_id?
@@ -33,5 +36,12 @@ class Community < ApplicationRecord
         [:name, :category],
         [:name, :category,:url]
       ]
+    end
+
+    def accept_proflie_image
+      validate_image(profile_image, :profile_image)
+    end
+    def accept_cover_image
+      validate_image(cover_image, :cover_image)
     end
 end
