@@ -1,6 +1,6 @@
 <% posts.each do |post| %>
   <% unless post.is_drafted %>
-    <div class="card post-card mb-3">
+    <div class="card post-card mb-3 shadow">
       <div class="row m-0">
         <div class="col-1 m-0 vote-col text-center">
           <div id="vote-actions-<%= post.id %>" class="vote" data-id="<%= post.id %>">
@@ -23,11 +23,6 @@
                   <%= time_ago_in_words post.created_at %> ago</p>
               </div>
             </div>
-            <div class="col-2">
-              <% unless joined post %>
-                <%= link_to "Join", community_path(post.community_id), class: "list-join-btn text-white" %>
-              <% end %>
-            </div>
           </div>
           <div class="row">
             <div class="col-12 d-flex post-title">
@@ -47,8 +42,9 @@
           <div class="row">
             <div class="list-post-img">
               <% if post.images.attached? %>
-                <%# <%= image_tag post.images[0] %>
-                <%= image_tag 'profile-img.jpg' %>
+              <%= link_to community_post_path(post.community_id, post) do %>
+                  <%= image_tag post.images[0] %>
+                <% end %>
               <% else %>
                 <p class="col-12"><%= post.body.to_plain_text.truncate(30) %></p>
               <% end %>
@@ -62,11 +58,10 @@
               <%= link_to "#", class: "list-post-tab" do %>
                 <i class="fa fa-share mt-1"></i> Share
               <% end %>
-              <%= link_to unsave_save_post_path(post.id), class: "list-post-tab",method: :patch do %>
-                <i class="fa-solid fa-bookmark"></i>Unsave
-              <% end %>
-              <%= link_to save_save_post_path(post.id), class: "list-post-tab", method: :patch do %>
-                <i class="fa fa-bookmark-o"></i>Save
+              <%= link_to "#", class: "list-post-tab saved", remote: true, id: "save-actions-"+post.id.to_s, "data-id"=>post.id do %>
+                  <div class="fa <%= is_saved post %> save ">
+                  <%= save_or_unsave post %>
+                </div>
               <% end %>
               <%= link_to "#", class: "list-post-tab" do %>
                 <i class="fa fa-flag-o mt-1"></i> Report
@@ -78,4 +73,5 @@
     </div>
   <% end %>
 <% end %>
+
 <%= render partial: "layouts/backtotop" %>
