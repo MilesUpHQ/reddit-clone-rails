@@ -1,6 +1,6 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <div class="form-group first">
-    <%= f.label "Username *", class: "form-label" %> 
+    <%= f.label "Username *", class: "form-label" %>
     <%= f.text_field :username, class: "form-control "+is_errors(:username).to_s, autofocus: true, autocomplete: "username" %>
     <p class="text-danger"><%= error_message :username %></p>
   </div>
@@ -48,7 +48,7 @@
     <%= f.file_field :profile_image, class: "form-control "+is_errors(:profile_image).to_s %>
     <p class="text-danger"><%= error_message :profile_image %></p>
   </div>
-  <% unless params[:action]=="edit" %>
+  <% unless signed_in? or params[:action]=="edit" %>
     <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
       <p class="small pb-lg-2">
         Didn't receive
