@@ -1,36 +1,39 @@
-<%= render partial: "communities/community_error_messages"%>
+
 <%= form_for @community do |form| %>
   <div class="card rounded mb-3">
     <div class="row">
       <div class="col-sm-12">
         <div class="create-post m-3">
-          <div class="form-group">
+          <div class="form-group"> 
             <%= label_tag :profile_picture %>
             <%= form.file_field :profile_image, class: "form-control" %>
           </div>
         </div>
         <div class="create-post m-3">
-          <div class="form-group">
-            <%= label_tag :cover_picture %>
+          <div class="form-group"> 
+            <%= label_tag :cover_picture %> 
             <%= form.file_field :cover_image, class: "form-control" %>
           </div>
         </div>
         <div class="create-post m-3 ">
           <div class="form-group">
             <%= label_tag :name %>
-            <%= form.text_field :name, class: "form-control", maxlength: 16, minlength: 3 %>
+            <%= form.text_field :name, class: "form-control"+is_error(@community,(:name)).to_s, maxlength: 16, minlength: 3 %>
+            <p class="text-danger"><%= error_msg(@community, (:name))  %></p>
           </div>
         </div>
         <div class="create-post m-3">
           <div class="form-group">
             <%= label_tag :url %>
-            <%= form.text_field :url, class: "form-control"%>
+            <%= form.text_field :url, class: "form-control"+is_error(@community,(:url)).to_s %>
+            <p class="text-danger"><%= error_msg(@community, :url)  %></p>
           </div>
         </div>
         <div class="create-post m-3">
           <div class="form-group">
             <%= label_tag :summary %>
-            <%= form.text_field :summary, class: "form-control", minlength: 3  %>
+            <%= form.text_field :summary, class: "form-control"+is_error(@community,(:summary)).to_s, minlength: 3  %>
+            <p class="text-danger"><%= error_msg(@community, :summary)  %></p>
           </div>
         </div>
         <div class="create-post m-3">
@@ -42,7 +45,8 @@
         <div class="create-post m-3">
           <div class="form-group">
             <%= label_tag :rules %>
-            <%= form.text_area :rules, class: "form-control" %>
+            <%= form.text_area :rules, class: "form-control"+is_error(@community,(:rules)).to_s %>
+            <p class="text-danger"><%= error_msg(@community, :rules)  %></p>
           </div>
         </div>
       </div>

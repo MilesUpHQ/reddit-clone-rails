@@ -64,7 +64,7 @@ class CommunitiesController < ApplicationController
     unless @community.owner_id == current_account.id
       redirect_back(fallback_location: root_path) and return
     end
-    @banneduser = BannedUser.where(community_id: @community.id).order(created_at: :desc).page(params[:page]).per 5
+    @banned_user = BannedUser.where(community_id: @community.id).order(created_at: :desc).page(params[:page]).per 5
     @username = Account.pluck(:username).sort
     end
 
