@@ -8,8 +8,8 @@
             <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
               <div class="form-group">
                 <%= f.label :email, class: "form-label" %>
-                <%= f.email_field :email, class: "form-control "+is_error(:email).to_s, autocomplete: "email" %>
-                <p class="text-danger"><%= error_msg :email %></p>
+                <%= f.email_field :email, class: "form-control "+is_errors(:email).to_s, autocomplete: "email" %>
+                <p class="text-danger"><%= error_message :email %></p>
               </div>
               <p class="small pb-lg-2">
                 Didn't receive
