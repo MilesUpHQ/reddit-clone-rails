@@ -1,6 +1,6 @@
 class Community < ApplicationRecord
   extend FriendlyId
-  include Image
+  include ImageValidation
   friendly_id :slug_candidates ,use: %i[slugged history finders]
 
   has_many :accounts, through: :banned_users

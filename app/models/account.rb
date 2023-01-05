@@ -1,4 +1,5 @@
 class Account < ApplicationRecord
+  include ImageValidation
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :lockable
@@ -31,11 +32,7 @@ class Account < ApplicationRecord
   end
 
   def acceptable_image
-    return unless profile_image.attached?
-    acceptable_types = ["image/jpeg", "image/png", "image/gif"]
-    unless acceptable_types.include?(profile_image.content_type)
-      errors.add(:profile_image, "must be a JPEG or PNG")
-    end
+    validate_image(profile_image, :profile_image)
   end
 
 end
