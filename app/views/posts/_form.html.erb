@@ -13,6 +13,11 @@
   </div>
   <div class="card rounded mb-3">
     <%= render partial: "posts/new_post_tab" %>
+    <div class="create-post m-3">
+      <div class="form-group">
+        <%= form.text_field :title, class: "form-control", placeholder: "Title", maxlength: 20%>
+      </div>
+    </div>
     <div class="tab-content">
       <div id="posts_form" class="tab-pane fade-in infinity active">
         <%= render partial: "post_form" %>

@@ -26,7 +26,7 @@ class PostsController < ApplicationController
     @post = Post.new post_values
     @post.account_id = current_account.id
     @post.is_drafted = params[:commit] == "Publish" ? false : true
-
+    puts @post.save!
     if @post.save
       if @post.is_drafted?
         flash[:notice] = "Draft saved successfully"

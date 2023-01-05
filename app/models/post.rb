@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   
   belongs_to :account
   belongs_to :community
-  validates_presence_of :title, :body,:images,:account_id, :community_id
+  validates_presence_of :title,:account_id, :community_id
   has_many :comments, dependent: :destroy
   has_many :reports, dependent: :destroy
   has_many :save_posts
