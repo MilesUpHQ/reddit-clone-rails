@@ -1,9 +1,8 @@
 $(document).on('turbolinks:load', function () {
   setTimeout(function () {
-    $('#notice').css('display', 'none');
+    $('#notice').hide();
   }, 3000);
-
-  $('#notice-close').on('click', function () {
-    $('#notice').css('display', 'none');
+  $('#notice-close').click(function () {
+    $('#notice').hide();
   });
 });
