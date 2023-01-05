@@ -2,58 +2,72 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="card rounded mb-3">
-        
-          <div class="form-group">
-            <%= label_tag :Community %>
-            <%= form.select :community_id, @my_communities.collect {|option| [option.name, option.id]}, selected: params[:community_id] , class: "form-select" %>
-          </div>
-        
-      </div>
-    </div>
-  </div>
-  <div class="card rounded mb-3">
-  <%= render partial: "posts/new_post_tab" %>
-    <div class="row">
-      <div class="col-sm-12">
-      <div class="create-post m-3">
       <div class="form-group">
-          <%= form.text_field :title, class: "form-control", placeholder: :title, maxlength: 20%>
-        </div>
+        <%= label_tag :Community %>
+        <%= form.select :community_id, @my_communities.collect {|option| [option.name, option.id]}, prompt: "Select Community", selected: params[:community_id] , class: "form-select" %>
       </div>
-      <div class="create-post m-3">
-        <div class="form-group">
-          <%= form.rich_text_area :body, class: "textarea", placeholder: "Text(optional)" %>
-          <%= form.file_field :images, multiple: true, :class=>"form-control", :placeholder=>"" %>
-        </div>
-      </div>
-      <ul class="ml-4 mr-4 pb-3 border-bottom">
-          <li class="warning-nav-link" id="oc_warning"><i class='fa-solid fa-plus mr-1'></i>
-            <%= form.check_box :oc, class: "d-none btn-check", id: "check", autocomplete: "off" %>
-            OC
-          </li>
-          <li class="warning-nav-link" id="spoiler_warning"><i class='fa-solid fa-plus mr-1'></i>
-            <%= form.check_box :spoiler, class: "d-none btn-check", id:"check", autocomplete: "off" %>
-            Spoiler
-          </li>
-          <li class="warning-nav-link" id="nsfw_warning"><i class='fa-solid fa-plus mr-1'></i>
-            <%= form.check_box :nsfw, class: "d-none btn-check", id:"check", autocomplete: "off" %>
-            NSFW
-          </li>
-          <li class="warning-nav-link text-disabled" id="nsfw_warning"><i class='fa-solid fa-plus mr-1'></i>
-            Flair
-          </li>
-        </ul>
-        <div class="float-right">
-        <% unless params[:action] == 'edit' %>
-          <div class="join-btn  create-post-btn mb-4">
-            <%= form.submit "Save as draft", class: "text-white" %>
-          </div>
-        <% end %>
-        <div class="join-btn create-post-btn mb-4">
-        <%= form.submit "Publish", class: "text-white" %>
-        </div>
         </div>
       </div>
     </div>
-  </div>
-<% end%>
+
+    <div class="card rounded mb-3">
+      <%= render partial: "posts/new_post_tab" %>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="create-post m-3">
+            <div class="form-group"> 
+             <% if @post.errors[:body].any? %>
+              <div class="errors">
+                <%= form.text_field :title,  class: "form-control", placeholder: :title, maxlength: 20%>
+              </div>
+               <div class="error"><%= @post.errors[:title].first %></div>
+             <% else %>
+                <%= form.text_field :title, class: "form-control", placeholder: :title, maxlength: 20%>
+             <% end %>
+            </div>
+          </div>
+          <div class="create-post m-3">
+            <div class="form-group">
+              <% if @post.errors[:body].any? %>
+              <div class="errors">
+                <%= form.rich_text_area :body, class: "textarea", placeholder: "Text(optional)" %>
+              </div>
+              <div class="error"><%= @post.errors[:body].first %></div>
+              <% else %>
+              <%= form.rich_text_area :body, class: "textarea", placeholder: "Text(optional)" %>
+              <% end %>
+              <%#= form.rich_text_area :body, class: "textarea", placeholder: "Text(optional)" %>
+              <%= form.file_field :images, multiple: true, :class=>"form-control", :placeholder=>"" %>
+            </div>
+          </div>
+          <ul class="ml-4 mr-4 pb-3 border-bottom">
+            <li class="warning-nav-link" id="oc_warning"><i class='fa-solid fa-plus mr-1'></i>
+              <%= form.check_box :oc, class: "d-none btn-check", id: "check", autocomplete: "off" %>
+              OC
+            </li>
+            <li class="warning-nav-link" id="spoiler_warning"><i class='fa-solid fa-plus mr-1'></i>
+              <%= form.check_box :spoiler, class: "d-none btn-check", id:"check", autocomplete: "off" %>
+              Spoiler
+            </li>
+            <li class="warning-nav-link" id="nsfw_warning"><i class='fa-solid fa-plus mr-1'></i>
+              <%= form.check_box :nsfw, class: "d-none btn-check", id:"check", autocomplete: "off" %>
+              NSFW
+            </li>
+            <li class="warning-nav-link text-disabled" id="nsfw_warning"><i class='fa-solid fa-plus mr-1'></i>
+              Flair
+            </li>
+          </ul>
+          <div class="float-right">
+            <% unless params[:action] == 'edit' %>
+            <div class="join-btn  create-post-btn mb-4">
+              <%= form.submit "Save as draft", class: "text-white" %>
+            </div>
+            <% end %>
+            <div class="join-btn create-post-btn mb-4">
+              <%= form.submit "Publish", class: "text-white" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end%>
