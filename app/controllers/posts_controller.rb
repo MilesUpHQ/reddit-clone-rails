@@ -16,10 +16,8 @@ class PostsController < ApplicationController
     @report = Report.new
   end
   def new
-    @post = Post.new
-    @community = Community.find_by(params[:id])
-    @post = Post.new
-    @community = Community.find_by(params[:id])
+    @post = Post.new 
+    @community = Community.find_by(params[:id])  
   end
   def create
     @drafts = Post.drafts(current_account.id)
