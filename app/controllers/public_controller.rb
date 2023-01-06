@@ -10,7 +10,7 @@ class PublicController < ApplicationController
   end
   
   def profile
-    redirect_to new_account_session_path  unless account_signed_in? 
+    redirect_to new_account_session_path  unless account_signed_in?
     community_list
     @saved_posts =  account_signed_in? ? SavePost.where(account_id: current_account.id) : []
     @subscriptions = account_signed_in? ? Subscription.where(account_id: current_account.id) : []
