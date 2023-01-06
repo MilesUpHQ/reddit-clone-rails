@@ -6,7 +6,7 @@ class SubscriptionsController < ApplicationController
     @subscription = Subscription.new(subscription_params)
     @subscription.account_id = current_account.id
     @subscription.save
-    flash[:notice] = t(:join_community)
+    flash[:notice] = t("community.joined")
     redirect_back(fallback_location: root_path)
     # redirect_to community_path(@subscription.community_id)
   end
@@ -25,7 +25,7 @@ class SubscriptionsController < ApplicationController
     @subscriptions.each do |subscription|
       subscription.destroy
     end
-    flash[:notice] = t(:left_community)
+    flash[:notice] = t("community.left")
     redirect_back(fallback_location: root_path)
   end
 

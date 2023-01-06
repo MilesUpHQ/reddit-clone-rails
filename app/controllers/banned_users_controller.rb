@@ -5,7 +5,7 @@ class BannedUsersController < ApplicationController
         @banned_user.account_id = @username.id
         if BannedUser.find_by(account_id: @banned_user.account_id, community_id: @banned_user.community_id).nil?
             @banned_user.save
-            flash[:notice] = t(:admin_ban, username: @username.username)
+            flash[:notice] = t("banned.admin", username: @username.username)
             redirect_to mod_path(Community.find_by(params[:community_id]))
         else
             redirect_to mod_path(Community.find_by(params[:community_id])), alert: "The user '"+@username.username.to_s+"' is already banned!."
