@@ -10,13 +10,13 @@ class BannedUsersController < ApplicationController
       else
         @banned_user.account_id = @username.id  
         if @banned_user.account_id == current_account.id
-          flash[:warning] = "Moderator cannot be Banned!"
+            flash[:notice] = "The user '"+@username.username.to_s+"' has been banned successfully!"
         else
           if BannedUser.find_by(account_id: @banned_user.account_id, community_id: @banned_user.community_id).nil? 
             flash[:notice] = "Banned User Successfully"
             @banned_user.save
           elsif BannedUser.find_by(account_id: @banned_user.account_id, community_id: @banned_user.community_id).present?
-            flash[:warning] = "You have Already Banned this User."
+            flash[:warning] = "The user '"+@username.username.to_s+"' has already banned!"
           end   
         end  
       end
