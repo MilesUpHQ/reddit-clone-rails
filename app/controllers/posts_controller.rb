@@ -48,14 +48,13 @@ class PostsController < ApplicationController
 def update
   @post = Post.find(params[:id])
   @post.community_id = params[:community_id] 
-  @post.is_drafted = false
+  @post.is_drafted = true
   if @post.update(post_values)
     if params[:commit] == "Publish"
+      @post.is_drafted = false
       redirect_to community_path(@post.community_id)
     else
-      @post.is_drafted = true
-      @post.update!(post_values)
-      redirect_to edit_community_post_path(post_values)
+     redirect_to edit_community_post_path(post_values)
     end
   else
     render :edit

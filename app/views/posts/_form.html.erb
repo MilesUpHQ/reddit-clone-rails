@@ -47,14 +47,10 @@
           </ul>
           <div class="float-right">
             <div class="join-btn  create-post-btn mb-4">
-              <% if params[:action] == 'edit' %>
-                <%= form.submit "Update draft", class: "text-white" %>
-              <% else %>
-                <%= form.submit "Save as draft", class: "text-white" %>
-              <% end %>
+              <%=  form_submit_tag form, params[:action] == 'edit' ? "Update draft" :  "Save as draft" %>
             </div>
             <div class="join-btn create-post-btn mb-4">
-              <%= form.submit "Publish", class: "text-white" %>
+              <%= form_submit_tag form, "Publish"  %>
             </div>
           </div>
         </div>
