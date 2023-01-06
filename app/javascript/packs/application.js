@@ -3,6 +3,9 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
+import toastr from 'toastr'
+window.toastr = toastr
+
 import toastr from "toastr";
 window.toastr = toastr;
 import $ from "jquery";
