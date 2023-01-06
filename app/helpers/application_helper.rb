@@ -15,4 +15,8 @@ module ApplicationHelper
         return css.to_s
       end
 
+      def subscribers
+        Subscription.where(account_id: current_account.id)
+      end
+
   end
