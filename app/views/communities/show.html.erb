@@ -33,14 +33,14 @@
 <div class="community-nav-tab">
   <ul class="nav">
     <li class="community-nav-link active"><a data-toggle="tab" href="#post">Posts</a></li>
-    <li class="community-nav-link"><a data-toggle="tab" href="#menu1">Menu 1</a></li>
-    <li class="community-nav-link"><a data-toggle="tab" href="#menu2">Menu 2</a></li>
   </ul>
 </div>
 <div class="community_post">
   <div class="row">
     <div class="col-sm-8">
-      <%= render partial: "posts/create_post", locals: { community: @community } %>
+      <% if @is_subscribed %>
+        <%= render partial: "posts/create_post", locals: { community: @community } %>
+      <% end %>  
       <div class="tab-content">
         <div id="post" class="tab-pane fade-in active">
           <%= render partial: "posts/list", locals: { posts: @posts } %>
@@ -69,7 +69,9 @@
         <div class="member">
           <p><%= pluralize @subscriber_count, "member" %></p>
         </div>
-        <%= link_to "Create post", new_community_post_path(community: @community.id), :class=>"join-btn create-post-btn text-white" %>
+        <% if @is_subscribed %>
+          <%= link_to "Create post", new_community_post_path(community: @community.id), :class=>"join-btn create-post-btn text-white" %>
+        <% end %>  
       </div>
       <div class="card mt-3 p-2 bg-gradient">
         <p class="h6 pt-2 text-light">r/<%= @community.name.downcase %> Rules</p>
