@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2023_01_03_072531) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "accounts", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -40,7 +43,7 @@ ActiveRecord::Schema.define(version: 2023_01_03_072531) do
     t.string "name", null: false
     t.text "body"
     t.string "record_type", null: false
-    t.integer "record_id", null: false
+    t.bigint "record_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
@@ -50,9 +53,9 @@ ActiveRecord::Schema.define(version: 2023_01_03_072531) do
     t.string "namespace"
     t.text "body"
     t.string "resource_type"
-    t.integer "resource_id"
+    t.bigint "resource_id"
     t.string "author_type"
-    t.integer "author_id"
+    t.bigint "author_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author"
@@ -104,9 +107,9 @@ ActiveRecord::Schema.define(version: 2023_01_03_072531) do
     t.string "username"
     t.string "reason"
     t.string "explanation"
-    t.integer "account_id"
-    t.integer "subscription_id"
-    t.integer "community_id"
+    t.bigint "account_id"
+    t.bigint "subscription_id"
+    t.bigint "community_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["account_id"], name: "index_banned_users_on_account_id"
@@ -121,8 +124,8 @@ ActiveRecord::Schema.define(version: 2023_01_03_072531) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer "account_id"
-    t.integer "post_id"
+    t.bigint "account_id"
+    t.bigint "post_id"
     t.text "message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -132,7 +135,7 @@ ActiveRecord::Schema.define(version: 2023_01_03_072531) do
   end
 
   create_table "communities", force: :cascade do |t|
-    t.integer "account_id"
+    t.bigint "account_id"
     t.string "name"
     t.string "url"
     t.text "rules"
@@ -140,7 +143,7 @@ ActiveRecord::Schema.define(version: 2023_01_03_072531) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "summary"
-    t.integer "post_count_this_week", default: 0
+    t.bigint "post_count_this_week", default: 0
     t.string "category"
     t.integer "owner_id"
     t.string "slug"
@@ -160,8 +163,8 @@ ActiveRecord::Schema.define(version: 2023_01_03_072531) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer "account_id"
-    t.integer "community_id"
+    t.bigint "account_id"
+    t.bigint "community_id"
     t.string "title"
     t.text "body"
     t.integer "upvotes", default: 0
@@ -190,17 +193,17 @@ ActiveRecord::Schema.define(version: 2023_01_03_072531) do
 
   create_table "report_reasons", force: :cascade do |t|
     t.string "reason"
-    t.integer "report_category_id", null: false
+    t.bigint "report_category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["report_category_id"], name: "index_report_reasons_on_report_category_id"
   end
 
   create_table "reports", force: :cascade do |t|
-    t.integer "post_id", null: false
-    t.integer "report_reason_id", null: false
-    t.integer "account_id", null: false
-    t.integer "report_category_id", null: false
+    t.bigint "post_id", null: false
+    t.bigint "report_reason_id", null: false
+    t.bigint "account_id", null: false
+    t.bigint "report_category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["account_id"], name: "index_reports_on_account_id"
@@ -210,8 +213,8 @@ ActiveRecord::Schema.define(version: 2023_01_03_072531) do
   end
 
   create_table "save_posts", force: :cascade do |t|
-    t.integer "account_id"
-    t.integer "post_id"
+    t.bigint "account_id"
+    t.bigint "post_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["account_id"], name: "index_save_posts_on_account_id"
@@ -219,8 +222,8 @@ ActiveRecord::Schema.define(version: 2023_01_03_072531) do
   end
 
   create_table "subscriptions", force: :cascade do |t|
-    t.integer "account_id"
-    t.integer "community_id"
+    t.bigint "account_id"
+    t.bigint "community_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["account_id"], name: "index_subscriptions_on_account_id"
@@ -228,8 +231,8 @@ ActiveRecord::Schema.define(version: 2023_01_03_072531) do
   end
 
   create_table "votes", force: :cascade do |t|
-    t.integer "account_id"
-    t.integer "post_id"
+    t.bigint "account_id"
+    t.bigint "post_id"
     t.boolean "upvote"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
