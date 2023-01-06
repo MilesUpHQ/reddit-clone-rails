@@ -1,22 +1,19 @@
     <%= form_for [@community, @post] do |form| %>
-<% if @post.is_drafted or params[:action] != 'edit'  %>
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="card rounded mb-3">
-      <div class="form-group">
-        <% if @post.is_drafted %>
-          <%= label_tag :Community %>
-          <%= form.select :community_id, @my_communities.collect {|option| [option.name, option.id]}, selected: params[:community_id] , class: "form-select" %>
-        <% elsif params[:action] != 'edit' %>
-           <%= label_tag :Community %>
-           <%= form.select :community_id, @my_communities.collect {|option| [option.name, option.id]}, prompt: "Select Community", selected: selected_community(@my_communities.pluck(:id)) , class: style_error_class(@post, :community_id, "form-control") %>
-        <% end %>
-        <p class="text-danger"><%= error_msg(@post, :community_id)  %></p>
-      </div>
+    <% if @post.is_drafted or params[:action] != 'edit'  %>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card rounded mb-3">
+          <div class="form-group">
+            <%= label_tag :Community %>
+            <%= form.select :community_id, @my_communities.collect {|option| [option.name, option.id]}, selected: selected_community(@my_communities.pluck(:id)) , class: style_error_class(@post, :community_id, "form-control") %>
+            <p class="text-danger"><%= error_msg(@post, :community_id)  %></p>
+          </div>
         </div>
       </div>
     </div>
-<% end %>
+    <% else %>
+     <%= form.hidden_field :community_id %>
+    <% end %>
 
     <div class="card rounded mb-3">
       <%= render partial: "posts/new_post_tab" %>
@@ -56,11 +53,11 @@
           <div class="float-right">
             <div class="join-btn  create-post-btn mb-4">
               <% if params[:action] == 'edit'  and  @post.is_drafted %>
-                <%=  form_submit_tag form, "Update draft" %>
+              <%=  form_submit_tag form, "Update draft" %>
               <% elsif params[:action] == 'edit' %>
-                <%=  form_submit_tag form,"Cancel" %>
+              <%=  form_submit_tag form,"Cancel" %>
               <% else %>
-                <%=  form_submit_tag form,"Save as draft" %>
+              <%=  form_submit_tag form,"Save as draft" %>
               <% end %>
             </div>
             <div class="join-btn create-post-btn mb-4">
@@ -70,4 +67,4 @@
         </div>
       </div>
     </div>
-    <% end%>
+  <% end%>
