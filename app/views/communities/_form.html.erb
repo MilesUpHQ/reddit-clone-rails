@@ -6,49 +6,49 @@
         <div class="create-post m-3">
           <div class="form-group">
             <%= label_tag :profile_picture %>
-            <%= form.file_field :profile_image, class: "form-control "+is_error(@community,(:profile_image)).to_s %>
-            <p class="text-danger"><%= error_msg(@community, (:profile_image))  %></p>
+            <%= form.file_field :profile_image, class: style_error_class(@community, :profile_image, "form-control ") %>
+            <p class="text-danger"><%= error_msg(@community, (:profile_image)) %></p>
           </div>
         </div>
         <div class="create-post m-3">
           <div class="form-group">
             <%= label_tag :cover_picture %>
-            <%= form.file_field :cover_image, class: "form-control "+is_error(@community,(:cover_image)).to_s %>
+            <%= form.file_field :cover_image, class: style_error_class(@community, :cover_image, "form-control ") %>
             <p class="text-danger"><%= error_msg(@community, (:cover_image))  %></p>
           </div>
         </div>
         <div class="create-post m-3 ">
           <div class="form-group">
             <%= label_tag :name %>
-            <%= form.text_field :name, class: "form-control"+is_error(@community,(:name)).to_s, maxlength: 16, minlength: 3 %>
+            <%= form.text_field :name, class: style_error_class(@community, :name, "form-control"), maxlength: 16, minlength: 3 %>
             <p class="text-danger"><%= error_msg(@community, (:name))  %></p>
           </div>
         </div>
         <div class="create-post m-3">
           <div class="form-group">
             <%= label_tag :url %>
-            <%= form.text_field :url, class: "form-control"+is_error(@community,(:url)).to_s %>
+            <%= form.text_field :url, class: style_error_class(@community, :url, "form-control") %>
             <p class="text-danger"><%= error_msg(@community, :url)  %></p>
           </div>
         </div>
         <div class="create-post m-3">
           <div class="form-group">
             <%= label_tag :summary %>
-            <%= form.text_field :summary, class: "form-control"+is_error(@community,(:summary)).to_s, minlength: 3  %>
+            <%= form.text_field :summary, class: style_error_class(@community, :summary, "form-control"), minlength: 3  %>
             <p class="text-danger"><%= error_msg(@community, :summary)  %></p>
           </div>
         </div>
         <div class="create-post m-3">
           <div class="form-group">
             <%= label_tag :category %>
-            <%= form.select :category, Community::CATEGORIES, prompt: "Select Category" ,class: "form-control "+is_error(@community,(:category)).to_s %>
+            <%= form.select :category, Community::CATEGORIES, prompt: "Select Category" ,class: style_error_class(@community, :category, "form-control") %>
             <p class="text-danger"><%= error_msg(@community, :category)  %></p>
           </div>
         </div>
         <div class="create-post m-3">
           <div class="form-group">
             <%= label_tag :rules %>
-            <%= form.text_area :rules, class: "form-control"+is_error(@community,(:rules)).to_s %>
+            <%= form.text_area :rules, class: style_error_class(@community, :rules, "form-control") %>
             <p class="text-danger"><%= error_msg(@community, :rules)  %></p>
           </div>
         </div>
