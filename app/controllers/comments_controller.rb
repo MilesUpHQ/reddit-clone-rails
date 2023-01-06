@@ -2,7 +2,11 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new comment_params
-    @comment.save
+    if @comment.save
+      flash[:notice] = "Comment Created Successfully"
+    else
+      flash[:alert] = "Empty Comments are not Accepted!"
+    end
     redirect_to community_post_path(@comment.post.community_id, @comment.post)
   end
 

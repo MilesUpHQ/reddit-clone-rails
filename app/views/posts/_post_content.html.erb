@@ -17,10 +17,8 @@
       <%= image_tag("profile-pic.png" ,class: "community-icon") %>
       <% end %>
       <% end %>
-      <div class="like-unlike">
-        <p><small>r/<%= link_to @post.community.name.downcase, community_path(@post.community) %> Posted by
-            u/<%= link_to @post.account.username, profile_path(@post.account.username) %>
-            <%= time_ago_in_words @post.created_at %> ago</small></p>
+      <div class = "like-unlike">
+        <p><small>r/<%= link_to @post.community.name.downcase, community_path(@post.community) %> Posted by u/<%= link_to @post.account.username, profile_path(@post.account.username) %> <%= time_ago_in_words @post.created_at %> ago</small></p>
         <h3 class="card-title"><%= @post.title %></h3>
         <% if @post.oc %>
         <h5 class="button-58">OC</h5>
@@ -33,25 +31,39 @@
         <% end %>
       </div>
     </div>
-    <%= render 'post_display' %>
+    <% if @post.nsfw?  %>
+      <%= render 'sensitive_post_display' %>
+    <% elsif @post.oc? %>
+      <div class="sensitive">
+        <h5>OC Thread</h5>
+      </div>
+      <%= render 'post_display' %>
+    <% elsif @post.spoiler? %>
+      <div class="sensitiveS">
+        <h5>Spoiler Thread</h5>
+      </div>
+      <%= render 'post_display' %>
+    <% else %>
+      <%= render 'post_display' %>
+    <% end %>
     <%= render "reactions" %>
     <div id="comment-hide">
       <% if !(@post.closed?) %>
-      <% if signed_in? %>
-      <div class="comment-field">
-        <h6>Comment as <%= current_account.username %></h6>
-        <%= render partial: "comments/form", locals:{ post: @post, parent: nil} %>
-      </div>
-      <% else %>
-      <div class="row alert">
-        <h5 class="p-2"> Log in or sign up to leave a comment </h5>
-        <div class="join-btn"> <%= link_to "Log In", new_account_session_path %></div>
-        <div class="join-btn"><%= link_to "Sign Up", new_account_registration_path %></div>
-      </div>
-      <% end %>
+        <% if signed_in? %>
+          <div class = "comment-field">
+            <h6>Comment as <%= current_account.username %></h6>
+            <%= render partial: "comments/form", locals:{ post: @post, parent: nil} %>
+          </div>
+        <% else %>
+          <div class = "row alert">
+            <h5 class="p-2"> Log in or sign up to leave a comment </h5>
+            <div class = "join-btn"> <%= link_to "Log In", new_account_session_path %></div>
+            <div class = "join-btn"><%= link_to "Sign Up", new_account_registration_path %></div>
+          </div>
+        <% end %>
       <% end %>
     </div>
-    <div id="disclaimer">
+    <div id = "disclaimer">
       <p>The Discussion is closed.So no one cannot add comments or replies to this Discussion </p>
     </div>
     <% if (@post.closed?) %>
