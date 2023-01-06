@@ -16,3 +16,4 @@ class ReportsController < ApplicationController
     params.require(:report).permit(:post_id, :account_id, :report_category_id, :report_reason_id)
   end
 end
+
