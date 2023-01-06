@@ -9,11 +9,11 @@ class SavePostController < ApplicationController
         post_id: params[:id]
       )
       @saved_post.save
-      flash[:notice] = "Post saved!"
+      flash[:notice] = t(:post_save)
       @is_saved = true
     else
       @saved_post.destroy
-      flash[:notice] = "Post Unsaved!"
+      flash[:notice] = t(:post_unsave)
       @is_saved = false
     end
 

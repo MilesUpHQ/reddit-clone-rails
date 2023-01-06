@@ -41,27 +41,27 @@ class CommunitiesController < ApplicationController
 
     if @community.save
       Subscription.create!(community_id: @community.id, account_id: current_account.id)
-      flash[:notice] = "Community Created Successfully "
+      flash[:notice] = t(:community_success)
       redirect_to communities_path
     else
-      flash[:alert] = "Please fill all required Fields"
+      flash[:alert] = t(:fill_all_fields)
       render :new
     end
   end
 
   def update
     if @community.update(community_values)
-      flash[:notice] = "Community Updated Successfully"
+      flash[:notice] = t(:community_updated)
       redirect_to @community
     else
-      flash[:alert] = "Please Fill All required Fields"
+      flash[:alert] = t(:fill_all_fields)
       render :new
     end
   end
 
   def destroy
     @community.destroy if @community
-    flash[:notice] = "Community Destroyed Successfully"
+    flash[:notice] = t(:community_destroy)
     redirect_to communities_path
   end
 

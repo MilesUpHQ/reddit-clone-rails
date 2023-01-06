@@ -51,21 +51,21 @@ def update
   @post.is_drafted = params[:commit] == "Publish" ? false : true
   if @post.update(post_values)
     if @post.is_drafted
-      flash[:notice] = "Draft edited Successfully"
+      flash[:notice] = t(:draft_success)
       render :edit
     else
-      flash[:notice] = "Post Edited successfully"
+      flash[:notice] = t(:post_edit)
       redirect_to community_post_path(@post.community_id)
     end
   else
-    flash[:alert] = "Please fill all required fields"
+    flash[:alert] = t(:fill_all_fields)
     render :edit
   end
 end
 
 def close
   @post.update(closed: "true")
-  flash[:notice]="Post Discussion Closed Successfully"
+  flash[:notice] = t(:post_closed)
   redirect_back(fallback_location: root_path)
 end
 
@@ -75,7 +75,7 @@ end
 
 def destroy
   if @post.destroy
-    flash[:notice] = "Post Deleted Successfully"
+    flash[:notice] = t(:post_destroyed)
     redirect_to root_path
   end
 end
