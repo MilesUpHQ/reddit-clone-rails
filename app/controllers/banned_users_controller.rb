@@ -1,30 +1,30 @@
 class BannedUsersController < ApplicationController
-  def create    
+  def create  
     @banned_user = BannedUser.new(banned_user_params)
-    @community = Community.find_by(params[:community_id])
+    @community = Community.find_by!(params[:community_id])
     @username = Account.find_by(username: @banned_user[:username])
-    unless @username.nil?  
-      @sub = Subscription.where(account_id: @username.id, community_id: @community.id)
-      unless @sub.any? 
-        flash[:warning] = "No such user in your Community."
-      else
-        @banned_user.account_id = @username.id  
-        if @banned_user.account_id == current_account.id
-            flash[:notice] = "The user '"+@username.username.to_s+"' has been banned successfully!"
-        else
-          if BannedUser.find_by(account_id: @banned_user.account_id, community_id: @banned_user.community_id).nil? 
-            flash[:notice] = "Banned User Successfully"
-            @banned_user.save
-          elsif BannedUser.find_by(account_id: @banned_user.account_id, community_id: @banned_user.community_id).present?
-            flash[:warning] = "The user '"+@username.username.to_s+"' has already banned!"
-          end   
-        end  
-      end
-    else
-      flash[:warning] = "No such user in your Community."
+    if @username.nil?  
+        flash[:alert] = t("user_not_present")
+    else  
+        @subscriptions = Subscription.where(account_id: @username.id,community_id: params[:banned_user][:community_id])
+        if @subscriptions.any?
+            @banned_user.account_id = @username.id  
+            if @banned_user.account_id == current_account.id
+                flash[:notice] = t("admin_ban?")
+            else
+                if BannedUser.find_by(account_id: @banned_user.account_id, community_id: @banned_user.community_id).nil? 
+                    flash[:notice] = t(:banned_successfully)
+                    @banned_user.save
+                elsif BannedUser.find_by(account_id: @banned_user.account_id, community_id: @banned_user.community_id).present?
+                    flash[:alert] = t(:already_banned)
+                end   
+            end 
+        else    
+            flash[:alert] = t(:not_present_to_ban)
+        end 
     end
-    redirect_to mod_path(@community)
-  end
+    redirect_to mod_path(@community) and return
+end
   
   def banned_user_params
    params.require(:banned_user).permit(:username, :reason, :explanation, :account_id, :community_id)  
