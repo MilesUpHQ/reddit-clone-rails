@@ -38,7 +38,6 @@ class CommunitiesController < ApplicationController
     @community = Community.new community_values
     @community.account_id = current_account.id
     @community.owner_id = current_account.id
-
     if @community.save
       Subscription.create!(community_id: @community.id, account_id: current_account.id)
       redirect_to communities_path
