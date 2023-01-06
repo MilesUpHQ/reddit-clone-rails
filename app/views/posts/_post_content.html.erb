@@ -17,8 +17,10 @@
       <%= image_tag("profile-pic.png" ,class: "community-icon") %>
       <% end %>
       <% end %>
-      <div class = "like-unlike">
-        <p><small>r/<%= link_to @post.community.name.downcase, community_path(@post.community) %> Posted by u/<%= link_to @post.account.username, profile_path(@post.account.username) %> <%= time_ago_in_words @post.created_at %> ago</small></p>
+      <div class="like-unlike">
+        <p><small>r/<%= link_to @post.community.name.downcase, community_path(@post.community) %> Posted by
+            u/<%= link_to @post.account.username, profile_path(@post.account.username) %>
+            <%= time_ago_in_words @post.created_at %> ago</small></p>
         <h3 class="card-title"><%= @post.title %></h3>
         <% if @post.oc %>
         <h5 class="button-58">OC</h5>
@@ -31,21 +33,7 @@
         <% end %>
       </div>
     </div>
-    <% if @post.nsfw?  %>
-      <%= render 'sensitive_post_display' %>
-    <% elsif @post.oc? %>
-      <div class="sensitive">
-        <h5>OC Thread</h5>
-      </div>
-      <%= render 'post_display' %>
-    <% elsif @post.spoiler? %>
-      <div class="sensitiveS">
-        <h5>Spoiler Thread</h5>
-      </div>
-      <%= render 'post_display' %>
-    <% else %>
-      <%= render 'post_display' %>
-    <% end %>
+    <%= render 'post_display' %>
     <%= render "reactions" %>
     <div id="comment-hide">
       <% if !(@post.closed?) %>
