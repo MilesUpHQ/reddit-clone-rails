@@ -18,6 +18,8 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
     @community = Community.find_by(params[:id])
+    @post = Post.new
+    @community = Community.find_by(params[:id])
   end
   def create
     @drafts = Post.drafts(current_account.id)
@@ -40,6 +42,7 @@ class PostsController < ApplicationController
   def edit
     @post = Post.find(params[:id])
   end
+
 def update
   @post = Post.find(params[:id])
   @post.community_id = params[:community_id]
