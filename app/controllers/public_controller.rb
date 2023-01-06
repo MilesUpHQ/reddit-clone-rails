@@ -9,7 +9,7 @@ class PublicController < ApplicationController
   end
   
   def profile
-    redirect_to new_account_session_path  unless account_signed_in? 
+    redirect_to new_account_session_path  unless account_signed_in?
     community_list
     @community = Community.find(@subscriptions.pluck(:community_id))
     @my_communities = account_signed_in? ? Community.where(account_id: current_account.id) : []
