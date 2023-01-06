@@ -1,16 +1,14 @@
 module ApplicationHelper
     def error_msg(resource, field)
         if resource.errors.any?
-          resource.errors.full_messages_for(field).each do |error_message|
-            return error_message
-          end
+          return resource.errors.full_messages_for(field).first
         end
         ""
       end
 
       def style_error_class(resource, field, css)
         if resource.errors.any?
-          resource.errors.full_messages_for(field).each do |error_message|
+          if resource.errors.full_messages_for(field)
             return (css+" border-danger").to_s
           end
         end
