@@ -16,7 +16,7 @@
 ## _Installation_
 1. Checkout to your Repository(Directory)
 ```
-  $ git clone "www.github.com/iMagesh/reddit-clone.git"
+  $ git clone https://github.com/MilesUpHQ/reddit-clone-rails.git
 ```
 2. Go to the Directory in Terminal
 ```
