@@ -21,7 +21,7 @@ class CommunitiesController < ApplicationController
     @community = Community.find(params[:id])
     @posts = @community.posts.limit(20).sort_by{ |p| p.score }.reverse
     @subscriber_count = @community.subscribers.count
-    @is_subscribed = account_signed_in? ? Subscription.where(community_id: @community.id, account_id: current_account.id).any? : false
+    @subscribed = account_signed_in? ? Subscription.where(community_id: @community.id, account_id: current_account.id).any? : false
     @subscription = Subscription.new
     @banned_users = BannedUser.all
   end
