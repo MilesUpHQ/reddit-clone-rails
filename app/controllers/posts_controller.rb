@@ -58,8 +58,12 @@ def update
       redirect_to community_post_path(@post.community_id)
     end
   else
-    flash[:alert] = "Please fill all required fields"
-    render :edit
+    if  params[:commit] == "Cancel"
+      redirect_to community_post_path
+    else 
+      flash[:alert] = "Please fill all required fields"
+      render :edit
+    end 
   end
 end
 
