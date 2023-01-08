@@ -31,12 +31,21 @@
   $ yarn install    # for generating dependent manifest.js
   $ yarn add toastr # install toastr js for flash notice
 ```
-4. Create and Setup Database
+4. Setup PostgreSQL Database
+```
+  $ apt-get install postgresql-12
+  For System Startup Server start
+  $ sudo systemctl enable postgresql
+  
+`````
+*Reference:* [Database Setup](https://www.postgresql.org/download/linux/ubuntu/)
+
+5. Create and Migrate Database
 ```
   $ rails db:create
   $ rails db:migrate
 ```
-5. Add .env file at root directory path
+6. Add .env file at root directory path
 ```
 MAILGUN_USERNAME=xxxx
 MAILGUN_PASSWORD=xxxx
@@ -49,11 +58,11 @@ MAILGUN_DOMAIN=xxxx
   [Sowndar K](https://github.com/ksowndar)
   [Srinandhini M](https://github.com/srinandhiniM)
 
-6. Seed Accounts, Communities and Posts
+7. Seed Accounts, Communities and Posts
 ```
   $ rails db:seed
 ```
-7. Start the Rails Server
+8. Start the Rails Server
 ```
   $ rails server
 ```
