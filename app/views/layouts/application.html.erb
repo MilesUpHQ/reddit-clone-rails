@@ -12,7 +12,6 @@
   <body>
     <%= render partial: "layouts/navbar" %>
     <%= yield %>
-    <%= render partial: "layouts/footer" %>
     <% if flash[:notice] %>
       <script>
         toastr.options = {
