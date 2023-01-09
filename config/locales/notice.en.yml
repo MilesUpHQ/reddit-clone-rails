@@ -1,0 +1,5 @@
+en:
+  profile:
+    posts: "hmm...u/%{username} hasn't posted anything"
+    comments: "hmm...u/%{username} hasn't commented on anything"
+    saved: "hmm... looks like you haven't saved anything yet"

@@ -26,7 +26,7 @@
           </div>
         </div>
        <% else %>
-        <h4 class = "text-secondary nil-message" >hmm...u/<%= @profile.username %> hasn't posted anything </h4> 
+        <h4 class = "text-secondary nil-message" ><%= t("profile.posts",username: @profile.username) %></h4> 
        <% end %>
       </div>
       <div id="COMMENTS" class="tab-pane fade">

@@ -11,5 +11,5 @@
   </div>
  <% end %>
 <% else %>
-  <h4 class = "text-secondary nil-message" >hmm...u/<%= @profile.username %> hasn't commented on anything </h4> 
+  <h4 class = "text-secondary nil-message" ><%= t("profile.comments",username: @profile.username) %></h4> 
 <% end %>
