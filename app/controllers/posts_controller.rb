@@ -33,7 +33,7 @@ class PostsController < ApplicationController
         redirect_to community_path(@post.community_id)
       end
     else
-      flash[:alert] = "Please fill all required fields"
+    flash[:alert] = "Please fill all required fields"
       render :new
     end
   end

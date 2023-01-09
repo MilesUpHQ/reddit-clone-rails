@@ -21,7 +21,7 @@ class CommunitiesController < ApplicationController
     @community = Community.find(params[:id])
     @posts = @community.posts.limit(20).sort_by{ |p| p.score }.reverse
     @subscriber_count = @community.subscribers.count
-    @is_subscribed = account_signed_in? ? Subscription.where(community_id: @community.id, account_id: current_account.id).any? : false
+    @subscribed = account_signed_in? ? Subscription.where(community_id: @community.id, account_id: current_account.id).any? : false
     @subscription = Subscription.new
     @banned_users = BannedUser.all
   end
@@ -41,26 +41,31 @@ class CommunitiesController < ApplicationController
 
     if @community.save
       Subscription.create!(community_id: @community.id, account_id: current_account.id)
+      flash[:notice] = "Community Created Successfully "
       redirect_to communities_path
     else
+      flash[:alert] = "Please fill all required Fields"
       render :new
     end
   end
 
   def update
     if @community.update(community_values)
+      flash[:notice] = "Community Updated Successfully"
       redirect_to @community
     else
+      flash[:alert] = "Please Fill All required Fields"
       render :new
     end
   end
 
   def destroy
     @community.destroy if @community
+    flash[:notice] = "Community Destroyed Successfully"
     redirect_to communities_path
   end
 
-  def mod 
+  def mod
     unless @community.owner_id == current_account.id
       redirect_back(fallback_location: root_path) and return
     end
@@ -101,7 +106,8 @@ class CommunitiesController < ApplicationController
     community = Community.find(params[:id])
     banned_user = BannedUser.find_by(account_id: current_account.id, community_id: community.id)
     unless banned_user.nil?
-      redirect_to '/403' and return
+      redirect_to '/403'
+
     end
   end
 

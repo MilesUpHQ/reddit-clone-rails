@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
+  #The database queries or associations are being executed during the application's boot process,
+  #before the database connection has been established, so rescue is used.
+  ActiveAdmin.routes(self) rescue ActiveAdmin::DatabaseHitDuringLoad
   devise_for :accounts
   get "u/:username" => "public#profile", as: :profile
   get "/saved_posts" => "save_post#saved_posts"
