@@ -1,27 +1,24 @@
 <div class="card mb-3 ">
-  <div class="card-body">
-    <div class = "show-content">
-      <div class = "like-unlike">
+    <div class = "show-content mt-1">
+      <div class="col-1 m-0">
         <div id="vote-actions-<%= @post.id %>" class="vote" data-id="<%= @post.id %>">
           <div class="fa fa-arrow-up upvote <%= is_upvoted @post %>"></div>
           <span class="font-weight-bold score"><%= @post.score %></span>
           <div class="fa fa-arrow-down downvote <%= is_downvoted @post %>"></div>
         </div>
       </div>
-       <% if @post.community.profile_image.attached? %>
-        <%= link_to community_path(@post.community) do %>
-          <%= image_tag(@post.community.profile_image, class: "community-icon") %>
-        <% end %>
-      <% else %>
-        <%= link_to community_path(@post.community) do %>
-          <%= image_tag("profile-pic.png" ,class: "community-icon") %>
-        <% end %>
-      <% end %>
-      <div class = "like-unlike">
-        <p><small>r/<%= link_to @post.community.name.downcase, community_path(@post.community) %> Posted by u/<%= link_to @post.account.username, profile_path(@post.account.username) %> <%= time_ago_in_words @post.created_at %> ago</small></p>
-        <h3 class="card-title"><%= @post.title %></h3>
-      </div>
-    </div>
+      <div class = "post-head">
+        <div class = "row">
+          <% if @post.community.profile_image.attached? %>
+            <%= image_tag(@post.community.profile_image, class: "community-icon") %>
+          <% else %>
+            <%= image_tag("profile-pic.png" ,class: "community-icon") %>
+          <% end %>
+          <p><strong><%= link_to "r/"+@post.community.name.downcase, community_path(@post.community), class: "text-dark" %></strong><small> Posted by <%= link_to "u/"+@post.account.username, profile_path(@post.account.username) %> <%= time_ago_in_words @post.created_at %> ago</small></p>
+        </div>
+        <strong> <%= @post.title %> </strong>
+      </div> 
+    </div> 
     <% if @post.nsfw?  %>
       <%= render 'sensitive_post_display' %>
     <% elsif @post.oc? %>
@@ -42,7 +39,7 @@
       <% if !(@post.closed?) %>
         <% if signed_in? %>
           <div class = "comment-field">
-            <h6>Comment as <%= current_account.username %></h6>
+            <small>Comment as <%= link_to current_account.username, profile_path(current_account.username) %></small>
             <%= render partial: "comments/form", locals:{ post: @post, parent: nil} %>
           </div>
         <% else %>
@@ -62,14 +59,13 @@
         <p> The discussion is closed by owner.So no one cannot add comments or replies in the discussion.Thank You! </p>
       </div>
     <% end %>
+    <hr>
     <div class = "commentssection">
       <div id="post-comments">
-        <h3>Comments</h3>
         <%= render partial: "posts/comments", locals: { comments: @post.comments.where(parent_id: nil).order(id: :desc) } %>
       </div>
       <div class = "sub-comment">
         <%= render partial: "posts/comments",  locals: { comments: @post.comments.where(parent_id: :comment_id).where(post_id: @post.id).order(id: :desc)} %>
       </div>
     </div>
-  </div>
 </div>

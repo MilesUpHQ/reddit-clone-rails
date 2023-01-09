@@ -15,6 +15,10 @@
   }
 }
 
+.commentssection{
+  margin-top: 10px;
+}
+
 .comment {
   margin-left: 10px;
 }
@@ -25,10 +29,11 @@
 
 .comment-form {
   display: none;
+  margin-left: 40px;
 }
 
 .comment-field {
-  margin-left: 30px;
+  margin-left: 40px;
   margin-right: 30px;
 }
 
@@ -98,8 +103,12 @@
   display: flex;
 }
 
-.like-unlike {
-  display: inline;
+.post-body{
+  margin-left: 50px;
+}
+
+.post-head{
+   display: inline;
 }
 
 .post-tab-nav-link.active {
@@ -224,13 +233,13 @@
 .reactions{
   display: flex;
   margin-top: 20px;
-  margin-left: 20px;
+  margin-left: 40px;
   margin-bottom: 20px;
   a {
     color: black;
   }
   i {
-    padding: 3px;
+    padding: 5px;
   }
 }
 
