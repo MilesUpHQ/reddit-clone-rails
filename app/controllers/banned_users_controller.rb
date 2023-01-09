@@ -1,5 +1,5 @@
 class BannedUsersController < ApplicationController
-  before_action :set_banned_users, only: [:create]
+  before_action :set_banned_users,:set_community, only: [:create]
   before_action :set_username, only: [:create]
   before_action :is_admin?, only: [:create]
   def create  
@@ -22,6 +22,9 @@ class BannedUsersController < ApplicationController
 
   def set_banned_users
     @banned_user = BannedUser.new(banned_user_params)
+  end
+
+  def set_community
     @community = Community.find_by(params[:community_id])
   end
 
@@ -34,4 +37,5 @@ class BannedUsersController < ApplicationController
   def is_admin?
     redirect_to mod_path(@community) and return flash[:notice] = t(:admin_ban, username: @username.username) if @username == current_account
   end 
+  
 end
