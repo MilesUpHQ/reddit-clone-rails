@@ -12,21 +12,6 @@
   <body>
     <%= render partial: "layouts/navbar" %>
     <%= yield %>
-    <% if flash[:notice] %>
-      <script>
-        toastr.options = {
-            "closeButton": true
-        };
-          toastr["success"]("<%= flash[:notice] %>")
-      </script>
-    <% end %>
-    <% if flash[:alert] %>
-      <script>
-        toastr.options = {
-              "closeButton": true
-          };
-          toastr["warning"]("<%= flash[:alert] %>")
-      </script>
-    <% end %>
+    <%= render partial: "layouts/flash" %>
   </body>
 </html>
