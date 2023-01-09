@@ -7,7 +7,6 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
     <ul class="navbar-nav">
       <li class=" nav-item dropdown">
         <%= link_to "Home", root_path, :class => "nav-link dropdown-toggle", :id=>"navbarDropdown", "data-toggle"=>"dropdown" %>
@@ -17,7 +16,7 @@
           <%= link_to "Top Trending", communities_path, :class=>"dropdown-item"  %>
           <div class = "mt-2 ml-3 mb-2 text-muted">My Communities</div>
           <%= link_to "Create a Community", new_community_path, :class=>"dropdown-item" %>
-          <% if @communities.present? %>
+          <% if @communities.present? and account_signed_in? %>
             <% Subscription.where(account_id: current_account.id).each do |subscribe| %>
               <%= link_to community_path(subscribe.community), class:"dropdown-item" do %>
                <div class = "d-flex">
@@ -27,8 +26,8 @@
                   <%= image_tag("profile-pic.png" ,class: "community-icon") %>
                 <% end %>
                 r/<%=subscribe.community.name %>
-               </div> 
-              <% end %>  
+               </div>
+              <% end %>
             <% end %>
           <% end %>
         </div>
@@ -77,3 +76,12 @@
   </div>
 </nav>
 </div>
+
+
+
+
+
+
+
+
+
