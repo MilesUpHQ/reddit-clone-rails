@@ -1,10 +1,14 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-
+  before_action :subscribers_list, if: :account_signed_in?
   protected
 
   def community_list
     @communities = Community.order(created_at: :asc)
+  end
+
+  def subscribers_list
+    @subscribers = Subscription.where(account_id: current_account.id)
   end
 
   def configure_permitted_parameters
