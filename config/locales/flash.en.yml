@@ -21,10 +21,10 @@ en:
   comment:
     create: "Comment Created Successfully"
     empty: "Empty Comments are not Accepted!"
-  banned:
+  ban:
     success: "The user '%{username}' has been banned successfully!"
-    is_admin: "The user '%{username}' is Admin"
-    user_already_exists: "The user '%{username}' is already banned"
+    moderator_not_possible: "The user '%{username}' is Moderator"
+    already_done: "The user '%{username}' is already banned"
     user_not_available: "Username '%{username}' does not exists"
     user_not_present_in_community: "Username '%{username}' not present in Community"
   report:
