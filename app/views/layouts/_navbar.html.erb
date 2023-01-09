@@ -16,17 +16,17 @@
           <%= link_to "Top Trending", communities_path, :class=>"dropdown-item"  %>
           <div class = "mt-2 ml-3 mb-2 text-muted">My Communities</div>
           <%= link_to "Create a Community", new_community_path, :class=>"dropdown-item" %>
-          <% if @communities.present? and account_signed_in? and !@subscribers.nil? %>   
+          <% if @communities.present? and account_signed_in? and !@subscribers.nil? %>
             <% @subscribers.each do |subscribe| %>
               <%= link_to community_path(subscribe.community), class:"dropdown-item" do %>
-               <div class = "d-flex">
-                <% if subscribe.community.profile_image.attached? %>
-                  <%= image_tag(subscribe.community.profile_image, class: "community-icon") %>
-                <% else %>
-                  <%= image_tag("profile-pic.png" ,class: "community-icon") %>
-                <% end %>
-                r/<%=subscribe.community.name %>
-               </div>
+                <div class = "d-flex">
+                  <% if subscribe.community.profile_image.attached? %>
+                    <%= image_tag(subscribe.community.profile_image, class: "community-icon") %>
+                  <% else %>
+                    <%= image_tag("profile-pic.png" ,class: "community-icon") %>
+                  <% end %>
+                  r/<%=subscribe.community.name %>
+                </div>
               <% end %>
             <% end %>
           <% end %>
@@ -76,12 +76,3 @@
   </div>
 </nav>
 </div>
-
-
-
-
-
-
-
-
-
