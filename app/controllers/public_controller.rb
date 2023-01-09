@@ -19,7 +19,7 @@ class PublicController < ApplicationController
     @profile = Account.find_by_username params[:username]
     @posts = @profile.posts
     @my_comments = Comment.where(account_id: @profile.id)
-    @my_posts = Post.where(account_id: @profile.id).where(is_drafted: false).page(params[:page]).per 5
+    @my_posts = Post.where(account_id: @profile.id, is_drafted: false).page(params[:page]).per 5
     @hot_myposts = Post.where(account_id: @profile.id).order(view_count: :desc).page(params[:page]).per 5
     @top_myposts = Post.where(account_id: @profile.id).order(view_count: :desc).page(params[:page]).per 5
     @new_myposts = Post.where(account_id: @profile.id).order(created_at: :desc).page(params[:page]).per 5
