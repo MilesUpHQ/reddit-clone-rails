@@ -83,7 +83,7 @@ private
     @post = Post.includes(:comments).find(params[:id])
   end
   def set_draft
-    @drafts = Post.drafts(current_account.id).order(created_at: :desc)
+    @drafts = Post.drafts(current_account.id).order(updated_at: :desc)
   end
   def auth_subscriber
     unless Subscription.where(community_id: params[:community_id], account_id: current_account.id).any?
