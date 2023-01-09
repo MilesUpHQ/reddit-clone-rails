@@ -25,8 +25,8 @@ en:
     success: "The user '%{username}' has been banned successfully!"
     is_admin: "The user '%{username}' is Admin"
     user_already_exists: "The user '%{username}' is already banned"
-    user_not_exists: "Username '%{username}' not exists"
-    user_not_present: "Username '%{username}' not present in Community"
+    user_not_available: "Username '%{username}' does not exists"
+    user_not_present_in_community: "Username '%{username}' not present in Community"
   report:
     success: "Thanks for your report"
     error: "Sorry something went wrong"
