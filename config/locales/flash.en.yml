@@ -23,10 +23,10 @@ en:
     empty: "Empty Comments are not Accepted!"
   banned:
     success: "The user '%{username}' has been banned successfully!"
-    admin: "The user '%{username}' is Admin"
-    already: "The user '%{username}' is already banned"
-    not_exists: "Username '%{username}' not exists"
-    not_present: "Username '%{username}' not present in Community"
+    is_admin: "The user '%{username}' is Admin"
+    user_already_exists: "The user '%{username}' is already banned"
+    user_not_exists: "Username '%{username}' not exists"
+    user_not_present: "Username '%{username}' not present in Community"
   report:
     success: "Thanks for your report"
     error: "Sorry something went wrong"
