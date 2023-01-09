@@ -1,5 +1,5 @@
     <%= form_for [@community, @post] do |form| %>
-    <% if @post.is_drafted or params[:action] != 'edit'  %>
+   <% if @post.is_drafted or params[:action] != 'edit'  %>
     <div class="row">
       <div class="col-sm-12">
         <div class="card rounded mb-3">
@@ -10,7 +10,6 @@
           </div>
         </div>
       </div>
-    </div>
     <% else %>
      <%= form.hidden_field :community_id %>
     <% end %>
@@ -27,7 +26,7 @@
           </div>
           <div class="create-post m-3">
             <div class="form-group">
-              <%= form.rich_text_area :body, class: style_error_class(@post, :body, "textarea"), placeholder: "Text(optional)" %>
+              <%= form.rich_text_area :body, class: style_error_class(@post, :body, "textarea"), placeholder: "Enter some Text" %>
               <p class="text-danger"><%= error_msg(@post, :body)  %></p>
               <%= form.file_field :images, multiple: true, class: style_error_class(@post, :images, "form-control"), :placeholder=>"" %>
               <p class="text-danger"><%= error_msg(@post, :images)  %></p>
@@ -52,12 +51,12 @@
           </ul>
           <div class="float-right">
             <div class="join-btn  create-post-btn mb-4">
-              <% if params[:action] == 'edit'  and  @post.is_drafted %>
-              <%=  form_submit_tag form, "Update draft" %>
+                <% if params[:action] == 'edit'  and  @post.is_drafted %>
+                <%=  form_submit_tag form, "Update draft" %>
               <% elsif params[:action] == 'edit' %>
-              <%=  form_submit_tag form,"Cancel" %>
+                <%=  form_submit_tag form,"Cancel" %>
               <% else %>
-              <%=  form_submit_tag form,"Save as draft" %>
+                <%=  form_submit_tag form,"Save as draft" %>
               <% end %>
             </div>
             <div class="join-btn create-post-btn mb-4">
