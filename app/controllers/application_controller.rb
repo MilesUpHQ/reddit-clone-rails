@@ -15,4 +15,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :username, :profile_image])
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :username])
   end
+
+  def is_subscribed?
+    account_signed_in? ? Subscription.where(community_id: @community.id, account_id: current_account.id).any? : false
+  end
 end
