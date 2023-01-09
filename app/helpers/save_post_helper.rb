@@ -19,7 +19,7 @@ module SavePostHelper
   end
 
   def selected_community communities
-    communities.include?(params[:community].to_i) ? params[:community] : ""
+    communities.include?(params[:community].to_i) ? params[:community] : params[:community_id]
   end
 
   def pass_community_params community
