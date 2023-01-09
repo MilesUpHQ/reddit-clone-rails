@@ -26,14 +26,14 @@ class PostsController < ApplicationController
     @post.is_drafted = params[:commit] == "Publish" ? false : true
     if @post.save
       if @post.is_drafted?
-        flash[:notice] = "Draft saved successfully"
+        flash[:notice] = t("draft.success")
         redirect_to new_community_post_path(@post.community_id)
       else
-        flash[:notice] = "Post Published Successfully"
+        flash[:notice] = t("post.success")
         redirect_to community_path(@post.community_id)
       end
     else
-    flash[:alert] = "Please fill all required fields"
+    flash[:alert] = t("form.required")
       render :new
     end
   end
@@ -46,20 +46,20 @@ def update
   @post.is_drafted = params[:commit] == "Publish" ? false : true
   if @post.update(post_values)
     if @post.is_drafted
-      flash[:notice] = "Draft edited Successfully"
+      flash[:notice] = t("draft.success")
       redirect_back(fallback_location: edit_community_post_path)
     else
-      flash[:notice] = "Post Edited successfully"
+      flash[:notice] = t("post.updated")
       redirect_to community_post_path(@post.community_id)
     end
   else
-      flash[:alert] = "Please fill all required fields"
+      flash[:alert] =  t("form.required")
       render :edit
   end
 end
 def close
   @post.update(closed: "true")
-  flash[:notice]="Post Discussion Closed Successfully"
+  flash[:notice] = t("post.close")
   redirect_back(fallback_location: root_path)
 end
 def my_posts
@@ -67,7 +67,7 @@ def my_posts
 end
 def destroy
   if @post.destroy
-    flash[:notice] = "Post Deleted Successfully"
+    flash[:notice] = t("post.destroy")
     redirect_to root_path
   end
 end
