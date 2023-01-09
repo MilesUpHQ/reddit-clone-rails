@@ -30,3 +30,7 @@ en:
   report:
     success: "Thanks for your report"
     error: "Sorry something went wrong"
+  user:
+    has_no_posts: "hmm...u/%{username} hasn't posted anything"
+    has_no_comments: "hmm...u/%{username} hasn't commented on anything"
+    has_no_saved_posts: "hmm... looks like you haven't saved anything yet"  
