@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
     @communities = Community.order(created_at: :asc)
   end
 
+  def set_community
+    @community = Community.friendly.find(params[:id])
+  end
+
   def subscribers_list
     @subscribers = Subscription.where(account_id: current_account.id)
   end
