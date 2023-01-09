@@ -14,5 +14,4 @@ module ApplicationHelper
         end
         return css.to_s
       end
-
   end
