@@ -26,7 +26,7 @@
           </div>
           <div class="create-post m-3">
             <div class="form-group">
-              <%= form.rich_text_area :body, class: style_error_class(@post, :body, "textarea"), placeholder: "Text(optional)" %>
+              <%= form.rich_text_area :body, class: style_error_class(@post, :body, "textarea"), placeholder: "Enter some Text" %>
               <p class="text-danger"><%= error_msg(@post, :body)  %></p>
               <%= form.file_field :images, multiple: true, class: style_error_class(@post, :images, "form-control"), :placeholder=>"" %>
               <p class="text-danger"><%= error_msg(@post, :images)  %></p>
