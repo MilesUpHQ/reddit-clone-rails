@@ -1,11 +1,11 @@
     <%= form_for [@community, @post] do |form| %>
    <% if @post.is_drafted or params[:action] != 'edit'  %>
     <div class="row">
-      <div class="col-sm-12">
+      <div class="p-0 col-sm-12">
         <div class="card rounded mb-3">
           <div class="form-group">
             <%= label_tag :Community %>
-            <%= form.select :community_id, @my_communities.collect {|option| [option.name, option.id]}, selected: selected_community(@my_communities.pluck(:id)) , class: style_error_class(@post, :community_id, "form-control") %>
+            <%= form.select :community_id, @my_communities.collect {|option| [option.name, option.id]},{prompt: "Select Community" ,selected: selected_community(@my_communities.pluck(:id))}, class: style_error_class(@post, :community_id, "form-control") %>
             <p class="text-danger"><%= error_msg(@post, :community_id)  %></p>
           </div>
         </div>
