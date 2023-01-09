@@ -10,7 +10,7 @@
         <div class="col-9">
           <h6 class= "mb-1"><%= link_to post.title, edit_community_post_path(post.community_id, post) %></h6>
             <strong><%= link_to "r/"+post.community.name.capitalize, community_path(post.community), class: "text-dark" %></strong>
-          <small> Draft saved  <%= time_ago_in_words post.created_at %> ago</small>
+          <small> Draft saved  <%= time_ago_in_words post.updated_at %> ago</small>
         </div>
         <div class="col-1">
           <%= link_to community_post_path(post.community_id, post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'post' do %>
