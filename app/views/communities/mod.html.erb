@@ -1,12 +1,15 @@
 <div class="row ">
   <div class="col-3">
     <div class="list-group ml-4" id="list-tab" role="tablist">
-      <li class="list-group-item text-white bg-secondary "><i class="fa fa-cog mr-2"></i>User Management</li>
+      <li class="list-group-item text-white bg-secondary "><i class="fa fa-cog mr-2"></i>Community Management</li>
       <%= link_to mod_path(mod: "Ban_users")  do %>
         <li class="list-group-item border-left border-danger">Ban Users</li>
       <% end %>
-      <%= link_to  edit_community_path(community: @community.id) do %>
+      <%= link_to edit_community_path(community: @community.id) do %>
         <li class="list-group-item border-left border-danger">Edit Community</li>
+      <% end %>
+      <%= link_to community_path(community: @community.id), method: :delete, data: { confirm: 'Deleting community will remove all its Contents. Are you Sure?' } do %>
+        <li class="list-group-item border-left border-danger">Delete Community</li>
       <% end %>
       <li class="list-group-item text-white bg-secondary "><i class="fa fa-envelope-open-o mr-2"></i>Mod Help Center</li>
       <%= link_to ""  do %>
