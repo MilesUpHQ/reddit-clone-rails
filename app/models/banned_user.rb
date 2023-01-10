@@ -1,4 +1,4 @@
 class BannedUser < ApplicationRecord
-    belongs_to :account 
-    belongs_to :community
-end 
+  belongs_to :account
+  belongs_to :community
+end
