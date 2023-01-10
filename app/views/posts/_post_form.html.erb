@@ -1,0 +1,12 @@
+<%= form_for [@community, @post] do |form| %>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="create-post m-3">
+          <div class="form-group">
+            <%= form.rich_text_area :body, class: "textarea", placeholder: "Text(optional)" %>
+          </div>
+        </div>
+        <%= render 'checkbox_form' %>
+      </div>
+    </div>
+    <% end %>
