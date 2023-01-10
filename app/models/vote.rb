@@ -1,32 +1,30 @@
 class Vote < ApplicationRecord
+  validates_uniqueness_of :account_id, scope: :post_id
   belongs_to :account
   belongs_to :post
-
-  validates_uniqueness_of :account_id, scope: :post_id
 
   after_create :increment_vote, :add_karma
   after_destroy :decrement_vote, :remove_karma
 
+  scope :vote, ->(value) { where('upvote=', value) }
+
   private
 
   def increment_vote
-    field = self.upvote ? :upvotes : :downvotes
-    Post.find(self.post_id).increment(field).save
+    field = upvote ? :upvotes : :downvotes
+    post.increment!(field)
   end
 
   def decrement_vote
-    field = self.upvote ? :upvotes : :downvotes
-    Post.find(self.post_id).decrement(field).save
+    field = upvote ? :upvotes : :downvotes
+    post.decrement!(field)
   end
 
   def add_karma
-    account = Account.find(self.account_id)
-    account.increment(:karma, 1).save
+    account.increment!(:karma)
   end
 
   def remove_karma
-    account = Account.find(self.account_id)
-    account.decrement(:karma, 1).save
+    account.decrement!(:karma)
   end
-
 end
