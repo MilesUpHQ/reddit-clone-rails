@@ -21,7 +21,7 @@ ActiveAdmin.register Community do
       f.input :summary
       f.input :rules
       f.input :post_count_this_week
-      f.input :category,  :label => 'category', :as => :select, :collection => Category.all.collect {|option| [option.name]}, :selected => params[:category] 
+      f.input :category,  :label => 'category', :collection => Community::CATEGORIES, :prompt => "Select Category"
       f.input :created_at
       f.input :updated_at
       f.submit "Submit", disable_with: 'Submiting...'
