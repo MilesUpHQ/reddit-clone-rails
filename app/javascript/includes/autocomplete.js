@@ -26,5 +26,8 @@ $(document).on("turbolinks:load", () => {
       },
       cache: true,
     },
-  });
+  }).on('change', function() {
+      let value = $(this).val();
+      window.location = '/r/'+value
+    });
 });
