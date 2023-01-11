@@ -73,10 +73,10 @@ class CommunitiesController < ApplicationController
     end
 
   def search_suggestions
-    communities = Community.where("name ILIKE ?", "%#{params[:q]}%")
-    render json: communities.map(&:name)
+    communities = Community.where("name ILIKE ?", "%#{params[:q]}%").select(:id, :name)
+    render json: communities
   end
-    
+
 
   private
   def set_community
