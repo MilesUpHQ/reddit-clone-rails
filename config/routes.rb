@@ -31,6 +31,9 @@ Rails.application.routes.draw do
 
   get 'r/:id/mod' , to: 'communities#mod' , as: 'mod'
 
+  get 'search_suggestions', to: 'communities#search_suggestions'
+
+
   match "/404", to: "errors#not_found",via: :all 
   get :autocomplete, to: 'communities#autocomplete'
   root to: 'public#index'

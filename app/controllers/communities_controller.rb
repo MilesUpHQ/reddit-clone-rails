@@ -72,11 +72,11 @@ class CommunitiesController < ApplicationController
     @username = Account.pluck(:username).sort
     end
 
-  def usernames
-    query = params[:username]
-    usernames = Account.where("username LIKE ?", "%#{username}%").pluck(:username)
-    render json: usernames
+  def search_suggestions
+    communities = Community.where("name ILIKE ?", "%#{params[:q]}%")
+    render json: communities.map(&:name)
   end
+    
 
   private
   def set_community

@@ -45,6 +45,9 @@
               <% end %>
             <% end %>
           </div>
+
+          <%#= select_tag 'search-input', options_for_select([]), class: 'search-input', class: 'form-control', include_blank: 'Search' %>
+          <input type="text" id="search-input" class="form-control" placeholder="Search">
         </div>
       </li>
     </ul>
