@@ -1,4 +1,3 @@
-
 <%= form_for @community do |form| %>
   <div class="card rounded mb-3">
     <div class="row">
@@ -41,7 +40,7 @@
         <div class="create-post m-3">
           <div class="form-group">
             <%= label_tag :category %>
-            <%= form.select :category, Community::CATEGORIES, prompt: "Select Category" ,class: style_error_class(@community, :category, "form-control") %>
+            <%= form.select :category, Community::CATEGORIES, { prompt: "Select Category" } ,class: style_error_class(@community, :category, "form-control") %>
             <p class="text-danger"><%= error_msg(@community, :category)  %></p>
           </div>
         </div>
