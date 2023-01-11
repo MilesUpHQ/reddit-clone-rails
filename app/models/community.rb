@@ -13,7 +13,7 @@ class Community < ApplicationRecord
 
   validates_presence_of :summary, :name, :rules, :category
   validates :name, uniqueness: true
-  validates :url, format: { with: URI::DEFAULT_PARSER.make_regexp(%w[http https]), message: 'Valid URL required' }
+  validates :url, presence: true, format: { with: URI::DEFAULT_PARSER.make_regexp(%w[http https]) }
   validate :accept_proflie_image
   validate :accept_cover_image
 

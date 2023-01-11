@@ -7,10 +7,8 @@ module ApplicationHelper
       end
 
       def style_error_class(resource, field, css)
-        if resource.errors.any?
-          if resource.errors.full_messages_for(field).first
-            return (css+" border-danger").to_s
-          end
+        if resource.errors[field].any?  
+          return (css+" border-danger").to_s
         end
         return css.to_s
       end
