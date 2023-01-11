@@ -49,7 +49,7 @@ def update
       flash[:notice] = t("draft.success")
       redirect_back(fallback_location: edit_community_post_path)
     else
-      flash[:notice] = t("post.updated")
+      flash[:notice] = t("post.success")
       redirect_to community_post_path(@post.community_id)
     end
   else
