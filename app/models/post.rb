@@ -6,8 +6,8 @@ class Post < ApplicationRecord
   belongs_to :account
   belongs_to :community
   validates_presence_of :account_id, :community_id
-  validates :title, presence: { message: "Title can't be blank" }
-  validates :body, presence: { message: "Body can't be blank" }
+  validates :title, presence: true
+  validates :body, presence: true
   has_many :comments, dependent: :destroy
   has_many :reports, dependent: :destroy
   has_many :save_posts
