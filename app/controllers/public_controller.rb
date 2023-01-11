@@ -6,7 +6,7 @@ class PublicController < ApplicationController
     @posts = Post.order(created_at: :desc).page(params[:page]).per 5
     @top_posts = Post.order(view_count: :desc).page(params[:page]).per 5
     @new_posts = Post.order(created_at: :desc).page(params[:page]).per 5
-    @hot_posts = Post.order(view_count: :desc).page(params[:page]).per 5
+    @hot_posts = Post.order(upvotes: :desc).page(params[:page]).per 5
   end
   
   def profile
@@ -20,7 +20,7 @@ class PublicController < ApplicationController
     @posts = @profile.posts
     @my_comments = Comment.where(account_id: @profile.id)
     @my_posts = Post.where(account_id: @profile.id, is_drafted: false).page(params[:page]).per 5
-    @hot_myposts = Post.where(account_id: @profile.id).order(view_count: :desc).page(params[:page]).per 5
+    @hot_myposts = Post.where(account_id: @profile.id).order(upvotes: :desc).page(params[:page]).per 5
     @top_myposts = Post.where(account_id: @profile.id).order(view_count: :desc).page(params[:page]).per 5
     @new_myposts = Post.where(account_id: @profile.id).order(created_at: :desc).page(params[:page]).per 5
   end
