@@ -30,22 +30,8 @@
         <h5 class="button-59">nsfw</h5>
         <% end %>
       </div>
-    </div>
-    <% if @post.nsfw?  %>
-      <%= render 'sensitive_post_display' %>
-    <% elsif @post.oc? %>
-      <div class="sensitive">
-        <h5>OC Thread</h5>
-      </div>
+    </div>      
       <%= render 'post_display' %>
-    <% elsif @post.spoiler? %>
-      <div class="sensitiveS">
-        <h5>Spoiler Thread</h5>
-      </div>
-      <%= render 'post_display' %>
-    <% else %>
-      <%= render 'post_display' %>
-    <% end %>
     <%= render "reactions" %>
     <div id="comment-hide">
       <% if !(@post.closed?) %>
