@@ -4,9 +4,9 @@
   <div class="row m-0">
     <div class="col-1 m-0 vote-col text-center">
       <div id="vote-actions-<%= post.id %>" class="vote" data-id="<%= post.id %>">
-        <div class="fa fa-arrow-up upvote <%= is_upvoted post %>"></div>
+        <div class="fa fa-arrow-up <%= authorized_upvote(true) %> <%= is_upvoted post %>"></div>
         <span class="font-weight-bold score"><%= post.score %></span>
-        <div class="fa fa-arrow-down downvote <%= is_downvoted post %>"></div>
+        <div class="fa fa-arrow-down <%= authorized_upvote(false) %> <%= is_downvoted post %>"></div>
       </div>
     </div>
     <div class="col-11">
