@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   resources :report_reasons
   resources :banned_users
-  resources :subscriptions
+  resources :subscriptions, only: [:create, :destroy]
   resources :comments, only: [:create]
   resources :reports, only: [:create]
 
@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 
   get 'r/:id/mod' , to: 'communities#mod' , as: 'mod'
 
-  match "/404", to: "errors#not_found",via: :all 
+  match "/404", to: "errors#not_found",via: :all
   get :autocomplete, to: 'communities#autocomplete'
   root to: 'public#index'
 end
