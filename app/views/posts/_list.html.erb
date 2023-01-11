@@ -81,11 +81,11 @@
           <i class="fa fa-share mt-1"></i> Share
           <% end %>
           <%= link_to "#", class: "list-post-tab saved", remote: true, id: "save-actions-"+post.id.to_s, "data-id"=>post.id do %>
-          <div class="fa <%= is_saved post %> save ">
+          <div class="fa <%= is_saved post %> <%= authorized_save_post %> ">
             <%= save_or_unsave post %>
           </div>
           <% end %>
-          <%= link_to "#", class: "list-post-tab" do %>
+          <%= link_to community_post_path(post.community_id, post), class: "list-post-tab" do %>
           <i class="fa fa-flag-o mt-1"></i> Report
           <% end %>
         </div>
