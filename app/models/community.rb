@@ -10,6 +10,7 @@ class Community < ApplicationRecord
   has_one_attached :profile_image
   has_one_attached :cover_image
   has_many :banned_users
+  belongs_to :account
 
   validates_presence_of :summary, :name, :rules, :category
   validates :name, uniqueness: true

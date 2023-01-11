@@ -2,7 +2,9 @@ ActiveAdmin.register Community do
   permit_params :account_id, :name, :url, :summary, :rules, :total_members, :category
 
   index do
-    column :account_id
+    column "Owner" do |community|
+      community.account.username
+    end
     column :name
     column :url
     column :summary
