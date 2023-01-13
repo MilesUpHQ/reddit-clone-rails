@@ -1,0 +1,41 @@
+<%= form_for [@community, @post] do |form| %>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card rounded mb-3">
+            <div class="form-group">
+                <%= label_tag :Community %>
+                <%= form.select :community_id, @my_communities.collect {|option| [option.name, option.id]}, selected: params[:community_id] , class: "form-select" %>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card rounded mb-3">
+    <div class="create-post m-3">
+        <div class="form-group">
+            <%= form.text_field :title, class: "form-control", placeholder: "Title", maxlength: 20%>
+        </div>
+    </div>
+    <div class="create-post m-3">
+        <div class="form-group">
+            <%= form.text_area :body, class: "form-control", placeholder: "Text(optional)" %>
+        </div>
+    </div>
+    <div class="create-post m-3">
+        <div class="form-group">
+            <%= render 'checkbox_form' %>
+        </div>
+    </div>
+    <div>
+        <div class="float-right">
+            <% unless params[:action] == 'edit' %>
+            <div class="join-btn  create-post-btn mb-4">
+                <%= form.submit "Save as draft", class: "text-white" %>
+            </div>
+            <% end %>
+            <div class="join-btn create-post-btn mb-4">
+                <%= form.submit "Publish", class: "text-white" %>
+            </div>
+        </div>
+    </div>
+</div>
+<% end %>

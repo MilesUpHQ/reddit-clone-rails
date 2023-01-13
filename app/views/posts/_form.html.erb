@@ -1,48 +1,29 @@
-<%= form_for [@community, @post] do |form| %>
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="card rounded mb-3">
-          <div class="form-group">
-            <%= label_tag :Community %>
-            <%= form.select :community_id, @my_communities.collect {|option| [option.name, option.id]}, selected: params[:community_id] , class: "form-select" %>
-          </div>
-      </div>
-    </div>
-  </div>
-  <div class="card rounded mb-3">
-    <%= render partial: "posts/new_post_tab" %>
-    <div class="create-post m-3">
-      <div class="form-group">
-        <%= form.text_field :title, class: "form-control", placeholder: "Title", maxlength: 20%>
-      </div>
-    </div>
-    <div class="tab-content">
-      <div id="posts_form" class="tab-pane fade-in infinity active">
-        <%= render partial: "post_form" %>
-      </div>
-      <div id="images_form" class="tab-pane fade infinity">
-        <%= render partial: "post_form" %>
-      </div>
-      <div id="link_form" class="tab-pane fade infinity">
-        <%= render partial: "post_form" %>
-      </div>
-      <div id="poll_form" class="tab-pane fade infinity">
-        <%= render partial: "post_form" %>
-      </div>
-      <div id="talk_form" class="tab-pane fade infinity">
-        <%= render partial: "post_form" %>
-      </div>
-     <div class="float-right">
-        <% unless params[:action] == 'edit' %>
-          <div class="join-btn  create-post-btn mb-4">
-            <%= form.submit "Save as draft", class: "text-white" %>
-          </div>
-        <% end %>
-        <div class="join-btn create-post-btn mb-4">
-          <%= form.submit "Publish", class: "text-white" %>
-        </div>
-      </div>
-    </div>
-  </div>
+ <div class="card rounded mb-3">
+ <div class="row">
+ <div class="col-12">
+   <div class="">
+     <ul class="nav">
+       <li class="post-tab-nav-link flex-fill active"><a data-toggle="tab" href="#posts_form"><i class='fa fa-rocket mr-2'></i> Posts</a></li>
+       <li class="post-tab-nav-link flex-fill"><a data-toggle="tab" href="#images_form"><i class='fa fa-fire mr-2'></i> Images & Video</a></li>
+       <li class="post-tab-nav-link flex-fill"><a data-toggle="tab" href="#link_form"><i class='fa fa-tag mr-2'></i> Link</a></li>
+       <li class="post-tab-nav-link flex-fill"><a data-toggle="tab" href="#poll_form"><i class='fa fa-bar-chart mr-2'></i> Poll</a></li>
+     </ul>
+   </div>
+ </div>
 </div>
-<% end%>
+    </div>    
+    <div class="tab-content">
+    <div id="posts_form" class="tab-pane fade-in infinity active">
+    <%= render partial: "post_form" %>
+     </div>
+     <div id="images_form" class="tab-pane fade infinity">
+     <%= render partial: "images_form" %>
+     </div>
+     <div id="link_form" class="tab-pane fade infinity">
+     <%= render partial: "link_form" %>
+   </div>
+   <div id="poll_form" class="tab-pane fade infinity">
+   <%= render partial: "poll_form" %>
+ </div>
+  </div>
+    
