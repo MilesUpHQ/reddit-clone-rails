@@ -10,10 +10,11 @@ class Community < ApplicationRecord
   has_one_attached :profile_image
   has_one_attached :cover_image
   has_many :banned_users
+  belongs_to :account
 
   validates_presence_of :summary, :name, :rules, :category
   validates :name, uniqueness: true
-  validates :url, format: { with: URI::DEFAULT_PARSER.make_regexp(%w[http https]), message: 'Valid URL required' }
+  validates :url, presence: true, format: { with: URI::DEFAULT_PARSER.make_regexp(%w[http https]) }
   validate :accept_proflie_image
   validate :accept_cover_image
 
