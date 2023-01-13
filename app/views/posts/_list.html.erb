@@ -67,7 +67,9 @@
             <p class="col-12 sensitive-button">Click to see nsfw</p>
           </div>
           <% end %>
-          <% else %>
+          <% elsif post.body.to_s.include?(".png") or post.body.to_s.include?(".jpg") %>
+          <%=post.body%>
+          <%else%>
           <p class="col-12 "><%= post.body.to_plain_text.truncate(30) %></p>
           <% end %>
         </div>
