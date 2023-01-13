@@ -12,26 +12,8 @@ class VotesController < ApplicationController
 
     respond_to do |format|
       format.js {
-      if existing_vote.size > 0
-        if existing_vote.first.upvote == vote.upvote
-          existing_vote.first.destroy
-        else
-          existing_vote.first.destroy
-          if vote.save
-            @success = true
-          else
-            @success = false
-          end
-        end
-      else
-        if vote.save
-          @success = true
-        else
-          @success = false
-        end
-      end
-
-
+        existing_vote.first.destroy if existing_vote.size > 0
+        vote.save unless existing_vote.size > 0 && existing_vote.first.upvote == vote.upvote
         @post = Post.find(post_id)
         @is_upvote = params[:upvote]
 
