@@ -4,9 +4,9 @@
   <div class="row m-0">
     <div class="col-1 m-0 vote-col text-center">
       <div id="vote-actions-<%= post.id %>" class="vote" data-id="<%= post.id %>">
-        <div class="fa fa-arrow-up upvote <%= is_upvoted post %>"></div>
+        <div class="fa fa-arrow-up <%= authorized_upvote(true) %> <%= is_upvoted post %>"></div>
         <span class="font-weight-bold score"><%= post.score %></span>
-        <div class="fa fa-arrow-down downvote <%= is_downvoted post %>"></div>
+        <div class="fa fa-arrow-down <%= authorized_upvote(false) %> <%= is_downvoted post %>"></div>
       </div>
     </div>
     <div class="col-11">
@@ -81,11 +81,11 @@
           <i class="fa fa-share mt-1"></i> Share
           <% end %>
           <%= link_to "#", class: "list-post-tab saved", remote: true, id: "save-actions-"+post.id.to_s, "data-id"=>post.id do %>
-          <div class="fa <%= is_saved post %> save ">
+          <div class="fa <%= is_saved post %> <%= authorized_save_post %> ">
             <%= save_or_unsave post %>
           </div>
           <% end %>
-          <%= link_to "#", class: "list-post-tab" do %>
+          <%= link_to community_post_path(post.community_id, post), class: "list-post-tab" do %>
           <i class="fa fa-flag-o mt-1"></i> Report
           <% end %>
         </div>

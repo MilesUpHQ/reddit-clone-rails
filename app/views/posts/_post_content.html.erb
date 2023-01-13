@@ -3,9 +3,9 @@
     <div class="show-content">
       <div class="like-unlike">
         <div id="vote-actions-<%= @post.id %>" class="vote" data-id="<%= @post.id %>">
-          <div class="fa fa-arrow-up upvote <%= is_upvoted @post %>"></div>
+          <div class="fa fa-arrow-up <%= authorized_upvote(true) %> <%= is_upvoted @post %>"></div>
           <span class="font-weight-bold score"><%= @post.score %></span>
-          <div class="fa fa-arrow-down downvote <%= is_downvoted @post %>"></div>
+          <div class="fa fa-arrow-down <%= authorized_upvote(false) %> <%= is_downvoted @post %>"></div>
         </div>
       </div>
       <% if @post.community.profile_image.attached? %>
@@ -31,21 +31,7 @@
         <% end %>
       </div>
     </div>
-    <% if @post.nsfw?  %>
-      <%= render 'sensitive_post_display' %>
-    <% elsif @post.oc? %>
-      <div class="sensitive">
-        <h5>OC Thread</h5>
-      </div>
       <%= render 'post_display' %>
-    <% elsif @post.spoiler? %>
-      <div class="sensitiveS">
-        <h5>Spoiler Thread</h5>
-      </div>
-      <%= render 'post_display' %>
-    <% else %>
-      <%= render 'post_display' %>
-    <% end %>
     <%= render "reactions" %>
     <div id="comment-hide">
       <% if !(@post.closed?) %>
