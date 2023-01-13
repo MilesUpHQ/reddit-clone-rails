@@ -44,21 +44,20 @@ class PostsController < ApplicationController
   def edit
     @post = Post.find(params[:id])
   end
-
-  def update
-    @post = Post.find(params[:id])
-    @post.community_id = params[:community_id]
-    @post.is_drafted = !(params[:commit] == 'Publish')
-    if @post.update(post_values)
-      if @post.is_drafted
-        flash[:notice] = t('draft.success')
-        redirect_back(fallback_location: edit_community_post_path)
-      else
-        flash[:notice] = t('post.updated')
-        redirect_to community_post_path(@post.community_id)
-      end
+def update
+  @post = Post.find(params[:id])
+  @post.community_id = params[:community_id]
+  @post.is_drafted = params[:commit] == "Publish" ? false : true
+  if @post.update(post_values)
+    if @post.is_drafted
+      flash[:notice] = t("draft.success")
+      redirect_back(fallback_location: edit_community_post_path)
     else
-      flash[:alert] = t('form.required')
+      flash[:notice] = t("post.success")
+      redirect_to community_post_path(@post.community_id)
+    end
+  else
+      flash[:alert] =  t("form.required")
       render :edit
     end
   end
