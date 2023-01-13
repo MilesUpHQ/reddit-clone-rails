@@ -1,0 +1,36 @@
+en:
+  form:
+    required: "Fill all required fields"
+  community:
+    success: "Community Created Successfully"
+    updated: "Community Updated Successfully"
+    destroy: "Community Destroyed Successfully"
+    joined: "Joined Community Successfully 🫂"
+    left: "You have left the Community 💔"
+  post:
+    success: "Post Published Successfully"
+    updated: "Post Edited successfully"
+    destroy: "Post Destroyed Successfully"
+    save: "Post saved!"
+    unsave: "Post unsaved!"
+    close: "Post Discussion Closed Successfully"
+  draft:
+    success: "Draft Saved Successfully"
+    updated: "Draft Edited successfully"
+    destroy: "Draft Destroyed Successfully"
+  comment:
+    create: "Comment Created Successfully"
+    empty: "Empty Comments are not Accepted!"
+  ban:
+    success: "The user '%{username}' has been banned successfully!"
+    moderator_not_possible: "The user '%{username}' is Moderator"
+    already_done: "The user '%{username}' is already banned"
+    user_not_available: "Username '%{username}' does not exists"
+    user_not_present_in_community: "Username '%{username}' not present in Community"
+  report:
+    success: "Thanks for your report"
+    error: "Sorry something went wrong"
+  user:
+    has_no_posts: "hmm...u/%{username} hasn't posted anything"
+    has_no_comments: "hmm...u/%{username} hasn't commented on anything"
+    has_no_saved_posts: "hmm... looks like you haven't saved anything yet"  
