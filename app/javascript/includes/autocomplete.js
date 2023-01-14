@@ -1,7 +1,7 @@
 import $ from "jquery";
 
 $(document).on("turbolinks:load", () => {
-  $(".search-input").select2({
+  $(".search-input-navbar").select2({
     width: "100%",
     placeholder: "Search Community",
     minimumInputLength: 2,
@@ -26,7 +26,8 @@ $(document).on("turbolinks:load", () => {
       },
       cache: true,
     },
-  }).on('change', function() {
+  })
+  $('.navbar-redirection').on('change', function() {
     let value = $(this).val();
     window.location = '/r/'+value
   });

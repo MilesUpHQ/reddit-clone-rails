@@ -6,7 +6,7 @@
 
           <div class="form-group">
             <%= label_tag :Community %>
-            <%= form.select :community_id, @my_communities.collect {|option| [option.name, option.id]}, {prompt: "Choose a Community" , selected: @post.community_id || params[:community]}, {class: "search-input", data: {autocomplete_url: search_suggestions_path}} %>
+            <%= form.select :community_id, @my_communities.collect {|option| [option.name, option.id]}, {prompt: "Choose a Community" , selected: @post.community_id || params[:community]}, {class: "search-input-navbar", data: {autocomplete_url: search_suggestions_path}} %>
             <p class="text-danger"><%= error_msg(@post, :community_id)  %></p>
           </div>
 
