@@ -8,12 +8,12 @@ class CommunitiesController < ApplicationController
   def index
     count_post_for_this_week
     @categories = Community::CATEGORIES
-    @communities = if params.has_key?(:category)
-                     Community.where(category: params[:category]).order(created_at: :desc).page(params[:page]).per 7
-                   else
-                     Community.order(created_at: :desc).page(params[:page]).per 7
-                   end
-    @random_category_communities = Community.where(category: @categories.sample).order('post_count_this_week desc').limit(5)
+    if(params.has_key?(:category))
+      @communities = Community.where(category: params[:category]).order(created_at: :desc).page(params[:page]).per 7
+    else
+      @communities = Community.order(created_at: :desc).page(params[:page]).per 7
+    end
+    @random_category_communities = Community.where(category: @categories.sample).order("post_count_this_week desc").limit(5)
   end
 
   def show
@@ -21,8 +21,7 @@ class CommunitiesController < ApplicationController
     @posts = @community.posts.limit(20).sort_by { |p| p.score }.reverse
     @subscriber_count = @community.subscribers.count
     @subscribed = if account_signed_in?
-                    Subscription.where(community_id: @community.id,
-                                       account_id: current_account.id).any?
+                    Subscription.where(community_id: @community.id,account_id: current_account.id).any?
                   else
                     false
                   end
