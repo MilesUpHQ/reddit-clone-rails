@@ -1,9 +1,9 @@
 import $ from "jquery";
 
 $(document).on("turbolinks:load", () => {
-  $("#search-input").select2({
+  $(".search-input").select2({
     width: "100%",
-    placeholder: "Search",
+    placeholder: "Search Community",
     minimumInputLength: 2,
     ajax: {
       url: "/search_suggestions",
@@ -27,7 +27,7 @@ $(document).on("turbolinks:load", () => {
       cache: true,
     },
   }).on('change', function() {
-      let value = $(this).val();
-      window.location = '/r/'+value
-    });
+    let value = $(this).val();
+    window.location = '/r/'+value
+  });
 });
