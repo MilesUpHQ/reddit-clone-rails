@@ -12,4 +12,8 @@ $( document ).on('turbolinks:load', function() {
       }
     });
   });
+
+  $(".vote").on("click", ".login", function(){
+    window.location = "/accounts/sign_in"
+  });
 });
