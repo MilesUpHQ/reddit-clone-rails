@@ -1,29 +1,32 @@
- <div class="card rounded mb-3">
- <div class="row">
- <div class="col-12">
-   <div class="">
-     <ul class="nav">
-       <li class="post-tab-nav-link flex-fill active"><a data-toggle="tab" href="#posts_form"><i class='fa fa-rocket mr-2'></i> Posts</a></li>
-       <li class="post-tab-nav-link flex-fill"><a data-toggle="tab" href="#images_form"><i class='fa fa-fire mr-2'></i> Images & Video</a></li>
-       <li class="post-tab-nav-link flex-fill"><a data-toggle="tab" href="#link_form"><i class='fa fa-tag mr-2'></i> Link</a></li>
-       <li class="post-tab-nav-link flex-fill"><a data-toggle="tab" href="#poll_form"><i class='fa fa-bar-chart mr-2'></i> Poll</a></li>
-     </ul>
-   </div>
- </div>
-</div>
-    </div>    
-    <div class="tab-content">
-    <div id="posts_form" class="tab-pane fade-in infinity active">
-    <%= render partial: "post_form" %>
-     </div>
-     <div id="images_form" class="tab-pane fade infinity">
-     <%= render partial: "images_form" %>
-     </div>
-     <div id="link_form" class="tab-pane fade infinity">
-     <%= render partial: "link_form" %>
-   </div>
-   <div id="poll_form" class="tab-pane fade infinity">
-   <%= render partial: "poll_form" %>
- </div>
+<div class="card rounded mb-3">
+  <div class="row">
+    <div class="col-12">
+      <div class="">
+        <ul class="nav">
+          <li class="post-tab-nav-link flex-fill active"><a data-toggle="tab" href="#posts_form"><i
+                class='fa fa-rocket mr-2'></i> Posts</a></li>
+          <li class="post-tab-nav-link flex-fill"><a data-toggle="tab" href="#images_form"><i
+                class='fa fa-fire mr-2'></i> Images & Video</a></li>
+          <li class="post-tab-nav-link flex-fill"><a data-toggle="tab" href="#link_form"><i class='fa fa-tag mr-2'></i>
+              Link</a></li>
+          <li class="post-tab-nav-link flex-fill"><a data-toggle="tab" href="#poll_form"><i
+                class='fa fa-bar-chart mr-2'></i> Poll</a></li>
+        </ul>
+      </div>
+    </div>
   </div>
-    
+</div>
+<div class="tab-content">
+  <div id="posts_form" class="tab-pane fade-in infinity active">
+    <%= render partial: "post_form" %>
+  </div>
+  <div id="images_form" class="tab-pane fade infinity">
+    <%= render partial: "images_form" %>
+  </div>
+  <div id="link_form" class="tab-pane fade infinity">
+    <%= render partial: "link_form" %>
+  </div>
+  <div id="poll_form" class="tab-pane fade infinity">
+    <%= render partial: "poll_form" %>
+  </div>
+</div>
