@@ -20,11 +20,7 @@
       <%= form.text_area :body, class: "form-control", placeholder: "Text(optional)" %>
     </div>
   </div>
-  <div class="create-post m-3">
-    <div class="form-group">
       <%= render 'content_warning_fields' %>
-    </div>
-  </div>
   <div>
     <div class="float-right">
       <% unless params[:action] == 'edit' %>

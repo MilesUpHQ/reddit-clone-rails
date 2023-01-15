@@ -9,7 +9,7 @@ module PostsHelper
     'login'
   end
 
-  def image_included(img)
+  def image_format_validation(img)
     img.to_s.include?(".png") or img.to_s.include?(".jpg")
   end
 end
