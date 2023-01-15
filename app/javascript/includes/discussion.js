@@ -1,6 +1,6 @@
-$( document ).on('turbolinks:load', function() {
+$(document).on('turbolinks:load', function () {
   $("#disclaimer").hide();
-  $('#close-link').click(function(event){
+  $('#close-link').click(function (event) {
     $("#disclaimer").show();
     $("#comment-hide").hide();
     $("#close-link").hide();

@@ -204,7 +204,7 @@
 .list-post-tab:hover {
   color: #8c8f91;
   text-decoration: none;
-  background-color: rgba(157,160,161,0.2);
+  background-color: rgba(157, 160, 161, 0.2);
 }
 
 .vote-col {
@@ -216,19 +216,21 @@
   border: 1px solid #636c72;
 }
 
-.small-pic{
+.small-pic {
   height: 30px;
   width: 30px;
 }
 
-.reactions{
+.reactions {
   display: flex;
   margin-top: 20px;
   margin-left: 20px;
   margin-bottom: 20px;
+
   a {
     color: black;
   }
+
   i {
     padding: 3px;
   }
@@ -243,14 +245,14 @@
   text-align: center;
 }
 
-.textarea{
+.textarea {
   inline-size: 100%;
 }
 
-.errors{
+.errors {
   border: 1px solid red;
 }
 
-.nil-message{
+.nil-message {
   margin-top: 300px;
 }

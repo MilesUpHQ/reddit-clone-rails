@@ -9,29 +9,29 @@
         </div>
       </div>
       <% if @post.community.profile_image.attached? %>
-      <%= link_to community_path(@post.community) do %>
-      <%= image_tag(@post.community.profile_image, class: "community-icon") %>
-      <% end %>
+        <%= link_to community_path(@post.community) do %>
+          <%= image_tag(@post.community.profile_image, class: "community-icon") %>
+        <% end %>
       <% else %>
-      <%= link_to community_path(@post.community) do %>
-      <%= image_tag("profile-pic.png" ,class: "community-icon") %>
-      <% end %>
+        <%= link_to community_path(@post.community) do %>
+          <%= image_tag("profile-pic.png" ,class: "community-icon") %>
+        <% end %>
       <% end %>
       <div class = "like-unlike">
         <p><small>r/<%= link_to @post.community.name.downcase, community_path(@post.community) %> Posted by u/<%= link_to @post.account.username, profile_path(@post.account.username) %> <%= time_ago_in_words @post.created_at %> ago</small></p>
         <h3 class="card-title"><%= @post.title %></h3>
         <% if @post.oc %>
-        <h5 class="button-58">OC</h5>
+          <h5 class="button-58">OC</h5>
         <% end %>
         <% if @post.spoiler %>
-        <h5 class="button-s">Spoiler</h5>
+          <h5 class="button-s">Spoiler</h5>
         <% end %>
         <% if @post.nsfw %>
-        <h5 class="button-59">nsfw</h5>
+          <h5 class="button-59">nsfw</h5>
         <% end %>
       </div>
     </div>
-      <%= render 'post_display' %>
+    <%= render 'post_display' %>
     <%= render "reactions" %>
     <div id="comment-hide">
       <% if !(@post.closed?) %>
@@ -53,9 +53,9 @@
       <p>The Discussion is closed.So no one cannot add comments or replies to this Discussion </p>
     </div>
     <% if (@post.closed?) %>
-    <div class="alert">
-      <p> The discussion is closed by owner.So no one cannot add comments or replies in the discussion.Thank You! </p>
-    </div>
+      <div class="alert">
+        <p> The discussion is closed by owner.So no one cannot add comments or replies in the discussion.Thank You! </p>
+      </div>
     <% end %>
     <div class="commentssection">
       <div id="post-comments">

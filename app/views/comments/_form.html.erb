@@ -1,12 +1,12 @@
 <% if signed_in? %>
- <%= form_with(model: @comment, local: true) do |f| %>
-  <%= f.hidden_field :post_id, value: @post.id %>
-  <%= f.hidden_field :account_id, value: current_account.id %>
-  <% if !parent.nil? %>
-    <input type = "hidden" name="comment[parent_id]" value="<%= parent.id %>">
+  <%= form_with(model: @comment, local: true) do |f| %>
+    <%= f.hidden_field :post_id, value: @post.id %>
+    <%= f.hidden_field :account_id, value: current_account.id %>
+    <% if !parent.nil? %>
+      <input type = "hidden" name="comment[parent_id]" value="<%= parent.id %>">
+    <% end %>
+    <% comment_id = (comment_id.nil?) ? "" : comment_id %>
+    <%= f.rich_text_area :message, placeholder: "Your comment goes here", class: "commentarea", id: "comment-#{comment_id}" %>
+    <%= f.submit "Submit comment", class: "btn btn-success mt-3" %>
   <% end %>
-  <% comment_id = (comment_id.nil?) ? "" : comment_id %>
-  <%= f.rich_text_area :message, placeholder: "Your comment goes here", class: "commentarea", id: "comment-#{comment_id}" %>
-  <%= f.submit "Submit comment", class: "btn btn-success mt-3" %>
- <% end %>
 <% end %>

@@ -11,8 +11,8 @@
         <% if signed_in? %>
           <%= render "reports/form" %>
         <% else %>
-           <p> Log in to Report </p>
-           <div class = "join-btn"> <%= link_to "Log In", new_account_session_path, class: "nav-link" %></div>
+          <p> Log in to Report </p>
+          <div class = "join-btn"> <%= link_to "Log In", new_account_session_path, class: "nav-link" %></div>
         <% end %>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

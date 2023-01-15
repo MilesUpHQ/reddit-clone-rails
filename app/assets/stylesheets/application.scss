@@ -15,23 +15,23 @@
  *= require_self
  */
 
- @import "font-awesome";
+@import "font-awesome";
 
- @import "bootstrap/scss/bootstrap";
- @import 'toastr/build/toastr.min';
+@import "bootstrap/scss/bootstrap";
+@import 'toastr/build/toastr.min';
 
 .textarea {
-    overflow: scroll;
-    height: 400px;
+  overflow: scroll;
+  height: 400px;
 }
 
-.imagecss{
-    object-fit: cover;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    height: 50%;
+.imagecss {
+  object-fit: cover;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: 50%;
 }
 
 
@@ -86,123 +86,123 @@
 }
 
 .sens {
-    width: 110px;
-    height: 30px;
-    color: black;
-    border: 1px solid green;
-    background-color: black;
+  width: 110px;
+  height: 30px;
+  color: black;
+  border: 1px solid green;
+  background-color: black;
 }
 
 .sensitive {
-    width: 110px;
-    height: 30px;
-    color: black;
-    border: 1px solid black;
-    background-color: yellow;
-    text-align: center;
+  width: 110px;
+  height: 30px;
+  color: black;
+  border: 1px solid black;
+  background-color: yellow;
+  text-align: center;
 }
 
 .sensitiveC {
-    width: 170px;
-    height: 30px;
-    color: black;
-    border: 1px solid red;
-    background-color: red;
-    text-align: center;
-    box-sizing: border-box;
+  width: 170px;
+  height: 30px;
+  color: black;
+  border: 1px solid red;
+  background-color: red;
+  text-align: center;
+  box-sizing: border-box;
 }
 
 
 .sensitiveS {
-    width: 100px;
-    height: 30px;
-    color: black;
-    border: 1px solid black;
-    background-color: green;
-    text-align: center;
+  width: 100px;
+  height: 30px;
+  color: black;
+  border: 1px solid black;
+  background-color: green;
+  text-align: center;
 }
 
 .sensitive-text {
-    font-size: 40px;
-    color: transparent;
-    text-shadow: 0 0 8px #000;
+  font-size: 40px;
+  color: transparent;
+  text-shadow: 0 0 8px #000;
 }
 
-.margin{
-    margin-left: 150px;
+.margin {
+  margin-left: 150px;
 }
 
-.sensitive-button{
-    align-items: center;
-    background-color: #FFFFFF;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: .25rem;
-    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
-    box-sizing: border-box;
-    color: rgba(0, 0, 0, 0.85);
-    cursor: pointer;
-    display: inline-flex;
-    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    justify-content: center;
-    line-height: 1.25;
-    margin: 0;
-    min-height: 3rem;
-    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
-    position: relative;
-    text-decoration: none;
-    transition: all 250ms;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    vertical-align: baseline;
-    width: auto;
-  }
-  
-  .sensitive-button:hover,
-  .sensitive-button:focus {
-    border-color: rgba(0, 0, 0, 0.15);
-    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-    color: rgba(0, 0, 0, 0.65);
-  }
-  
-  .sensitive-button:hover {
-    transform: translateY(-1px);
-  }
-  
-  .sensitive-button:active {
-    background-color: #F0F0F1;
-    border-color: rgba(0, 0, 0, 0.15);
-    box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
-    color: rgba(0, 0, 0, 0.65);
-    transform: translateY(0);
-  }
+.sensitive-button {
+  align-items: center;
+  background-color: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+}
+
+.sensitive-button:hover,
+.sensitive-button:focus {
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.sensitive-button:hover {
+  transform: translateY(-1px);
+}
+
+.sensitive-button:active {
+  background-color: #F0F0F1;
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+  color: rgba(0, 0, 0, 0.65);
+  transform: translateY(0);
+}
 
 .button-59 {
-    align-items: center;
-    background-color: #fff;
-    border: 2px solid red;
-    box-sizing: border-box;
-    color: red;
-    fill: red;
-    display: inline-flex;
-    font-family: Inter,sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    height: 40px;
-    justify-content: center;
-    letter-spacing: -.8px;
-    line-height: 24px;
-    min-width: 140px;
-    outline: 0;
-    padding: 0 17px;
-    text-align: center;
-    text-decoration: none;
-    transition: all .3s;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
+  align-items: center;
+  background-color: #fff;
+  border: 2px solid red;
+  box-sizing: border-box;
+  color: red;
+  fill: red;
+  display: inline-flex;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 40px;
+  justify-content: center;
+  letter-spacing: -.8px;
+  line-height: 24px;
+  min-width: 140px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  transition: all .3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
 .button-58 {
@@ -212,7 +212,7 @@
   box-sizing: border-box;
   color: #fff;
   fill: #000;
-  font-family: Inter,sans-serif;
+  font-family: Inter, sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 30px;
@@ -247,30 +247,30 @@
 }
 
 .button-s {
-    align-items: center;
-    background-color: #fff;
-    border: 2px solid #000;
-    box-sizing: border-box;
-    color: #000;
-    fill: #000;
-    display: inline-flex; 
-    font-family: Inter,sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    height: 48px;
-    justify-content: center;
-    letter-spacing: -.8px;
-    line-height: 24px;
-    min-width: 140px;
-    outline: 0;
-    padding: 0 17px;
-    text-align: center;
-    text-decoration: none;
-    transition: all .3s;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    }
+  align-items: center;
+  background-color: #fff;
+  border: 2px solid #000;
+  box-sizing: border-box;
+  color: #000;
+  fill: #000;
+  display: inline-flex;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: -.8px;
+  line-height: 24px;
+  min-width: 140px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  transition: all .3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
 
 
 @media (min-width: 768px) {
@@ -278,102 +278,103 @@
     min-width: 170px;
   }
 }
+
 .sensitive-image {
-    filter: blur(30px);
+  filter: blur(30px);
 }
 
 .card-textarea {
-    overflow: scroll;
-    height: 400px;
+  overflow: scroll;
+  height: 400px;
 }
 
 .cards-wrapper {
-    grid-column: center-start / -1;
-    display: grid;
-    grid-auto-flow: column;
-    gap: 1rem;
-    overflow: auto;
-    padding-bottom: 1rem;
-    padding-right: var(--page-margin);
+  grid-column: center-start / -1;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 1rem;
+  overflow: auto;
+  padding-bottom: 1rem;
+  padding-right: var(--page-margin);
 }
 
 .card-textarea {
-    overflow: scroll;
-    height: 200px;
-    align-content: center;
-    object-fit: cover;
+  overflow: scroll;
+  height: 200px;
+  align-content: center;
+  object-fit: cover;
 }
 
 .cards-wrapper {
-    grid-column: center-start / -1;
-    display: grid;
-    grid-auto-flow: column;
-    gap: 1rem;
-    overflow: auto;
-    padding-bottom: 1rem;
-    padding-right: var(--page-margin);
+  grid-column: center-start / -1;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 1rem;
+  overflow: auto;
+  padding-bottom: 1rem;
+  padding-right: var(--page-margin);
 }
 
 .commentarea {
-    overflow: scroll;
-    height: 200px;
+  overflow: scroll;
+  height: 200px;
 }
 
 .card-height {
-    height: 200px;
+  height: 200px;
 }
 
 .sub-comment {
-    padding-left: 20px;
+  padding-left: 20px;
 }
 
 .comment-form {
-    display: none;
+  display: none;
 }
 
 .commentandreplysection {
-    margin-left: 130px;
+  margin-left: 130px;
 }
 
 .profile-pic {
-    border-radius: 50%;
-    height: 90px;
-    width: 90px;
-    margin-top: -30px;
-    margin-left: 30px;
-    overflow: hidden;
-    background: #fff;
-    border: 1px solid none;
+  border-radius: 50%;
+  height: 90px;
+  width: 90px;
+  margin-top: -30px;
+  margin-left: 30px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid none;
 }
 
 .imagecss {
-    object-fit: cover;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    height: 50%;
-  }
+  object-fit: cover;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: 50%;
+}
 
 .cover-pic {
-    margin-left: 0px;
-    height: "200px";
-    width: "1200px";
+  margin-left: 0px;
+  height: "200px";
+  width: "1200px";
 }
 
 .image-size {
-    height: "200px";
-    width: "400px";
-    align-content: center;
+  height: "200px";
+  width: "400px";
+  align-content: center;
 }
 
 .join-button {
-    margin-top: 10px;
-    margin-right: 300px;
+  margin-top: 10px;
+  margin-right: 300px;
 }
 
 .container {
-    width: 100%;
-    padding-right: 0px;
-    padding-left: 0px;
+  width: 100%;
+  padding-right: 0px;
+  padding-left: 0px;
 }

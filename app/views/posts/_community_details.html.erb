@@ -4,11 +4,11 @@
       <% if @post.community.cover_image.attached? %>
         <%= link_to community_path(@post.community) do %>
           <%= image_tag(@post.community.cover_image, class: "card-img-top home-small-cover") %>
-        <% end %>  
+        <% end %>
       <% else %>
         <%= link_to community_path(@post.community) do %>
           <%= image_tag("Cover-Image.jpg" ,class: "card-img-top home-small-cover") %>
-        <% end %>  
+        <% end %>
       <% end %>
       <% if @post.community.profile_image.attached? %>
         <%= link_to community_path(@post.community) do %>
@@ -21,7 +21,7 @@
       <% end %>
       <%= link_to community_path(@post.community) do %>
         <h5 class="card-title"><%= @post.community.name %></h5>
-      <% end %>  
+      <% end %>
       <p class="card-text"><%= @post.community.summary %></p>
     </div>
   </div>
@@ -31,4 +31,5 @@
   <div class="card-body">
     <p class="card-text"><%= @post.community.rules %></p>
   </div>
-</div>     
+</div>
+

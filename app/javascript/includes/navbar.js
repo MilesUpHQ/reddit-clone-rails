@@ -33,8 +33,8 @@ $(document).on('turbolinks:load', function () {
         }
     }
 
-    $('.warning-nav-link').each(function(){
-        if($(this).children('#check').prop('checked')) {
+    $('.warning-nav-link').each(function () {
+        if ($(this).children('#check').prop('checked')) {
             $(this).children(".fa-solid").toggleClass('fa-plus fa-check ')
             $(this).addClass(' active')
         }

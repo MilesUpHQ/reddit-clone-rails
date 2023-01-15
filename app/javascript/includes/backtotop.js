@@ -1,8 +1,8 @@
-$( document ).on('turbolinks:load', function() {
+$(document).on('turbolinks:load', function () {
   let mybutton = $('.top_btn');
 
-  $(window).scroll(function() {
-      if ($(document).scrollTop() > 20) {
+  $(window).scroll(function () {
+    if ($(document).scrollTop() > 20) {
       mybutton.show();
     } else {
       mybutton.hide();
@@ -10,7 +10,8 @@ $( document ).on('turbolinks:load', function() {
   });
 
   mybutton.click(function () {
-    $('html, body').animate({scrollTop: 0}, 'slow');
+    $('html, body').animate({
+      scrollTop: 0
+    }, 'slow');
   });
- });
- 
+});

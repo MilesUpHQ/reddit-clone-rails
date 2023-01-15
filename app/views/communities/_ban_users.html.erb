@@ -1,9 +1,7 @@
 <% new_banned_user %>
-<div class="col-md-3 offset-md-4 mt-2 p-2 join-btn">
-  <%= link_to "#", "data-toggle"=>"modal", "data-target"=>"#myModal" do %>
-  <button type="button" class="pl-5 pr-5 join-btn" data-toggle="modal" data-target="#myModal"> Ban Users </button> 
-  <% end %>
-</div>
+<%= link_to "#", class: "ml-3 mt-2 join-btn", "data-toggle"=>"modal", "data-target"=>"#myModal" do %>
+  Ban Users
+<% end %>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

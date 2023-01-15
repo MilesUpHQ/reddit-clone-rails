@@ -11,22 +11,22 @@ class VotesController < ApplicationController
     @new_vote = existing_vote.size > 1
 
     respond_to do |format|
-      format.js {
-        if existing_vote.size > 0
+      format.js do
+        if existing_vote.size.positive?
           existing_vote.first.destroy
         else
-          if vote.save
-            @success = true
-          else
-            @success = false
-          end
+          @success = if vote.save
+                       true
+                     else
+                       false
+                     end
         end
 
         @post = Post.find(post_id)
         @is_upvote = params[:upvote]
 
-      render "votes/create"
-    }
+        render 'votes/create'
+      end
     end
   end
 

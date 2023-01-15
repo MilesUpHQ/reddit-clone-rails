@@ -1,5 +1,4 @@
 $("<%=j render partial: "draftlist", locals: { posts:@drafts } %>").appendTo($(".infinity"));
-
 <% if @drafts.last_page? %>
   $('.infinite-scrolling').remove();
 <% else %>

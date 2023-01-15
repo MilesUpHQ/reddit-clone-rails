@@ -16,7 +16,7 @@
         <div id="top_posts" class="tab-pane fade">
           <%= render partial: "posts/list", locals: { posts: @top_posts } %>
         </div>
-      </div>  
+      </div>
       <div class = "infinite-scrolling">
         <%= link_to_next_page(@posts, "posts" , :remote => true, class: "text-dark") %>
       </div>

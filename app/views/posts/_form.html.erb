@@ -1,5 +1,5 @@
     <%= form_for [@community, @post] do |form| %>
-   <% if @post.is_drafted or params[:action] != 'edit'  %>
+  <% if @post.is_drafted or params[:action] != 'edit'  %>
     <div class="row">
       <div class="p-0 col-sm-12">
         <div class="card rounded mb-3">
@@ -11,9 +11,8 @@
         </div>
       </div>
     <% else %>
-     <%= form.hidden_field :community_id %>
+      <%= form.hidden_field :community_id %>
     <% end %>
-
     <div class="card rounded mb-3">
       <%= render partial: "posts/new_post_tab" %>
       <div class="row">
@@ -51,7 +50,7 @@
           </ul>
           <div class="float-right">
             <div class="join-btn  create-post-btn mb-4">
-                <% if params[:action] == 'edit'  and  @post.is_drafted %>
+              <% if params[:action] == 'edit'  and  @post.is_drafted %>
                 <%=  form_submit_tag form, "Update draft" %>
               <% elsif params[:action] == 'edit' %>
                 <%=  form_submit_tag form,"Cancel" %>

@@ -1,8 +1,5 @@
-// update total votes on view for post
 $("#vote-actions-<%= @post.id %> .score").text("<%= @post.score %>");
-
 $("#vote-actions-<%= @post.id %> .downvote, #vote-actions-<%= @post.id %> .upvote").removeClass("active");
-
 <% if @new_vote %>
   <% if @is_upvote === "true" %>
     $("#vote-actions-<%= @post.id %> .upvote").addClass("active");

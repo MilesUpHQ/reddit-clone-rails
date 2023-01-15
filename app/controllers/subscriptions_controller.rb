@@ -6,7 +6,7 @@ class SubscriptionsController < ApplicationController
     @subscription = Subscription.new subscription_params
     @subscription.account_id = current_account.id
     @subscription.save
-    redirect_back(fallback_location: root_path, notice: t("community.joined"))
+    redirect_back(fallback_location: root_path, notice: t('community.joined'))
   end
 
   def subscription_params
@@ -16,10 +16,11 @@ class SubscriptionsController < ApplicationController
   def destroy
     @subscriptions = Subscription.where(account_id: current_account.id, community_id: @community.id)
     @subscriptions.first.destroy
-    redirect_back(fallback_location: root_path, notice: t("community.left"))
+    redirect_back(fallback_location: root_path, notice: t('community.left'))
   end
 
   private
+
   def find_subscription
     @subscription = Subscription.find(params[:id])
   end

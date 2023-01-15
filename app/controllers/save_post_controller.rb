@@ -9,26 +9,26 @@ class SavePostController < ApplicationController
         post_id: params[:id]
       )
       @saved_post.save
-      flash[:notice] = t("post.save")
+      flash[:notice] = t('post.save')
       @is_saved = true
     else
       @saved_post.destroy
-      flash[:notice] = t("post.unsave")
+      flash[:notice] = t('post.unsave')
       @is_saved = false
     end
 
     respond_to do |format|
-      format.js {
+      format.js do
         @post_id = params[:id]
-        render "save_post/create"
-      }
+        render 'save_post/create'
+      end
     end
   end
 
   private
 
   def set_saved_post
-    @saved_post = SavePost.find_by(account_id: current_account.id,  post_id: params[:id])
+    @saved_post = SavePost.find_by(account_id: current_account.id, post_id: params[:id])
   end
 
   def save_post_params

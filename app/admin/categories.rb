@@ -1,6 +1,6 @@
 ActiveAdmin.register Category do
-  permit_params :name 
- 
+  permit_params :name
+
   index do
     column :id
     column :name
@@ -8,7 +8,7 @@ ActiveAdmin.register Category do
     column :updated_at
     actions
     column do |category|
-      link_to 'Community-Page', new_admin_community_path(category: category), method: :get 
+      link_to 'Community-Page', new_admin_community_path(category: category), method: :get
     end
   end
 end

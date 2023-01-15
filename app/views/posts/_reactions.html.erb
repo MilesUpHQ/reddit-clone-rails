@@ -15,10 +15,10 @@
         </div>
       <% end %>
     <% end %>
-  <% end %>   
+  <% end %>
   <div class = "btn btn-light"><i class="fa fa-comment"></i><%= @post.comments.count %> Comments </div>
   <button type="button" class="btn btn-light" data-toggle="modal" data-target="#myModal" remote = "true">
     <i class="far fa-flag"></i>Report
   </button>
-</div>    
+</div>
 <%= render partial: "report" %>

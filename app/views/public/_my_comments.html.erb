@@ -1,15 +1,15 @@
 <% if my_comments.exists? %>
- <% my_comments.each do |my_comment| %>
-  <div class="card mb-4">
-    <div class="contents ml-4">
-      <b>
-        <p class="mt-1">Username : </b><b class = "text-primary" >u/<%= @profile.username %></b>
-      <b>
-        <p class="m-0">Message : </b><%= my_comment.message %></p>
-      <p><%= link_to 'Post ', community_post_path(my_comment.id,my_comment.post_id) %><b>Created At : </b><%= my_comment.created_at.strftime("%d-%m-%Y") %></p>
-    </div>
-  </div>
- <% end %>
-<% else %>
-  <h4 class = "text-secondary nil-message" ><%= t("user.has_no_comments",username: @profile.username) %></h4> 
-<% end %>
+  <% my_comments.each do |my_comment| %>
+    <div class="card mb-4">
+      <div class="contents ml-4">
+        <b>
+          <p class="mt-1">Username : </b><b class = "text-primary" >u/<%= @profile.username %></b>
+          <b>
+            <p class="m-0">Message : </b><%= my_comment.message %></p>
+          <p><%= link_to 'Post ', community_post_path(my_comment.id,my_comment.post_id) %><b>Created At : </b><%= my_comment.created_at.strftime("%d-%m-%Y") %></p>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <h4 class = "text-secondary nil-message" ><%= t("user.has_no_comments",username: @profile.username) %></h4>
+  <% end %>

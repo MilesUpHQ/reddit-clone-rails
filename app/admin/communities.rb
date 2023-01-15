@@ -2,7 +2,7 @@ ActiveAdmin.register Community do
   permit_params :account_id, :name, :url, :summary, :rules, :total_members, :category
 
   index do
-    column "Owner" do |community|
+    column 'Owner' do |community|
       community.account.username
     end
     column :name
@@ -15,18 +15,18 @@ ActiveAdmin.register Community do
     column :created_at
     column :updated_at
     actions
-  end 
+  end
   form do |f|
-    f.inputs "Create Community" do
+    f.inputs 'Create Community' do
       f.input :name
       f.input :url
       f.input :summary
       f.input :rules
       f.input :post_count_this_week
-      f.input :category,  :label => 'category', :collection => Community::CATEGORIES, :prompt => "Select Category"
+      f.input :category, label: 'category', collection: Community::CATEGORIES, prompt: 'Select Category'
       f.input :created_at
       f.input :updated_at
-      f.submit "Submit", disable_with: 'Submiting...'
+      f.submit 'Submit', disable_with: 'Submiting...'
     end
   end
 end
