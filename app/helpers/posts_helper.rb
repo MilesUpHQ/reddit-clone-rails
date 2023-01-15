@@ -8,4 +8,10 @@ module PostsHelper
 
     'login'
   end
+
+  def active_nav(tab)
+    return unless params[:tab].to_s == tab.to_s
+
+    'active'
+  end
 end

@@ -10,11 +10,11 @@
   color: #007BFF;
 }
 
-.tab-nav-link.active a {
+.tab-nav-link.active {
   color: #007BFF;
 }
 
-.tab-nav-link a {
+.tab-nav-link {
   color: #636c72;
   font-size: 1em;
   font-weight: 700;
@@ -22,7 +22,7 @@
   text-decoration: none;
 }
 
-.tab-nav-link a:hover {
+.tab-nav-link:hover {
   text-decoration: none;
   color: #007BFF;
 }
