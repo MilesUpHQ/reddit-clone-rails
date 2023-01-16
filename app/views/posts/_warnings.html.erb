@@ -1,0 +1,12 @@
+<div class = "d-flex col-1 warnings">
+    <p class="flair-badge">Flair</p>
+    <% if @post.oc %>
+      <p class="flair-badge bg-success">OC</p>
+    <% end %>
+    <% if @post.spoiler %>
+      <p class="flair-badge bg-warning">Spoiler</p>
+    <% end %>
+    <% if @post.nsfw %>
+      <p class="flair-badge bg-danger">NSFW</p>
+    <% end %>
+</div>  
