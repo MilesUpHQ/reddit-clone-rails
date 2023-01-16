@@ -1,6 +1,7 @@
 en:
   form:
     required: "Fill all required fields"
+    forbidden: "You don't have permission to edit"
   community:
     success: "Community Created Successfully"
     updated: "Community Updated Successfully"
