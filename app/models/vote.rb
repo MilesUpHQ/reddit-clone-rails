@@ -28,16 +28,16 @@ class Vote < ApplicationRecord
     account.decrement!(:karma)
   end
 
-  def self.save_vote(vote, existing_vote)
+  def self.save_vote(new_vote, existing_vote)
     if existing_vote.size > 0
-      if existing_vote.first.upvote == vote.upvote
+      if existing_vote.first.upvote == new_vote.upvote
         existing_vote.first.destroy
       else
         existing_vote.first.destroy
-        vote.save
+        new_vote.save
       end
     else
-      vote.save
+      new_vote.save
     end 
   end
 end
