@@ -3,16 +3,13 @@ class Post < ApplicationRecord
   friendly_id :title, use: %i[slugged history finders]
   include ImageValidation
 
-  validates :title, presence: { message: " can't be blank" }
-  validates :body, presence: { message: " can't be blank" }
   validate :acceptable_image
   validates_presence_of :account_id, :community_id
-
+  validates_presence_of :account_id, :community_id
+  
   belongs_to :account
   belongs_to :community
-  validates_presence_of :account_id, :community_id
-  validates :title, presence: true
-  validates :body, presence: true
+ 
   has_many :comments, dependent: :destroy
   has_many :reports, dependent: :destroy
   has_many :save_posts
