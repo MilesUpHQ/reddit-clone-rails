@@ -25,7 +25,6 @@ class CommunitiesController < ApplicationController
     @banned_users = BannedUser.all
   end
   
-
   def new
     @community = Community.new
   end
