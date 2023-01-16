@@ -24,7 +24,7 @@ class CommunitiesController < ApplicationController
     @subscription = Subscription.new
     @banned_users = BannedUser.all
   end
-
+  
   def new
     @community = Community.new
   end
@@ -38,7 +38,7 @@ class CommunitiesController < ApplicationController
   end
 
   def create
-    @community = Community.new community_params
+    @community = Community.new community_values
     @community.account_id = current_account.id
     if @community.save
       Subscription.create!(community_id: @community.id, account_id: current_account.id)
@@ -84,7 +84,12 @@ class CommunitiesController < ApplicationController
   end
 
   private
-  def community_params
+
+  def set_community
+    @community = Community.friendly.find(params[:id])
+  end
+
+  def community_values
     params.require(:community).permit(:name, :url, :summary, :rules, :category, :profile_image, :cover_image)
   end
 
