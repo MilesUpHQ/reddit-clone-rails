@@ -68,6 +68,10 @@ class CommunitiesController < ApplicationController
     render json: communities
   end
 
+  def username_search
+    usernames = Account.where("username ILIKE ?", "%#{params[:q]}%").select(:id , :username)
+    render json: usernames
+  end
 
   private
   def community_params

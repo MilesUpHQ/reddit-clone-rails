@@ -4,7 +4,7 @@
   <button type="button" class="pl-5 pr-5 join-btn" data-toggle="modal" data-target="#myModal"> Ban Users </button> 
   <% end %>
 </div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="myModal"  role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -20,7 +20,11 @@
           </div>
           <div class="form-group">
             <%= label_tag :Enter_User_Name %>
-            <%= form.text_field :username, autocomplete: :off, class: "form-control search-input", placeholder: "Search by username" %>
+            <%#= form.select :username,Account.all.collect {|option| [option.username, option.id]}, {prompt: "Choose a Username" }, {class: "search-input", data: {autocomplete_url: username_search_path}} %>
+            <%= form.text_field :username,   class: "search-input  form-control" , placeholder: "Search by username"%>
+            <%#= form.select :username, options_from_collection_for_select(@username), {include_blank: true}, {class: "search-input  form-control" , placeholder: "Search by username"} %>
+            <%#= form.select :username, Account.all.collect {|acc| [ acc.username, acc.id ] }, {prompt: "Choose a Username"},{class: "search-input", data: {autocomplete_url: username_search_path}} %>
+            <%#= form.text_field :username, class: "search-input form-control", placeholder: "Search by username" %>
           </div>
           <div class="form-group">
             <%= label_tag :Reason_For_Ban %>
