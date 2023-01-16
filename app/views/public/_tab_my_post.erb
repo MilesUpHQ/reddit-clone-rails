@@ -3,9 +3,12 @@
     <div class="col-9 p-2">
       <div class="">
         <ul class="nav">
-          <li class="tab-nav-link"><a data-toggle="tab" href="#hot_myposts"><i class='fa fa-fire mr-2'></i> Hot</a></li>
-          <li class="tab-nav-link"><a data-toggle="tab" href="#new_myposts"><i class='fa fa-tag mr-2'></i> New</a></li>
-          <li class="tab-nav-link"><a data-toggle="tab" href="#top_myposts"><i class='fa fa-bar-chart mr-2'></i> Top</a></li>
+          <% hash = {hot: "fa-fire", new: "fa-tag", top: "fa-bar-chart"} %>
+        <% hash.each do |tab,icon| %>
+          <%= link_to "#", class: "tab-nav-link #{active_nav(tab)}", remote: true, data: {tab: tab} do %>
+            <i class='fa <%= icon %> mr-2 '></i><%= tab.capitalize %>
+          <% end %>
+        <% end %>
         </ul>
       </div>
     </div>

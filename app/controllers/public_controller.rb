@@ -23,14 +23,22 @@ class PublicController < ApplicationController
     @saved_posts = account_signed_in? ? SavePost.where(account_id: current_account.id) : []
     @subscriptions = account_signed_in? ? Subscription.where(account_id: current_account.id) : []
     @community = Community.find(@subscriptions.pluck(:community_id))
-    @my_communities = account_signed_in? ? Community.where(account_id: current_account.id) : []
+
     @profile = Account.find_by_username params[:username]
     @posts = @profile.posts
     @my_comments = Comment.where(account_id: @profile.id)
-    @my_posts = Post.where(account_id: @profile.id, is_drafted: false).page(params[:page]).per 5
-    @hot_myposts = Post.where(account_id: @profile.id).order(view_count: :desc).page(params[:page]).per 5
-    @top_myposts = Post.where(account_id: @profile.id).order(view_count: :desc).page(params[:page]).per 5
-    @new_myposts = Post.where(account_id: @profile.id).order(created_at: :desc).page(params[:page]).per 5
+
+    @my_communities = account_signed_in? ? Community.where(account_id: current_account.id) : []
+
+    @my_posts = if params[:tab] == 'hot'
+                  Post.where(account_id: @profile.id).order(upvotes: :desc).page(params[:page]).per 5
+                elsif params[:tab] == 'top'
+                  Post.where(account_id: @profile.id).order(view_count: :desc).page(params[:page]).per 5
+                elsif params[:tab] == 'new'
+                  Post.where(account_id: @profile.id).order(created_at: :desc).page(params[:page]).per 5
+                else
+                  Post.where(account_id: @profile.id, is_drafted: false).page(params[:page]).per 5
+                end
   end
 
   def my_comments

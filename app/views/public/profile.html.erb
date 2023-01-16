@@ -1,45 +1,33 @@
 <%= render partial: "public/profile_tab"%>
 <div class="community_post">
   <div class="row ">
-     <div class="tab-content col-sm-8">
+    <div class="tab-content col-sm-8">
       <div id="POSTS" class="tab-pane fade-in active">
-       <% if @my_posts.exists? %>
-        <%= render partial: "public/tab_my_post"%>
-        <div class="tab-content">
-          <div id="hot_myposts" class="tab-pane fade-in infinity active">
-            <%= render partial: "posts/list", locals: { posts: @hot_myposts } %>
+        <% if @my_posts.exists? %>
+          <%= render partial: "public/tab_my_post"%>
+          <div class="tab-content">
+            <div class="tab-pane fade-in infinity active">
+              <%= render partial: "posts/list", locals: { posts: @my_posts } %>
+            </div>
             <div class = "infinite-scrolling">
-              <%= link_to_next_page(@hot_myposts, "posts" , :remote => true, class: "text-dark") %>
+              <%= link_to_next_page(@my_posts, "posts" , :remote => true, class: "text-dark") %>
             </div>
           </div>
-          <div id="new_myposts" class="tab-pane fade infinity">
-            <%= render partial: "posts/list", locals: { posts: @new_myposts } %>
-            <div class = "infinite-scrolling">
-              <%= link_to_next_page(@new_myposts, "posts" , :remote => true, class: "text-dark") %>
-            </div>
-          </div>
-          <div id="top_myposts" class="tab-pane fade infinity">
-            <%= render partial: "posts/list", locals: { posts: @top_myposts } %>
-            <div class = "infinite-scrolling">
-              <%= link_to_next_page(@top_myposts, "posts" , :remote => true, class: "text-dark") %>
-            </div>
-          </div>
-        </div>
-       <% else %>
-        <h4 class = "text-secondary nil-message" ><%= t("user.has_no_posts",username: @profile.username) %></h4> 
-       <% end %>
-      </div>
-      <div id="COMMENTS" class="tab-pane fade">
-        <%= render partial: "public/my_comments", locals: { my_comments: @my_comments } %>
-      </div>
-
-      <div id="SAVED" class="tab-pane fade">
-        <%= render partial: "public/my_saved_post"%>
-      </div>
-
+      <% else %>
+        <h4 class = "text-secondary nil-message" ><%= t("user.has_no_posts",username: @profile.username) %></h4>
+      <% end %>
     </div>
-    <div class="col-sm-4" >
-      <%= render partial: "public/my_description"%>
+    <div id="COMMENTS" class="tab-pane fade">
+      <%= render partial: "public/my_comments", locals: { my_comments: @my_comments } %>
     </div>
+
+    <div id="SAVED" class="tab-pane fade">
+      <%= render partial: "public/my_saved_post"%>
+    </div>
+
   </div>
+  <div class="col-sm-4" >
+    <%= render partial: "public/my_description"%>
+  </div>
+</div>
 </div>
