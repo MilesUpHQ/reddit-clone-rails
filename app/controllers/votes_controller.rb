@@ -13,13 +13,14 @@ class VotesController < ApplicationController
     respond_to do |format|
       format.js {
         if existing_vote.size > 0
-          existing_vote.first.destroy
-        else
-          if vote.save
-            @success = true
+          if existing_vote.first.upvote == vote.upvote
+            existing_vote.first.destroy
           else
-            @success = false
+            existing_vote.first.destroy
+            vote.save
           end
+        else
+          vote.save
         end
 
         @post = Post.find(post_id)
