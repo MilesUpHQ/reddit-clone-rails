@@ -16,18 +16,10 @@
           <% end %>
           <p><strong><%= link_to "r/"+@post.community.name.downcase, community_path(@post.community), class: "text-dark" %></strong><small> Posted by <%= link_to "u/"+@post.account.username, profile_path(@post.account.username) %> <%= time_ago_in_words @post.created_at %> ago</small></p>
         </div>
-        <strong> <%= @post.title %> </strong><br>
-        <% if @post.oc %>
-            <h5 class="button-58">OC</h5>
-        <% end %>
-        <% if @post.spoiler %>
-          <h5 class="button-s">Spoiler</h5>
-        <% end %>
-        <% if @post.nsfw %>
-          <h5 class="button-59">nsfw</h5>
-        <% end %>
+        <strong><h2> <%= @post.title %></h2> </strong><br>
       </div> 
     </div>    
+    <%= render 'warnings' %>
     <%= render 'post_display' %>
     <%= render "reactions" %>
     <div id="comment-hide">
