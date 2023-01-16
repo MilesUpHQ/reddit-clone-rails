@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_community
-    @community = Community.friendly.find(params[:id])
+    @community = Community.friendly.includes(:posts).find(params[:id])
   end
 
   def subscribers_list

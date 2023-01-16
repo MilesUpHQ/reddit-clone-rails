@@ -17,12 +17,8 @@ module SavePostHelper
     Subscription.where(community_id: post.community_id, account_id: post.account_id).exists?
   end
 
-  def selected_community(communities)
-    communities.include?(params[:community].to_i) ? params[:community] : params[:community_id]
-  end
-
   def pass_community_params(community)
-    community.nil? ? new_community_post_path : new_community_post_path(community: community.id)
+    community.nil? ? submit_new_community_post_path(post: :new) : new_community_post_path(@community)
   end
 
   def authorized_save_post

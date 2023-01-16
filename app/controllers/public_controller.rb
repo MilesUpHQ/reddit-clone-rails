@@ -3,10 +3,10 @@ class PublicController < ApplicationController
 
   def index
     @communities = Community.order('post_count_this_week desc').limit(5)
-    @posts = Post.order(created_at: :desc).page(params[:page]).per 10
-    @top_posts = Post.order(view_count: :desc).page(params[:page]).per 10
-    @new_posts = Post.order(created_at: :desc).page(params[:page]).per 10
-    @hot_posts = Post.order(view_count: :desc).page(params[:page]).per 10
+    @posts = Post.order(created_at: :desc).page(params[:page]).per 5
+    @top_posts = Post.order(view_count: :desc).page(params[:page]).per 5
+    @new_posts = Post.order(created_at: :desc).page(params[:page]).per 5
+    @hot_posts = Post.order(upvotes: :desc).page(params[:page]).per 5
   end
 
   def profile
