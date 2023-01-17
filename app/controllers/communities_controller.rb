@@ -30,7 +30,7 @@ class CommunitiesController < ApplicationController
   end
 
   def edit
-    if @community.owner_id == current_account.id
+    if @community.account_id == current_account.id
       render :new
     else
       flash[:alert] = t('form.forbidden')
@@ -41,7 +41,6 @@ class CommunitiesController < ApplicationController
   def create
     @community = Community.new community_values
     @community.account_id = current_account.id
-    @community.owner_id = current_account.id
     if @community.save
       Subscription.create!(community_id: @community.id, account_id: current_account.id)
       flash[:notice] = t('community.success')
@@ -69,7 +68,7 @@ class CommunitiesController < ApplicationController
   end
 
   def mod
-    redirect_back(fallback_location: root_path) and return unless @community.owner_id == current_account.id
+    redirect_back(fallback_location: root_path) and return unless @community.account_id == current_account.id
 
     @banned_user = BannedUser.where(community_id: @community.id)
                              .order(created_at: :desc)
