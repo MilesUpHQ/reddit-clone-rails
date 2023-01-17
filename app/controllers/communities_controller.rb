@@ -39,7 +39,7 @@ class CommunitiesController < ApplicationController
   end
 
   def create
-    @community = Community.new community_values
+    @community = Community.new community_params
     @community.account_id = current_account.id
     @community.owner_id = current_account.id
     if @community.save
@@ -90,7 +90,7 @@ class CommunitiesController < ApplicationController
     @community = Community.friendly.find(params[:id])
   end
 
-  def community_values
+  def community_params
     params.require(:community).permit(:name, :url, :summary, :rules, :category, :profile_image, :cover_image)
   end
 
