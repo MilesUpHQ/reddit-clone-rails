@@ -13,7 +13,7 @@ module ApplicationHelper
     return css.to_s
   end
 
-  def display_profile resource, class_name, default_image
+  def display_profile_picture resource, class_name, default_image
     image_path = resource.profile_image.attached? ? resource.profile_image : default_image
     image_tag(image_path, :class => class_name)
   end
