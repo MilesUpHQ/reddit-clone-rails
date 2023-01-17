@@ -29,13 +29,12 @@ class Vote < ApplicationRecord
   end
 
   def self.save_vote(new_vote, existing_vote)
-    if existing_vote.size > 0
+    if new_vote.upvote == existing_vote.first&.upvote
       existing_vote.first.destroy
-      if existing_vote.first.upvote != new_vote.upvote
-        new_vote.save
-      end
     else
+      existing_vote.first&.destroy
       new_vote.save
-    end 
+    end
   end
 end
+
