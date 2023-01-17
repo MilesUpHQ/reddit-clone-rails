@@ -33,8 +33,7 @@ class CommunitiesController < ApplicationController
     if @community.owner_id == current_account.id
       render :new
     else
-      flash[:alert] = t('form.forbidden')
-      redirect_to communities_path
+      redirect_to communities_path, notice: t('form.forbidden') 
     end
   end
 
@@ -44,8 +43,7 @@ class CommunitiesController < ApplicationController
     @community.owner_id = current_account.id
     if @community.save
       Subscription.create!(community_id: @community.id, account_id: current_account.id)
-      flash[:notice] = t('community.success')
-      redirect_to @community
+      redirect_to @community, notice: t('community.success') 
     else
       flash[:alert] = t('form.required')
       render :new
@@ -54,8 +52,7 @@ class CommunitiesController < ApplicationController
 
   def update
     if @community.update(community_values)
-      flash[:notice] = t('community.updated')
-      redirect_to @community
+      redirect_to @community, notice: t('community.updated') 
     else
       flash[:alert] = t('form.required')
       render :new
@@ -64,8 +61,7 @@ class CommunitiesController < ApplicationController
 
   def destroy
     @community.destroy if @community
-    flash[:notice] = t('community.destroy')
-    redirect_to communities_path
+    redirect_to communities_path, notice: t('community.destroy')
   end
 
   def mod
