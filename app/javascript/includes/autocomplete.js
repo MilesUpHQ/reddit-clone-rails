@@ -1,5 +1,5 @@
 import $ from "jquery";
-function createAutocomplete(className, placeholder, url) {
+function createAutocomplete(className, placeholder, url, processResults) {
   $(className).select2({
     width: "100%",
     placeholder: placeholder,
@@ -13,16 +13,7 @@ function createAutocomplete(className, placeholder, url) {
           q: params.term,
         };
       },
-      processResults: function (data, params) {
-        return {
-          results: data.map(function (item) {
-            return {
-              id: item.id,
-              text: item.name,
-            };
-          }),
-        };
-      },
+      processResults: processResults,
       cache: true,
     },
   });
@@ -32,7 +23,29 @@ function createAutocomplete(className, placeholder, url) {
   });
 }
 
+function processResultsName(data, params) {
+  return {
+    results: data.map(function (item) {
+      return {
+        id: item.id,
+        text: item.name,
+      };
+    }),
+  };
+}
+
+function processResultsUsername(data, params) {
+  return {
+    results: data.map(function (item) {
+      return {
+        id: item.id,
+        text: item.username,
+      };
+    }),
+  };
+}
+
 $(document).on("turbolinks:load", () => {
-  createAutocomplete(".search-input", "Search by username", "/username_search");
- createAutocomplete(".search-input-navbar", "Search Community", "/search_suggestions");
+  createAutocomplete(".search-input", "Search by username", "/username_search", processResultsUsername);
+  createAutocomplete(".search-input-navbar", "Search Community", "/search_suggestions", processResultsName);
 });
