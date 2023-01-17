@@ -2,7 +2,7 @@ class Post < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: %i[slugged history finders]
   include ImageValidation
-
+  validates :title, presence: { message: " can't be blank" }
   validate :acceptable_image
   validates_presence_of :account_id, :community_id
   validates_presence_of :account_id, :community_id
