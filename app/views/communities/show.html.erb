@@ -40,7 +40,7 @@
     <div class="col-sm-8">
       <% if @subscribed %>
         <%= render partial: "posts/create_post", locals: { community: @community } %>
-      <% end %>  
+      <% end %>
       <div class="tab-content">
         <div id="post" class="tab-pane fade-in active">
           <%= render partial: "posts/list", locals: { posts: @posts } %>
@@ -70,8 +70,8 @@
           <p><%= pluralize @subscriber_count, "member" %></p>
         </div>
         <% if @subscribed %>
-          <%= link_to "Create post", new_community_post_path(community: @community.id), :class=>"join-btn create-post-btn text-white" %>
-        <% end %>  
+          <%= link_to "Create post", new_community_post_path(@community), :class=>"join-btn create-post-btn text-white" %>
+        <% end %>
       </div>
       <div class="card mt-3 p-2 bg-gradient">
         <p class="h6 pt-2 text-light">r/<%= @community.name.downcase %> Rules</p>
