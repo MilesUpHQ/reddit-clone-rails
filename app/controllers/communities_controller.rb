@@ -24,14 +24,14 @@ class CommunitiesController < ApplicationController
     @subscription = Subscription.new
     @banned_users = BannedUser.all
   end
-  
+
   def new
     @community = Community.new
   end
 
   def edit
     if @community.owner_id == current_account.id
-      render :new
+      render :edit
     else
       flash[:alert] = t('form.forbidden')
       redirect_to communities_path
