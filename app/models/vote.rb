@@ -30,10 +30,8 @@ class Vote < ApplicationRecord
 
   def self.save_vote(new_vote, existing_vote)
     if existing_vote.size > 0
-      if existing_vote.first.upvote == new_vote.upvote
-        existing_vote.first.destroy
-      else
-        existing_vote.first.destroy
+      existing_vote.first.destroy
+      if existing_vote.first.upvote != new_vote.upvote
         new_vote.save
       end
     else
