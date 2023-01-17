@@ -4,9 +4,6 @@ $("#vote-actions-<%= @post.id %> .score").text("<%= @post.score %>");
 $("#vote-actions-<%= @post.id %> .downvote, #vote-actions-<%= @post.id %> .upvote").removeClass("active");
 
 <% if @is_new_vote %>
-  <% if @is_upvote === "true" %>
-    $("#vote-actions-<%= @post.id %> .upvote").addClass("active");
-  <% else %>
-    $("#vote-actions-<%= @post.id %> .downvote").addClass("active");
-  <% end %>
+  <% @is_upvote? variable = upvote : variable = downvote %>
+  $("#vote-actions-<%= @post.id %> .variable").addClass("active");
 <% end %>
