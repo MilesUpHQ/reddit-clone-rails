@@ -13,9 +13,7 @@
       <div class="row bg-white">
         <div class="col-10">
           <div class="d-flex post-list-head mt-2">
-            <div class="post-list-profile-img mr-1">
-              <%= image_tag 'rediit-logo.png' %>
-            </div>
+            <%= display_profile post.community, "post-list-profile-img mr-1", "rediit-logo.png" %>
             <strong><%= link_to "r/"+post.community.name.capitalize, community_path(post.community), class: "text-dark" %>
               . </strong>
             <p class="ml-1 text-muted">Posted by
