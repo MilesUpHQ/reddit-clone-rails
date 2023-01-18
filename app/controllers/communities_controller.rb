@@ -24,7 +24,7 @@ class CommunitiesController < ApplicationController
     @subscription = Subscription.new
     @banned_users = BannedUser.all
   end
-  
+
   def new
     @community = Community.new
   end
@@ -33,7 +33,7 @@ class CommunitiesController < ApplicationController
     if @community.account_id == current_account.id
       render :new
     else
-      redirect_to communities_path, notice: t('form.forbidden') 
+      redirect_to communities_path, notice: t('form.forbidden')
     end
   end
 
@@ -42,7 +42,7 @@ class CommunitiesController < ApplicationController
     @community.account_id = current_account.id
     if @community.save
       Subscription.create!(community_id: @community.id, account_id: current_account.id)
-      redirect_to @community, notice: t('community.success') 
+      redirect_to @community, notice: t('community.success')
     else
       flash[:alert] = t('form.required')
       render :new
@@ -51,7 +51,7 @@ class CommunitiesController < ApplicationController
 
   def update
     if @community.update(community_values)
-      redirect_to @community, notice: t('community.updated') 
+      redirect_to @community, notice: t('community.updated')
     else
       flash[:alert] = t('form.required')
       render :new

@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_account!, except: %i[index show]
-  before_action :set_community, only: %i[show create edit update destroy increment_view_count close]
+  before_action :set_community, only: %i[new show create edit update destroy increment_view_count close]
   before_action :set_post, only: %i[show edit update destroy increment_view_count close]
   before_action :set_draft, only: %i[new edit update]
   before_action :find_my_communities, only: %i[new create edit update]
@@ -18,8 +18,7 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
-    @community = Community.find_by(params[:id])
+    @post = @community.posts.new
   end
 
   def create
@@ -41,23 +40,21 @@ class PostsController < ApplicationController
     end
   end
 
-  def edit
-    @post = Post.find(params[:id])
-  end
-def update
-  @post = Post.find(params[:id])
-  @post.community_id = params[:community_id]
-  @post.is_drafted = params[:commit] == "Publish" ? false : true
-  if @post.update(post_values)
-    if @post.is_drafted
-      flash[:notice] = t("draft.success")
-      redirect_back(fallback_location: edit_community_post_path)
+  def edit; end
+
+  def update
+    @post.community_id = params[:community_id]
+    @post.is_drafted = !(params[:commit] == 'Publish')
+    if @post.update(post_values)
+      if @post.is_drafted
+        flash[:notice] = t('draft.success')
+        redirect_back(fallback_location: edit_community_post_path)
+      else
+        flash[:notice] = t('post.success')
+        redirect_to community_post_path(@post.community_id)
+      end
     else
-      flash[:notice] = t("post.success")
-      redirect_to community_post_path(@post.community_id)
-    end
-  else
-      flash[:alert] =  t("form.required")
+      flash[:alert] = t('form.required')
       render :edit
     end
   end
@@ -69,7 +66,7 @@ def update
   end
 
   def my_posts
-    @my_posts = Post.where(account_id: current_account.id)
+    @my_posts = @community.posts.where(account_id: current_account.id)
   end
 
   def destroy
@@ -87,11 +84,15 @@ def update
   end
 
   def set_community
-    @community = Community.friendly.find(params[:community_id])
+    @community = if params[:community_id]
+                   Community.friendly.includes(:posts).find(params[:community_id])
+                 else
+                   Community.friendly.includes(:posts).find_by(params[:community_id])
+                 end
   end
 
   def set_post
-    @post = Post.includes(:comments).find(params[:id])
+    @post = @community.posts.includes(:comments).find(params[:id])
   end
 
   def set_draft

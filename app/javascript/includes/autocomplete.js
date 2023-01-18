@@ -21,6 +21,10 @@ function createAutocomplete(className, placeholder, url, processResults) {
     let value = $(this).val();
     window.location = '/r/'+value
   });
+  $(".community_select").on('change', function(){
+    let community_id = $(this).val()
+    window.location.href = '/r/'+community_id+'/p/new'
+  });
 }
 
 function processResultsName(data, params) {
