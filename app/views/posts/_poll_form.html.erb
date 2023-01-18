@@ -2,9 +2,16 @@
   <%= render 'post_column_community_title' %>
   <div class="create-post m-3">
     <div class="form-group">
-      <%= form.text_area :body, class: "form-control", placeholder: "Text(optional)" %>
+      <%= form.text_area :poll_topic, class: "form-control", placeholder: "Text(optional)" %>
     </div>
   </div>
+  <% (1..4).each do |i| %>
+    <div class="create-post m-3">
+      <div class="form-group">
+        <%= form.text_field :"option#{i}", class: "form-control", placeholder: "Option #{i}" %>
+      </div>
+    </div>
+  <% end %>
       <%= render 'content_warning_fields',form: form %>
   <div>
     <div class="float-right">

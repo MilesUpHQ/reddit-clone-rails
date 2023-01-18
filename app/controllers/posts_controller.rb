@@ -103,7 +103,7 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :body, :oc, :spoiler, :nsfw, :saved, :is_drafted, :closed,
-                                 :community_id, images: [])
+                                 :community_id,:poll_topic,:option1,:option2,:option3,:option4,images: [])
   end
 
   def find_my_communities
