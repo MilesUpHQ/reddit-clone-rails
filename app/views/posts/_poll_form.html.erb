@@ -12,7 +12,14 @@
       </div>
     </div>
   <% end %>
-      <%= render 'content_warning_fields',form: form %>
+  <% (1..4).each do |i| %>
+    <div class="create-post m-3">
+      <div class="form-group">
+        <%= form.text_field :"option#{i}", class: "form-control", placeholder: "Option #{i}" %>
+      </div>
+    </div>
+  <% end %>
+      <%= render 'content_warning_fields' %>
   <div>
     <div class="float-right">
       <% unless params[:action] == 'edit' %>
