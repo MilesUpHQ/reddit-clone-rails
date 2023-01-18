@@ -4,7 +4,6 @@ class Post < ApplicationRecord
   include ImageValidation
 
   validates :title, presence: { message: " can't be blank" }
-  validates :body, presence: { message: " can't be blank" }
   validate :acceptable_image
   validates_presence_of :account_id, :community_id
 
