@@ -58,7 +58,7 @@
     <div class="col-sm-4">
       <div class="card p-2 bg-gradient">
         <p class="h6 pt-2 text-light">About this community</p>
-        <% if @community.owner_id == current_account.id %>
+        <% if @community.account_id == current_account.id %>
           <%= link_to "Mod-Tools", mod_path, class: "btn btn-primary"%>
         <% end %>
       </div>
