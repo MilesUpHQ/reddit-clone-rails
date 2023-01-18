@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_17_163549) do
+ActiveRecord::Schema.define(version: 2023_01_18_113230) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -179,6 +179,11 @@ ActiveRecord::Schema.define(version: 2023_01_17_163549) do
     t.boolean "oc", default: false
     t.boolean "spoiler", default: false
     t.boolean "nsfw", default: false
+    t.text "poll_topic"
+    t.string "option1"
+    t.string "option2"
+    t.string "option3"
+    t.string "option4"
     t.index ["account_id"], name: "index_posts_on_account_id"
     t.index ["community_id"], name: "index_posts_on_community_id"
     t.index ["slug"], name: "index_posts_on_slug", unique: true
