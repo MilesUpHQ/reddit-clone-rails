@@ -5,7 +5,7 @@
       <%= link_to mod_path(mod: "Ban_users")  do %>
         <li class="list-group-item border-left border-danger">Ban Users</li>
       <% end %>
-      <%= link_to  edit_community_path(community: @community.id) do %>
+      <%= link_to  edit_community_path(@community) do %>
         <li class="list-group-item border-left border-danger">Edit Community</li>
       <% end %>
       <li class="list-group-item text-white bg-secondary "><i class="fa fa-envelope-open-o mr-2"></i>Mod Help Center</li>
