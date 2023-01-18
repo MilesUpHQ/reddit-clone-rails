@@ -24,7 +24,7 @@ class PostsController < ApplicationController
 
   def create
     @drafts = Post.drafts(current_account.id)
-    @post = Post.new post_values
+    @post = Post.new post_params
     @post.account_id = current_account.id
     @post.is_drafted = !(params[:commit] == 'Publish')
     if @post.save
@@ -104,7 +104,7 @@ def update
     redirect_to root_path, flash: { danger: 'You are not authorized to view this page' }
   end
 
-  def post_values
+  def post_params
     params.require(:post).permit(:title, :body, :oc, :spoiler, :nsfw, :saved, :is_drafted, :closed,
                                  :community_id, images: [])
   end
