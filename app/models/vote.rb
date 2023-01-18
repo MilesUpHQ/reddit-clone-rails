@@ -27,4 +27,14 @@ class Vote < ApplicationRecord
   def remove_karma
     account.decrement!(:karma)
   end
+
+  def self.save_vote(new_vote, existing_vote)
+    if new_vote.upvote == existing_vote.first&.upvote
+      existing_vote.first.destroy
+    else
+      existing_vote.first&.destroy
+      new_vote.save
+    end
+  end
 end
+

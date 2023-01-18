@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_03_072531) do
+ActiveRecord::Schema.define(version: 2023_01_17_163549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,7 +145,6 @@ ActiveRecord::Schema.define(version: 2023_01_03_072531) do
     t.string "summary"
     t.bigint "post_count_this_week", default: 0
     t.string "category"
-    t.integer "owner_id"
     t.string "slug"
     t.index ["account_id"], name: "index_communities_on_account_id"
     t.index ["slug"], name: "index_communities_on_slug", unique: true
