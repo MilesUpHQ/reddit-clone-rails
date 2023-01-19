@@ -5,16 +5,14 @@
 
 import toastr from "toastr";
 window.toastr = toastr;
-// import $ from "jquery";
+
 import select2 from "select2";
 import "select2/dist/css/select2.css";
 
+require("@rails/ujs").start();
 require("turbolinks").start();
 
 require("../includes/autocomplete");
-
-// require("jquery/dist/jquery.min");
-// require("select2/dist/js/select2.min");
 
 require("@rails/activestorage").start();
 require("channels");
