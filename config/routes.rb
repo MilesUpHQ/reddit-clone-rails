@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       member do
         patch :close
         get :report
+        post :poll_answers
       end
     end
   end

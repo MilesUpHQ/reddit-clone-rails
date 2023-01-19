@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  poll_answer: MyString
+  post: MyString
+  references: MyString
+
+two:
+  poll_answer: MyString
+  post: MyString
+  references: MyString

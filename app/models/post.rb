@@ -18,6 +18,7 @@ class Post < ApplicationRecord
   has_many :save_posts
   has_rich_text :body
   has_many_attached :images, dependent: :destroy
+  has_many :poll_answer
 
   scope :drafts, ->(account_id) { where(account_id: account_id, is_drafted: true) }
 
