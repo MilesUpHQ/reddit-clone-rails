@@ -1,6 +1,7 @@
 class ReportsController < ApplicationController
+  before_action :set_post, only [:create]
+
   def create
-    @post = Post.find(params[:post_id])
     @report = @post.reports.build report_params
     @report.account_id = current_account.id
     if @report.save

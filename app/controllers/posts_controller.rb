@@ -91,10 +91,6 @@ class PostsController < ApplicationController
                  end
   end
 
-  def set_post
-    @post = @community.posts.includes(:comments).find(params[:id])
-  end
-
   def set_draft
     @drafts = Post.drafts(current_account.id).order(created_at: :desc)
   end

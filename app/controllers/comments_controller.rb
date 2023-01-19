@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
+  before_action :set_post, only [:create]
 
   def create
-    @post = Post.find(params[:post_id])
     @comment = @post.comments.build comment_params
     @comment.account_id = current_account.id
     if @comment.save
