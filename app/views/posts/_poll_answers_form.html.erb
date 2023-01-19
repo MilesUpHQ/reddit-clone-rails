@@ -1,5 +1,5 @@
 <%if account_signed_in? && answered(post.id)%>
-<p>The poll has been already answered</p>
+<p class="col-12 "><b>The poll has been already answered!</b></p>
 <%else%>
 <%= form_with url: poll_answers_community_post_path(community_id,post.id), method: :post do |form| %>
     <%= form.hidden_field :community_id,:value => community_id %>
