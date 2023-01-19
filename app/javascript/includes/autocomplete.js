@@ -1,5 +1,10 @@
 import $ from "jquery";
 function createAutocomplete(className, placeholder, url, processResults) {
+
+  $(document).on('turbolinks:before-cache', function() {     
+    $(className).select2('destroy');
+  } );
+
   $(className).select2({
     width: "100%",
     placeholder: placeholder,
