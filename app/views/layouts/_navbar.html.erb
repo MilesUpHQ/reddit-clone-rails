@@ -33,13 +33,19 @@
         </div>
       </li>
     </ul>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
-          <input type="text" class="search-input-navbar form-control myInput_mycommunities navbar-redirection" placeholder="Search">
-        </div>
-      </li>
-    </ul>
+          <%= form_tag search_suggestions_path, method: :get do %>
+            <div class="nav-item dropdown">
+               <%= text_field_tag :q, params[:q], class: "search-input-navbar form-control myInput_mycommunities navbar-redirection", placeholder: "Search" %>
+            </div>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+
     <ul class="navbar-nav ">
       <% if account_signed_in? %>
         <div class="karma float-left mt-2 mr-1">
