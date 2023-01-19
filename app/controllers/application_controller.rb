@@ -1,8 +1,13 @@
 class ApplicationController < ActionController::Base
+  before_action :set_no_cache
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :subscribers_list, if: :account_signed_in?
-
+  
   protected
+
+  def set_no_cache
+    response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
+  end
 
   def community_list
     @communities = Community.order(created_at: :asc)
