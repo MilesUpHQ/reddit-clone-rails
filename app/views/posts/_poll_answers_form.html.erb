@@ -1,3 +1,6 @@
+<%if account_signed_in? && answered(post.id)%>
+<p>The poll has been already answered</p>
+<%else%>
 <%= form_with url: poll_answers_community_post_path(community_id,post.id), method: :post do |form| %>
     <%= form.hidden_field :community_id,:value => community_id %>
     <%= form.hidden_field :post_id, :value => post.id %>
@@ -12,6 +15,7 @@
     <div class="join-btn create-post-btn mb-4">
       <%= form.submit "Vote", class: "text-white" %>
     </div>
+<%end%>
 <%end%>
 
 
