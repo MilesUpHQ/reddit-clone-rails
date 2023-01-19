@@ -1,8 +1,7 @@
 <div class = "post-body" style="word-wrap: break-word;">
   <%= @post.body  %>
-  <%= @post.poll_topic  %>
-  
-  <% if @post.images.attached? %>
+  <%= @post.poll_topic %>
+    <% if @post.images.attached? %>
   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
