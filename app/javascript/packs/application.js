@@ -10,7 +10,7 @@ import select2 from "select2";
 import "select2/dist/css/select2.css";
 
 require("turbolinks").start();
-
+require("@rails/ujs").start();
 require("../includes/autocomplete");
 
 // require("jquery/dist/jquery.min");
