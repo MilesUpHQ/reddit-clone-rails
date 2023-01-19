@@ -53,10 +53,9 @@
           <%= link_to community_post_path(post.community, post) do %>
           <%= image_tag post.images[0] %>
           <% end %>
-          <%elsif post.poll_topic? %>
-          <%= link_to community_post_path(post.community_id, post) do %>
-            <%= post.poll_topic %>
-            <% end %>
+          <% elsif post.poll_topic? %>
+            <p class="col-12 "><%= post.poll_topic %></p>
+            <%= render partial: 'posts/poll_answers_form',locals: {post: post ,community_id: post.community_id}%>
           <% elsif post.spoiler? %>
           <%= link_to community_post_path(post.community, post) do %>
           <div class="margin">

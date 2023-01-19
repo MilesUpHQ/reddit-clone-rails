@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_18_113230) do
+ActiveRecord::Schema.define(version: 2023_01_19_104935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -161,6 +161,19 @@ ActiveRecord::Schema.define(version: 2023_01_18_113230) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "poll_answers", force: :cascade do |t|
+    t.string "poll_answer"
+    t.string "post"
+    t.bigint "post_id"
+    t.bigint "account_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "community_id"
+    t.index ["account_id"], name: "index_poll_answers_on_account_id"
+    t.index ["community_id"], name: "index_poll_answers_on_community_id"
+    t.index ["post_id"], name: "index_poll_answers_on_post_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.bigint "account_id"
     t.bigint "community_id"
@@ -246,6 +259,7 @@ ActiveRecord::Schema.define(version: 2023_01_18_113230) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "poll_answers", "communities"
   add_foreign_key "report_reasons", "report_categories"
   add_foreign_key "reports", "accounts"
   add_foreign_key "reports", "posts"

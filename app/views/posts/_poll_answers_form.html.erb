@@ -1,0 +1,17 @@
+<%= form_with url: poll_answers_community_post_path(community_id,post.id), method: :post do |form| %>
+    <%= form.hidden_field :community_id,:value => community_id %>
+    <%= form.hidden_field :post_id, :value => post.id %>
+    <%= form.radio_button :poll_answer, post.option1 %>
+    <%= label_tag "#{post.option1}", post.option1 %><br>
+    <%= form.radio_button :poll_answer, post.option2 %>
+    <%= label_tag "#{post.option2}", post.option2 %><br>
+    <%= form.radio_button :poll_answer, post.option3 %>
+    <%= label_tag "#{post.option3}", post.option3 %><br>
+    <%= form.radio_button :poll_answer, post.option4 %>
+    <%= label_tag "#{post.option4}", post.option4 %><br>
+    <div class="join-btn create-post-btn mb-4">
+      <%= form.submit "Vote", class: "text-white" %>
+    </div>
+<%end%>
+
+
