@@ -50,7 +50,7 @@ class CommunitiesController < ApplicationController
   end
 
   def update
-    if @community.update(community_values)
+    if @community.update(community_params)
       redirect_to @community, notice: t('community.updated')
     else
       flash[:alert] = t('form.required')
