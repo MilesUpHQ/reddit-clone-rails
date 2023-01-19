@@ -1,5 +1,5 @@
 class ReportsController < ApplicationController
-  before_action :set_post, only [:create]
+  before_action :set_post, only: [:create]
 
   def create
     @report = @post.reports.build report_params

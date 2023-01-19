@@ -84,11 +84,6 @@ class CommunitiesController < ApplicationController
   end
 
   private
-
-  def set_community
-    @community = Community.friendly.find(params[:id])
-  end
-
   def community_params
     params.require(:community).permit(:name, :url, :summary, :rules, :category, :profile_image, :cover_image)
   end

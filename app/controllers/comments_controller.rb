@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_post, only [:create]
+  before_action :set_post, only: [:create]
 
   def create
     @comment = @post.comments.build comment_params
