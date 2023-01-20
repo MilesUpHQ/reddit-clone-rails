@@ -21,22 +21,15 @@ Rails.application.routes.draw do
       resources :reports, only: [:create]
     end
   end
-
   get '/submit', to: 'posts#new', as: 'submit_new_community_post'
-
   post 'save_post/:id', to: 'save_post#create', as: 'save_post_path'
-
   resources :report_reasons
   resources :banned_users
   resources :subscriptions, only: %i[create destroy]
-
   post 'p/vote' => 'votes#create'
-
   get 'r/:id/mod' , to: 'communities#mod' , as: 'mod'
-
   get 'search_suggestions', to: 'communities#search_suggestions'
   get 'username_search', to: 'communities#username_search'
-
   match '/404', to: 'errors#not_found', via: :all
   get :autocomplete, to: 'communities#autocomplete'
   root to: 'public#index'
