@@ -5,7 +5,7 @@
       <%= form.rich_text_area :body, class: "textarea", placeholder: "Text(optional)" %>
     </div>
   </div>
-      <%= render 'content_warning_fields' %>
+      <%= render 'content_warning_fields',form: form  %>
   <div>
     <div class="float-right">
       <% unless params[:action] == 'edit' %>

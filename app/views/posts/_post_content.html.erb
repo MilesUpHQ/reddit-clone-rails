@@ -17,9 +17,9 @@
           <p><strong><%= link_to "r/"+@post.community.name.downcase, community_path(@post.community), class: "text-dark" %></strong><small> Posted by <%= link_to "u/"+@post.account.username, profile_path(@post.account.username) %> <%= time_ago_in_words @post.created_at %> ago</small></p>
         </div>
         <strong><h2> <%= @post.title %></h2> </strong><br>
+        <%= render 'warnings' %>
       </div> 
     </div>    
-    <%= render 'warnings' %>
     <%= render 'post_display' %>
     <%= render "reactions" %>
     <div id="comment-hide">
