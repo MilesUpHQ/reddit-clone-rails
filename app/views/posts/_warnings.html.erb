@@ -1,12 +1,9 @@
-<div class = "d-flex col-1 warnings">
-    <p class="flair-badge">Flair</p>
-    <% if @post.oc %>
-      <p class="flair-badge bg-success">OC</p>
-    <% end %>
-    <% if @post.spoiler %>
-      <p class="flair-badge bg-warning">Spoiler</p>
-    <% end %>
-    <% if @post.nsfw %>
-      <p class="flair-badge bg-danger">NSFW</p>
-    <% end %>
-</div>  
+<% if @post.oc %>
+  <h5 class="button-58">OC</h5>
+<% end %>
+<% if @post.spoiler %>
+  <h5 class="button-s">Spoiler</h5>
+<% end %>
+<% if @post.nsfw %>
+  <h5 class="button-59">nsfw</h5>
+<% end %>
