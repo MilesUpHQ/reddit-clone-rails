@@ -1,6 +1,5 @@
 <div class="create-post m-3">
 <div class="form-group">
-<%= form_for [@community, @post] do |form| %>
     <ul class="ml-4 mr-4 pb-3 border-bottom">
       <li class="warning-nav-link" id="oc_warning"><i class='fa-solid fa-plus mr-1'></i>
         <%= form.check_box :oc, class: "d-none btn-check", id: "check", autocomplete: "off" %>
@@ -18,6 +17,5 @@
         Flair
       </li>
     </ul>
-  <% end %>
   </div>
   </div>
