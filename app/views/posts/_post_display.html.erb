@@ -2,6 +2,9 @@
   <%= @post.body %>
   <% if @post.link.to_s.match(URI.regexp) %>
     <%= link_to @post.link, url_for(@post.link), target: "_blank", class: "col-12" %>
+    <%= link_to url_for(@post.link), target: "_blank" do %>
+      <%= image_tag "link_image.png", class: "corner-image" %>
+    <% end %>
   <% end %>
   <% if @post.images.attached? %>
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
