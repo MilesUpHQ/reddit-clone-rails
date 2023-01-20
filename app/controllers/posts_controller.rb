@@ -45,7 +45,7 @@ class PostsController < ApplicationController
   def update
     @post.community_id = params[:community_id]
     @post.is_drafted = !(params[:commit] == 'Publish')
-    if @post.update(post_values)
+    if @post.update(post_params)
       if @post.is_drafted
         flash[:notice] = t('draft.success')
         redirect_back(fallback_location: edit_community_post_path)
@@ -100,10 +100,6 @@ class PostsController < ApplicationController
                  else
                    Community.friendly.includes(:posts).find_by(params[:community_id])
                  end
-  end
-
-  def set_post
-    @post = @community.posts.includes(:comments).find(params[:id])
   end
 
   def set_draft

@@ -17,6 +17,8 @@ Rails.application.routes.draw do
         get :report
         post :poll_answers
       end
+      resources :comments, only: [:create]
+      resources :reports, only: [:create]
     end
   end
 
@@ -27,8 +29,6 @@ Rails.application.routes.draw do
   resources :report_reasons
   resources :banned_users
   resources :subscriptions, only: %i[create destroy]
-  resources :comments, only: [:create]
-  resources :reports, only: [:create]
 
   post 'p/vote' => 'votes#create'
 

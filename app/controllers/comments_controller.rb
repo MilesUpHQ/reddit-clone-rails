@@ -1,7 +1,9 @@
 class CommentsController < ApplicationController
+  before_action :set_post, only: [:create]
 
   def create
-    @comment = Comment.new comment_params
+    @comment = @post.comments.build comment_params
+    @comment.account_id = current_account.id
     if @comment.save
       flash[:notice] = t("comment.create")
     else
@@ -11,7 +13,7 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:message, :post_id, :replies, :parent, :parent_id, :account_id)
+    params.require(:comment).permit(:message, :replies, :parent, :parent_id)
   end
 
 end
