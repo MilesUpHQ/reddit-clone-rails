@@ -50,7 +50,7 @@ class CommunitiesController < ApplicationController
   end
 
   def update
-    if @community.update(community_values)
+    if @community.update(community_params)
       redirect_to @community, notice: t('community.updated')
     else
       flash[:alert] = t('form.required')
@@ -84,11 +84,6 @@ class CommunitiesController < ApplicationController
   end
 
   private
-
-  def set_community
-    @community = Community.friendly.find(params[:id])
-  end
-
   def community_params
     params.require(:community).permit(:name, :url, :summary, :rules, :category, :profile_image, :cover_image)
   end

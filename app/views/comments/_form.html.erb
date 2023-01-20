@@ -1,7 +1,5 @@
 <% if signed_in? %>
- <%= form_with(model: @comment, local: true) do |f| %>
-  <%= f.hidden_field :post_id, value: @post.id %>
-  <%= f.hidden_field :account_id, value: current_account.id %>
+ <%= form_with model: [@community, @post, @comment], local: true do |f| %>
   <% if !parent.nil? %>
     <input type = "hidden" name="comment[parent_id]" value="<%= parent.id %>">
   <% end %>
