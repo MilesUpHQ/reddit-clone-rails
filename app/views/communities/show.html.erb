@@ -5,13 +5,7 @@
 <% end %>
 <div class="row">
   <div class="col-sm-1 mr-3">
-    <% if @community.profile_image.attached? %>
-      <%= image_tag(@community.profile_image, class: "profile-pic") %>
-    <% else %>
-      <%= link_to "#" do %>
-        <%= image_tag("profile-pic.png" ,class: "profile-pic") %>
-      <% end %>
-    <% end %>
+    <%= display_profile_picture current_account, "profile-pic", "profile-pic.png" %>
   </div>
   <div class="col-sm-10">
     <div class = "d-flex">
@@ -19,7 +13,7 @@
         <h3>/r/<%= @community.name.downcase %> : <%= @community.category.downcase %></h3>
       </span>
       <div class="ml-3 pl-2">
-        <% unless @community.owner_id == current_account.id %>
+        <% unless @community.account_id == current_account.id %>
           <% if @subscribed %>
             <%= render partial: "communities/unsubscribe" %>
           <% else %>
@@ -40,7 +34,7 @@
     <div class="col-sm-8">
       <% if @subscribed %>
         <%= render partial: "posts/create_post", locals: { community: @community } %>
-      <% end %>  
+      <% end %>
       <div class="tab-content">
         <div id="post" class="tab-pane fade-in active">
           <%= render partial: "posts/list", locals: { posts: @posts } %>
@@ -58,7 +52,7 @@
     <div class="col-sm-4">
       <div class="card p-2 bg-gradient">
         <p class="h6 pt-2 text-light">About this community</p>
-        <% if @community.owner_id == current_account.id %>
+        <% if @community.account_id == current_account.id %>
           <%= link_to "Mod-Tools", mod_path, class: "btn btn-primary"%>
         <% end %>
       </div>
@@ -70,8 +64,8 @@
           <p><%= pluralize @subscriber_count, "member" %></p>
         </div>
         <% if @subscribed %>
-          <%= link_to "Create post", new_community_post_path(community: @community.id), :class=>"join-btn create-post-btn text-white" %>
-        <% end %>  
+          <%= link_to "Create post", new_community_post_path(@community), :class=>"join-btn create-post-btn text-white" %>
+        <% end %>
       </div>
       <div class="card mt-3 p-2 bg-gradient">
         <p class="h6 pt-2 text-light">r/<%= @community.name.downcase %> Rules</p>

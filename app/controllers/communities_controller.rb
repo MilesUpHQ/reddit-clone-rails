@@ -1,6 +1,6 @@
 class CommunitiesController < ApplicationController
-  before_action :authenticate_account!, except:  [ :index]
-  before_action :set_community, only: [:show, :edit, :update, :destroy, :mod, :check_if_banned]
+  before_action :authenticate_account!, except: [:index]
+  before_action :set_community, only: %i[show edit update destroy mod]
   before_action :community_list
   before_action :check_if_banned, only: [:show]
   after_action :count_post_for_this_week, only: [:index]
@@ -17,10 +17,12 @@ class CommunitiesController < ApplicationController
   end
 
   def show
-    @posts = @community.posts.limit(20).sort_by{ |p| p.score }.reverse
+    @community = Community.find(params[:id])
+    @posts = @community.posts.limit(20).sort_by { |p| p.score }.reverse
     @subscriber_count = @community.subscribers.count
-    @subscribed = is_subscribed?
+    @subscribed = account_signed_in? ? Subscription.where(community_id: @community.id,account_id: current_account.id).any? : false
     @subscription = Subscription.new
+    @banned_users = BannedUser.all
   end
 
   def new
@@ -28,42 +30,65 @@ class CommunitiesController < ApplicationController
   end
 
   def edit
+    if @community.account_id == current_account.id
+      render :new
+    else
+      redirect_to communities_path, notice: t('form.forbidden')
+    end
   end
 
   def create
     @community = Community.new community_params
     @community.account_id = current_account.id
-    @community.owner_id = current_account.id
     if @community.save
       Subscription.create!(community_id: @community.id, account_id: current_account.id)
-      redirect_to communities_path, notice: t("community.success")
+      redirect_to @community, notice: t('community.success')
     else
-      render :new, alert: t("form.required")
+      flash[:alert] = t('form.required')
+      render :new
     end
   end
 
   def update
-    if @community.update community_params
-      redirect_to @community, notice: t("community.updated")
+    if @community.update(community_values)
+      redirect_to @community, notice: t('community.updated')
     else
-      render :new, alert: t("form.required")
+      flash[:alert] = t('form.required')
+      render :new
     end
   end
 
   def destroy
     @community.destroy if @community
-    redirect_to communities_path, notice: t("community.destroy")
+    redirect_to communities_path, notice: t('community.destroy')
   end
 
   def mod
-    unless @community.account_id == current_account.id
-      redirect_back(fallback_location: root_path) and return
-    end
-    @banned_user = set_banned_user.order(created_at: :desc).page(params[:page]).per 5
+    redirect_back(fallback_location: root_path) and return unless @community.account_id == current_account.id
+
+    @banned_user = BannedUser.where(community_id: @community.id)
+                             .order(created_at: :desc)
+                             .page(params[:page])
+                             .per 5
     @username = Account.pluck(:username).sort
   end
 
+  def search_suggestions
+    communities = Community.where("name ILIKE ?", "%#{params[:q]}%").select(:id, :name)
+    render json: communities
+  end
+
+  def username_search
+    usernames = Account.where("username ILIKE ?", "%#{params[:q]}%").select(:id , :username)
+    render json: usernames
+  end
+
   private
+
+  def set_community
+    @community = Community.friendly.find(params[:id])
+  end
+
   def community_params
     params.require(:community).permit(:name, :url, :summary, :rules, :category, :profile_image, :cover_image)
   end
@@ -74,23 +99,17 @@ class CommunitiesController < ApplicationController
       community.post_count_this_week = 0
       @posts = community.posts
       @posts.each do |post|
-        if ((Time.now - post.updated_at).to_f / 1.day).floor < 7
-          community.post_count_this_week += 1
-        end
+        community.post_count_this_week += 1 if ((Time.now - post.updated_at).to_f / 1.day).floor < 7
       end
       community.save
     end
   end
 
-  def set_banned_user
-    BannedUser.where(community_id: @community.id)
-  end
-
   def check_if_banned
-    banned_user = set_banned_user.find_by(account_id: current_account.id)
-    unless banned_user.nil?
-      redirect_to '/403'
-    end
-  end
+    community = Community.find(params[:id])
+    banned_user = BannedUser.find_by(account_id: current_account.id, community_id: community.id)
+    return if banned_user.nil?
 
+    redirect_to '/403'
+  end
 end
