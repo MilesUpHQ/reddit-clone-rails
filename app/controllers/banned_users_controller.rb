@@ -24,10 +24,6 @@ class BannedUsersController < ApplicationController
     @banned_user = BannedUser.new(banned_user_params)
   end
 
-  def set_community
-    @community = Community.find_by(params[:community_id])
-  end
-
   def set_username
     @username = Account.find_by(username: @banned_user[:username])
     redirect_to mod_path(@community) and return flash[:alert] = t("ban.user_not_available", username: @banned_user[:username]) if @username.nil?

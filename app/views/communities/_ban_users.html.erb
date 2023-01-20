@@ -14,10 +14,8 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= form_for @banneduser do |form| %>
-          <div class="form-group">
-            <%= form.hidden_field :community_id, :value => @community.id, class: "form-control" %>
-          </div>
+        <%= form_for [@community, @banneduser], url: community_banned_users_path(@community.id) do |form| %>
+          
           <div class="form-group">
             <%= label_tag :Enter_User_Name %>
             <%= form.select :username,options_for_select(Account.all.collect {|account| [account.username, account.id]}), { include_blank: "Search by username" }, class: "search-input form-control" %>
