@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  account: one
+  community: one
+  title: MyString
+  body: MyText
+  upvotes: 1
+  downvotes: 
+  total_comments: 1
+
+two:
+  account: two
+  community: two
+  title: MyString
+  body: MyText
+  upvotes: 1
+  downvotes: 
+  total_comments: 1
