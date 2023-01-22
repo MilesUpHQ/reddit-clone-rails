@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'u/:username' => 'public#profile', as: :profile
   get '/saved_posts' => 'save_post#saved_posts'
   resources :communities, path: :r do
+    resources :banned_users
     resources :posts, path: :p do
       member do
         patch :close
@@ -25,7 +26,6 @@ Rails.application.routes.draw do
   post 'save_post/:id', to: 'save_post#create', as: 'save_post_path'
 
   resources :report_reasons
-  resources :banned_users
   resources :subscriptions, only: %i[create destroy]
 
   post 'p/vote' => 'votes#create'
