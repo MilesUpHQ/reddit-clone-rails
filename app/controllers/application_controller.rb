@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_community
-    @community = Community.friendly.includes(:posts).find(params[ params[:community_id] ? :community_id : :id ])
+    @community = Community.friendly.find(params[ params[:community_id] ? :community_id : :id ])
   end
 
   def set_post
