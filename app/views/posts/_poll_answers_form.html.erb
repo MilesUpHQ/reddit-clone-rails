@@ -1,5 +1,16 @@
 <%if account_signed_in? && answered(post.id)%>
-<p class="col-12 "><b>The poll has been already answered!</b></p>
+<% poll_total_count=get_poll_answer_values(post.id)%>
+<div class="card">
+<div class="card-header">
+<%= poll_total_count[0] %> Votes
+  </div>
+  <div class="card-body">
+    <p class="card-text"><%= poll_option_count(post.option1)%><%=" "%><%= post.option1%></p>
+    <p class="card-text"><%= poll_option_count(post.option2)%><%=" "%><%= post.option2%></p>
+    <p class="card-text"><%= poll_option_count(post.option3)%><%=" "%><%= post.option3%></p>
+    <p class="card-text"><%= poll_option_count(post.option4)%><%=" "%><%= post.option4%></p>
+  </div>
+</div>
 <%else%>
 <%= form_with url: poll_answers_community_post_path(community_id,post.id), method: :post do |form| %>
     <%= form.hidden_field :community_id,:value => community_id %>

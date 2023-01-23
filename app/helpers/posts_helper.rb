@@ -26,4 +26,15 @@ module PostsHelper
   def answered(post_id)
     answered = PollAnswer.find_by(account_id: current_account.id, post_id: post_id)
   end
+
+  def get_poll_answer_values(post_id)
+    poll_answer_total_count = PollAnswer.where(post_id: post_id).count
+    return [poll_answer_total_count]
+   end
+   
+   def poll_option_count(option)
+     poll_option_count=PollAnswer.where(poll_answer: option).count
+   end
+   
+ 
 end
