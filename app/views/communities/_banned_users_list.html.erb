@@ -5,8 +5,9 @@
   <% else %>
     <% @banned_user.each do |user| %>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item"> <%= link_to user.username, profile_path(user.username) %> </li>
+        <li class="list-group-item"> <%= link_to  account_by_username(user), profile_path( account_by_username(user)) %> </li>
       </ul>
     <% end %>
   <% end %>
 </div>
+
