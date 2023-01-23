@@ -1,6 +1,9 @@
 {
   "name": "discussions",
   "private": true,
+  "scripts": {
+    "postinstall": "yarn install"
+  },
   "dependencies": {
     "@rails/actioncable": "^6.0.0",
     "@rails/actiontext": "^6.1.7",
