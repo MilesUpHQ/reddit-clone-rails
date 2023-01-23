@@ -53,7 +53,7 @@
           <%= link_to community_post_path(post.community, post) do %>
           <%= image_tag post.images[0] %>
           <% end %>
-          <%elsif post.link.to_s.match(URI.regexp)%>
+          <%elsif link_is_valid(post.link)%>
           <%= link_to post.link,  url_for(post.link), target: "_blank",class: "col-12" %>
           <% elsif post.spoiler? %>
           <%= link_to community_post_path(post.community, post) do %>
