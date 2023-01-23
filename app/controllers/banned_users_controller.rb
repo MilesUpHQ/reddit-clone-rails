@@ -29,7 +29,7 @@ class BannedUsersController < ApplicationController
   end
 
   def set_username
-    @username = Account.find_by(username: @banned_user[:username])
+    @username=Account.find(params[:banned_user][:username])
     redirect_to mod_path(@community) and return flash[:alert] = t("ban.user_not_available", username: @banned_user[:username]) if @username.nil?
     @subscriptions = Subscription.where(account_id: @username.id, community_id: params[:banned_user][:community_id])
   end
