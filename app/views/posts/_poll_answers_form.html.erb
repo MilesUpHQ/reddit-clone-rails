@@ -5,10 +5,10 @@
 <%= poll_total_count[0] %> Votes
   </div>
   <div class="card-body">
-    <p class="card-text"><%= poll_option_count(post.option1)%><%=" "%><%= post.option1%></p>
-    <p class="card-text"><%= poll_option_count(post.option2)%><%=" "%><%= post.option2%></p>
-    <p class="card-text"><%= poll_option_count(post.option3)%><%=" "%><%= post.option3%></p>
-    <p class="card-text"><%= poll_option_count(post.option4)%><%=" "%><%= post.option4%></p>
+    <p class="<%= poll_option_design(post.option1) %>"><%= poll_option_count(post.option1)%><%=" "%><%= post.option1%></p>
+    <p class="<%= poll_option_design(post.option2) %>"><%= poll_option_count(post.option2)%><%=" "%><%= post.option2%></p>
+    <p class="<%= poll_option_design(post.option3) %>"><%= poll_option_count(post.option3)%><%=" "%><%= post.option3%></p>
+    <p class="<%= poll_option_design(post.option4) %>"><%= poll_option_count(post.option4)%><%=" "%><%= post.option4%></p>
   </div>
 </div>
 <%else%>

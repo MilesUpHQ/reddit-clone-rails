@@ -31,10 +31,18 @@ module PostsHelper
     poll_answer_total_count = PollAnswer.where(post_id: post_id).count
     return [poll_answer_total_count]
    end
-   
+
    def poll_option_count(option)
      poll_option_count=PollAnswer.where(poll_answer: option).count
    end
    
+   def poll_option_design(option)
+    answer=PollAnswer.find_by(account_id: current_account.id,poll_answer: option)
+    if answer
+      return "card-text poll-css"
+    else
+      return "card-text"
+    end
+   end
  
 end
