@@ -22,4 +22,8 @@ module PostsHelper
 
     community.id
   end
+
+  def answered(post_id)
+    answered = PollAnswer.find_by(account_id: current_account.id, post_id: post_id)
+  end
 end
