@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     resources :posts, path: :p do
       member do
         patch :close
+        get :report
+        post :poll_answers
       end
       resources :comments, only: [:create]
       resources :reports, only: [:create]
