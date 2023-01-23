@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
   before_action :authenticate_account!, except: %i[index show]
-  before_action :set_community, only: %i[new show create edit update destroy increment_view_count close]
-  before_action :set_post, only: %i[show edit update destroy increment_view_count close]
+  before_action :set_community, only: %i[new show create edit update destroy increment_view_count close poll_answers]
+  before_action :set_post, only: %i[show edit update destroy increment_view_count close poll_answers]
   before_action :set_draft, only: %i[new edit update]
-  before_action :find_my_communities, only: %i[new create edit update]
+  before_action :find_my_communities, only: %i[new create edit update ]
   before_action :community_list
   before_action :cancel_check, only: [:update]
   def index
@@ -62,7 +62,17 @@ class PostsController < ApplicationController
   def close
     @post.update(closed: 'true')
     flash[:notice] = t('post.close')
-    redirect_back(fallback_location: root_path)
+    redirect_back(fallback_location: root_path) 
+  end
+
+  def poll_answers 
+    @poll_answers=PollAnswer.new(params.permit(:poll_answer, :community_id,:post_id))
+    @poll_answers.account_id = current_account.id
+    if @poll_answers.save 
+      flash[:notice] = t('poll_answer.create')
+    else
+      redirect_to root_path
+    end
   end
 
   def my_posts
@@ -103,8 +113,10 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :body,:link, :oc, :spoiler, :nsfw, :saved, :is_drafted, :closed,
-                                 :community_id, images: [])
+                                 :community_id,:poll_topic,:option1,:option2,:option3,:option4,images: [])
   end
+
+  
 
   def find_my_communities
     @subscriptions = Subscription.where(account_id: current_account.id).pluck(:community_id)
