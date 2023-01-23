@@ -5,14 +5,15 @@
 <%= poll_total_count[0] %> Votes
   </div>
   <div class="card-body">
-    <p class="<%= poll_option_design(post.option1) %>"><%= poll_option_count(post.option1)%><%=" "%><%= post.option1%></p>
-    <p class="<%= poll_option_design(post.option2) %>"><%= poll_option_count(post.option2)%><%=" "%><%= post.option2%></p>
-    <p class="<%= poll_option_design(post.option3) %>"><%= poll_option_count(post.option3)%><%=" "%><%= post.option3%></p>
-    <p class="<%= poll_option_design(post.option4) %>"><%= poll_option_count(post.option4)%><%=" "%><%= post.option4%></p>
+    <p class="<%= poll_option_design(post.option1) %>"><b><%= poll_option_count(post.option1)%></b><%="  "%><%= post.option1%></p>
+    <p class="<%= poll_option_design(post.option2) %>"><b><%= poll_option_count(post.option2)%></b><%="  "%><%= post.option2%></p>
+    <p class="<%= poll_option_design(post.option3) %>"><b><%= poll_option_count(post.option3)%></b><%="  "%><%= post.option3%></p>
+    <p class="<%= poll_option_design(post.option4) %>"><b><%= poll_option_count(post.option4)%></b><%="  "%><%= post.option4%></p>
   </div>
 </div>
 <%else%>
-<%= form_with url: poll_answers_community_post_path(community_id,post.id), method: :post do |form| %>
+<%= form_with url: poll_answers_path(community_id,post.id), method: :post do |form| %>
+  <div class="poll-form-css">
     <%= form.hidden_field :community_id,:value => community_id %>
     <%= form.hidden_field :post_id, :value => post.id %>
     <%= form.radio_button :poll_answer, post.option1 %>
@@ -25,6 +26,7 @@
     <%= label_tag "#{post.option4}", post.option4 %><br>
     <div class="join-btn create-post-btn mb-4">
       <%= form.submit "Vote", class: "text-white" %>
+    </div>
     </div>
 <%end%>
 <%end%>

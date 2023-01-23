@@ -71,7 +71,7 @@ class PostsController < ApplicationController
     if @poll_answers.save 
        redirect_to root_path, notice: t('poll_answer.create')
     else
-      render json: {errors: @poll_answers.errors}, status: :unprocessable_entity
+      redirect_to root_path
     end
   end
   

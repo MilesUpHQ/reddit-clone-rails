@@ -40,6 +40,10 @@
   top: 50px;
 }
 
+.poll-form-css{
+  margin-left: 75px;
+}
+
 .poll-css {
   position: relative;
   background-color: rgba(70, 70, 239, 0.281);
@@ -50,9 +54,9 @@
   content: "✓";
   position: absolute;
   top:  10px;
-  left: -5px;
+  left: 0px;
   color: black;
-  margin-left: 100px;
+  margin-left: 120px;
   font-weight: bold
 }
 

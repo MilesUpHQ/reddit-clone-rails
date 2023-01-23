@@ -15,7 +15,6 @@ Rails.application.routes.draw do
       member do
         patch :close
         get :report
-        post :poll_answers
       end
       resources :comments, only: [:create]
       resources :reports, only: [:create]
@@ -23,6 +22,8 @@ Rails.application.routes.draw do
   end
 
   get '/submit', to: 'posts#new', as: 'submit_new_community_post'
+
+  post '/poll_answers', to: 'posts#poll_answers', defaults: {format: :html}
 
   post 'save_post/:id', to: 'save_post#create', as: 'save_post_path'
 
