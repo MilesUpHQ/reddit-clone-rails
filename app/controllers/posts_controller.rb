@@ -69,7 +69,6 @@ class PostsController < ApplicationController
     @poll_answers=PollAnswer.new(params.permit(:poll_answer, :community_id,:post_id))
     @poll_answers.account_id = current_account.id
     if @poll_answers.save 
-      puts "=============="
       flash[:notice] = t('poll_answer.create')
     else
       redirect_to root_path
@@ -113,7 +112,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :body, :oc, :spoiler, :nsfw, :saved, :is_drafted, :closed,
+    params.require(:post).permit(:title, :body,:link, :oc, :spoiler, :nsfw, :saved, :is_drafted, :closed,
                                  :community_id,:poll_topic,:option1,:option2,:option3,:option4,images: [])
   end
 

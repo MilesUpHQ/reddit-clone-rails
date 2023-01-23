@@ -13,6 +13,10 @@ module PostsHelper
     img.to_s.include?('.png') or img.to_s.include?('.jpg')
   end
 
+  def link_is_valid(link)
+    link.to_s.match(URI.regexp)
+  end
+
   def selected_community(community)
     return '' if params[:post] == 'new'
 
