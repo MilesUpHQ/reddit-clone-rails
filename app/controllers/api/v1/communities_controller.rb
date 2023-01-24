@@ -19,7 +19,7 @@ class Api::V1::CommunitiesController < ApplicationController
     @community = Community.new(community_params)
 
     if @community.save
-      render json: @community, status: :created, location: @community
+      render json: @community, status: :created
     else
       render json: @community.errors, status: :unprocessable_entity
     end
@@ -48,6 +48,6 @@ class Api::V1::CommunitiesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def community_params
-    params.require(:community).permit(:name, :url, :rules, :total_members, :account)
+    params.require(:community).permit(:name, :url, :rules, :total_members, :account_id)
   end
 end
