@@ -12,7 +12,7 @@
   </div>
 </div>
 <%else%>
-<%= form_with url: poll_answers_path(community_id,post.id), method: :post do |form| %>
+<%= form_with url: poll_answers_path,local: :true, method: :post do |form| %>
   <div class="poll-form-css">
     <%= form.hidden_field :community_id,:value => community_id %>
     <%= form.hidden_field :post_id, :value => post.id %>
