@@ -88,7 +88,7 @@ class PostsController < ApplicationController
 
   def post_title_search
     @posts = Post.where("title LIKE ?", "%#{params[:q]}%")
-    @Communities= Community.where("name LIKE ?", "%#{params[:q]}%")
+    @communities= Community.where("name LIKE ?", "%#{params[:q]}%")
     @accounts=Account.where("username LIKE ?", "%#{params[:q]}%")
     @comments=Comment.where("message  LIKE ?", "%#{params[:q]}%")
   end

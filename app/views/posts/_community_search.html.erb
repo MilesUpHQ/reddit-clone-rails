@@ -1,0 +1,22 @@
+<% if communities.exists? %>
+  <% communities.each do |community| %>
+  <div class="card post-card mb-3 shadow">
+  <div class="row">
+  <div class="col-1">
+        <%= display_profile_picture community, "post-list-profile-img-search", "rediit-logo.png" %>
+      </div>
+      <div col-2>
+  <div class="card-body">
+    <h5 class="card-title"><%=link_to community.name,community_path(community)  %></h5>
+    <p class="card-text"><%= community.summary %></p>
+  </div>
+</div>
+    </div>
+  </div>
+  <%end%>
+  <%else%>
+  <div class="card post-card mb-3 shadow">
+  <center><%= image_tag "telescope-snoo.png" %>
+    <h4><b>Hm... we couldn't find any results for "<%= params[:q]%>"</b></h4></center><br>
+    </div>
+    <%end%>

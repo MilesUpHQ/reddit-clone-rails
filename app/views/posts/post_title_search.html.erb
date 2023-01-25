@@ -9,10 +9,10 @@
   <h1>Sri</h1>
   </div>
   <div id="communities" class="tab-pane fade infinity">
-  <h1>Sri</h1>
+  <%= render partial: "posts/community_search", locals: { communities: @communities }%>
   </div>
   <div id="people" class="tab-pane fade infinity">
-  <h1>Sri</h1>
+  <%= render partial: "posts/accounts_search", locals: { accounts: @accounts }%>
   </div>
   </div>
 </div>

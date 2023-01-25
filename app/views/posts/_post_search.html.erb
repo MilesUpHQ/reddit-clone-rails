@@ -1,4 +1,3 @@
-<div class="card post-card mb-3 shadow">
 <% if posts.exists? %>
 <% posts.each do |post| %>
 <div class="col-11">
@@ -56,7 +55,9 @@
       
 <%end%>
 <%else%>
+<div class="card post-card mb-3 shadow">
 <center><%= image_tag "telescope-snoo.png" %>
 <h4><b>Hm... we couldn’t find any results for “<%= params[:q]%>”</b></h4></center><br>
-<%end%>
 </div>
+<%end%>
+
