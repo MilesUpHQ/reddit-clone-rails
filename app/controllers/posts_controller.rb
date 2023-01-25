@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   before_action :community_list
   before_action :cancel_check, only: [:update]
   def index
-    @posts = Post.all
+      @posts = Post.all
   end
 
   def show
@@ -85,6 +85,14 @@ class PostsController < ApplicationController
     flash[:notice] = t('post.destroy')
     redirect_to root_path
   end
+
+  def post_title_search
+    @posts = Post.where("title LIKE ?", "%#{params[:q]}%")
+    @Communities= Community.where("name LIKE ?", "%#{params[:q]}%")
+    @accounts=Account.where("username LIKE ?", "%#{params[:q]}%")
+    @comments=Comment.where("message  LIKE ?", "%#{params[:q]}%")
+  end
+
 
   private
 

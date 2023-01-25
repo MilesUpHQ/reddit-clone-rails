@@ -34,6 +34,7 @@ Rails.application.routes.draw do
 
   get 'r/:id/mod' , to: 'communities#mod' , as: 'mod'
 
+  get 'post_title_search', to: 'posts#post_title_search'
   get 'search_suggestions', to: 'communities#search_suggestions'
   get 'username_search', to: 'communities#username_search'
 
