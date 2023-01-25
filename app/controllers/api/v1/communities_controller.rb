@@ -34,6 +34,11 @@ class Api::V1::CommunitiesController < ApplicationController
     end
   end
 
+  def search_suggestions
+    communities = Community.where("name LIKE ?", "%#{params[:q]}%").select(:id, :name)
+    render json: {options: communities}
+  end
+
   # DELETE /communities/1
   def destroy
     @community.destroy
@@ -48,6 +53,6 @@ class Api::V1::CommunitiesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def community_params
-    params.require(:community).permit(:name, :url, :rules, :total_members, :account)
+    params.require(:community).permit(:name, :url, :rules, :total_members, :account_id)
   end
 end
