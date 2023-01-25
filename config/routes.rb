@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       devise_for :accounts
       resources :communities
       resources :posts
+      get 'search_suggestions', to: 'communities#search_suggestions'
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

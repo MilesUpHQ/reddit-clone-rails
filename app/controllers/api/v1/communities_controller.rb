@@ -34,6 +34,11 @@ class Api::V1::CommunitiesController < ApplicationController
     end
   end
 
+  def search_suggestions
+    communities = Community.where("name LIKE ?", "%#{params[:q]}%").select(:id, :name)
+    render json: {options: communities}
+  end
+
   # DELETE /communities/1
   def destroy
     @community.destroy
