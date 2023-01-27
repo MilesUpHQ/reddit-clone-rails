@@ -6,7 +6,7 @@
   <%= render partial: "posts/post_search" , locals: { posts: @posts }%>
   </div>
   <div id="comments" class="tab-pane fade infinity">
-  <h1>Sri</h1>
+  <%= render partial: "posts/comments_search"%>
   </div>
   <div id="communities" class="tab-pane fade infinity">
   <%= render partial: "posts/community_search", locals: { communities: @communities }%>
