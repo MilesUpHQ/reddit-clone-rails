@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       devise_for :accounts
-      resources :communities
-      resources :posts
+      resources :communities do
+        resources :posts
+      end
       get 'search_suggestions', to: 'communities#search_suggestions'
     end
   end
