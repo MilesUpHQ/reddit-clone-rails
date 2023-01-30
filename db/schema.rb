@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_27_091906) do
+ActiveRecord::Schema.define(version: 2023_01_21_180123) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "first_name"
@@ -50,6 +50,12 @@ ActiveRecord::Schema.define(version: 2023_01_27_091906) do
     t.index ["account_id"], name: "index_communities_on_account_id"
   end
 
+  create_table "jwt_denylist", force: :cascade do |t|
+    t.string "jti", null: false
+    t.datetime "exp", null: false
+    t.index ["jti"], name: "index_jwt_denylist_on_jti"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.integer "account_id", null: false
     t.integer "community_id", null: false
@@ -60,6 +66,7 @@ ActiveRecord::Schema.define(version: 2023_01_27_091906) do
     t.integer "total_comments", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_drafted", default: false
     t.index ["account_id"], name: "index_posts_on_account_id"
     t.index ["community_id"], name: "index_posts_on_community_id"
   end

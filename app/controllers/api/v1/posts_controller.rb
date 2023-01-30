@@ -17,9 +17,8 @@ class Api::V1::PostsController < ApplicationController
   # POST /posts
   def create
     @post = Post.new(post_params)
-
     if @post.save
-      render json: @post, status: :created, location: @post
+      render json: @post, status: :created
     else
       render json: @post.errors, status: :unprocessable_entity
     end
@@ -48,6 +47,6 @@ class Api::V1::PostsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def post_params
-    params.require(:post).permit(:account_id, :community_id, :title, :body, :upvotes, :downvotes, :total_comments)
+    params.require(:post).permit(:account_id, :community_id, :title, :body, :upvotes, :downvotes, :total_comments, :is_drafted)
   end
 end
