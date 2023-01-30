@@ -38,6 +38,18 @@ class Api::V1::PostsController < ApplicationController
     @post.destroy
   end
 
+  def navbar_search
+    posts = Post.where("title LIKE ?", "%#{params[:q]}%").select(:id, :title)
+    communities= Community.where("name LIKE ?", "%#{params[:q]}%").select(:id, :name)
+    accounts=Account.where("username LIKE ?", "%#{params[:q]}%").select(:id, :username)
+    data = { 
+      posts: { options: posts, type: 'post' }, 
+      communities: { options: communities, type: 'community' }, 
+      accounts: { options: accounts, type: 'account' }
+    }
+    render json: data
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
