@@ -1,21 +1,23 @@
 # frozen_string_literal: true
 
-class Api::V1::Accounts::RegistrationsController < Devise::RegistrationsController
-  respond_to :json
+require 'jwt'
+
+class Api::V1::RegistrationsController < Devise::RegistrationsController
+  def create
+    @account = Account.new(account_params)
+    if @account.save
+      payload = { account_id: @account.id }
+      token = JWT.encode(payload, Rails.application.credentials.secret_key_base)
+      render json: { jwt: token, account: @account }, status: :created
+    else
+      render json: { error: @account.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
 
   private
 
-  def respond_with(resource, _opts = {})
-    if resource.persisted?
-      render json: {
-        status: { code: 200, message: 'Signed up sucessfully.' },
-        data: UserSerializer.new(resource).serializable_hash[:data][:attributes]
-      }
-    else
-      render json: {
-        status: { message: "User couldn't be created successfully. #{resource.errors.full_messages.to_sentence}" }
-      }, status: :unprocessable_entity
-    end
+  def account_params
+    params.require(:account).permit(:email, :password, :username, :first_name, :last_name, :password_confirmation)
   end
 
   # before_action :configure_sign_up_params, only: [:create]
