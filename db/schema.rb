@@ -39,12 +39,6 @@ ActiveRecord::Schema.define(version: 2023_01_25_071547) do
     t.index ["account_id"], name: "index_communities_on_account_id"
   end
 
-  create_table "jwt_denylist", force: :cascade do |t|
-    t.string "jti", null: false
-    t.datetime "exp", null: false
-    t.index ["jti"], name: "index_jwt_denylist_on_jti"
-  end
-
   create_table "posts", force: :cascade do |t|
     t.integer "account_id", null: false
     t.integer "community_id", null: false
