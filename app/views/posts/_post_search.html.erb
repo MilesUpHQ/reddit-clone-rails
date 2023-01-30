@@ -1,5 +1,6 @@
 <% if posts.exists? %>
 <% posts.each do |post| %>
+  <div class="card post-card mb-3 shadow">
 <div class="col-11">
       <div class="row bg-white">
         <div class="col-10">
@@ -52,7 +53,7 @@
           <% end %>
         </div>
       </div>
-      
+      </div>
 <%end%>
 <%else%>
 <div class="card post-card mb-3 shadow">

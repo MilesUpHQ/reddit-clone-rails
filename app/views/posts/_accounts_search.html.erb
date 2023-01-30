@@ -1,20 +1,25 @@
 <% if accounts.exists? %>
-  <% accounts.each do |account| %>
-  <div class="card post-card mb-3 shadow">
-  <div class="col">
-  <%= display_profile_picture account, "post-list-profile-img-search", "profile-pic.png" %>
-</div>
-<div col-2>
-  <div class="card-body">
-    <h5 class="card-title"><%=link_to account.username,profile_path(account.username)  %></h5>
-    <p class="card-text"><%= account.bio %></p>
-  </div>
-</div>
-  </div>
-  <%end%>
-  <%else%>
-  <div class="card post-card mb-3 shadow">
-  <center><%= image_tag "telescope-snoo.png" %>
-    <h4><b>Hm... we couldn't find any results for "<%= params[:q]%>"</b></h4></center><br>
+<% accounts.each do |account| %>
+<div class="card post-card mb-3 shadow">
+  <div class="row">
+    <div class="col-sm-1">
+      <%= display_profile_picture account, "post-list-profile-img-search", "profile-img.jpg" %>
     </div>
-    <%end%>
+    <div class="card-body">
+      <div class="d-flex card-text mt-1">
+        <strong><%=link_to account.username,profile_path(account.username)%></strong>
+        <p class="ml-1 text-muted ">
+          <%= time_ago_in_words account.created_at %> ago</p><br>
+      </div>
+      <p class="card-text"><%= account.bio %></p>
+    </div>
+  </div>
+</div>
+<%end%>
+<%else%>
+<div class="card post-card mb-3 shadow">
+  <center><%= image_tag "telescope-snoo.png" %>
+    <h4><b>Hm... we couldn't find any results for "<%= params[:q]%>"</b></h4>
+  </center><br>
+</div>
+<%end%>
