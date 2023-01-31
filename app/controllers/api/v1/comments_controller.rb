@@ -13,9 +13,10 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def index
-    @comments = Comment.all
 
-    render json: @comments
+    @comments = @post.comments
+    render json: @comments, include: [:post]
+    
   end
 
   private
