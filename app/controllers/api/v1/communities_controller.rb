@@ -11,8 +11,8 @@ class Api::V1::CommunitiesController < ApplicationController
 
   # GET /communities/1
   def show
-    @posts = @community.posts
-    render json: { community: @community, posts: @posts}
+    # @posts = @community.posts
+    render json: @community, include: [:posts]
   end
 
   # POST /communities
