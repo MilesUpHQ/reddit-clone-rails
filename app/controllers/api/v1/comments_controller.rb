@@ -2,13 +2,20 @@ class Api::V1::CommentsController < ApplicationController
   before_action :set_post
   
   def create
+    account = Account.find_by(id: params[:account_id])
     @comment = @post.comments.create(comment_params)
-
+    @comment.account = account
     if @comment.save!
-      render json: @comment, status: :created, location: @comment
+      render json: @comment, status: :created
     else
       render json: @comment.errors, status: :unprocessable_entity
     end
+  end
+
+  def index
+    @comments = Comment.all
+
+    render json: @comments
   end
 
   private
@@ -18,6 +25,6 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:account_id, :post_id, :message, :replies, :parent, :parent_id)
+    params.require(:comment).permit(:message, :replies, :parent, :parent_id)
   end
 end
