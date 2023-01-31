@@ -4,9 +4,8 @@ class Api::V1::PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = Post.all
-    # @posts = Post.find_by(community_id: params[:community_id])
-    render json: @posts
+    @posts = Post.includes(:community)
+    render json: @posts, include: [:community]
   end
 
   # GET /posts/1
@@ -47,6 +46,7 @@ class Api::V1::PostsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def post_params
-    params.require(:post).permit(:account_id, :community_id, :title, :body, :upvotes, :downvotes, :total_comments, :is_drafted)
+    params.require(:post).permit(:account_id, :community_id, :title, :body, :upvotes, :downvotes, :total_comments,
+                                 :is_drafted)
   end
 end
