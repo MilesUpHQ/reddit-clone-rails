@@ -74,6 +74,15 @@ ActiveRecord::Schema.define(version: 2023_01_31_122458) do
     t.index ["report_category_id"], name: "index_reported_posts_on_report_category_id"
   end
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer "account_id"
+    t.integer "community_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_subscriptions_on_account_id"
+    t.index ["community_id"], name: "index_subscriptions_on_community_id"
+  end
+
   add_foreign_key "communities", "accounts"
   add_foreign_key "posts", "accounts"
   add_foreign_key "posts", "communities"
