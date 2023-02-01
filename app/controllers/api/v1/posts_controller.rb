@@ -35,13 +35,19 @@ class Api::V1::PostsController < ApplicationController
   # DELETE /posts/1
   def destroy
     @post.destroy
-  end
+  end  
 
   def navbar_search
-    posts = Post.where("title LIKE ?", "%#{params[:q]}%").select(:id, :title)
+    posts = Post.where("title LIKE ?", "%#{params[:q]}%").select(:id, :title, :community_id, :body)
     communities= Community.where("name LIKE ?", "%#{params[:q]}%").select(:id, :name)
     accounts=Account.where("username LIKE ?", "%#{params[:q]}%").select(:id, :username)
-    comments = Comment.where("message LIKE ?", "%#{params[:q]}%").select(:id, :message)
+    comments = Comment.where("message LIKE ?", "%#{params[:q]}%").select(:id, :message, :post_id)
+
+    comments.each do |comment|
+      post = posts.find { |p| p.id == comment.post_id }
+      comment.community_id = post.community_id if post
+    end
+    
     data = { 
       posts: { options: posts, type: 'post' }, 
       communities: { options: communities, type: 'community' }, 
