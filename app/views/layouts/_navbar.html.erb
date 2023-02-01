@@ -59,8 +59,13 @@ $(document).ready(function() {
                 <% Community.pluck(:name, :id).each do |name, id| %>
                   <%= content_tag :option, "r/#{name}", value: "r/#{name}", data: { type: "community" }, id: "community-option" %>
                 <% end %>
+                <% if current_account.present? %>
+                <% current_user_id = current_account.id%>
                 <% Account.pluck(:username, :id).each do |username, id| %>
+                  <% unless id == current_user_id %>
                   <%= content_tag :option, "u/#{username}", value: "u/#{username}", data: { type: "account" } , class: "account-option"%>
+                <% end %>
+                <% end %>
                 <% end %>
               </datalist>
                <% end %>
