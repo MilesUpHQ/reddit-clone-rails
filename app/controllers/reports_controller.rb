@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
   def create
-    @report = Report.new(report_params)
+    @report = @post.reports.build report_params
     if @report.save
       render json: @report, status: :created
     else
@@ -11,6 +11,6 @@ class ReportsController < ApplicationController
   private
 
   def report_params
-    params.require(:report).permit(:title, :description)
+    params.require(:report).permit(:report_category_id, :report_reason_id)
   end
 end
