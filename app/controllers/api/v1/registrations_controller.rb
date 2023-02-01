@@ -10,6 +10,7 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
       token = JWT.encode(payload, Rails.application.credentials.secret_key_base)
       render json: { jwt: token, account: @account }, status: :created
     else
+      p @account.errors.full_messages
       render json: { error: @account.errors.full_messages }, status: :unprocessable_entity
     end
   end
@@ -17,7 +18,7 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
   private
 
   def account_params
-    params.require(:account).permit(:email, :password, :username, :first_name, :last_name, :password_confirmation)
+    params.permit(:email, :password, :username, :first_name, :last_name, :password_confirmation, :profile_image)
   end
 
   # before_action :configure_sign_up_params, only: [:create]
