@@ -41,10 +41,12 @@ class Api::V1::PostsController < ApplicationController
     posts = Post.where("title LIKE ?", "%#{params[:q]}%").select(:id, :title)
     communities= Community.where("name LIKE ?", "%#{params[:q]}%").select(:id, :name)
     accounts=Account.where("username LIKE ?", "%#{params[:q]}%").select(:id, :username)
+    comments = Comment.where("message LIKE ?", "%#{params[:q]}%").select(:id, :message)
     data = { 
       posts: { options: posts, type: 'post' }, 
       communities: { options: communities, type: 'community' }, 
-      accounts: { options: accounts, type: 'account' }
+      accounts: { options: accounts, type: 'account' },
+      comments: { options: comments, type: 'comment'}
     }
     render json: data
   end
