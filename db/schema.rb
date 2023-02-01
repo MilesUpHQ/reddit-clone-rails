@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_31_122458) do
+ActiveRecord::Schema.define(version: 2023_01_25_071547) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "first_name"
@@ -24,19 +24,9 @@ ActiveRecord::Schema.define(version: 2023_01_31_122458) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "profile_image"
     t.index ["email"], name: "index_accounts_on_email", unique: true
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
-  end
-
-  create_table "comments", force: :cascade do |t|
-    t.text "message"
-    t.integer "parent_id"
-    t.integer "account_id"
-    t.integer "post_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["account_id"], name: "index_comments_on_account_id"
-    t.index ["post_id"], name: "index_comments_on_post_id"
   end
 
   create_table "communities", force: :cascade do |t|
@@ -83,6 +73,8 @@ ActiveRecord::Schema.define(version: 2023_01_31_122458) do
     t.index ["community_id"], name: "index_subscriptions_on_community_id"
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "communities", "accounts"
   add_foreign_key "posts", "accounts"
   add_foreign_key "posts", "communities"
