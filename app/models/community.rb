@@ -1,6 +1,7 @@
 class Community < ApplicationRecord
   belongs_to :account
   has_many :posts
+  has_many :subscriptions
 
   validates_presence_of :name, :rules
   validates :name, uniqueness: true
