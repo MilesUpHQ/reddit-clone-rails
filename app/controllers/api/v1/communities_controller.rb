@@ -11,9 +11,6 @@ class Api::V1::CommunitiesController < ApplicationController
 
   # GET /communities/1
   def show
-    @subscription = Subscription.where(community_id: @community.id)
-    # @posts = @community.posts
-    # render json: @community, include: %i[posts account], subscription: @subscription
     render json: @community, include: %i[posts account subscriptions]
   end
 

@@ -6,20 +6,18 @@ class Api::V1::SubscriptionsController < ApplicationController
   end
 
   def create
-    @subscription = Subscription.new
-    @subscription.community_id = params[:community_id]
-    @subscription.account_id = params[:account_id]
+    @subscription = Subscription.new(subscription_params)
     if @subscription.save
-      render json: { message: 'Community Joined' }, status: :created
+      render json: @subscription, status: :created
     else
       render json: { error: @subscription.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @subscriptions = Subscription.where(account_id: current_account.id, community_id: @community.id)
-    if @subscriptions.first.destroy
-      render json: { message: 'Community Leaved' }, status: :ok
+    @subscriptions = Subscription.find(params[:id])
+    if @subscriptions.destroy
+      render json: @subscription, status: :ok
     else
       render json: { error: @subscriptions.first.errors.full_messages }, status: :unprocessable_entity
     end
@@ -28,6 +26,6 @@ class Api::V1::SubscriptionsController < ApplicationController
   private
 
   def subscription_params
-    params.require(:subscription).permit(:community_id)
+    params.require(:subscription).permit(:community_id, :account_id)
   end
 end
