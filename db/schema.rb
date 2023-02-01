@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_31_122458) do
+ActiveRecord::Schema.define(version: 2023_02_01_044824) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "first_name"
@@ -58,24 +58,20 @@ ActiveRecord::Schema.define(version: 2023_01_31_122458) do
     t.integer "upvotes", default: 0
     t.integer "downvotes", default: 0
     t.integer "total_comments", default: 0
+    t.boolean "isclosed", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "is_drafted", default: false
-    t.boolean "is_closed", default: false
     t.index ["account_id"], name: "index_posts_on_account_id"
     t.index ["community_id"], name: "index_posts_on_community_id"
   end
 
-  create_table "reported_posts", force: :cascade do |t|
-    t.string "reason"
-    t.integer "report_category_id", null: false
+  create_table "reports", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["report_category_id"], name: "index_reported_posts_on_report_category_id"
   end
 
   add_foreign_key "communities", "accounts"
   add_foreign_key "posts", "accounts"
   add_foreign_key "posts", "communities"
-  add_foreign_key "reported_posts", "report_categories"
 end

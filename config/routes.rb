@@ -4,7 +4,9 @@ Rails.application.routes.draw do
       devise_for :accounts
       resources :communities do
         resources :posts  do
+            patch :close
           resources :comments
+          resources :reports
         end
       end
   
