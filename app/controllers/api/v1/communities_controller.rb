@@ -11,8 +11,7 @@ class Api::V1::CommunitiesController < ApplicationController
 
   # GET /communities/1
   def show
-    @posts = @community.posts
-    render json: { community: @community, posts: @posts}
+    render json: @community, include: %i[posts account subscriptions]
   end
 
   # POST /communities
@@ -49,7 +48,7 @@ class Api::V1::CommunitiesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_community
-    @community = Community.includes(:posts).find(params[:id])
+    @community = Community.includes(:posts, :account, :subscriptions).find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.

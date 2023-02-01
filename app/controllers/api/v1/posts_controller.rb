@@ -4,9 +4,8 @@ class Api::V1::PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = Post.all
-    # @posts = Post.find_by(community_id: params[:community_id])
-    render json: @posts
+    @posts = Post.includes(:community, :account)
+    render json: @posts, include: %i[community account]
   end
 
   # GET /posts/1
@@ -36,6 +35,26 @@ class Api::V1::PostsController < ApplicationController
   # DELETE /posts/1
   def destroy
     @post.destroy
+  end  
+
+  def navbar_search
+    posts = Post.where("title LIKE ?", "%#{params[:q]}%").select(:id, :title, :community_id, :body)
+    communities= Community.where("name LIKE ?", "%#{params[:q]}%").select(:id, :name)
+    accounts=Account.where("username LIKE ?", "%#{params[:q]}%").select(:id, :username)
+    comments = Comment.where("message LIKE ?", "%#{params[:q]}%").select(:id, :message, :post_id)
+
+    comments.each do |comment|
+      post = posts.find { |p| p.id == comment.post_id }
+      comment.community_id = post.community_id if post
+    end
+    
+    data = { 
+      posts: { options: posts, type: 'post' }, 
+      communities: { options: communities, type: 'community' }, 
+      accounts: { options: accounts, type: 'account' },
+      comments: { options: comments, type: 'comment'}
+    }
+    render json: data
   end
 
   private
@@ -47,6 +66,7 @@ class Api::V1::PostsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def post_params
-    params.require(:post).permit(:account_id, :community_id, :title, :body, :upvotes, :downvotes, :total_comments, :is_drafted)
+    params.require(:post).permit(:account_id, :community_id, :title, :body, :upvotes, :downvotes, :total_comments,
+                                 :is_drafted)
   end
 end
