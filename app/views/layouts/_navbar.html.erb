@@ -1,11 +1,11 @@
 <script>
 $(document).ready(function() {
  document.getElementById("search-input").addEventListener("change", function() {
-  let options = document.querySelectorAll("#options option");
+   let options = document.querySelectorAll("#options option");
   for (let option of options) {
     if (option.value === this.value) {
       let type = option.dataset.type;
-      window.location.href = (type === "community" ? "/r/"+ this.value.substring(2).toLowerCase().replace(/ |'/g, "-"): "/u/" + this.value.substring(2));
+      window.location.href = (type === "community" ? "/r/"+ this.value.substring(2).toLowerCase().replace(/\.$/, '').replace(/ |'|\./g, "-"): "/u/" + this.value.substring(2));
       break;
     }
   }
