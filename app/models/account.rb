@@ -6,7 +6,8 @@ class Account < ApplicationRecord
   has_many :communities, dependent: :destroy
   has_many :post, dependent: :destroy
   has_many :comments, dependent: :destroy
-  
+  has_many :subscriptions, dependent: :destroy
+
   validates_presence_of :first_name, :last_name, :username
   validates :username, uniqueness: true
   validates_format_of :first_name, :last_name, multiline: true, with: /^[a-z]+$/i

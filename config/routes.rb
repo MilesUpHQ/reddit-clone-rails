@@ -3,11 +3,11 @@ Rails.application.routes.draw do
     namespace :v1 do
       devise_for :accounts
       resources :communities do
-        resources :posts  do
+        resources :subscriptions
+        resources :posts do
           resources :comments
         end
       end
-  
       get 'search_suggestions', to: 'communities#search_suggestions'
     end
   end
