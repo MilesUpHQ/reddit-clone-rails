@@ -4,8 +4,8 @@ class Api::V1::PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = Post.includes(:community)
-    render json: @posts, include: [:community]
+    @posts = Post.includes(:community, :account)
+    render json: @posts, include: %i[community account]
   end
 
   # GET /posts/1
