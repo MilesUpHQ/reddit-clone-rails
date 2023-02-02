@@ -1,7 +1,8 @@
 <script>
 $(document).ready(function () {
-  if (window.location.href.indexOf("localhost:3000/r/") > -1) {
-    $("#search-input-community").show();
+  var community_name = window.location.pathname.split('/').pop();
+  if (window.location.href.startsWith("http://localhost:3000/r/" + community_name)) {
+  $("#search-input-community").show();
     $("#search-input").hide();
   } else {
     $("#search-input-community").hide();
@@ -83,7 +84,9 @@ $(document).ready(function () {
           </li>
           <%= form_tag community_post_title_search_path, id: "search-input-community",method: :get do %>
           <div class="nav-item dropdown">
-            <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search in Community", id: "search-input-community" %>
+            <% community = Community.find_by(id: params[:id]) %>
+            <% community_name = community.try(:name) %>
+            <%= text_field_tag :search, params[:search], size: 35 ,class: "form-control", placeholder: "Search in \"#{community_name}\" Community", id: "search-input-community" %>
             <%= hidden_field_tag :selected_community_id, nil, id: "selected-community-id", value: params[:id] %>
           </div>
           <% end %>

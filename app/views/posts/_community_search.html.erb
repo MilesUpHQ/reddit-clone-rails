@@ -7,7 +7,7 @@
         </div>
         <div class="card-body">
           <div class="d-flex card-text mt-1">
-            <strong><%=link_to community.name,community_path(community),class:"card-text"%></strong>
+            <strong><%=link_to community.name,community_path(community.id),class:"card-text"%></strong>
             <p class="ml-1 text-muted ">  Created by
               <%= link_to "u/"+community.account.username.capitalize, profile_path(community.account.username), class: "text-muted" %>
               <%= time_ago_in_words community.created_at %> ago</p>

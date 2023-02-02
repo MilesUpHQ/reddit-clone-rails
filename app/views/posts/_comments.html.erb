@@ -1,3 +1,13 @@
+<script>
+  window.onload = function() {
+    var highlightedComment = document.querySelector('#highlighted-comment');
+    if (highlightedComment) {
+      highlightedComment.scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+  };
+</script>
 <div class = "comment">
   <% comments.each do |comment| %>
     <% if comment.account.profile_image.attached? %>
@@ -9,7 +19,7 @@
     <% if params[:highlight]==comment.message.to_plain_text%>
       <% text = comment.message.to_plain_text %>
       <br>
-      <span class="mark"><%= text %></span>
+      <span id="highlighted-comment" class="mark"><%= text %></span>
     <%else%>
       <%=comment.message%>
     <%end%>
