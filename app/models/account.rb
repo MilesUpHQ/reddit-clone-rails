@@ -5,6 +5,7 @@ class Account < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :communities, dependent: :destroy
   has_many :post, dependent: :destroy
+  mount_uploader :profile_image, ProfilePictureUploader
   has_many :comments, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
 
