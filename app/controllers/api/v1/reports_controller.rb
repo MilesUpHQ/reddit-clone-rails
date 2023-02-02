@@ -1,4 +1,11 @@
-class ReportsController < ApplicationController
+class Api::V1::ReportsController < ApplicationController
+  
+  
+  def index
+    @reports = Report.all
+    render json: @reports
+  end
+
   def create
     @report = @post.reports.build report_params
     if @report.save

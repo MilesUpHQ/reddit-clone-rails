@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_01_172344) do
+ActiveRecord::Schema.define(version: 2023_02_02_043425) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "first_name"
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 2023_02_01_172344) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "cover_image"
     t.string "profile_image"
+    t.string "category"
+    t.string "summary"
     t.index ["account_id"], name: "index_communities_on_account_id"
   end
 
