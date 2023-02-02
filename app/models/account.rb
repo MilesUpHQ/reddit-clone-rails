@@ -8,6 +8,7 @@ class Account < ApplicationRecord
   mount_uploader :profile_image, ProfilePictureUploader
   has_many :comments, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
+  has_many :banned_users, dependent: :destroy
 
   validates_presence_of :first_name, :last_name, :username
   validates :username, uniqueness: true
