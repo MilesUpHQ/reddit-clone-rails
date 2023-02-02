@@ -85,6 +85,8 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.12.0)
+    fast_jsonapi (1.5)
+      activesupport (>= 4.2)
     ffi (1.15.5)
     globalid (1.0.1)
       activesupport (>= 5.0)
@@ -199,6 +201,7 @@ DEPENDENCIES
   byebug
   carrierwave
   devise
+  fast_jsonapi
   jsonapi-serializer
   jwt (~> 2.6.0)
   listen (~> 3.3)
@@ -213,4 +216,4 @@ RUBY VERSION
    ruby 3.0.4p208
 
 BUNDLED WITH
-   2.3.22
+   2.3.24
