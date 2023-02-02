@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_31_122458) do
+ActiveRecord::Schema.define(version: 2023_02_01_172344) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "first_name"
@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 2023_01_31_122458) do
     t.integer "total_members"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "cover_image"
+    t.string "profile_image"
     t.index ["account_id"], name: "index_communities_on_account_id"
   end
 
@@ -104,8 +106,6 @@ ActiveRecord::Schema.define(version: 2023_01_31_122458) do
     t.index ["community_id"], name: "index_subscriptions_on_community_id"
   end
 
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "communities", "accounts"
   add_foreign_key "posts", "accounts"
   add_foreign_key "posts", "communities"
