@@ -53,6 +53,6 @@ class Api::V1::CommunitiesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def community_params
-    params.require(:community).permit(:name, :url, :rules, :summary, :total_members, :account_id, :category)
+    params.permit(:name, :url, :rules, :summary, :total_members, :account_id, :profile_image, :cover_image, :category)
   end
 end
