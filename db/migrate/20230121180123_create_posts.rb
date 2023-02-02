@@ -8,7 +8,7 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.integer :upvotes, default: 0
       t.integer :downvotes, default: 0
       t.integer :total_comments, default: 0
-
+      t.boolean :isclosed, default: false
       t.timestamps
     end
   end

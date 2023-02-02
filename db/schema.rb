@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_21_180123) do
+ActiveRecord::Schema.define(version: 2023_02_01_172344) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "first_name"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2023_01_21_180123) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "profile_image"
     t.index ["email"], name: "index_accounts_on_email", unique: true
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   end
@@ -35,6 +36,7 @@ ActiveRecord::Schema.define(version: 2023_01_21_180123) do
     t.integer "post_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "community_id"
     t.index ["account_id"], name: "index_comments_on_account_id"
     t.index ["post_id"], name: "index_comments_on_post_id"
   end
@@ -47,6 +49,8 @@ ActiveRecord::Schema.define(version: 2023_01_21_180123) do
     t.integer "total_members"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "cover_image"
+    t.string "profile_image"
     t.index ["account_id"], name: "index_communities_on_account_id"
   end
 
@@ -58,11 +62,21 @@ ActiveRecord::Schema.define(version: 2023_01_21_180123) do
     t.integer "upvotes", default: 0
     t.integer "downvotes", default: 0
     t.integer "total_comments", default: 0
+    t.boolean "isclosed", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "is_drafted", default: false
     t.index ["account_id"], name: "index_posts_on_account_id"
     t.index ["community_id"], name: "index_posts_on_community_id"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer "account_id"
+    t.integer "community_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_subscriptions_on_account_id"
+    t.index ["community_id"], name: "index_subscriptions_on_community_id"
   end
 
   add_foreign_key "communities", "accounts"

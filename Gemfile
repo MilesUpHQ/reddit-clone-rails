@@ -23,6 +23,7 @@ gem 'devise'
 gem 'fast_jsonapi'
 gem 'jsonapi-serializer'
 gem 'jwt', '~> 2.6.0'
+gem 'carrierwave'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
