@@ -2,8 +2,8 @@ class Api::V1::BannedUsersController < ApplicationController
   before_action :set_banned_users, only: %i[create]
 
   def index
-    @banned_user = BannedUser.all
-    render json: @banned_user
+    @banned_user = BannedUser.where(community_id: params[:community_id]).includes(:account)
+    render json: @banned_user, include: %i[account]
   end
 
   def create
