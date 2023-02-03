@@ -1,5 +1,5 @@
 class Api::V1::VotesController < ApplicationController
-  before_action :authenticate_account!
+
 
   def create
     @post = Post.find(params[:post_id])
@@ -10,6 +10,12 @@ class Api::V1::VotesController < ApplicationController
     else
       render json: { error: @vote.errors.full_messages }, status: :unprocessable_entity
     end
+  end
+
+  def index
+    @votes = Vote.all
+
+    render json: @votes
   end
 
   private
