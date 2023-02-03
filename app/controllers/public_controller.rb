@@ -5,9 +5,8 @@ class PublicController < ApplicationController
     @communities = Community.order("post_count_this_week desc").limit(5)
     @posts = Post.order(created_at: :desc).page(params[:page]).per 5
     @top_posts = Post.order(view_count: :desc).page(params[:page]).per 5
-    @new_posts = Post.order(created_at: :desc).page(params[:page]).per 5
-    @hot_posts = Post.order(view_count: :desc).page(params[:page]).per 5
   end
+  
   def profile
     redirect_to new_account_session_path  unless account_signed_in? 
     community_list
