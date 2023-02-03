@@ -6,6 +6,7 @@ Rails.application.routes.draw do
         resources :save_posts
       end
       resources :communities do
+        resources :banned_users
         resources :subscriptions
         resources :posts do
           resources :comments

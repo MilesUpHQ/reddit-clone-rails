@@ -38,16 +38,21 @@ class Api::V1::PostsController < ApplicationController
   end  
 
   def navbar_search
-    posts = Post.where("title LIKE ?", "%#{params[:q]}%").select(:id, :title, :community_id, :body)
+    posts = Post.where("title LIKE ?", "%#{params[:q]}%").select(:id, :title, :community_id, :body, :account_id)
     communities= Community.where("name LIKE ?", "%#{params[:q]}%").select(:id, :name)
     accounts=Account.where("username LIKE ?", "%#{params[:q]}%").select(:id, :username)
-    comments = Comment.where("message LIKE ?", "%#{params[:q]}%").select(:id, :message, :post_id)
+    comments = Comment.where("message LIKE ?", "%#{params[:q]}%").select(:id, :message, :post_id, :account_id, :created_at)
 
     comments.each do |comment|
       post = posts.find { |p| p.id == comment.post_id }
       comment.community_id = post.community_id if post
+      comment.post_title = post.title if post
     end
     
+    comments.each do |comment|
+      account = accounts.find { |acc| acc.id == comment.account_id }
+      comment.username = account.username if account
+    end
     data = { 
       posts: { options: posts, type: 'post' }, 
       communities: { options: communities, type: 'community' }, 
