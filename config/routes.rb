@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :communities do
         resources :subscriptions
         resources :posts do
+          resources :votes, only: [:create]
           resources :comments
         end
       end
