@@ -2,6 +2,7 @@ class Community < ApplicationRecord
   belongs_to :account
   has_many :posts, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
+  has_many :banned_users, dependent: :destroy
   mount_uploader :profile_image, ProfilePictureUploader
   mount_uploader :cover_image, CoverImageUploader
 
