@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       devise_for :accounts
       resources :communities do
+        get 'joined_accounts', to: 'communities#community_joined_account'
         resources :banned_users
         resources :subscriptions
         resources :posts do
