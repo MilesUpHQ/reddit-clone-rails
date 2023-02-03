@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       devise_for :accounts
-      resources :save_posts
+      resources :accounts do
+        resources :save_posts
+      end
       resources :communities do
         resources :subscriptions
         resources :posts do
