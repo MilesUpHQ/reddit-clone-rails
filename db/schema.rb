@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_02_100107) do
+ActiveRecord::Schema.define(version: 2023_02_03_044405) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "first_name"
@@ -109,19 +109,12 @@ ActiveRecord::Schema.define(version: 2023_02_02_100107) do
     t.integer "report_category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "report_categories_name"
+    t.string "report_reason_name"
     t.index ["account_id"], name: "index_reports_on_account_id"
     t.index ["post_id"], name: "index_reports_on_post_id"
     t.index ["report_category_id"], name: "index_reports_on_report_category_id"
     t.index ["report_reason_id"], name: "index_reports_on_report_reason_id"
-  end
-
-  create_table "save_posts", force: :cascade do |t|
-    t.integer "account_id"
-    t.integer "post_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["account_id"], name: "index_save_posts_on_account_id"
-    t.index ["post_id"], name: "index_save_posts_on_post_id"
   end
 
   create_table "subscriptions", force: :cascade do |t|

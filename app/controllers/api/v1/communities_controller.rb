@@ -34,6 +34,11 @@ class Api::V1::CommunitiesController < ApplicationController
     end
   end
 
+  def community_joined_account
+    @community_subscriptions = Subscription.where(community_id: params[:community_id]).includes(:account)
+    render json: @community_subscriptions, include: %i[account]
+  end
+
   def search_suggestions
     communities = Community.where('name LIKE ?', "%#{params[:q]}%").select(:id, :name)
     render json: { options: communities }

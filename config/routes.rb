@@ -6,10 +6,13 @@ Rails.application.routes.draw do
         resources :save_posts
       end
       resources :communities do
+        get 'joined_accounts', to: 'communities#community_joined_account'
         resources :banned_users
         resources :subscriptions
         resources :posts do
+            patch :close
           resources :comments
+          resources :reports
         end
       end
       get 'search_suggestions', to: 'communities#search_suggestions'

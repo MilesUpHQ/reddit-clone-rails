@@ -1,6 +1,6 @@
 class Api::V1::PostsController < ApplicationController
   # before_action :authenticate_account!, except: %i[index show]
-  before_action :set_post, only: %i[show update destroy]
+  before_action :set_post, only: %i[show update destroy close]
 
   # GET /posts
   def index
@@ -10,7 +10,7 @@ class Api::V1::PostsController < ApplicationController
 
   # GET /posts/1
   def show
-    render json: @post
+    render json: @post, include: [:account]
   end
 
   # POST /posts
@@ -62,16 +62,20 @@ class Api::V1::PostsController < ApplicationController
     render json: data
   end
 
+  def close
+    @post.update(isclosed: 'true')
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.includes(:account).find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
   def post_params
     params.require(:post).permit(:account_id, :community_id, :title, :body, :upvotes, :downvotes, :total_comments,
-                                 :is_drafted)
+                                 :is_drafted, :isclosed)
   end
 end
