@@ -37,14 +37,14 @@
             <% count += 1 %>
             <div class = "sub-comment"><%= render partial: 'comments/reply', locals: { reply: reply, comment_id: reply.id } %></div>
           <% end %>
-          <a href = "#" class="comment-form-display">View All Comments</a>
-          <div class = "comment-form">
-            <%= render partial: "comments/comments_display",locals: { comments: @post.comments.where(parent_id: nil).order(id: :desc) }%>
-          </div>
         <% end %>
+        <a href = "#" class="comment-form-display">View All Comments</a>
+        <div class = "comment-form">
+          <%= render partial: "comments/comments_display",locals: { comments: @post.comments.where(parent_id: nil).order(id: :desc) }%>
+        </div>
       <% end %>
     <%end%>
   <%else%>
-      <%= render partial: "comments/comments_display",locals: { comments: @post.comments.where(parent_id: nil).order(id: :desc) }%>
-      <%end%>
-    </div>
+    <%= render partial: "comments/comments_display",locals: { comments: @post.comments.where(parent_id: nil).order(id: :desc) }%>
+  <%end%>
+</div>
