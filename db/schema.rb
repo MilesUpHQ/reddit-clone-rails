@@ -29,6 +29,20 @@ ActiveRecord::Schema.define(version: 2023_02_03_044405) do
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   end
 
+  create_table "banned_users", force: :cascade do |t|
+    t.string "username"
+    t.string "reason"
+    t.string "explanation"
+    t.integer "account_id"
+    t.integer "subscription_id"
+    t.integer "community_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_banned_users_on_account_id"
+    t.index ["community_id"], name: "index_banned_users_on_community_id"
+    t.index ["subscription_id"], name: "index_banned_users_on_subscription_id"
+  end
+
   create_table "comments", force: :cascade do |t|
     t.text "message"
     t.integer "parent_id"
