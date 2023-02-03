@@ -5,4 +5,8 @@ class Post < ApplicationRecord
 
   has_many :comments, dependent: :destroy
   validates_presence_of :title, :body
+
+  def vote_count
+    votes.sum(:value)
+  end
 end
