@@ -18,7 +18,11 @@ class Api::V1::BannedUsersController < ApplicationController
 
   def set_banned_users
     @community = Community.includes(:banned_users).find(params[:community_id])
-    @banned_user = @community.banned_users.new(banned_user_params)
+    if BannedUser.find_by(account_id: params[:banned_user][:account_id], community_id: @community.id)
+      render json: {}, status: :ok
+    else
+      @banned_user = @community.banned_users.new(banned_user_params)
+    end
   end
 
   def banned_user_params
