@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_02_043425) do
+ActiveRecord::Schema.define(version: 2023_02_03_044405) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "first_name"
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 2023_02_02_043425) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "community_id"
+    t.string "username"
+    t.string "post_title"
     t.index ["account_id"], name: "index_comments_on_account_id"
     t.index ["post_id"], name: "index_comments_on_post_id"
   end
@@ -93,6 +95,8 @@ ActiveRecord::Schema.define(version: 2023_02_02_043425) do
     t.integer "report_category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "report_categories_name"
+    t.string "report_reason_name"
     t.index ["account_id"], name: "index_reports_on_account_id"
     t.index ["post_id"], name: "index_reports_on_post_id"
     t.index ["report_category_id"], name: "index_reports_on_report_category_id"
