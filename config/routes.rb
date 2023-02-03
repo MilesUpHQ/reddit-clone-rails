@@ -7,7 +7,9 @@ Rails.application.routes.draw do
         resources :banned_users
         resources :subscriptions
         resources :posts do
+            patch :close
           resources :comments
+          resources :reports
         end
       end
       get 'search_suggestions', to: 'communities#search_suggestions'
