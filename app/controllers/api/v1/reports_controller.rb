@@ -1,9 +1,10 @@
 class Api::V1::ReportsController < ApplicationController
+  before_action :set_report, only: %i[show update destroy close]
   
   
   def index
-    @reports = Report.all
-    render json: @reports
+    @report = Report.all
+    render json: @report
   end
 
   def create
@@ -15,9 +16,13 @@ class Api::V1::ReportsController < ApplicationController
     end
   end
 
+  def set_post
+    @report = Report.find(params[:id])
+  end
+
   private
 
   def report_params
-    params.require(:report).permit(:account_id, :post_id, :community_id,:report_category_id, :report_reason_id)
+    params.require(:report).permit(:account_id, :post_id, :community_id, :report_categories_name, :report_category_id, :report_reason_id, :report_reason_name)
   end
 end
