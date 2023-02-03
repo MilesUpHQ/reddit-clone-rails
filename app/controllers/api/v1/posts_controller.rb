@@ -10,7 +10,7 @@ class Api::V1::PostsController < ApplicationController
 
   # GET /posts/1
   def show
-    render json: @post
+    render json: @post, include: [:account]
   end
 
   # POST /posts
@@ -70,7 +70,7 @@ class Api::V1::PostsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.includes(:account).find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
