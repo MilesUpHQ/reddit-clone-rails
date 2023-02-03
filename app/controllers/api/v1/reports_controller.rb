@@ -5,6 +5,7 @@ class Api::V1::ReportsController < ApplicationController
   def index
     @report = Report.all
     render json: @report
+    
   end
 
   def create
