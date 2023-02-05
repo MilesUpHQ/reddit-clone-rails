@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_01_172344) do
+ActiveRecord::Schema.define(version: 2023_02_03_044405) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "first_name"
@@ -29,6 +29,20 @@ ActiveRecord::Schema.define(version: 2023_02_01_172344) do
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   end
 
+  create_table "banned_users", force: :cascade do |t|
+    t.string "username"
+    t.string "reason"
+    t.string "explanation"
+    t.integer "account_id"
+    t.integer "subscription_id"
+    t.integer "community_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_banned_users_on_account_id"
+    t.index ["community_id"], name: "index_banned_users_on_community_id"
+    t.index ["subscription_id"], name: "index_banned_users_on_subscription_id"
+  end
+
   create_table "comments", force: :cascade do |t|
     t.text "message"
     t.integer "parent_id"
@@ -37,6 +51,8 @@ ActiveRecord::Schema.define(version: 2023_02_01_172344) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "community_id"
+    t.string "username"
+    t.string "post_title"
     t.index ["account_id"], name: "index_comments_on_account_id"
     t.index ["post_id"], name: "index_comments_on_post_id"
   end
@@ -51,6 +67,8 @@ ActiveRecord::Schema.define(version: 2023_02_01_172344) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "cover_image"
     t.string "profile_image"
+    t.string "category"
+    t.string "summary"
     t.index ["account_id"], name: "index_communities_on_account_id"
   end
 
@@ -70,6 +88,35 @@ ActiveRecord::Schema.define(version: 2023_02_01_172344) do
     t.index ["community_id"], name: "index_posts_on_community_id"
   end
 
+  create_table "report_categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "report_reasons", force: :cascade do |t|
+    t.string "reason"
+    t.integer "report_category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["report_category_id"], name: "index_report_reasons_on_report_category_id"
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "report_reason_id", null: false
+    t.integer "account_id", null: false
+    t.integer "report_category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "report_categories_name"
+    t.string "report_reason_name"
+    t.index ["account_id"], name: "index_reports_on_account_id"
+    t.index ["post_id"], name: "index_reports_on_post_id"
+    t.index ["report_category_id"], name: "index_reports_on_report_category_id"
+    t.index ["report_reason_id"], name: "index_reports_on_report_reason_id"
+  end
+
   create_table "subscriptions", force: :cascade do |t|
     t.integer "account_id"
     t.integer "community_id"
@@ -82,4 +129,9 @@ ActiveRecord::Schema.define(version: 2023_02_01_172344) do
   add_foreign_key "communities", "accounts"
   add_foreign_key "posts", "accounts"
   add_foreign_key "posts", "communities"
+  add_foreign_key "report_reasons", "report_categories"
+  add_foreign_key "reports", "accounts"
+  add_foreign_key "reports", "posts"
+  add_foreign_key "reports", "report_categories"
+  add_foreign_key "reports", "report_reasons"
 end
