@@ -23,6 +23,11 @@ class Api::V1::SubscriptionsController < ApplicationController
     end
   end
 
+  def subscribers_list
+    @subscribers = Subscription.includes(:community).where(account_id: params[:account_id])
+    render json: @subscribers, include: [:community]
+  end
+
   private
 
   def subscription_params
