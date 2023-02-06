@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       devise_for :accounts
       resources :communities do
         get 'joined_accounts', to: 'communities#community_joined_account'
+        get 'accounts_search', to: 'communities#joined_account_community'
         resources :banned_users
         resources :subscriptions
         resources :posts do
@@ -14,7 +15,6 @@ Rails.application.routes.draw do
       end
       get 'search_suggestions', to: 'communities#search_suggestions'
       get 'navbar_search', to: 'posts#navbar_search'
-      get 'accounts_search', to: 'communities#joined_account_community'
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
