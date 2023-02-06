@@ -17,13 +17,13 @@ class Api::V1::ReportsController < ApplicationController
     end
   end
 
-  def set_post
+  def set_report
     @report = Report.find(params[:id])
   end
 
   private
 
   def report_params
-    params.require(:report).permit(:account_id, :post_id, :community_id, :report_categories_name, :report_category_id, :report_reason_id, :report_reason_name)
+    params.require(:report).permit(:account_id, :post_id, :community_id, :report_categories_name, :report_reason_name)
   end
 end
