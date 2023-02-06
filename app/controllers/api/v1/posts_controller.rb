@@ -41,7 +41,7 @@ class Api::V1::PostsController < ApplicationController
     posts = Post.where("title LIKE ?", "%#{params[:q]}%").select(:id, :title, :community_id, :body, :account_id)
     communities= Community.where("name LIKE ?", "%#{params[:q]}%").select(:id, :name)
     accounts=Account.where("username LIKE ?", "%#{params[:q]}%").select(:id, :username)
-    comments = Comment.where("message LIKE ?", "%#{params[:q]}%").select(:id, :message, :post_id, :account_id, :created_at)
+    comments = Comment.where("message LIKE ?", "%#{params[:q]}%").select(:id, :message, :post_id, :account_id, :parent_id, :created_at)
 
     comments.each do |comment|
       post = posts.find { |p| p.id == comment.post_id }
