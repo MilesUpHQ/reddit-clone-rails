@@ -21,7 +21,7 @@
           <strong><%= link_to comment.account.username, profile_path(comment.account.username), class: "text-dark" %></strong> .
           <%= time_ago_in_words comment.created_at %> ago </p>
         <p> <% text=comment.message.to_plain_text %>
-          <span id="highlighted-comment" class="mark margin-comment"><%= text %></span></p>
+          <span id="highlighted-comment" class="margin-comment"><%= text %></span></p>
         <div class = "fl">
           <% if !(@post.closed?) %>
             <a href = "#" class="comment-form-display margin-comment">Reply</a>
