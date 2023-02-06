@@ -2,9 +2,9 @@
   <% comments.each do |comment| %>
     <% if params[:highlight].to_i!=comment.id%>
       <% if comment.account.profile_image.attached? %>
-        <%= link_to image_tag(comment.account.profile_image, class: "small-pic float-left m-r-15"),profile_path(comment.account) %>
+        <%= link_to image_tag(comment.account.profile_image, class: "small-pic float-left mr-1"),profile_path(comment.account) %>
       <% else %>
-        <img class="small-pic float-left m-r-15" src="https://www.iconpacks.net/icons/2/free-reddit-logo-icon-2436-thumb.png">
+        <img class="small-pic float-left mr-1" src="https://www.iconpacks.net/icons/2/free-reddit-logo-icon-2436-thumb.png">
       <% end %>
       <p class="ml-1 text-muted">
         <strong><%= link_to comment.account.username, profile_path(comment.account.username), class: "text-dark" %></strong> .
