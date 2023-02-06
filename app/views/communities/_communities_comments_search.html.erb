@@ -39,6 +39,16 @@
               </div>
             </div>
           </div>
+          <div class="row mt-1 mb-1">
+            <div class="col-12 d-grid ">
+              <% post = comment.post%>
+              <%= link_to community_post_path(comment.post.community, comment.post, anchor: "comment_#{comment.id}", highlight: comment.id), class: "list-post-tab search-margin" do %>
+                <%= post.upvotes %> upvotes   <%end%>
+              <%= link_to community_post_path(comment.post.community, comment.post, anchor: "comment_#{comment.id}", highlight: comment.id), class: "list-post-tab" do %>
+                <%= post.comments.size %>
+                comments<%end%>
+            </div>
+          </div>
         </div>
       </div>
     </div>
