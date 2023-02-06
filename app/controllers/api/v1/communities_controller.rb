@@ -11,6 +11,7 @@ class Api::V1::CommunitiesController < ApplicationController
 
   # GET /communities/1
   def show
+    check_if_banned
     render json: @community, include: %i[posts account subscriptions]
   end
 
@@ -34,9 +35,10 @@ class Api::V1::CommunitiesController < ApplicationController
     end
   end
 
-  def community_joined_account
-    @community_subscriptions = Subscription.where(community_id: params[:community_id]).includes(:account)
-    render json: @community_subscriptions, include: %i[account]
+  def joined_account_community
+    ids = Subscription.where(community_id: params[:community_id]).pluck(:account_id)
+    @joined_accounts = Account.where(id: ids).where('username LIKE ?', "%#{params[:q]}%").select(:id, :username)
+    render json: @joined_accounts
   end
 
   def search_suggestions
@@ -59,5 +61,12 @@ class Api::V1::CommunitiesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def community_params
     params.permit(:name, :url, :rules, :summary, :total_members, :account_id, :profile_image, :cover_image, :category)
+  end
+
+  def check_if_banned
+    banned_user = BannedUser.find_by(account_id: params[:account_id], community_id: params[:id])
+    return if banned_user.nil?
+
+    render json: { message: 'User Already Banned' }
   end
 end
