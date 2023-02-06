@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_03_044405) do
+ActiveRecord::Schema.define(version: 2023_02_06_041747) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "first_name"
@@ -77,13 +77,15 @@ ActiveRecord::Schema.define(version: 2023_02_03_044405) do
     t.integer "community_id", null: false
     t.string "title"
     t.text "body"
-    t.integer "upvotes", default: 0
-    t.integer "downvotes", default: 0
     t.integer "total_comments", default: 0
     t.boolean "isclosed", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "is_drafted", default: false
+    t.integer "votes"
+    t.integer "vote_count", default: 0
+    t.integer "upvotes", default: 0
+    t.integer "downvotes", default: 0
     t.index ["account_id"], name: "index_posts_on_account_id"
     t.index ["community_id"], name: "index_posts_on_community_id"
   end
@@ -104,17 +106,22 @@ ActiveRecord::Schema.define(version: 2023_02_03_044405) do
 
   create_table "reports", force: :cascade do |t|
     t.integer "post_id", null: false
-    t.integer "report_reason_id", null: false
     t.integer "account_id", null: false
-    t.integer "report_category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "report_categories_name"
     t.string "report_reason_name"
     t.index ["account_id"], name: "index_reports_on_account_id"
     t.index ["post_id"], name: "index_reports_on_post_id"
-    t.index ["report_category_id"], name: "index_reports_on_report_category_id"
-    t.index ["report_reason_id"], name: "index_reports_on_report_reason_id"
+  end
+
+  create_table "save_posts", force: :cascade do |t|
+    t.integer "account_id"
+    t.integer "post_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_save_posts_on_account_id"
+    t.index ["post_id"], name: "index_save_posts_on_post_id"
   end
 
   create_table "subscriptions", force: :cascade do |t|
@@ -126,12 +133,22 @@ ActiveRecord::Schema.define(version: 2023_02_03_044405) do
     t.index ["community_id"], name: "index_subscriptions_on_community_id"
   end
 
+  create_table "votes", force: :cascade do |t|
+    t.integer "value", default: 0
+    t.integer "post_id", null: false
+    t.integer "account_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_votes_on_account_id"
+    t.index ["post_id"], name: "index_votes_on_post_id"
+  end
+
   add_foreign_key "communities", "accounts"
   add_foreign_key "posts", "accounts"
   add_foreign_key "posts", "communities"
   add_foreign_key "report_reasons", "report_categories"
   add_foreign_key "reports", "accounts"
   add_foreign_key "reports", "posts"
-  add_foreign_key "reports", "report_categories"
-  add_foreign_key "reports", "report_reasons"
+  add_foreign_key "votes", "accounts"
+  add_foreign_key "votes", "posts"
 end
