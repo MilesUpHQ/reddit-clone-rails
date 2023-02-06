@@ -16,7 +16,7 @@ class Api::V1::ReportsController < ApplicationController
     end
   end
 
-  def set_post
+  def set_report
     @report = Report.find(params[:id])
   end
 
