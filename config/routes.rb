@@ -11,6 +11,7 @@ Rails.application.routes.draw do
         resources :subscriptions
         resources :posts do
             patch :close
+          resources :votes
           resources :comments
           resources :reports
         end
