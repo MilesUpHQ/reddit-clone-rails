@@ -6,17 +6,15 @@ class Api::V1::CommentsController < ApplicationController
     @comment = @post.comments.create(comment_params)
     @comment.account = account
     if @comment.save!
-      render json: @comment, status: :created
+      render json: @post.comments, status: :created
     else
       render json: @comment.errors, status: :unprocessable_entity
     end
   end
 
   def index
-
-    @comments = @post.comments
+    @comments = @post.comments.includes(:account)
     render json: @comments, include: [:post, :account]
-    
   end
 
   private
