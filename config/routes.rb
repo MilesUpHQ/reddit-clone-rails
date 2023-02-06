@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       end
       resources :communities do
         get 'joined_accounts', to: 'communities#community_joined_account'
+        get 'accounts_search', to: 'communities#joined_account_community'
         resources :banned_users
         resources :subscriptions
         resources :posts do
