@@ -15,6 +15,16 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def update
+    if @account.update(account_params)
+      payload = { account_id: @account.id }
+      token = JWT.encode(payload, Rails.application.credentials.secret_key_base)
+      render json: { jwt: token, account: @account }, status: :ok
+    else
+      render json: { error: @account.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def account_params
