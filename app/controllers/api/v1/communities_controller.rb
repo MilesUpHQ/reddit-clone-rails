@@ -40,8 +40,10 @@ class Api::V1::CommunitiesController < ApplicationController
   end
 
   def joined_account_community
-    @joined_accounts = Account.where('username LIKE ?', "%#{params[:q]}%").select(:id, :username)
-    render json: { options: @joined_accounts }
+    ids = Subscription.where(community_id: params[:community_id]).pluck(:account_id)
+
+    @joined_accounts = Account.where(id: ids).where('username LIKE ?', "%#{params[:q]}%").select(:id, :username)
+    render json: @joined_accounts
   end
 
   def search_suggestions
