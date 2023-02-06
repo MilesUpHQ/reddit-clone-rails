@@ -6,7 +6,7 @@ class Post < ApplicationRecord
   validates :title, presence: { message: " can't be blank" }
   validate :acceptable_image
   validates_presence_of :account_id, :community_id
-  validate :at_least_one_present
+  validate :post_body_validation
 
   belongs_to :account
   belongs_to :community
@@ -36,7 +36,7 @@ class Post < ApplicationRecord
     validate_multiple_images(images, :images)
   end
 
-  def at_least_one_present
+  def post_body_validation
     unless body.present? || images.present? || link.present? || poll_topic.present?
       errors.add(:base, "At least one of body or images or link or poll_topic must be present")
     end
