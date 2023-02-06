@@ -15,14 +15,14 @@ class Api::V1::CommentsController < ApplicationController
   def index
 
     @comments = @post.comments
-    render json: @comments, include: [:post]
+    render json: @comments, include: [:post, :account]
     
   end
 
   private
 
   def set_post
-    @post = Post.find(params[:post_id])
+    @post = Post.includes(:account).find(params[:post_id])
   end
 
   def comment_params
