@@ -69,11 +69,12 @@ class PostsController < ApplicationController
     @poll_answers=PollAnswer.new(params.permit(:poll_answer, :community_id,:post_id))
     @poll_answers.account_id = current_account.id
     if @poll_answers.save 
-      flash[:notice] = t('poll_answer.create')
+       redirect_to root_path, notice: t('poll_answer.create')
     else
       redirect_to root_path
     end
   end
+  
 
   def my_posts
     @my_posts = @community.posts.where(account_id: current_account.id)

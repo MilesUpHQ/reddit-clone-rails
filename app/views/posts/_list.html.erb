@@ -69,9 +69,7 @@
        </div>
           <% elsif post.poll_topic? %>
             <p class="col-12 "><%= post.poll_topic %></p>
-            <div class="margin">
             <%= render partial: 'posts/poll_answers_form',locals: {post: post ,community_id: post.community_id}%>
-            </div>
           <%elsif link_is_valid(post.link)%>
           <%= link_to post.link,  url_for(post.link), target: "_blank",class: "col-12" %>
           <% elsif post.spoiler? %>

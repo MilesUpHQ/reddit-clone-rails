@@ -40,6 +40,26 @@
   top: 50px;
 }
 
+.poll-form-css{
+  margin-left: 75px;
+}
+
+.poll-css {
+  position: relative;
+  background-color: rgba(70, 70, 239, 0.281);
+  padding: 10px;
+}
+
+.poll-css:before{
+  content: "✓";
+  position: absolute;
+  top:  10px;
+  left: 0px;
+  color: black;
+  margin-left: 120px;
+  font-weight: bold
+}
+
 .button-57 {
   position: relative;
   overflow: hidden;
