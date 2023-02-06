@@ -88,33 +88,15 @@ ActiveRecord::Schema.define(version: 2023_02_03_044405) do
     t.index ["community_id"], name: "index_posts_on_community_id"
   end
 
-  create_table "report_categories", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "report_reasons", force: :cascade do |t|
-    t.string "reason"
-    t.integer "report_category_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["report_category_id"], name: "index_report_reasons_on_report_category_id"
-  end
-
   create_table "reports", force: :cascade do |t|
     t.integer "post_id", null: false
-    t.integer "report_reason_id", null: false
     t.integer "account_id", null: false
-    t.integer "report_category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "report_categories_name"
     t.string "report_reason_name"
     t.index ["account_id"], name: "index_reports_on_account_id"
     t.index ["post_id"], name: "index_reports_on_post_id"
-    t.index ["report_category_id"], name: "index_reports_on_report_category_id"
-    t.index ["report_reason_id"], name: "index_reports_on_report_reason_id"
   end
 
   create_table "subscriptions", force: :cascade do |t|
@@ -129,9 +111,6 @@ ActiveRecord::Schema.define(version: 2023_02_03_044405) do
   add_foreign_key "communities", "accounts"
   add_foreign_key "posts", "accounts"
   add_foreign_key "posts", "communities"
-  add_foreign_key "report_reasons", "report_categories"
   add_foreign_key "reports", "accounts"
   add_foreign_key "reports", "posts"
-  add_foreign_key "reports", "report_categories"
-  add_foreign_key "reports", "report_reasons"
 end
