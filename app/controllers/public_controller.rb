@@ -19,9 +19,7 @@ class PublicController < ApplicationController
     @my_comments = Comment.where(account_id: @profile.id)
     @my_posts = Post.where(account_id: @profile.id)
     @hot_myposts = Post.where(account_id: @profile.id).order(view_count: :desc).page(params[:page]).per 5
-    @top_myposts = Post.where(account_id: @profile.id).order(view_count: :desc).page(params[:page]).per 5
-    @new_myposts = Post.where(account_id: @profile.id).order(created_at: :desc).page(params[:page]).per 5
-  end
+   end
 
 
 

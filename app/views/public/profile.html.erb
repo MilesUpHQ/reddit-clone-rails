@@ -12,15 +12,15 @@
             </div>
           </div>
           <div id="new_myposts" class="tab-pane fade infinity">
-            <%= render partial: "posts/list", locals: { posts: @new_myposts } %>
+            <%= render partial: "posts/list", locals: { posts: @hot_myposts } %>
             <div class = "infinite-scrolling">
-              <%= link_to_next_page(@new_myposts, "posts" , :remote => true, class: "text-dark") %>
+              <%= link_to_next_page(@hot_myposts, "posts" , :remote => true, class: "text-dark") %>
             </div>
           </div>
           <div id="top_myposts" class="tab-pane fade infinity">
-            <%= render partial: "posts/list", locals: { posts: @top_myposts } %>
+            <%= render partial: "posts/list", locals: { posts: @hot_myposts } %>
             <div class = "infinite-scrolling">
-              <%= link_to_next_page(@top_myposts, "posts" , :remote => true, class: "text-dark") %>
+              <%= link_to_next_page(@hot_myposts, "posts" , :remote => true, class: "text-dark") %>
             </div>
           </div>
         </div>
