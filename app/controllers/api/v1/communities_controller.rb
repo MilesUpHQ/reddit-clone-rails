@@ -20,7 +20,6 @@ class Api::V1::CommunitiesController < ApplicationController
     @community = Community.new(community_params)
 
     if @community.save
-      Subscription.create!(community_id: @community.id, account_id: params[:account_id])
       render json: @community, status: :created
     else
       render json: @community.errors, status: :unprocessable_entity
