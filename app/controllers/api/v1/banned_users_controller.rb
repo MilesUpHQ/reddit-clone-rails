@@ -26,6 +26,6 @@ class Api::V1::BannedUsersController < ApplicationController
   end
 
   def banned_user_params
-    params.require(:banned_user).permit(:username, :reason, :explanation, :account_id)
+    params.require(:banned_user).permit(:username, :reason, :explanation, :duration, :permanent, :account_id)
   end
 end
