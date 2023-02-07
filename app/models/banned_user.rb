@@ -11,6 +11,6 @@ class BannedUser < ApplicationRecord
   private
 
   def schedule_removal
-    UnBanJob.set(wait: duration.days).perform_later(id)
+    if duration? then UnBanJob.set(wait: duration.days).perform_later(id) end 
   end
 end
