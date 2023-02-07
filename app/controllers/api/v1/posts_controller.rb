@@ -1,6 +1,6 @@
 class Api::V1::PostsController < ApplicationController
   # before_action :authenticate_account!, except: %i[index show]
-  before_action :set_post, only: %i[show update destroy increment_view_count close ]
+  before_action :set_post, only: %i[show update destroy increment_view_count close]
 
   # GET /posts
   def index
@@ -8,11 +8,13 @@ class Api::V1::PostsController < ApplicationController
     @posts_sorted_by_view_count = @posts.order(view_count: :desc)
     @posts_sorted_by_creation_time = @posts.order(created_at: :desc)
     @posts_sorted_by_upvotes = @posts.order(upvotes: :desc)
+    @best_posts = @posts.sort_by { |post| post.upvotes.to_f / (post.upvotes + post.downvotes + 1) }.reverse
     render json: {
       posts: @posts,
       top_posts: @posts_sorted_by_view_count,
       new_posts: @posts_sorted_by_creation_time,
-      hot_posts: @posts_sorted_by_upvotes
+      hot_posts: @posts_sorted_by_upvotes,
+      best_posts: @best_posts
     }, include: %i[community account]
   end
   
@@ -20,8 +22,6 @@ class Api::V1::PostsController < ApplicationController
     @post.view_count += 1
     @post.save
   end 
-
-
 
   # GET /posts/1
   def show
