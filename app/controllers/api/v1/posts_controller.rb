@@ -22,6 +22,7 @@ class Api::V1::PostsController < ApplicationController
   end 
 
 
+
   # GET /posts/1
   def show
     increment_view_count
