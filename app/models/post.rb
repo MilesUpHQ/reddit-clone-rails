@@ -18,6 +18,9 @@ class Post < ApplicationRecord
   has_many :poll_answer
 
   scope :drafts, ->(account_id) { where(account_id: account_id, is_drafted: true) }
+  scope :best_posts, -> { select("posts.*, upvotes / nullif(downvotes, 0) AS upvotes_ratio").order("upvotes_ratio DESC") }
+  scope :hot_posts, -> { where("created_at >= ?", 1.week.ago).order("upvotes DESC") }
+
 
   def score
     if upvotes.positive? || downvotes.positive?

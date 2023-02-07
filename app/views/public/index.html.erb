@@ -4,18 +4,7 @@
       <%= render partial: "posts/create_post", locals: { community: nil } %>
       <%= render partial: "public/tab"%>
       <div class="tab-content infinity">
-        <div id="best_posts" class="tab-pane fade-in active">
-          <%= render partial: "posts/list", locals: { posts: @posts } %>
-        </div>
-        <div id="hot_posts" class="tab-pane fade">
-          <%= render partial: "posts/list", locals: { posts: @top_posts } %>
-        </div>
-        <div id="new_posts" class="tab-pane fade">
-          <%= render partial: "posts/list", locals: { posts: @posts } %>
-        </div>
-        <div id="top_posts" class="tab-pane fade">
-          <%= render partial: "posts/list", locals: { posts: @top_posts } %>
-        </div>
+        <div id="ajax"></div>
       </div>
       <div class = "infinite-scrolling">
         <%= link_to_next_page(@posts, "posts" , :remote => true, class: "text-dark") %>
@@ -51,3 +40,4 @@
     </div>
   </div>
 </div>
+<script>

@@ -24,6 +24,11 @@ Rails.application.routes.draw do
 
   get '/submit', to: 'posts#new', as: 'submit_new_community_post'
 
+  get "/top_posts", to: "public#top_posts"
+  get "/best_posts", to: "public#best_posts"
+  get "/hot_postss", to: "public#hot_postss"
+  get "/new_posts", to: "public#new_posts"
+
   post 'save_post/:id', to: 'save_post#create', as: 'save_post_path'
 
   resources :report_reasons

@@ -4,8 +4,35 @@ class PublicController < ApplicationController
   before_action :subscriptions, only: [:profile]
   def index
     @communities = Community.order("post_count_this_week desc").limit(5)
+    @posts = Post.order(created_at: :desc).page(params[:page]).per 5    
+  end
+
+  def new_posts
     @posts = Post.order(created_at: :desc).page(params[:page]).per 5
-    @top_posts = Post.order(view_count: :desc).page(params[:page]).per 5
+    respond_to do |format|
+      format.js {}
+    end
+  end
+
+  def best_posts
+    @best_posts = Post.best_posts.page(params[:page]).per(5)
+    respond_to do |format|
+      format.js {}
+    end
+  end
+
+  def hot_postss
+    @hot_postss = Post.best_posts.page(params[:page]).per(5)
+    respond_to do |format|
+      format.js {}
+    end
+  end
+
+  def top_posts
+    @top_posts = Post.order(upvotes: :desc).page(params[:page]).per 5
+    respond_to do |format|
+      format.js {}
+    end
   end
   
   def profile
