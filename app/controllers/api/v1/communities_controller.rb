@@ -11,8 +11,7 @@ class Api::V1::CommunitiesController < ApplicationController
 
   # GET /communities/1
   def show
-    check_if_banned
-    render json: @community, include: %i[posts account subscriptions]
+    render json: @community, include: %i[posts account subscriptions banned_users]
   end
 
   # POST /communities
@@ -55,7 +54,7 @@ class Api::V1::CommunitiesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_community
-    @community = Community.includes(:posts, :account, :subscriptions).find(params[:id])
+    @community = Community.includes(:posts, :account, :subscriptions, :banned_users).find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
