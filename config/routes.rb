@@ -10,6 +10,10 @@ Rails.application.routes.draw do
         resources :banned_users
         resources :subscriptions
         resources :posts do
+          get 'hot_posts', to: 'posts#hot_posts'
+          get 'best_posts', to: 'posts#best_posts'
+          get 'new_posts', to: 'posts#new_posts'
+          get 'top_posts', to: 'posts#top_posts'
           patch :close
           resources :votes
           resources :comments
