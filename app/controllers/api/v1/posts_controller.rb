@@ -1,21 +1,30 @@
 class Api::V1::PostsController < ApplicationController
-  # before_action :authenticate_account!, except: %i[index show]
   before_action :set_post, only: %i[show update destroy increment_view_count close]
 
   # GET /posts
   def index
     @posts = Post.includes(:community, :account)
-    @posts_sorted_by_view_count = @posts.order(view_count: :desc)
-    @posts_sorted_by_creation_time = @posts.order(created_at: :desc)
-    @posts_sorted_by_upvotes = @posts.order(upvotes: :desc)
-    @best_posts = @posts.sort_by { |post| post.upvotes.to_f / (post.upvotes + post.downvotes + 1) }.reverse
-    render json: {
-      posts: @posts,
-      top_posts: @posts_sorted_by_view_count,
-      new_posts: @posts_sorted_by_creation_time,
-      hot_posts: @posts_sorted_by_upvotes,
-      best_posts: @best_posts
-    }, include: %i[community account]
+    render json: @posts, include: %i[community account]
+  end
+
+  def hot_posts
+    @hot_posts = Post.includes(:community, :account).order(upvotes: :desc)
+    render json: @hot_posts, include: %i[community account]
+  end
+
+  def new_posts
+    @new_posts = Post.includes(:community, :account).order(created_at: :desc)
+    render json: @new_posts, include: %i[community account]
+  end
+
+  def best_posts
+    @best_posts = Post.includes(:community, :account).sort_by { |post| post.upvotes.to_f / (post.upvotes + post.downvotes + 1) }.reverse
+    render json: @best_posts, include: %i[community account]
+  end
+
+  def top_posts
+    @top_posts = Post.includes(:community, :account).order(view_count: :desc)
+    render json: @top_posts, include: %i[community account]
   end
   
   def increment_view_count
