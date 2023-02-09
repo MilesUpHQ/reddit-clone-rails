@@ -94,12 +94,6 @@ class PostsController < ApplicationController
     @comments=Comment.where("message  ILIKE ?", "%#{params[:search]}%")
   end
 
-  def messages
-    @posts= Post.where(account_id: current_account.id)
-    @comments=Comment.where(account_id: current_account.id,parent_id: nil)
-    @subscriptions=Subscription.where(account_id: current_account.id)
-  end
-
   def notifications
     @posts= Post.where(account_id: current_account.id)
     @community= Community.where(account_id: current_account.id)
