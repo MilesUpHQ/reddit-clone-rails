@@ -6,15 +6,16 @@
           <h5>Notifications</h5>
         </div>
         <div class="modal-title-right margin-noti">
-          <a href="#" class="modal-link margin-noti">Messages</a>
+          <%= link_to "Messages", messages_path, class: "modal-link margin-noti" %>
         </div>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
+        <%= render partial: 'posts/notification_display'%>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <%= link_to "See More",notifications_path, class: "modal-link" %>
         </div>
       </div>
     </div>

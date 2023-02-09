@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
   before_action :set_post, only: [:create]
 
   def create
+    session[:mark_as_read] = 0
     @comment = @post.comments.build comment_params
     @comment.account_id = current_account.id
     if @comment.save

@@ -3,6 +3,7 @@ class SubscriptionsController < ApplicationController
   before_action :set_community, only: :destroy
 
   def create
+    session[:mark_as_read] = 0
     @subscription = Subscription.new subscription_params
     @subscription.account_id = current_account.id
     @subscription.save

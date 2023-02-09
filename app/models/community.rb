@@ -4,6 +4,7 @@ class Community < ApplicationRecord
   friendly_id :slug_candidates, use: %i[slugged history finders]
 
   has_many :accounts, through: :banned_users
+  has_many :comments
   has_many :posts, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
   has_many :subscribers, through: :subscriptions, source: :account

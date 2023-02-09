@@ -22,6 +22,7 @@ class PostsController < ApplicationController
   end
 
   def create
+    session[:mark_as_read] = 0
     @drafts = Post.drafts(current_account.id)
     @post = Post.new post_params
     @post.account_id = current_account.id
@@ -91,6 +92,31 @@ class PostsController < ApplicationController
     @communities= Community.where("name ILIKE ?", "%#{params[:search]}%")
     @accounts=Account.where("username ILIKE ?", "%#{params[:search]}%")
     @comments=Comment.where("message  ILIKE ?", "%#{params[:search]}%")
+  end
+
+  def messages
+    @posts= Post.where(account_id: current_account.id)
+    @comments=Comment.where(account_id: current_account.id,parent_id: nil)
+    @subscriptions=Subscription.where(account_id: current_account.id)
+  end
+
+  def notifications
+    @posts= Post.where(account_id: current_account.id)
+    @community= Community.where(account_id: current_account.id)
+    @comments=Comment.where(account_id: current_account.id,parent_id: nil)
+    @subscriptions=Subscription.where(account_id: current_account.id)
+    @comment = Comment.where(post_id: @posts.pluck(:id))
+    @replies = Comment.where(parent_id: @comments.pluck(:id))
+    @subscribers = Subscription.where(community_id: @community.pluck(:id))
+    @post = Post.where(community_id: @community.pluck(:id))
+    @combined_records = (@comment + @replies + @subscribers + @post).sort_by { |record| record.created_at }.reverse    
+  end
+
+  def mark_as_read
+    if params[:commit] == "Mark As Read"
+      session[:mark_as_read] = 1
+    end
+    redirect_to root_path
   end
 
 

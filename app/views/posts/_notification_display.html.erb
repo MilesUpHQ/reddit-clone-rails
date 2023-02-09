@@ -1,0 +1,16 @@
+ <%@posts= Post.where(account_id: current_account.id)
+    @community= Community.where(account_id: current_account.id)
+    @comments=Comment.where(account_id: current_account.id,parent_id: nil)
+    @subscriptions=Subscription.where(account_id: current_account.id)
+    @comment = Comment.where(post_id: @posts.pluck(:id))
+    @replies = Comment.where(parent_id: @comments.pluck(:id))
+    @subscribers = Subscription.where(community_id: @community.pluck(:id))
+    @post = Post.where(community_id: @community.pluck(:id))%>
+<% @combined_records = (@comment + @replies + @subscribers + @post).sort_by { |record| record.created_at }.reverse.first(3)%>
+<% if session[:mark_as_read] == 1 %>
+  <center><%= image_tag "notifications.png" %>
+    <h4><b>You don’t have any activity yet</b></h4>
+  </center><br>
+<%else %>
+ <%= render partial: 'posts/activity_display'%>
+<%end%>

@@ -94,7 +94,13 @@
         <% if account_signed_in? %>
           <div class="float-left mt-1 mr-3">
             <button type="button" class="btn btn-light" data-toggle="modal" data-target="#myModal" remote = "true">
-              <i class="fa fa-bell"></i>
+              <%if session[:mark_as_read] == 0%>
+                <span class="fa-stack fa" data-count=".">
+                  <i class="fa fa-bell fa-stack-1x  "></i>
+                </span>
+              <%else%>
+                <i class="fa fa-bell"></i>
+              <%end%>
             </button>
             <%= render "posts/notification"%>
           </div>
