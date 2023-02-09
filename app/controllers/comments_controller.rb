@@ -2,9 +2,9 @@ class CommentsController < ApplicationController
   before_action :set_post, only: [:create]
 
   def create
-    session[:mark_as_read] = 0
     @comment = @post.comments.build comment_params
     @comment.account_id = current_account.id
+    Account.where(id: @comment.post.account_id).update(notification_status: true)
     if @comment.save
       flash[:notice] = t("comment.create")
     else

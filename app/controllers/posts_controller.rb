@@ -22,10 +22,10 @@ class PostsController < ApplicationController
   end
 
   def create
-    session[:mark_as_read] = 0
     @drafts = Post.drafts(current_account.id)
     @post = Post.new post_params
     @post.account_id = current_account.id
+    Account.where(id: @post.community.account_id).update(notification_status: true)
     @post.is_drafted = !(params[:commit] == 'Publish')
     if @post.save
       if @post.is_drafted?
@@ -114,9 +114,9 @@ class PostsController < ApplicationController
 
   def mark_as_read
     if params[:commit] == "Mark As Read"
-      session[:mark_as_read] = 1
+      Account.where(id: current_account.id).update(notification_status: false)
+      redirect_to root_path
     end
-    redirect_to root_path
   end
 
 

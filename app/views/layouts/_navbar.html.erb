@@ -94,7 +94,8 @@
         <% if account_signed_in? %>
           <div class="float-left mt-1 mr-3">
             <button type="button" class="btn btn-light" data-toggle="modal" data-target="#myModal" remote = "true">
-              <%if session[:mark_as_read] == 0%>
+            <%notification_status = Account.find_by(id:current_account).notification_status%>
+              <%if notification_status == true %>
                 <span class="fa-stack fa" data-count=".">
                   <i class="fa fa-bell fa-stack-1x  "></i>
                 </span>

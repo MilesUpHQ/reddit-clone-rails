@@ -38,7 +38,6 @@ class CommunitiesController < ApplicationController
   end
 
   def create
-    session[:mark_as_read] = 0
     @community = Community.new community_params
     @community.account_id = current_account.id
     if @community.save
