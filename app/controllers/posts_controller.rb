@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   before_action :community_list
   before_action :cancel_check, only: [:update]
   def index
-    @posts = Post.all
+      @posts = Post.all
   end
 
   def show
@@ -25,6 +25,7 @@ class PostsController < ApplicationController
     @drafts = Post.drafts(current_account.id)
     @post = Post.new post_params
     @post.account_id = current_account.id
+    Account.where(id: @post.community.account_id).update(notification_status: true)
     @post.is_drafted = !(params[:commit] == 'Publish')
     if @post.save
       if @post.is_drafted?
@@ -85,6 +86,33 @@ class PostsController < ApplicationController
     flash[:notice] = t('post.destroy')
     redirect_to root_path
   end
+
+  def post_title_search
+    @posts = Post.where("title ILIKE ?", "%#{params[:search]}%")
+    @communities= Community.where("name ILIKE ?", "%#{params[:search]}%")
+    @accounts=Account.where("username ILIKE ?", "%#{params[:search]}%")
+    @comments=Comment.where("message  ILIKE ?", "%#{params[:search]}%")
+  end
+
+  def notifications
+    @posts= Post.where(account_id: current_account.id)
+    @community= Community.where(account_id: current_account.id)
+    @comments=Comment.where(account_id: current_account.id,parent_id: nil)
+    @subscriptions=Subscription.where(account_id: current_account.id)
+    @comment = Comment.where(post_id: @posts.pluck(:id))
+    @replies = Comment.where(parent_id: @comments.pluck(:id))
+    @subscribers = Subscription.where(community_id: @community.pluck(:id))
+    @post = Post.where(community_id: @community.pluck(:id))
+    @combined_records = (@comment + @replies + @subscribers + @post).sort_by { |record| record.created_at }.reverse    
+  end
+
+  def mark_as_read
+    if params[:commit] == "Mark As Read"
+      Account.where(id: current_account.id).update(notification_status: false)
+      redirect_to root_path
+    end
+  end
+
 
   private
 

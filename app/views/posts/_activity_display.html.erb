@@ -1,0 +1,42 @@
+<br>
+<% @combined_records.each do |record| %>
+  <% if  record.account_id != current_account.id%>
+    <div class="card ">
+      <div class="p-1 pl-3 pr-3 mb-3">
+        <div class="row">
+          <div class="col-1">
+            <% if record.instance_of?(Community)  %>
+              <%= display_profile_picture record, "notifications-img", "rediit-logo.png" %>
+            <% elsif record.instance_of?(Comment)  %>
+              <%= display_profile_picture record.post.community, "notifications-img", "rediit-logo.png" %>
+            <% else  %>
+              <%= display_profile_picture record.community, "notifications-img", "rediit-logo.png" %>
+            <%end%>
+          </div>
+          <div class="col-11">
+            <div class="post-list-head m-3">
+              <% if record.instance_of?(Subscription) %>
+                <h6><strong><%= link_to "u/"+record.account.username.capitalize, profile_path(record.account.username), class: "text-dark" %></strong> joined to your community <strong><%= link_to "r/"+record.community.name.capitalize, community_path(record.community), class: "text-dark" %>
+                    . </strong><%= time_ago_in_words record.created_at %> ago</h6>
+              <% elsif record.instance_of?(Post) %>
+                <h6><strong><%= link_to "u/"+record.account.username.capitalize, profile_path(record.account.username), class: "text-dark" %></strong> posted a post to your community <strong><%= link_to "r/"+record.community.name.capitalize, community_path(record.community), class: "text-dark" %>
+                    . </strong><%= time_ago_in_words record.created_at %> ago</h6>
+                <h6><%= link_to record.title, community_post_path(record.community,record), class: "text-dark"%>
+                <% elsif record.instance_of?(Comment) %>
+                  <% if record.parent_id.nil?%>
+                    <h6><strong><%= link_to "u/"+record.account.username.capitalize, profile_path(record.account.username), class: "text-dark" %></strong> replied to your post in <strong><%= link_to "r/"+record.post.community.name.capitalize, community_path(record.post.community), class: "text-dark" %>
+                        . </strong><%= time_ago_in_words record.created_at %> ago</h6>
+                    <h6><%= link_to record.message, community_post_path(record.post.community,record.post), class: "text-dark"%>
+                    <% else %>
+                      <h6><strong><%= link_to "u/"+record.account.username.capitalize, profile_path(record.account.username), class: "text-dark" %></strong> replied to your comment in <strong><%= link_to "r/"+record.post.community.name.capitalize, community_path(record.post.community), class: "text-dark" %>
+                          . </strong><%= time_ago_in_words record.created_at %> ago</h6>
+                      <h6><%= link_to record.message, community_post_path(record.post.community,record.post), class: "text-dark"%>
+                      <%end%>
+                    <%end%>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <%end%>
+      <%end%>

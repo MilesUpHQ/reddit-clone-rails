@@ -5,6 +5,7 @@ class SubscriptionsController < ApplicationController
   def create
     @subscription = Subscription.new subscription_params
     @subscription.account_id = current_account.id
+    Account.where(id: @subscription.community.account_id).update(notification_status: true)
     @subscription.save
     redirect_back(fallback_location: root_path, notice: t("community.joined"))
   end

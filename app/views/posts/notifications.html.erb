@@ -1,0 +1,25 @@
+<div class="margin-noti-tab">
+  <br><br>
+  <h3>Notifications</h3><br>
+  <ul class="nav">
+    <li class="tab-nav-link "><a data-toggle="tab" href="#activity">Activity</a></li>
+    <li class="tab-nav-link"><a data-toggle="tab" href="#messages">Messages</a></li>
+</div>
+<div class="tab-content">
+  <div id="activity" class="tab-pane fade-in infinity ">
+    <%= form_tag mark_as_read_path, method: :post do %>
+    <%= submit_tag "Mark As Read" , style: "margin-left: 900px;",:class=>"btn default"%>
+    <% end %>
+    <div class="margin-noti-tab">
+      <%if @combined_records.present?%>
+      <%= render partial: 'posts/activity_display'%>
+      <%else%>
+      <center><br><%= image_tag "notifications.png" %>
+        <h4><b>You don’t have any activity yet</b></h4>
+      </center><br>
+      <%end%>
+    </div>
+  </div>
+  <div id="messages" class="tab-pane fade-in infinity ">
+  </div>
+</div>

@@ -1,24 +1,26 @@
 <div class = "comment" >
   <% if reply.account.profile_image.attached? %>
-    <%= link_to image_tag(reply.account.profile_image, class: "small-pic float-left m-r-15"),profile_path(reply.account.username) %>
+    <%= link_to image_tag(reply.account.profile_image, class: "small-pic float-left mr-1"),profile_path(reply.account.username) %>
   <% else %>
-    <img class="small-pic float-left m-r-15" src="https://www.iconpacks.net/icons/2/free-reddit-logo-icon-2436-thumb.png">
-  <% end %> 
-  <strong> <%= link_to reply.account.full_name, profile_path(reply.account.username) , class: "text-dark" %></strong>
-  <%= reply.message %>
+    <img class="small-pic float-left mr-1" src="https://www.iconpacks.net/icons/2/free-reddit-logo-icon-2436-thumb.png">
+  <% end %>
+  <p class="ml-1 text-muted">
+    <strong> <%= link_to reply.account.username, profile_path(reply.account.username) , class: "text-dark" %></strong> .
+    <%= time_ago_in_words reply.created_at %> ago </p>
+  <p class=" margin-reply"><%= reply.message.to_plain_text %></p>
   <div class = "fl">
-    <p class = "text-muted m-l-30"><%= time_ago_in_words reply.created_at %> ago </p>
     <% if !(@post.closed?) %>
-      <a href = "#" class="comment-form-display">Reply</a>
-    <% end %> 
+      <a href = "#" class="comment-form-display margin-reply">Reply</a>
+    <% end %>
     <div class = "comment-form">
       <%= render partial: "comments/form", locals: {post: reply.post, parent: reply, comment_id: reply.id}%>
     </div>
   </div>
   <hr>
   <% if reply.replies.any? %>
-    <% reply.replies.each do |reply| %> 
+    <% reply.replies.each do |reply| %>
       <div class = "sub-comment"><%= render partial: 'comments/reply', locals: { reply: reply, comment_id: reply.id } %></div>
     <% end %>
   <% end %>
-</div> 
+</div>
+ 

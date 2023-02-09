@@ -32,8 +32,15 @@ Rails.application.routes.draw do
 
   post 'p/vote' => 'votes#create'
 
+  get 'messages', to: 'posts#messages'
+  get 'notifications', to: 'posts#notifications'
+  post 'mark_as_read', to: 'posts#mark_as_read'
+
+
   get 'r/:id/mod' , to: 'communities#mod' , as: 'mod'
 
+  get 'community_post_title_search', to: 'communities#community_post_title_search'
+  get 'post_title_search', to: 'posts#post_title_search'
   get 'search_suggestions', to: 'communities#search_suggestions'
   get 'username_search', to: 'communities#username_search'
 
