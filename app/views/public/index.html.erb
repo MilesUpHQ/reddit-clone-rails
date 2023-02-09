@@ -1,7 +1,7 @@
 <div class="community_post">
   <div class="row">
     <div class="col-sm-8">
-      <%= render partial: "posts/create_post", locals: { community: nil } %>
+      <%= render partial: "posts/create_post", locals: { community: nil, account:current_account} %>
       <%= render partial: "public/tab"%>
       <div class="tab-content infinity">
         <div id="best_posts" class="tab-pane fade-in active">
